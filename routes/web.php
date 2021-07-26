@@ -9,6 +9,9 @@ use App\Http\Controllers\TicketController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DeviceController;
 use App\Http\Controllers\DeviceTypeController;
+use App\Http\Controllers\NavigationGenerationController;
+use App\Http\Controllers\UserAdminController;
+use App\Http\Controllers\NavigationTypeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,9 +34,9 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         return view('dashboard');
     })->name('dashboard');
 
-    Route::get('/generate', [NavigationGenerateController::class, 'generate']);
+    Route::get('/generate', [NavigationGenerationController::class, 'generate']);
     // User Profile Routes
-    Route::get('/user/profile', [UserController::class, 'profile'])->name('user.profile');
+    // Route::get('/user/profile', [UserController::class, 'profile'])->name('user.profile');
     Route::get('/user/accounts/{status?}',[UserController::class, 'accounts'])->name('user.accounts');
     Route::post('/user/profile/avatar/update', [UserController::class, 'updateAvatar'])->name('user.profile.avatar.update');
     Route::post('/user/profile/avatar/delete', [UserController::class, 'deleteAvatar'])->name('user.profile.avatar.delete');

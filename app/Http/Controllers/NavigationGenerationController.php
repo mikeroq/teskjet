@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Navigation;
+use App\Models\Navigation;
 use Illuminate\Support\Facades\Storage;
 
 class NavigationGenerationController extends Controller

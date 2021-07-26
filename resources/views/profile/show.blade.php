@@ -1,13 +1,11 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Profile') }}
-        </h2>
-    </x-slot>
+@extends('layouts.backend')
 
-    <div>
-        <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
-            @if (Laravel\Fortify\Features::canUpdateProfileInformation())
+@section('content')
+    <x-page-header title="{{ $user->name }}" subtitle="Edit Profile">
+        <img class="img-avatar img-avatar96 img-avatar-thumb" src="{{ $user->profile_photo_url }}" alt="{{ $user->name }}">
+    </x-page-header>
+    <div class="content">
+        @if (Laravel\Fortify\Features::canUpdateProfileInformation())
                 @livewire('profile.update-profile-information-form')
 
                 <x-jet-section-border />
@@ -57,6 +55,5 @@
                     @livewire('profile.delete-user-form')
                 </div>
             @endif
-        </div>
     </div>
-</x-app-layout>
+@endsection

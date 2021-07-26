@@ -18,6 +18,7 @@
         <link rel="stylesheet" id="css-main" href="{{ asset('assets/css/custom.css') }}">
         <link rel="stylesheet" href="/css/bootstrap-pincode-input.css">
         @yield('css_after')
+        @livewireStyles
         <script>window.Laravel = {!! json_encode(['csrfToken' => csrf_token(),]) !!};</script>
     </head>
     <body>
@@ -34,7 +35,9 @@
         <script src="assets/js/bootstrap-pincode-input.js"></script>
         <script src="assets/js/nashmix.js"></script>
         @stack('scripts')
+        @stack('modals')
 
+        @livewireScripts
 
     </body>
 </html>
