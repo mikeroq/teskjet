@@ -25,7 +25,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        View::composer(['components.navigation', 'components.admin-navigation'], function($view) {
+        View::composer(['components.navigation', 'components.admin-navigation', 'components.user-panel-navigation'], function($view) {
             if ($view->getName() != 'layouts.maintenance') {
                 $navigation = Navigation::where('navigation_type_id', 1)->orderBy('order_column', 'ASC')->get();
                 $admin_navigation = Navigation::where('navigation_type_id', 2)->orderBy('order_column', 'ASC')->get();

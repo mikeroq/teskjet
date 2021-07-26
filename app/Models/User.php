@@ -75,4 +75,13 @@ class User extends Authenticatable
 
         return $this->getPhotoUrl();
     }
+
+    public function isAdmin()
+    {
+        return $this->getRawOriginal('user_level') == 9 ? true : false;
+    }
+
+    public function getUserLevelAttribute($attribute) {
+        return collect(trans('types/user.type'))->get($attribute);
+    }
 }

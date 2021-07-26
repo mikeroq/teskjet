@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Customer;
+use App\Models\Customer;
 use App\DataTables\CustomersDataTable;
 use App\Http\Requests\CustomerValidationRequest;
 use Illuminate\Contracts\Foundation\Application;

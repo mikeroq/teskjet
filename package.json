@@ -19,5 +19,10 @@
         "postcss": "^8.1.14",
         "postcss-import": "^14.0.1",
         "tailwindcss": "^2.2.2"
+    },
+    "dependencies": {
+        "datatables.net-bs4": "^1.10.21",
+        "datatables.net-buttons-bs4": "^1.6.3",
+        "sweetalert": "^2.1.2"
     }
 }
