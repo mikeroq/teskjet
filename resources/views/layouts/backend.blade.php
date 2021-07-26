@@ -13,16 +13,16 @@
         <link rel="manifest" href="/site.webmanifest">
         @yield('css_before')
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
-        <link rel="stylesheet" id="css-main" href="{{ mix('css/dashmix.css') }}">
-        <link rel="stylesheet" id="css-theme" href="{{ mix('css/themes/xinspire.css') }}">
-        <link rel="stylesheet" id="css-main" href="{{ asset('css/custom.css') }}">
+        <link rel="stylesheet" id="css-main" href="{{ asset('assets/css/dashmix.css') }}">
+        <link rel="stylesheet" id="css-theme" href="{{ asset('assets/css/themes/xinspire.css') }}">
+        <link rel="stylesheet" id="css-main" href="{{ asset('assets/css/custom.css') }}">
         <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css">
         <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.3/css/buttons.bootstrap4.min.css">
-        <link rel="stylesheet" href="/css/bootstrap-side-modals.css" />
+        <link rel="stylesheet" href="assets/css/bootstrap-side-modals.css" />
         <link href="//cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css" rel="stylesheet">
         <link rel="stylesheet" href="https://bootstrap-colors-extended.herokuapp.com/bootstrap-colors.css" />
         <link rel="stylesheet" href="https://bootstrap-colors-extended.herokuapp.com/bootstrap-colors-themes.css" />
-        <link rel="stylesheet" href="/css/bootstrap-pincode-input.css">
+        <link rel="stylesheet" href="assets/css/bootstrap-pincode-input.css">
         @yield('css_after')
         <script>window.Laravel = {!! json_encode(['csrfToken' => csrf_token(),]) !!};</script>
     </head>
@@ -93,15 +93,15 @@
                 </div>
             </footer>
         </div>
-        <script src="{{ mix('js/dashmix.app.js') }}"></script>
-        <script src="{{ mix('/js/bootstrap.js') }}"></script>
+        <script src="{{ asset('assets/js/dashmix.app.js') }}"></script>
+        <script src="{{ asset('assets/js/bootstrap.js') }}"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-        <script src="/js/plugins/bootstrap-notify/bootstrap-notify.min.js"></script>
-        <script src="/js/plugins/pwstrength-bootstrap/pwstrength-bootstrap.min.js"></script>
+        <script src="assets/js/plugins/bootstrap-notify/bootstrap-notify.min.js"></script>
+        <script src="assets/js/plugins/pwstrength-bootstrap/pwstrength-bootstrap.min.js"></script>
         <script src="{{ asset('vendor/datatables/buttons.server-side.js') }}"></script>
         <script src="//cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
-        <script src="/js/bootstrap-pincode-input.js"></script>
-        <script src="/js/nashmix.js"></script>
+        <script src="assets/js/bootstrap-pincode-input.js"></script>
+        <script src="assets/js/nashmix.js"></script>
         @stack('scripts')
         @stack('modal')
     </body>

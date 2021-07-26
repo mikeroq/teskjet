@@ -6,17 +6,27 @@
     "license": "MIT",
     "require": {
         "php": "^7.3|^8.0",
+        "barryvdh/laravel-snappy": "^0.4.8",
+        "bensampo/laravel-enum": "^3.4",
+        "dcblogdev/laravel-sent-emails": "^1.0",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
+        "h4cc/wkhtmltopdf-amd64": "^0.12.4",
+        "intervention/image": "^2.6",
         "joelbutcher/socialstream": "^3.1",
         "laravel/framework": "^8.40",
         "laravel/sanctum": "^2.6",
         "laravel/tinker": "^2.5",
         "league/commonmark": "^2.0",
-        "livewire/livewire": "^2.5"
+        "livewire/livewire": "^2.5",
+        "propaganistas/laravel-phone": "^4.3",
+        "spatie/eloquent-sortable": "^4.0",
+        "venturecraft/revisionable": "^1.38",
+        "yajra/laravel-datatables": "^1.5"
     },
     "require-dev": {
+        "barryvdh/laravel-ide-helper": "^2.10",
         "facade/ignition": "^2.5",
         "fakerphp/faker": "^1.9.1",
         "laravel/sail": "^1.0.1",

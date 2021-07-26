@@ -1,7 +1,7 @@
 @extends('layouts.simple')
 
 @section('content')
-    <div class="bg-image" style="background-image: url('media/photos/photo16@2x.jpg');">
+    <div class="bg-image" style="background-image: url('assets/media/photos/photo16@2x.jpg');">
         <div class="row no-gutters bg-primary-op">
             <div class="hero-static col-md-6 d-flex align-items-center bg-white">
                 <div class="p-3 w-100">

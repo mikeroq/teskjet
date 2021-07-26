@@ -1,29 +1,29 @@
     @if (JoelButcher\Socialstream\Socialstream::hasFacebookSupport())
-        <a href="{{ route('oauth.redirect', ['provider' => JoelButcher\Socialstream\Providers::facebook()]) }}" class="btn btn-block btn-hero-primary bg-default">
+        <a href="{{ route('oauth.redirect', ['provider' => JoelButcher\Socialstream\Providers::facebook()]) }}" class="btn btn-block btn-hero-primary bg-default text-left">
             <i class="fa fab fa-facebook mr-1"></i> Sign in with Facebook
         </a>
     @endif
 
     @if (JoelButcher\Socialstream\Socialstream::hasGoogleSupport())
-        <a href="{{ route('oauth.redirect', ['provider' => JoelButcher\Socialstream\Providers::google()]) }}" class="btn btn-block btn-hero-primary bg-xplay-light">
+        <a href="{{ route('oauth.redirect', ['provider' => JoelButcher\Socialstream\Providers::google()]) }}" class="btn btn-block btn-hero-primary bg-xplay-light text-left">
             <i class="fa fab fa-google mr-1"></i> Sign in with Google
         </a>
     @endif
 
     @if (JoelButcher\Socialstream\Socialstream::hasTwitterSupport())
-        <a href="{{ route('oauth.redirect', ['provider' => JoelButcher\Socialstream\Providers::twitter()]) }}" class="btn btn-block btn-hero-primary bg-xplay-light">
+        <a href="{{ route('oauth.redirect', ['provider' => JoelButcher\Socialstream\Providers::twitter()]) }}" class="btn btn-block btn-hero-primary bg-xplay-light text-left">
             <i class="fa fab fa-twitter mr-1"></i> Sign in with Twitter
         </a>
     @endif
 
     @if (JoelButcher\Socialstream\Socialstream::hasLinkedInSupport())
-        <a href="{{ route('oauth.redirect', ['provider' => JoelButcher\Socialstream\Providers::linkedin()]) }}" class="btn btn-block btn-hero-primary bg-xpro">
+        <a href="{{ route('oauth.redirect', ['provider' => JoelButcher\Socialstream\Providers::linkedin()]) }}" class="btn btn-block btn-hero-primary bg-xpro text-left">
             <i class="fa fab fa-linkedin mr-1"></i> Sign in with LinkedIn
         </a>
     @endif
 
     @if (JoelButcher\Socialstream\Socialstream::hasGithubSupport())
-        <a href="{{ route('oauth.redirect', ['provider' => JoelButcher\Socialstream\Providers::google()]) }}" class="btn btn-block btn-hero-primary bg-xwork">
+        <a href="{{ route('oauth.redirect', ['provider' => JoelButcher\Socialstream\Providers::google()]) }}" class="btn btn-block btn-hero-primary bg-xwork text-left">
             <i class="fa fab fa-github mr-1"></i> Sign in with GitHub
         </a>
     @endif
