@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\NavigationType;
-use App\Navigation;
+use App\Models\NavigationType;
+use App\Models\Navigation;
 
 class NavigationTypeController extends Controller
 {

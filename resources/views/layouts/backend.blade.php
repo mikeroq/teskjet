@@ -7,10 +7,10 @@
         <title>{{ config('app.name') }}</title>
         <meta name="robots" content="noindex, nofollow">
         <meta name="csrf-token" content="{{ csrf_token() }}">
-        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-        <link rel="manifest" href="/site.webmanifest">
+        <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicons/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicons/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicons/favicon-16x16.png">
+        <link rel="manifest" href="/assets/favicons/site.webmanifest">
         @yield('css_before')
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
         <link rel="stylesheet" id="css-main" href="{{ asset('/assets/css/dashmix.css') }}">
@@ -25,7 +25,6 @@
         <link rel="stylesheet" href="/assets/css/bootstrap-pincode-input.css">
         @yield('css_after')
         @livewireStyles
-        !-- Scripts -->
         <script src="{{ mix('js/app.js') }}" defer></script>
         <script>window.Laravel = {!! json_encode(['csrfToken' => csrf_token(),]) !!};</script>
     </head>
@@ -57,7 +56,6 @@
                         </div>
                         <div class="dropdown d-inline-block">
                             <button type="button" class="btn btn-dual dropdown-toggle" id="page-header-user-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                {{-- <img class="img-avatar img-avatar32" id="user_avatar_top" src="/uploads/avatars/{{ Auth::user()->avatar }}" alt=""> --}}
                                 <i class="fas fa-user mr-1"></i>
                                 <span class="d-none d-sm-inline-block">{{ Auth::user()->full_name }}</span>
                             </button>

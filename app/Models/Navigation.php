@@ -67,10 +67,10 @@ class Navigation extends Model implements Sortable
     public function parent() {
         return $this->belongsTo('\App\Models\NavigationType');
     }
-    protected $dispatchesEvents = [
-        'saved' => NavigationUpdate::class,
-        'updated' => NavigationUpdate::class,
-        'created' => NavigationUpdate::class,
-        'deleted' => NavigationUpdate::class,
-    ];
+    // protected $dispatchesEvents = [
+    //     'saved' => NavigationUpdate::class,
+    //     'updated' => NavigationUpdate::class,
+    //     'created' => NavigationUpdate::class,
+    //     'deleted' => NavigationUpdate::class,
+    // ];
 }

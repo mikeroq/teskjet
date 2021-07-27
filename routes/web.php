@@ -28,6 +28,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/users-table', function () {
+    return view('userstable');
+});
+
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     // Dashboard Route
     Route::match(['get', 'post'], '/dashboard', function(){
@@ -35,11 +39,6 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     })->name('dashboard');
 
     Route::get('/generate', [NavigationGenerationController::class, 'generate']);
-    // User Profile Routes
-    // Route::get('/user/profile', [UserController::class, 'profile'])->name('user.profile');
-    Route::get('/user/accounts/{status?}',[UserController::class, 'accounts'])->name('user.accounts');
-    Route::post('/user/profile/avatar/update', [UserController::class, 'updateAvatar'])->name('user.profile.avatar.update');
-    Route::post('/user/profile/avatar/delete', [UserController::class, 'deleteAvatar'])->name('user.profile.avatar.delete');
 
     // Resource Routes
     Route::resource('customers',CustomerController::class);
