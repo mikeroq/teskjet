@@ -4,7 +4,7 @@
     @if (! empty($createdAt))
         <div class="form-group row">
             <div class="col-sm-10 col-md-8 col-xl-6">
-                <a class="btn btn-block btn-alt-primary bg-transparent d-flex align-items-center justify-content-between" href="javascript:void(0)">
+                <button class="btn btn-block btn-alt-primary bg-transparent btn-disabled d-flex align-items-center justify-content-between">
                     <span>
                         @switch($provider)
                             @case(JoelButcher\Socialstream\Providers::facebook())
@@ -33,7 +33,7 @@
                         {{ __(ucfirst($provider)) }}
                     </span>
                     <i class="fa fa-fw fa-check mr-1"></i>
-                </a>
+                </div>
             </div>
             <div class="col-sm-12 col-md-4 col-xl-6 mt-1 d-md-flex align-items-md-center font-size-sm">
                 {{ $action }}
@@ -72,7 +72,7 @@
             </div>
         </div>
     @endif
-    
+
 
     @error($provider.'_connect_error')
         <div class="text-sm font-semibold text-red-500 px-3 mt-2">
