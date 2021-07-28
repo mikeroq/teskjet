@@ -33,7 +33,7 @@
                         {{ __(ucfirst($provider)) }}
                     </span>
                     <i class="fa fa-fw fa-check mr-1"></i>
-                </div>
+                </button>
             </div>
             <div class="col-sm-12 col-md-4 col-xl-6 mt-1 d-md-flex align-items-md-center font-size-sm">
                 {{ $action }}
@@ -42,7 +42,7 @@
     @else
         <div class="form-group row">
             <div class="col-sm-10 col-md-8 col-xl-6">
-                <a class="btn btn-block btn-alt-info text-left" href="javascript:void(0)">
+                <button class="btn btn-block btn-alt-info text-left btn-disabled">
                     @switch($provider)
                         @case(JoelButcher\Socialstream\Providers::facebook())
                             <i class="fab fa-fw fa-facebook opacity-50 mr-1"></i>
@@ -68,7 +68,7 @@
                         @default
                     @endswitch
                     Connect to {{ $provider }}
-                </a>
+                </button>
             </div>
         </div>
     @endif
