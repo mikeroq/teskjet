@@ -4,7 +4,7 @@
     @if (! empty($createdAt))
         <div class="form-group row">
             <div class="col-sm-10 col-md-8 col-xl-6">
-                <button class="btn btn-block btn-alt-primary bg-transparent btn-disabled d-flex align-items-center justify-content-between">
+                <button class="btn btn-block btn-alt-primary bg-transparent d-flex align-items-center justify-content-between" disabled>
                     <span>
                         @switch($provider)
                             @case(JoelButcher\Socialstream\Providers::facebook())
@@ -42,7 +42,7 @@
     @else
         <div class="form-group row">
             <div class="col-sm-10 col-md-8 col-xl-6">
-                <button class="btn btn-block btn-alt-info text-left btn-disabled">
+                <button class="btn btn-block btn-alt-info text-left" disabled>
                     @switch($provider)
                         @case(JoelButcher\Socialstream\Providers::facebook())
                             <i class="fab fa-fw fa-facebook opacity-50 mr-1"></i>

@@ -27,31 +27,49 @@
                     $account = $this->accounts->where('provider', $provider)->first();
                 @endphp
 
-                <x-connected-account provider="{{ $provider }}" created-at="{{ $account->created_at ?? null }}">
-                    <x-slot name="action">
-                        @if (! is_null($account))
-                            
-                            <div class="flex items-center space-x-6">
-                                @if (Laravel\Jetstream\Jetstream::managesProfilePhotos() && ! is_null($account->avatar_path))
-                                    <button class="cursor-pointer ml-6 text-sm text-gray-500 focus:outline-none" wire:click="setAvatarAsProfilePhoto({{ $account->id }})">
-                                        {{ __('Use Avatar as Profile Photo') }}
-                                    </button>
-                                @endif
-
-                                @if (($this->accounts->count() > 1 || ! is_null($this->user->password)))
-                                    <x-jet-danger-button wire:click="confirmRemove({{ $account->id }})" wire:loading.attr="disabled">
-                                        {{ __('Remove') }}
-                                    </x-jet-danger-button>
-                                @endif
+                <div>
+                    @if (! is_null($account))
+                        <div class="form-group row">
+                            <div class="col-sm-10 col-md-8 col-xl-6">
+                                <button class="btn btn-block btn-alt-primary bg-transparent d-flex align-items-center justify-content-between" disabled>
+                                    <span>
+                                        <i class="fab fa-fw fa-{{ $provider }} opacity-50 mr-1"></i>
+                                        {{ __(ucfirst($provider)) }}
+                                    </span>
+                                    <i class="fa fa-fw fa-check mr-1"></i>
+                                </button>
                             </div>
-                        @else
-                            <x-action-link href="{{ route('oauth.redirect', ['provider' => $provider]) }}">
-                                {{ __('Connect') }}
-                            </x-action-link>
-                        @endif
-                    </x-slot>
-
-                </x-connected-account>
+                            <div class="col-sm-12 col-md-4 col-xl-6 mt-1 d-md-flex align-items-md-center font-size-sm">
+                                <div class="flex items-center space-x-6">
+                                    @if (Laravel\Jetstream\Jetstream::managesProfilePhotos() && ! is_null($account->avatar_path))
+                                        <button class="cursor-pointer ml-6 text-sm text-gray-500 focus:outline-none" wire:click="setAvatarAsProfilePhoto({{ $account->id }})">
+                                            {{ __('Use Avatar as Profile Photo') }}
+                                        </button>
+                                    @endif
+                                    @if (($this->accounts->count() > 1 || ! is_null($this->user->password)))
+                                        <x-jet-danger-button wire:click="confirmRemove({{ $account->id }})" wire:loading.attr="disabled">
+                                            {{ __('Remove') }}
+                                        </x-jet-danger-button>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                    @else
+                        <div class="form-group row">
+                            <div class="col-sm-10 col-md-8 col-xl-6">
+                                <a class="btn btn-block btn-alt-info text-left" href="{{ route('oauth.redirect', ['provider' => $provider]) }}">
+                                    <i class="fab fa-fw fa-{{ $provider }} opacity-50 mr-1"></i>
+                                    Connect to {{ __(ucfirst($provider)) }}
+                                </a>
+                            </div>
+                        </div>
+                    @endif
+                    @error($provider.'_connect_error')
+                        <div class="text-sm font-semibold text-red-500 px-3 mt-2">
+                            {{ $message }}
+                        </div>
+                    @enderror
+                </div>
             @endforeach
         </div>
 
