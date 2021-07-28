@@ -42,8 +42,8 @@
                             <div class="col-sm-12 col-md-4 col-xl-6 mt-1 d-md-flex align-items-md-center font-size-sm">
                                 <div class="flex items-center space-x-6">
                                     @if (Laravel\Jetstream\Jetstream::managesProfilePhotos() && ! is_null($account->avatar_path))
-                                        <button class="cursor-pointer ml-6 text-sm text-gray-500 focus:outline-none" wire:click="setAvatarAsProfilePhoto({{ $account->id }})">
-                                            {{ __('Use Avatar as Profile Photo') }}
+                                        <button class="btn btn-sm btn-light btn-rounded" wire:click="setAvatarAsProfilePhoto({{ $account->id }})">
+                                            <i class="fas fa-fw fa-image mr-1"></i> {{ __('Use Avatar') }}
                                         </button>
                                     @endif
                                     @if (($this->accounts->count() > 1 || ! is_null($this->user->password)))
