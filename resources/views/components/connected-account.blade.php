@@ -1,54 +1,78 @@
 @props(['provider', 'createdAt' => null])
 
 <div>
-    <div class="pl-3 flex items-center justify-between">
-        <div class="flex items-center">
-            @switch($provider)
-                @case(JoelButcher\Socialstream\Providers::facebook())
-                    <x-facebook-icon class="h-6 w-6 mr-2" />
-                    @break
-                @case(JoelButcher\Socialstream\Providers::google())
-                    <x-google-icon class="h-6 w-6 mr-2" />
-                    @break
-                @case(JoelButcher\Socialstream\Providers::twitter())
-                    <x-twitter-icon class="h-6 w-6 mr-2" />
-                    @break
-                @case(JoelButcher\Socialstream\Providers::linkedin())
-                    <x-linked-in-icon class="h-6 w-6 mr-2" />
-                    @break
-                @case(JoelButcher\Socialstream\Providers::github())
-                    <x-github-icon class="h-6 w-6 mr-2" />
-                    @break
-                @case(JoelButcher\Socialstream\Providers::gitlab())
-                    <x-gitlab-icon class="h-6 w-6 mr-2" />
-                    @break
-                @case(JoelButcher\Socialstream\Providers::bitbucket())
-                    <x-bitbucket-icon class="h-6 w-6 mr-2" />
-                    @break
-                @default
-            @endswitch
-
-            <div>
-                <div class="text-sm font-semibold text-gray-600">
-                    {{ __(ucfirst($provider)) }}
-                </div>
-
-                @if (! empty($createdAt))
-                    <div class="text-xs text-gray-500">
-                        Connected {{ $createdAt }}
-                    </div>
-                @else
-                    <div class="text-xs text-gray-500">
-                        {{ __('Not connected.') }}
-                    </div>
-                @endif
+    @if (! empty($createdAt))
+        <div class="form-group row">
+            <div class="col-sm-10 col-md-8 col-xl-6">
+                <a class="btn btn-block btn-alt-primary bg-transparent d-flex align-items-center justify-content-between" href="javascript:void(0)">
+                    <span>
+                        @switch($provider)
+                            @case(JoelButcher\Socialstream\Providers::facebook())
+                                <i class="fab fa-fw fa-facebook opacity-50 mr-1"></i>
+                                @break
+                            @case(JoelButcher\Socialstream\Providers::google())
+                                <i class="fab fa-fw fa-google opacity-50 mr-1"></i>
+                                @break
+                            @case(JoelButcher\Socialstream\Providers::twitter())
+                                <i class="fab fa-fw fa-twitter opacity-50 mr-1"></i>
+                                @break
+                            @case(JoelButcher\Socialstream\Providers::linkedin())
+                                <i class="fab fa-fw fa-linkedin opacity-50 mr-1"></i>
+                                @break
+                            @case(JoelButcher\Socialstream\Providers::github())
+                                <i class="fab fa-fw fa-github opacity-50 mr-1"></i>
+                                @break
+                            @case(JoelButcher\Socialstream\Providers::gitlab())
+                                <i class="fab fa-fw fa-gitlab opacity-50 mr-1"></i>
+                                @break
+                            @case(JoelButcher\Socialstream\Providers::bitbucket())
+                                <i class="fab fa-fw fa-bitbucket opacity-50 mr-1"></i>
+                                @break
+                            @default
+                        @endswitch
+                        {{ __(ucfirst($provider)) }}
+                    </span>
+                    <i class="fa fa-fw fa-check mr-1"></i>
+                </a>
+            </div>
+            <div class="col-sm-12 col-md-4 col-xl-6 mt-1 d-md-flex align-items-md-center font-size-sm">
+                {{ $action }}
             </div>
         </div>
-
-        <div>
-            {{ $action }}
+    @else
+        <div class="form-group row">
+            <div class="col-sm-10 col-md-8 col-xl-6">
+                <a class="btn btn-block btn-alt-info text-left" href="javascript:void(0)">
+                    @switch($provider)
+                        @case(JoelButcher\Socialstream\Providers::facebook())
+                            <i class="fab fa-fw fa-facebook opacity-50 mr-1"></i>
+                            @break
+                        @case(JoelButcher\Socialstream\Providers::google())
+                            <i class="fab fa-fw fa-google opacity-50 mr-1"></i>
+                            @break
+                        @case(JoelButcher\Socialstream\Providers::twitter())
+                            <i class="fab fa-fw fa-twitter opacity-50 mr-1"></i>
+                            @break
+                        @case(JoelButcher\Socialstream\Providers::linkedin())
+                            <i class="fab fa-fw fa-linkedin opacity-50 mr-1"></i>
+                            @break
+                        @case(JoelButcher\Socialstream\Providers::github())
+                            <i class="fab fa-fw fa-github opacity-50 mr-1"></i>
+                            @break
+                        @case(JoelButcher\Socialstream\Providers::gitlab())
+                            <i class="fab fa-fw fa-gitlab opacity-50 mr-1"></i>
+                            @break
+                        @case(JoelButcher\Socialstream\Providers::bitbucket())
+                            <i class="fab fa-fw fa-bitbucket opacity-50 mr-1"></i>
+                            @break
+                        @default
+                    @endswitch
+                    Connect to {{ $provider }}
+                </a>
+            </div>
         </div>
-    </div>
+    @endif
+    
 
     @error($provider.'_connect_error')
         <div class="text-sm font-semibold text-red-500 px-3 mt-2">
