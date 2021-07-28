@@ -20,34 +20,29 @@
             <div class="mt-3">
                 <!-- Other Browser Sessions -->
                 @foreach ($this->sessions as $session)
-                    <div class="d-flex">
-                        <div>
-                            @if ($session->agent->isDesktop())
-                                <svg fill="none" width="32" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor" class="text-muted">
-                                    <path d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-                                </svg>
-                            @else
-                                <svg xmlns="http://www.w3.org/2000/svg" width="32" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" class="text-muted">
-                                    <path d="M0 0h24v24H0z" stroke="none"></path><rect x="7" y="4" width="10" height="16" rx="1"></rect><path d="M11 5h2M12 17v.01"></path>
-                                </svg>
-                            @endif
-                        </div>
-
-                        <div class="ml-2">
+                    <div class="block block-rounded block-bordered">
+                        <div class="block-content block-content-full d-flex align-items-center justify-content-between">
                             <div>
-                                {{ $session->agent->platform() }} - {{ $session->agent->browser() }}
-                            </div>
-
-                            <div>
-                                <div class="small font-weight-lighter text-muted">
+                                <div class="font-w600 mb-1">{{ $session->agent->platform() }} {{ $session->agent->version($session->agent->platform()) }} - {{ $session->agent->browser() }} {{ $session->agent->version($session->agent->browser()) }}</div>
+                                <div class="font-size-sm text-muted">
                                     {{ $session->ip_address }},
-
                                     @if ($session->is_current_device)
                                         <span class="text-success font-weight-bold">{{ __('This device') }}</span>
                                     @else
                                         {{ __('Last active') }} {{ $session->last_active }}
                                     @endif
                                 </div>
+                            </div>
+                            <div class="ml-3">
+                                @if ($session->agent->isDesktop())
+                                <svg fill="none" width="32" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor" class="text-muted">
+                                    <path d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                                </svg>
+                                @else
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" class="text-muted">
+                                        <path d="M0 0h24v24H0z" stroke="none"></path><rect x="7" y="4" width="10" height="16" rx="1"></rect><path d="M11 5h2M12 17v.01"></path>
+                                    </svg>
+                                @endif
                             </div>
                         </div>
                     </div>

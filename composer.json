@@ -27,6 +27,7 @@
         "rappasoft/laravel-livewire-tables": "^1.11",
         "spatie/eloquent-sortable": "^4.0",
         "spatie/laravel-remote": "^1.0",
+        "vaimo/composer-patches": "^4.22",
         "venturecraft/revisionable": "^1.38",
         "yajra/laravel-datatables-buttons": "^4.0",
         "yajra/laravel-datatables-html": "^4.0",
@@ -70,6 +71,9 @@
     "extra": {
         "laravel": {
             "dont-discover": []
+        },
+        "patcher": {
+            "search": "patches"
         }
     },
     "config": {

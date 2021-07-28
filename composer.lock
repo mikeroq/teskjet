@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9d1f5c368380e85acc0c1c0dedd24d3b",
+    "content-hash": "9f2c494f4161e5bf8476363f3a1f761c",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1157,6 +1157,62 @@
                 }
             ],
             "time": "2020-11-24T19:55:57+00:00"
+        },
+        {
+            "name": "drupol/phposinfo",
+            "version": "1.6.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/drupol/phposinfo.git",
+                "reference": "36b0250d38279c8a131a1898a31e359606024507"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/drupol/phposinfo/zipball/36b0250d38279c8a131a1898a31e359606024507",
+                "reference": "36b0250d38279c8a131a1898a31e359606024507",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">= 7.1.3"
+            },
+            "require-dev": {
+                "drupol/php-conventions": "^1.7.1",
+                "friends-of-phpspec/phpspec-code-coverage": "^4.3.2",
+                "infection/infection": "^0.13.6 || ^0.15.0",
+                "phpspec/phpspec": "^5.1.2 || ^6.1.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "drupol\\phposinfo\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Pol Dellaiera",
+                    "email": "pol.dellaiera@protonmail.com"
+                }
+            ],
+            "description": "Try to guess the host operating system.",
+            "keywords": [
+                "operating system detection"
+            ],
+            "support": {
+                "issues": "https://github.com/drupol/phposinfo/issues",
+                "source": "https://github.com/drupol/phposinfo/tree/master"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/drupol",
+                    "type": "github"
+                }
+            ],
+            "abandoned": "loophp/phposinfo",
+            "time": "2020-05-19T14:14:28+00:00"
         },
         {
             "name": "egulias/email-validator",
@@ -2877,16 +2933,16 @@
         },
         {
             "name": "laravel/jetstream",
-            "version": "v2.3.13",
+            "version": "v2.3.14",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/jetstream.git",
-                "reference": "b33a95dabf6ca8dc6b3c6fe3135a9645bf70095b"
+                "reference": "7446fc7c6e62457bf37fef22e0a0e96956dee089"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/jetstream/zipball/b33a95dabf6ca8dc6b3c6fe3135a9645bf70095b",
-                "reference": "b33a95dabf6ca8dc6b3c6fe3135a9645bf70095b",
+                "url": "https://api.github.com/repos/laravel/jetstream/zipball/7446fc7c6e62457bf37fef22e0a0e96956dee089",
+                "reference": "7446fc7c6e62457bf37fef22e0a0e96956dee089",
                 "shasum": ""
             },
             "require": {
@@ -2940,7 +2996,7 @@
                 "issues": "https://github.com/laravel/jetstream/issues",
                 "source": "https://github.com/laravel/jetstream"
             },
-            "time": "2021-07-26T08:17:20+00:00"
+            "time": "2021-07-28T10:12:38+00:00"
         },
         {
             "name": "laravel/sanctum",
@@ -4436,22 +4492,23 @@
         },
         {
             "name": "nesbot/carbon",
-            "version": "2.50.0",
+            "version": "2.51.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/briannesbitt/Carbon.git",
-                "reference": "f47f17d17602b2243414a44ad53d9f8b9ada5fdb"
+                "reference": "8619c299d1e0d4b344e1f98ca07a1ce2cfbf1922"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/f47f17d17602b2243414a44ad53d9f8b9ada5fdb",
-                "reference": "f47f17d17602b2243414a44ad53d9f8b9ada5fdb",
+                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/8619c299d1e0d4b344e1f98ca07a1ce2cfbf1922",
+                "reference": "8619c299d1e0d4b344e1f98ca07a1ce2cfbf1922",
                 "shasum": ""
             },
             "require": {
                 "ext-json": "*",
                 "php": "^7.1.8 || ^8.0",
                 "symfony/polyfill-mbstring": "^1.0",
+                "symfony/polyfill-php80": "^1.16",
                 "symfony/translation": "^3.4 || ^4.0 || ^5.0"
             },
             "require-dev": {
@@ -4470,8 +4527,8 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.x-dev",
-                    "dev-3.x": "3.x-dev"
+                    "dev-3.x": "3.x-dev",
+                    "dev-master": "2.x-dev"
                 },
                 "laravel": {
                     "providers": [
@@ -4525,7 +4582,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-06-28T22:38:45+00:00"
+            "time": "2021-07-28T13:16:28+00:00"
         },
         {
             "name": "nette/schema",
@@ -5089,16 +5146,16 @@
         },
         {
             "name": "propaganistas/laravel-phone",
-            "version": "4.3.0",
+            "version": "4.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Propaganistas/Laravel-Phone.git",
-                "reference": "6953b54542f530c75ab8eb953b38cca4bfdc5d88"
+                "reference": "d85ce8af34d39afa39f96176c5ae645f0784e83c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Propaganistas/Laravel-Phone/zipball/6953b54542f530c75ab8eb953b38cca4bfdc5d88",
-                "reference": "6953b54542f530c75ab8eb953b38cca4bfdc5d88",
+                "url": "https://api.github.com/repos/Propaganistas/Laravel-Phone/zipball/d85ce8af34d39afa39f96176c5ae645f0784e83c",
+                "reference": "d85ce8af34d39afa39f96176c5ae645f0784e83c",
                 "shasum": ""
             },
             "require": {
@@ -5110,6 +5167,7 @@
                 "php": "^7.3|^8.0"
             },
             "require-dev": {
+                "nunomaduro/larastan": "^0.6.11",
                 "orchestra/testbench": "*",
                 "phpunit/phpunit": "*"
             },
@@ -5149,9 +5207,9 @@
             ],
             "support": {
                 "issues": "https://github.com/Propaganistas/Laravel-Phone/issues",
-                "source": "https://github.com/Propaganistas/Laravel-Phone/tree/4.3.0"
+                "source": "https://github.com/Propaganistas/Laravel-Phone/tree/4.3.1"
             },
-            "time": "2021-02-11T17:06:47+00:00"
+            "time": "2021-05-10T07:25:05+00:00"
         },
         {
             "name": "psr/container",
@@ -5871,6 +5929,69 @@
                 }
             ],
             "time": "2021-07-10T21:03:13+00:00"
+        },
+        {
+            "name": "seld/jsonlint",
+            "version": "1.8.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Seldaek/jsonlint.git",
+                "reference": "9ad6ce79c342fbd44df10ea95511a1b24dee5b57"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Seldaek/jsonlint/zipball/9ad6ce79c342fbd44df10ea95511a1b24dee5b57",
+                "reference": "9ad6ce79c342fbd44df10ea95511a1b24dee5b57",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.3 || ^7.0 || ^8.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.8.35 || ^5.7 || ^6.0"
+            },
+            "bin": [
+                "bin/jsonlint"
+            ],
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Seld\\JsonLint\\": "src/Seld/JsonLint/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jordi Boggiano",
+                    "email": "j.boggiano@seld.be",
+                    "homepage": "http://seld.be"
+                }
+            ],
+            "description": "JSON Linter",
+            "keywords": [
+                "json",
+                "linter",
+                "parser",
+                "validator"
+            ],
+            "support": {
+                "issues": "https://github.com/Seldaek/jsonlint/issues",
+                "source": "https://github.com/Seldaek/jsonlint/tree/1.8.3"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/Seldaek",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/seld/jsonlint",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2020-11-11T09:19:24+00:00"
         },
         {
             "name": "spatie/eloquent-sortable",
@@ -8440,6 +8561,166 @@
             "time": "2020-07-13T06:12:54+00:00"
         },
         {
+            "name": "vaimo/composer-patches",
+            "version": "4.22.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/vaimo/composer-patches.git",
+                "reference": "3da4cdf03fb4dc8d92b3d435de183f6044d679d6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/vaimo/composer-patches/zipball/3da4cdf03fb4dc8d92b3d435de183f6044d679d6",
+                "reference": "3da4cdf03fb4dc8d92b3d435de183f6044d679d6",
+                "shasum": ""
+            },
+            "require": {
+                "composer-plugin-api": "^1.0 || ^2.0",
+                "drupol/phposinfo": "^1.6",
+                "ext-json": "*",
+                "php": ">=5.3.0",
+                "seld/jsonlint": "^1.7.1",
+                "vaimo/topological-sort": "^1.0"
+            },
+            "require-dev": {
+                "composer/composer": "^1.0 || ^2.0",
+                "phpcompatibility/php-compatibility": ">=9.1.1",
+                "phpmd/phpmd": ">=2.6.0",
+                "sebastian/phpcpd": ">=1.4.3",
+                "squizlabs/php_codesniffer": ">=2.9.2",
+                "vaimo/composer-changelogs": "^0.17.0",
+                "vaimo/composer-patches-proxy": "1.0.0"
+            },
+            "type": "composer-plugin",
+            "extra": {
+                "class": "Vaimo\\ComposerPatches\\Plugin",
+                "changelog": {
+                    "source": "changelog.json",
+                    "output": {
+                        "md": "CHANGELOG.md"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Vaimo\\ComposerPatches\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Allan Paiste",
+                    "email": "allan.paiste@vaimo.com"
+                }
+            ],
+            "description": "Applies a patch from a local or remote file to any package that is part of a given composer project. Patches can be defined both on project and on package level. Optional support for patch versioning, sequencing, custom patch applier configuration and patch command for testing/troubleshooting added patches.",
+            "keywords": [
+                "Fixes",
+                "back-ports",
+                "backports",
+                "bulk patches",
+                "bundled patches",
+                "composer command",
+                "composer plugin",
+                "configurable patch applier",
+                "development patches",
+                "downloaded patches",
+                "environment flags",
+                "hot-fixes",
+                "hotfixes",
+                "indirect restrictions",
+                "maintenance",
+                "maintenance tools",
+                "multi-version patches",
+                "multiple formats",
+                "os-specific config",
+                "package bug-fix",
+                "package patches",
+                "patch branching",
+                "patch command",
+                "patch description",
+                "patch exclusion",
+                "patch header",
+                "patch meta-data",
+                "patch resolve",
+                "patch search",
+                "patch skipping",
+                "patcher",
+                "patching",
+                "plugin",
+                "remote patch files",
+                "resolve patches",
+                "skipped packages",
+                "tools",
+                "utilities",
+                "utility",
+                "utils",
+                "version restriction"
+            ],
+            "support": {
+                "docs": "https://github.com/vaimo/composer-patches",
+                "issues": "https://github.com/vaimo/composer-patches/issues",
+                "source": "https://github.com/vaimo/composer-patches"
+            },
+            "time": "2021-02-25T11:24:50+00:00"
+        },
+        {
+            "name": "vaimo/topological-sort",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/vaimo/topological-sort.git",
+                "reference": "e19b93df2bac0e995ecd4b982ec4ea2fb1131e64"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/vaimo/topological-sort/zipball/e19b93df2bac0e995ecd4b982ec4ea2fb1131e64",
+                "reference": "e19b93df2bac0e995ecd4b982ec4ea2fb1131e64",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3"
+            },
+            "require-dev": {
+                "codeclimate/php-test-reporter": "dev-master",
+                "phpcompatibility/php-compatibility": "^9.1.1",
+                "phpmd/phpmd": "^2.6.0",
+                "phpunit/phpunit": "~4.0",
+                "squizlabs/php_codesniffer": "^2.9.2",
+                "symfony/console": "~2.5 || ~3.0 || ~4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Vaimo\\TopSort\\": "src/",
+                    "Vaimo\\TopSort\\Tests\\": "tests/Tests/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Marc J. Schmidt",
+                    "email": "marc@marcjschmidt.de"
+                }
+            ],
+            "description": "High-Performance TopSort/Dependency resolving algorithm (compatibility version to work with 5.3)",
+            "keywords": [
+                "dependency resolving",
+                "topological sort",
+                "topsort"
+            ],
+            "support": {
+                "source": "https://github.com/vaimo/topological-sort/tree/1.0.0"
+            },
+            "time": "2019-04-13T14:15:06+00:00"
+        },
+        {
             "name": "venturecraft/revisionable",
             "version": "1.38.0",
             "source": {
@@ -8956,16 +9237,16 @@
     "packages-dev": [
         {
             "name": "andrey-helldar/contracts",
-            "version": "v1.4.6",
+            "version": "v1.4.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/andrey-helldar/contracts.git",
-                "reference": "1edfeb82321028d90550b395b02081fbc77a98d1"
+                "reference": "644ff715480f2c09daa7c426a21f9a95f4249d41"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/andrey-helldar/contracts/zipball/1edfeb82321028d90550b395b02081fbc77a98d1",
-                "reference": "1edfeb82321028d90550b395b02081fbc77a98d1",
+                "url": "https://api.github.com/repos/andrey-helldar/contracts/zipball/644ff715480f2c09daa7c426a21f9a95f4249d41",
+                "reference": "644ff715480f2c09daa7c426a21f9a95f4249d41",
                 "shasum": ""
             },
             "require": {
@@ -9009,7 +9290,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-07-27T11:28:42+00:00"
+            "time": "2021-07-28T14:28:47+00:00"
         },
         {
             "name": "andrey-helldar/migrate-db",
@@ -9089,16 +9370,16 @@
         },
         {
             "name": "andrey-helldar/support",
-            "version": "v4.3.0",
+            "version": "v4.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/andrey-helldar/support.git",
-                "reference": "089f55a0d3009a4bb3cb854809675a26d66bb687"
+                "reference": "56b58d79a19ca87ccb8dfff78db97cfac6dd693d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/andrey-helldar/support/zipball/089f55a0d3009a4bb3cb854809675a26d66bb687",
-                "reference": "089f55a0d3009a4bb3cb854809675a26d66bb687",
+                "url": "https://api.github.com/repos/andrey-helldar/support/zipball/56b58d79a19ca87ccb8dfff78db97cfac6dd693d",
+                "reference": "56b58d79a19ca87ccb8dfff78db97cfac6dd693d",
                 "shasum": ""
             },
             "require": {
@@ -9171,7 +9452,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-07-27T11:01:03+00:00"
+            "time": "2021-07-28T10:35:07+00:00"
         },
         {
             "name": "barryvdh/laravel-debugbar",
@@ -12380,69 +12661,6 @@
             "time": "2020-09-28T06:39:44+00:00"
         },
         {
-            "name": "seld/jsonlint",
-            "version": "1.8.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Seldaek/jsonlint.git",
-                "reference": "9ad6ce79c342fbd44df10ea95511a1b24dee5b57"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/jsonlint/zipball/9ad6ce79c342fbd44df10ea95511a1b24dee5b57",
-                "reference": "9ad6ce79c342fbd44df10ea95511a1b24dee5b57",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^5.3 || ^7.0 || ^8.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^4.8.35 || ^5.7 || ^6.0"
-            },
-            "bin": [
-                "bin/jsonlint"
-            ],
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Seld\\JsonLint\\": "src/Seld/JsonLint/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Jordi Boggiano",
-                    "email": "j.boggiano@seld.be",
-                    "homepage": "http://seld.be"
-                }
-            ],
-            "description": "JSON Linter",
-            "keywords": [
-                "json",
-                "linter",
-                "parser",
-                "validator"
-            ],
-            "support": {
-                "issues": "https://github.com/Seldaek/jsonlint/issues",
-                "source": "https://github.com/Seldaek/jsonlint/tree/1.8.3"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/Seldaek",
-                    "type": "github"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/seld/jsonlint",
-                    "type": "tidelift"
-                }
-            ],
-            "time": "2020-11-11T09:19:24+00:00"
-        },
-        {
             "name": "seld/phar-utils",
             "version": "1.1.1",
             "source": {
@@ -12623,16 +12841,16 @@
         },
         {
             "name": "theseer/tokenizer",
-            "version": "1.2.0",
+            "version": "1.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/theseer/tokenizer.git",
-                "reference": "75a63c33a8577608444246075ea0af0d052e452a"
+                "reference": "34a41e998c2183e22995f158c581e7b5e755ab9e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/theseer/tokenizer/zipball/75a63c33a8577608444246075ea0af0d052e452a",
-                "reference": "75a63c33a8577608444246075ea0af0d052e452a",
+                "url": "https://api.github.com/repos/theseer/tokenizer/zipball/34a41e998c2183e22995f158c581e7b5e755ab9e",
+                "reference": "34a41e998c2183e22995f158c581e7b5e755ab9e",
                 "shasum": ""
             },
             "require": {
@@ -12661,7 +12879,7 @@
             "description": "A small library for converting tokenized PHP source code into XML and potentially other formats",
             "support": {
                 "issues": "https://github.com/theseer/tokenizer/issues",
-                "source": "https://github.com/theseer/tokenizer/tree/master"
+                "source": "https://github.com/theseer/tokenizer/tree/1.2.1"
             },
             "funding": [
                 {
@@ -12669,7 +12887,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-07-12T23:59:07+00:00"
+            "time": "2021-07-28T10:34:58+00:00"
         }
     ],
     "aliases": [],
