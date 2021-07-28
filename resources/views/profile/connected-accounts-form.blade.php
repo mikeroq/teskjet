@@ -34,7 +34,7 @@
                                 <button class="btn btn-block btn-alt-primary bg-transparent d-flex align-items-center justify-content-between" disabled>
                                     <span>
                                         <i class="fab fa-fw fa-{{ $provider }} opacity-50 mr-1"></i>
-                                        {{ $account->name }}
+                                        {{ dd($account) }}
                                     </span>
                                     <i class="fa fa-fw fa-check mr-1"></i>
                                 </button>
