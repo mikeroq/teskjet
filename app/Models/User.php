@@ -10,6 +10,9 @@ use JoelButcher\Socialstream\SetsProfilePhotoFromUrl;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
+use BenSampo\Enum\Traits\CastsEnums;
+use App\Enums\UserType;
+
 
 class User extends Authenticatable
 {
@@ -22,6 +25,7 @@ class User extends Authenticatable
     use Notifiable;
     use SetsProfilePhotoFromUrl;
     use TwoFactorAuthenticatable;
+    use CastsEnums;
 
     /**
      * The attributes that are mass assignable.
@@ -51,6 +55,7 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'user_level' => UserType::class,
     ];
 
     /**
@@ -78,10 +83,11 @@ class User extends Authenticatable
 
     public function isAdmin()
     {
-        return $this->getRawOriginal('user_level') == 9 ? true : false;
+        return $this->user_level->value == UserType::ADMIN ? true : false;
     }
 
-    public function getUserLevelAttribute($attribute) {
-        return collect(trans('types/user.type'))->get($attribute);
+    public function getLevelAttribute()
+    {
+        return $this->user_level->description;
     }
 }

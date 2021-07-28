@@ -12,7 +12,7 @@ use App\Http\Controllers\DeviceTypeController;
 use App\Http\Controllers\NavigationGenerationController;
 use App\Http\Controllers\UserAdminController;
 use App\Http\Controllers\NavigationTypeController;
-
+use App\Http\Controllers\LandingController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,9 +24,7 @@ use App\Http\Controllers\NavigationTypeController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [LandingController::class, 'index']);
 
 Route::get('/users-table', function () {
     return view('userstable');

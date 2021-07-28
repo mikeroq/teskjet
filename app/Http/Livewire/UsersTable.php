@@ -18,7 +18,7 @@ class UsersTable extends DataTableComponent
             Column::make('Email Address', 'email')
                 ->sortable()
                 ->searchable(),
-            Column::make('User Level', 'user_level')
+            Column::make('User Level', 'level')
                 ->sortable(),
             Column::make('Created', 'created_at')
                 ->sortable(),

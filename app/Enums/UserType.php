@@ -1,0 +1,21 @@
+<?php
+
+namespace App\Enums;
+
+use BenSampo\Enum\Enum;
+use BenSampo\Enum\Contracts\LocalizedEnum;
+
+/**
+ * @method static static Admin()
+ * @method static static User()
+ */
+final class UserType extends Enum implements LocalizedEnum
+{
+    const ADMIN = 9;
+    const USER = 0;
+
+    public function toArray()
+    {
+        return $this->description;
+    }
+}

@@ -9,7 +9,9 @@
                         <h3 class="block-title">Users Table</h3>
                     </div>
                     <div class="block-content">
-                        <livewire:users-table />
+                        <p>
+                            <livewire:users-table />
+                        </p>
                     </div>
                 </div>
             </div>
