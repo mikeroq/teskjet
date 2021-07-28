@@ -42,9 +42,9 @@
                             <div class="col-sm-12 col-md-4 col-xl-6 mt-1 d-md-flex align-items-md-center font-size-sm">
                                 <div class="flex items-center space-x-6">
                                     @if (Laravel\Jetstream\Jetstream::managesProfilePhotos() && ! is_null($account->avatar_path))
-                                        <button class="btn btn-sm btn-light btn-rounded" wire:click="setAvatarAsProfilePhoto({{ $account->id }})">
+                                        <x-jet-secondary-button wire:click="setAvatarAsProfilePhoto({{ $account->id }})">
                                             <i class="fas fa-fw fa-image mr-1"></i> {{ __('Use Avatar') }}
-                                        </button>
+                                        </x-jet-secondary-button>
                                     @endif
                                     @if (($this->accounts->count() > 1 || ! is_null($this->user->password)))
                                         <x-jet-danger-button wire:click="confirmRemove({{ $account->id }})" wire:loading.attr="disabled">
