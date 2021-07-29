@@ -8,7 +8,7 @@
     </x-slot>
 
     <x-slot name="content">
-        <h3 class="text-lg font-medium text-gray-900">
+        <h3 class="h5 font-weight-bold">
             @if (count($this->accounts) == 0)
                 {{ __('You have no connected accounts.') }}
             @else
@@ -16,9 +16,9 @@
             @endif
         </h3>
 
-        <div class="mt-3 max-w-xl text-sm text-gray-600">
+        <p class="mt-3">
             {{ __('You are free to connect any social accounts to your profile and may remove any connected accounts at any time. If you feel any of your connected accounts have been compromised, you should disconnect them immediately and change your password.') }}
-        </div>
+        </p>
 
         <div class="mt-5 space-y-6">
             @foreach ($this->providers as $provider)
@@ -34,7 +34,7 @@
                                 <button class="btn btn-block btn-alt-primary bg-transparent d-flex align-items-center justify-content-between" disabled>
                                     <span>
                                         <i class="fab fa-fw fa-{{ $provider }} opacity-50 mr-1"></i>
-                                        {{ dd($account) }}
+                                        {{ $account->name }}
                                     </span>
                                     <i class="fa fa-fw fa-check mr-1"></i>
                                 </button>
@@ -72,7 +72,7 @@
                 </div>
             @endforeach
         </div>
-
+        
         <!-- Logout Other Devices Confirmation Modal -->
         <x-jet-dialog-modal wire:model="confirmingRemove">
             <x-slot name="title">
@@ -87,8 +87,7 @@
                 <x-jet-secondary-button wire:click="$toggle('confirmingRemove')" wire:loading.attr="disabled">
                     {{ __('Nevermind') }}
                 </x-jet-secondary-button>
-
-                <x-jet-danger-button class="ml-2" wire:click="removeConnectedAccount({{ $this->selectedAccountId }})" wire:loading.attr="disabled">
+                <x-jet-danger-button wire:click="removeConnectedAccount({{ $this->selectedAccountId }})" wire:loading.attr="disabled">
                     {{ __('Remove Connected Account') }}
                 </x-jet-danger-button>
             </x-slot>

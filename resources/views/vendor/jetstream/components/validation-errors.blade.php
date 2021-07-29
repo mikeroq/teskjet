@@ -1,9 +1,7 @@
 @if ($errors->any())
-    <div class="alert alert-danger alert-dismissable" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-        <h3 class="alert-heading font-size-h4 my-2">{{ __('Whoops! Something went wrong.') }}</h3>
+    <div {!! $attributes->merge(['class' => 'alert alert-danger text-sm p-2']) !!} role="alert">
+        <div class="font-weight-bold">{{ __('Whoops! Something went wrong.') }}</div>
+
         <ul>
             @foreach ($errors->all() as $error)
                 <li>{{ $error }}</li>

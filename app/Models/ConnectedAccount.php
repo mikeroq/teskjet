@@ -41,4 +41,17 @@ class ConnectedAccount extends SocialstreamConnectedAccount
         'updated' => ConnectedAccountUpdated::class,
         'deleted' => ConnectedAccountDeleted::class,
     ];
+
+    public function getSharedData()
+    {
+        return [
+            'id' => $this->id,
+            'provider' => $this->provider,
+            'avatar_path' => $this->avatar_path,
+            'created_at' => optional($this->created_at)->diffForHumans(),
+            'name' => $this->name,
+            'nickname' => $this->nickname,
+            'email' => $this->email,
+        ];
+    }
 }
