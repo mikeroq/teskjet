@@ -7,7 +7,7 @@
                 <div class="p-3 w-100">
                     <div class="mb-3 text-center">
                         <a class="link-fx font-w700 font-size-h1" href="/">
-                            <span class="text-dark">{{ config('app.name') }}</span>
+                            {{ config('app.name') }}
                         </a>
                     </div>
                     <div class="row no-gutters justify-content-center">
@@ -52,7 +52,7 @@
                                     </div>
                                     <div class="form-group">
                                         <div class="custom-control custom-checkbox custom-control-primary">
-                                            <input type="checkbox" class="custom-control-input" name="remember_me" id="remember_me" {{ old('remember') ? 'checked' : '' }}>
+                                            <input type="checkbox" class="custom-control-input" name="remember" id="remember_me" checked>
                                             <label class="custom-control-label" for="remember_me">{{ __('Remember me') }}</label>
                                         </div>
                                     </div>

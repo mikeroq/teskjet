@@ -29,7 +29,8 @@ class Brand extends Model
 {
     use HasFactory;
 
-    public function devices() {
+    public function devices()
+    {
         return $this->hasMany('App\Models\Device');
     }
 

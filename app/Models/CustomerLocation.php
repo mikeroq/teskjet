@@ -13,5 +13,4 @@ class CustomerLocation extends Model
     {
         return $this->belongsTo('App\Models\Customer');
     }
-
 }

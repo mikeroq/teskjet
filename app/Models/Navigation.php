@@ -60,17 +60,13 @@ class Navigation extends Model implements Sortable
         return static::query()->where('navigation_type_id', $this->navigation_type_id);
     }
 
-    public function children(){
+    public function children()
+    {
         return $this->hasMany('\App\Models\NavigationChild');
     }
 
-    public function parent() {
+    public function parent()
+    {
         return $this->belongsTo('\App\Models\NavigationType');
     }
-    // protected $dispatchesEvents = [
-    //     'saved' => NavigationUpdate::class,
-    //     'updated' => NavigationUpdate::class,
-    //     'created' => NavigationUpdate::class,
-    //     'deleted' => NavigationUpdate::class,
-    // ];
 }

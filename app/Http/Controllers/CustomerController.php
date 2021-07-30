@@ -13,7 +13,6 @@ use Illuminate\View\View;
 use Illuminate\Http\Request;
 use Validator;
 
-
 class CustomerController extends Controller
 {
     /**
@@ -59,8 +58,7 @@ class CustomerController extends Controller
                 'success' => true,
                 'insert' => $customer->id
             ]);
-        }
-        catch (\Exception $e) {
+        } catch (\Exception $e) {
             return response()->json([
                 'success' => false,
                 'error' => $e->getMessage()
@@ -74,7 +72,8 @@ class CustomerController extends Controller
      * @param Customer $customer
      * @return Application|Factory|View|void
      */
-    public function show(Customer $customer) {
+    public function show(Customer $customer)
+    {
         // dd($customer->type);
         return view('customers.show', compact('customer'));
     }
@@ -107,8 +106,7 @@ class CustomerController extends Controller
             $customer->taxable = $request->has('taxable');
             $customer->save();
             return response()->json(['success' => true]);
-        }
-        catch (\Exception $e) {
+        } catch (\Exception $e) {
             return response()->json(['success' => false, 'error' => $e->getMessage()]);
         }
     }
@@ -125,8 +123,7 @@ class CustomerController extends Controller
         try {
             $customer->delete();
             return response()->json(['success' => true]);
-        }
-        catch(\Exception $e) {
+        } catch (\Exception $e) {
             return response()->json(['success' => false, 'error' => $e]);
         }
     }

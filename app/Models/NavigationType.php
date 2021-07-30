@@ -15,12 +15,14 @@ class NavigationType extends Model
         'slug'
     ];
 
-    public function renderHTML() {
+    public function renderHTML()
+    {
         $pages = Navigation::where('navigation_type_id', $this->id)->orderBy('order_column', 'asc')->get();
         return View::make('admin.navtable', ['parent_pages' => $pages])->render();
     }
 
-    public function navigations() {
+    public function navigations()
+    {
         return $this->hasMany('\App\Models\Navigation');
     }
 }

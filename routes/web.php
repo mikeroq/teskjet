@@ -13,6 +13,7 @@ use App\Http\Controllers\NavigationGenerationController;
 use App\Http\Controllers\UserAdminController;
 use App\Http\Controllers\NavigationTypeController;
 use App\Http\Controllers\LandingController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -31,27 +32,27 @@ Route::get('/users-table', function () {
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
-    // Dashboard Route
-    Route::match(['get', 'post'], '/dashboard', function(){
+    // Dashboard Route  
+    Route::match(['get', 'post'], '/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
 
     Route::get('/generate', [NavigationGenerationController::class, 'generate']);
 
     // Resource Routes
-    Route::resource('customers',CustomerController::class);
-    Route::resource('tickets',TicketController::class);
+    Route::resource('customers', CustomerController::class);
+    Route::resource('tickets', TicketController::class);
 
     // Admin Routes
-    Route::middleware(['auth','admin'])->group(function() {
+    Route::middleware(['auth','admin'])->group(function () {
         Route::view('/admin', 'admin.dashboard')->name('admin.index');
-        Route::resource('admin/users',UserAdminController::class);
-        Route::resource('admin/navigation',NavigationController::class);
-        Route::resource('admin/brands',BrandController::class);
-        Route::resource('admin/devicetypes',DeviceTypeController::class);
-        Route::get('/admin/brands',[BrandController::class, 'index'])->name('admin.brands');
-        Route::get('/admin/devicetypes',[DeviceTypeController::class, 'index'])->name('admin.devicetypes');
-        Route::get('/admin/navtable/{id}',[NavigationController::class, 'getTable']);
+        Route::resource('admin/users', UserAdminController::class);
+        Route::resource('admin/navigation', NavigationController::class);
+        Route::resource('admin/brands', BrandController::class);
+        Route::resource('admin/devicetypes', DeviceTypeController::class);
+        Route::get('/admin/brands', [BrandController::class, 'index'])->name('admin.brands');
+        Route::get('/admin/devicetypes', [DeviceTypeController::class, 'index'])->name('admin.devicetypes');
+        Route::get('/admin/navtable/{id}', [NavigationController::class, 'getTable']);
         Route::get('/admin/order_nav/{type}/{direction}/{id}', [NavigationController::class, 'order']);
         Route::delete('/admin/navigation/child/{id}', [NavigationController::class, 'destroyChild']);
         Route::patch('/admin/navigation/child/{navigation}', [NavigationController::class, 'updateChild']);

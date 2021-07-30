@@ -3,10 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\DataTables\DeviceTypesDataTable;
-use App\Device;
-use App\DeviceType;
+use App\Models\DeviceType;
 use Illuminate\Http\Request;
-use Validator;
 
 class DeviceTypeController extends Controller
 {
@@ -38,31 +36,23 @@ class DeviceTypeController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(), [
+        $request->validate([
             'devicetype_name' => 'required'
         ]);
-        if ($validator->passes()) {
-            try {
-                $devicetype = new DeviceType([
-                    'name' => $request->get('devicetype_name')
-                ]);
-                $devicetype->save();
-                return response()->json([
-                    'success' => true,
-                    'insert' => $devicetype->id
-                ]);
-            }
-            catch (\Exception $e) {
-                return response()->json([
-                    'success' => false,
-                    'error' => $e->getMessage()
-                ]);
-            }
+        try {
+            $devicetype = new DeviceType([
+                'name' => $request->get('devicetype_name')
+            ]);
+            $devicetype->save();
+            return response()->json([
+                'success' => true,
+                'insert' => $devicetype->id
+            ]);
         }
-        else {
+        catch (\Exception $e) {
             return response()->json([
                 'success' => false,
-                'error' => implode('\n', $validator->errors()->all())
+                'error' => $e->getMessage()
             ]);
         }
     }
@@ -98,24 +88,16 @@ class DeviceTypeController extends Controller
      */
     public function update(Request $request, DeviceType $devicetype)
     {
-        $validator = Validator::make($request->all(), [
+        $request->validate([
             'edit_devicetype_name' => 'required'
         ]);
-        if ($validator->passes()) {
-            try {
-                $devicetype->name = $request->get('edit_devicetype_name');
-                $devicetype->save();
-                return response()->json(['success' => true]);
-            }
-            catch (\Exception $e) {
-                return response()->json(['success' => false, 'error' => $e->getMessage()]);
-            }
+        try {
+            $devicetype->name = $request->get('edit_devicetype_name');
+            $devicetype->save();
+            return response()->json(['success' => true]);
         }
-        else {
-            return response()->json([
-                'success' => false,
-                'error' => implode('\n', $validator->errors()->all())
-            ]);
+        catch (\Exception $e) {
+            return response()->json(['success' => false, 'error' => $e->getMessage()]);
         }
     }
 

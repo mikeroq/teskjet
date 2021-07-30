@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Brand;
+use App\Models\Brand;
 use App\DataTables\BrandsDataTable;
 use Illuminate\Http\Request;
-use Validator;
+use Illuminate\Support\Facades\Validator;
 
 class BrandController extends Controller
 {
@@ -37,34 +37,25 @@ class BrandController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(), [
+        $request->validate([
             'brand_name' => 'required',
             'brand_site' => 'nullable|url'
         ]);
-        if ($validator->passes()) {
-            try {
-                $brand = new Brand([
-                    'name' => $request->get('brand_name'),
-                    'website'=> $request->get('brand_site'),
-                    'support_number'=> $request->get('brand_phone')
-                ]);
-                $brand->save();
-                return response()->json([
-                    'success' => true,
-                    'insert' => $brand->id
-                ]);
-            }
-            catch (\Exception $e) {
-                return response()->json([
-                    'success' => false,
-                    'error' => $e->getMessage()
-                ]);
-            }
-        }
-        else {
+        try {
+            $brand = new Brand([
+                'name' => $request->get('brand_name'),
+                'website'=> $request->get('brand_site'),
+                'support_number'=> $request->get('brand_phone')
+            ]);
+            $brand->save();
+            return response()->json([
+                'success' => true,
+                'insert' => $brand->id
+            ]);
+        } catch (\Exception $e) {
             return response()->json([
                 'success' => false,
-                'error' => implode('\n', $validator->errors()->all())
+                'error' => $e->getMessage()
             ]);
         }
     }
@@ -100,27 +91,18 @@ class BrandController extends Controller
      */
     public function update(Request $request, Brand $brand)
     {
-        $validator = Validator::make($request->all(), [
+        $request->validate([
             'edit_name' => 'required',
             'edit_site' => 'nullable|url'
         ]);
-        if ($validator->passes()) {
-            try {
-                $brand->name = $request->get('edit_name');
-                $brand->website = $request->get('edit_site');
-                $brand->support_number = $request->get('edit_phone');
-                $brand->save();
-                return response()->json(['success' => true]);
-            }
-            catch (\Exception $e) {
-                return response()->json(['success' => false, 'error' => $e->getMessage()]);
-            }
-        }
-        else {
-            return response()->json([
-                'success' => false,
-                'error' => implode('\n', $validator->errors()->all())
-            ]);
+        try {
+            $brand->name = $request->get('edit_name');
+            $brand->website = $request->get('edit_site');
+            $brand->support_number = $request->get('edit_phone');
+            $brand->save();
+            return response()->json(['success' => true]);
+        } catch (\Exception $e) {
+            return response()->json(['success' => false, 'error' => $e->getMessage()]);
         }
     }
 
@@ -132,12 +114,10 @@ class BrandController extends Controller
      */
     public function destroy(Brand $brand)
     {
-        //dd($brand);
         try {
             $brand->delete();
             return response()->json(['success' => true]);
-        }
-        catch(\Exception $e) {
+        } catch (\Exception $e) {
             return response()->json(['success' => false, 'error' => $e]);
         }
     }

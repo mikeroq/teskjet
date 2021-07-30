@@ -34,7 +34,7 @@ class NavigationController extends Controller
         if ($type == "parent") {
             $link = Navigation::find($id);
             $nav_type = NavigationType::find($link->navigation_type_id);
-        } else if ($type == "child") {
+        } elseif ($type == "child") {
             $link = NavigationChild::find($id);
             $nav_type = NavigationType::find($link->parent->navigation_type_id);
         }
@@ -53,7 +53,7 @@ class NavigationController extends Controller
                         'error' => $e
                     ]);
                 }
-            } else if ($direction == "down") {
+            } elseif ($direction == "down") {
                 try {
                     $link->moveOrderDown();
                     return response()->json([
@@ -205,7 +205,6 @@ class NavigationController extends Controller
         } catch (\Exception $e) {
             return response()->json(['success' => false, 'error' => $e->getMessage()]);
         }
-
     }
 
     public function updateChild(Request $request, NavigationChild $navigation)
@@ -226,7 +225,6 @@ class NavigationController extends Controller
         } catch (\Exception $e) {
             return response()->json(['success' => false, 'error' => $e->getMessage()]);
         }
-
     }
 
     /**
@@ -241,7 +239,7 @@ class NavigationController extends Controller
         try {
             $navigation->delete();
             return response()->json(['success' => true, 'type' => $nav_type->slug, 'type_id' => $nav_type->id]);
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             return response()->json(['success' => false, 'error' => $e]);
         }
     }
@@ -252,7 +250,7 @@ class NavigationController extends Controller
         try {
             $navigation->delete();
             return response()->json(['success' => true, 'type' => $nav_type->slug, 'type_id' => $nav_type->id]);
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             return response()->json(['success' => false, 'error' => $e]);
         }
     }

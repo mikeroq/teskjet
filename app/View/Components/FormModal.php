@@ -23,6 +23,7 @@ class FormModal extends Component
         $this->slug = $slug;
         $this->icon = $icon;
         $this->btn = $btn;
+        
         switch ($this->type) {
             case "create":
                 $this->icon = "fas fa-plus";

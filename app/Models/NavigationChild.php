@@ -20,7 +20,8 @@ class NavigationChild extends Model implements Sortable
         return static::query()->where('navigation_id', $this->navigation_id);
     }
 
-    public function parent() {
+    public function parent()
+    {
         return $this->belongsTo('\App\Models\Navigation', 'navigation_id');
     }
 
@@ -30,11 +31,5 @@ class NavigationChild extends Model implements Sortable
         'url',
         'user_level',
         'order_column'
-    ];
-    protected $dispatchesEvents = [
-        'saved' => NavigationUpdate::class,
-        'updated' => NavigationUpdate::class,
-        'created' => NavigationUpdate::class,
-        'deleted' => NavigationUpdate::class,
     ];
 }

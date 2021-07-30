@@ -25,7 +25,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class DeviceType extends Model
 {
     use HasFactory;
-    public function devices() {
+
+    public function devices()
+    {
         return $this->hasMany('App\Models\Device');
     }
     protected $fillable = [

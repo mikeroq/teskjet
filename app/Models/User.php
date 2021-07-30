@@ -13,7 +13,6 @@ use Laravel\Sanctum\HasApiTokens;
 use BenSampo\Enum\Traits\CastsEnums;
 use App\Enums\UserType;
 
-
 class User extends Authenticatable
 {
     use HasApiTokens;

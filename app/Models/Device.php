@@ -35,13 +35,16 @@ class Device extends Model
 {
     use HasFactory;
 
-    public function brand() {
+    public function brand()
+    {
         return $this->belongsTo('App\Models\Brand');
     }
-    public function deviceType() {
+    public function deviceType()
+    {
         return $this->belongsTo('App\Models\DeviceType');
     }
-    public function customer() {
+    public function customer()
+    {
         return $this->belongsTo('App\Models\Customer');
     }
 }
