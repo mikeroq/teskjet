@@ -1,126 +1,45 @@
-<x-guest-layout>
-    <x-jet-authentication-card>
-        <x-slot name="logo">
-            <x-jet-authentication-card-logo />
-        </x-slot>
-
-        <x-jet-validation-errors class="mb-4" />
-
-        <form method="POST" action="{{ route('password.update') }}">
-            @csrf
-
-            <input type="hidden" name="token" value="{{ $request->route('token') }}">
-
-            <div class="block">
-                <x-jet-label for="email" value="{{ __('Email') }}" />
-                <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email', $request->email)" required autofocus />
-            </div>
-
-            <div class="mt-4">
-                <x-jet-label for="password" value="{{ __('Password') }}" />
-                <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
-            </div>
-
-            <div class="mt-4">
-                <x-jet-label for="password_confirmation" value="{{ __('Confirm Password') }}" />
-                <x-jet-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />
-            </div>
-
-            <div class="flex items-center justify-end mt-4">
-                <x-jet-button>
-                    {{ __('Reset Password') }}
-                </x-jet-button>
-            </div>
-        </form>
-    </x-jet-authentication-card>
-</x-guest-layout>
 @extends('layouts.simple')
 
 @section('content')
-    <div class="bg-image" style="background-image: url('assets/media/photos/photo16@2x.jpg');">
-        <div class="row no-gutters bg-primary-op">
-            <div class="hero-static col-md-6 d-flex align-items-center bg-white">
-                <div class="p-3 w-100">
-                    <div class="mb-3 text-center">
-                        <a class="link-fx font-w700 font-size-h1" href="/">
-                            <span class="text-dark">{{ config('app.name') }}</span>
-                        </a>
-                    </div>
-                    <div class="row no-gutters justify-content-center">
-                        <div class="col-sm-8 col-xl-6">
-                            <x-jet-validation-errors class="mb-4" />
-
-                            @if (session('status'))
-                                <div class="mb-4 font-medium text-sm text-green-600">
-                                    {{ session('status') }}
-                                </div>
-                            @endif
-                            <form class="js-validation-signin" method="POST" action="{{ route('login') }}">
-                                @csrf
-                                <div class="py-3">
-                                    <div class="form-group">
-                                        <div class="form-material floating @if (old('email')) open @endif">
-                                            <input
-                                                id="email"
-                                                type="email"
-                                                class="form-control form-control-lg form-control-alt"
-                                                name="email"
-                                                value="{{ old('email') }}"
-                                                required
-                                                autocomplete="email"
-                                                autofocus
-                                            >
-                                            <label for="email">Email Address</label>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="form-material floating">
-                                            <input
-                                                id="password"
-                                                type="password"
-                                                class="form-control form-control-lg form-control-alt"
-                                                name="password"
-                                                required
-                                                autocomplete="password"
-                                            >
-                                            <label for="email">Password</label>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="custom-control custom-checkbox custom-control-primary">
-                                            <input type="checkbox" class="custom-control-input" name="remember_me" id="remember_me" {{ old('remember') ? 'checked' : '' }}>
-                                            <label class="custom-control-label" for="remember_me">{{ __('Remember me') }}</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <button type="submit" class="btn btn-block btn-hero-lg btn-hero-primary">
-                                        <i class="fa fa-fw fa-sign-in-alt mr-1"></i> Sign In
-                                    </button>
-                                    <p class="mt-3 mb-0 d-lg-flex justify-content-lg-between">
-                                        @if (Route::has('password.request'))
-                                            <a class="btn btn-sm btn-light d-block d-lg-inline-block mb-1" href="{{ route('password.request') }}">
-                                                <i class="fa fa-exclamation-triangle text-muted mr-1"></i> {{ __('Forgot your password?') }}
-                                            </a>
-                                        @endif
-                                        @if (Route::has('register'))
-                                            <a class="btn btn-sm btn-light d-block d-lg-inline-block mb-1" href="{{ route('register') }}">
-                                                <i class="fa fa-plus text-muted mr-1"></i> Register
-                                            </a>
-                                        @endif
-                                    </p>
-                                </div>
-                            </form>
-                            @if (JoelButcher\Socialstream\Socialstream::show())
-                                <x-socialstream-providers />
-                            @endif
+    <div class="bg-image" style="background-image: url('/assets/media/photos/photo16@2x.jpg');">
+        <div class="row no-gutters justify-content-center bg-black-75">
+            <div class="hero-static col-sm-8 col-md-6 col-xl-4 d-flex align-items-center p-2 px-sm-0">
+                <div class="block block-transparent block-rounded w-100 mb-0 overflow-hidden">
+                    <div class="block-content block-content-full px-lg-5 px-xl-6 py-4 py-md-5 py-lg-6 bg-white">
+                        <div class="mb-2 text-center">
+                            <a class="link-fx text-warning font-w700 font-size-h1" href="/">
+                                <span class="text-dark">{{ config('app.name') }}</span>
+                            </a>
+                            <p class="text-uppercase font-w700 font-size-sm text-muted">Reset Password</p>
                         </div>
+                        <x-jet-validation-errors class="mb-4" />
+                        <form action="{{ route('password.update') }}" method="POST">
+                            @csrf
+                            <input type="hidden" name="token" value="{{ $request->route('token') }}">
+                            <div class="form-group">
+                                <x-jet-label for="email" value="{{ __('Email') }}" />
+                                <x-jet-input id="email" type="email" name="email"
+                                    :value="old('email', $request->email)" required autofocus />
+                            </div>
+                            <div class="form-group">
+                                <x-jet-label for="password" value="{{ __('Password') }}" />
+                                <x-jet-input id="password" type="password" name="password" required
+                                    autocomplete="new-password" />
+                            </div>
+                            <div class="form-group">
+                                <x-jet-label for="password_confirmation" value="{{ __('Confirm Password') }}" />
+                                <x-jet-input id="password_confirmation" type="password"
+                                    name="password_confirmation" required autocomplete="new-password" />
+                            </div>
+                            <div class="form-group text-center">
+                                <x-jet-button>
+                                    {{ __('Reset Password') }}
+                                </x-jet-button>
+                            </div>
+                        </form>
                     </div>
                 </div>
-            </div>
-            <div class="md-6 d-none d-md-flex align-items-md-center justify-content-md-center text-md-center">
             </div>
         </div>
     </div>
 @endsection
-

@@ -16,7 +16,6 @@
                     </a>
                 </span>
             </div>
-
         </div>
     </div>
 @endsection

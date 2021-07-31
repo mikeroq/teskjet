@@ -1,13 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\NavigationController;
 use App\Http\Controllers\TicketController;
 use App\Http\Controllers\CustomerController;
-use App\Http\Controllers\DeviceController;
 use App\Http\Controllers\DeviceTypeController;
 use App\Http\Controllers\NavigationGenerationController;
 use App\Http\Controllers\UserAdminController;
@@ -32,10 +29,8 @@ Route::get('/users-table', function () {
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
-    // Dashboard Route  
-    Route::match(['get', 'post'], '/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    // Dashboard Route
+    Route::view('/dashboard', 'dashboard')->name('dashboard');
 
     Route::get('/generate', [NavigationGenerationController::class, 'generate']);
 

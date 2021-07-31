@@ -74,8 +74,7 @@ class UsersDataTable extends DataTable
         return [
             Column::make('id'),
             Column::make('email'),
-            Column::make('first_name'),
-            Column::make('last_name'),
+            Column::make('name'),
             Column::make('user_level'),
             Column::computed('action')->exportable(false)->printable(false)->orderable(false)->searchable(false)->class("text-right")
         ];

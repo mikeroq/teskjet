@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use App\Models\Navigation;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\View;
 
 class AppServiceProvider extends ServiceProvider
@@ -27,9 +27,9 @@ class AppServiceProvider extends ServiceProvider
     {
         View::composer(['components.navigation', 'components.admin-navigation', 'components.user-panel-navigation'], function($view) {
             if ($view->getName() != 'layouts.maintenance') {
-                $navigation = Navigation::where('navigation_type_id', 1)->orderBy('order_column', 'ASC')->get();
-                $admin_navigation = Navigation::where('navigation_type_id', 2)->orderBy('order_column', 'ASC')->get();
-                $usercp_navigation = Navigation::where('navigation_type_id', 5)->orderBy('order_column', 'ASC')->get();
+                $navigation = collect(json_decode(Storage::disk('local')->get('navigation.json'), false));
+                $admin_navigation = collect(json_decode(Storage::disk('local')->get('admin_navigation.json'), false));
+                $usercp_navigation = collect(json_decode(Storage::disk('local')->get('usercp_navigation.json'), false));
                 $view->with('navigation', $navigation)->with('admin_navigation', $admin_navigation)->with('usercp_navigation', $usercp_navigation);
             }
         });

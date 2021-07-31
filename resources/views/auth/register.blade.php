@@ -19,30 +19,36 @@
                                 <div class="py-3">
                                     <div class="form-group">
                                         <x-jet-label for="name" value="{{ __('Name') }}" />
-                                        <x-jet-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
+                                        <x-jet-input id="name" class="block mt-1 w-full" type="text" name="name"
+                                            :value="old('name')" required autofocus autocomplete="name" />
                                     </div>
                                     <div class="form-group">
                                         <x-jet-label for="email" value="{{ __('Email') }}" />
-                                        <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
+                                        <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email"
+                                            :value="old('email')" required />
                                     </div>
                                     <div class="form-group">
                                         <x-jet-label for="password" value="{{ __('Password') }}" />
-                                        <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
+                                        <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password"
+                                            required autocomplete="new-password" />
                                     </div>
                                     <div class="form-group">
                                         <x-jet-label for="password_confirmation" value="{{ __('Confirm Password') }}" />
-                                        <x-jet-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />
+                                        <x-jet-input id="password_confirmation" class="block mt-1 w-full" type="password"
+                                            name="password_confirmation" required autocomplete="new-password" />
                                     </div>
                                     @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
-                                    <div class="form-group">
-                                        <div class="custom-control custom-checkbox custom-control-primary">
-                                            <input type="checkbox" class="custom-control-input" name="terms" id="terms">
-                                            <label class="custom-control-label" for="terms">{!! __('I agree to the :terms_of_service and :privacy_policy', [
-                                                'terms_of_service' => '<a target="_blank" href="'.route('terms.show').'">'.__('Terms of Service').'</a>',
-                                                'privacy_policy' => '<a target="_blank" href="'.route('policy.show').'">'.__('Privacy Policy').'</a>',
-                                        ]) !!}</label>
+                                        <div class="form-group">
+                                            <div class="custom-control custom-checkbox custom-control-primary">
+                                                <input type="checkbox" class="custom-control-input" name="terms" id="terms">
+                                                <label class="custom-control-label" for="terms">
+                                                    {!! __('I agree to the :terms_of_service and :privacy_policy', [
+                                                    'terms_of_service' => '<a target="_blank" href="' . route('terms.show') . '">' . __('Terms of Service') . '</a>',
+                                                    'privacy_policy' => '<a target="_blank" href="' . route('policy.show') . '">' . __('Privacy Policy') . '</a>',
+                                                    ]) !!}
+                                                </label>
+                                            </div>
                                         </div>
-                                    </div>
                                     @endif
                                 </div>
                                 <div class="form-group">
