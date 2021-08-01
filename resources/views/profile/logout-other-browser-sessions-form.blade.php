@@ -20,7 +20,7 @@
             <div class="mt-3">
                 <!-- Other Browser Sessions -->
                 @foreach ($this->sessions as $session)
-                    <div class="block block-rounded block-bordered">
+                    <div class="block block-rounded block-transparent bg-black-25">
                         <div class="block-content block-content-full d-flex align-items-center justify-content-between">
                             <div>
                                 <div class="font-w600 mb-1">{{ $session->agent->platform() }} {{ $session->agent->version($session->agent->platform()) }} - {{ $session->agent->browser() }} {{ $session->agent->version($session->agent->browser()) }}</div>
@@ -51,11 +51,11 @@
         @endif
 
         <div class="d-flex mt-3">
-            <x-jet-button wire:click="confirmLogout" wire:loading.attr="disabled">
+            <x-jet-button class="mb-3" wire:click="confirmLogout" wire:loading.attr="disabled">
                 {{ __('Log Out Other Browser Sessions') }}
             </x-jet-button>
         </div>
-
+        @push('modal')
         <!-- Log out Other Devices Confirmation Modal -->
         <x-jet-dialog-modal wire:model="confirmingLogout">
             <x-slot name="title">
@@ -86,6 +86,7 @@
                 </x-jet-button>
             </x-slot>
         </x-jet-dialog-modal>
+        @endpush
     </x-slot>
 
 </x-jet-action-section>

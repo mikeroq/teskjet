@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\DataTables\UsersDataTable;
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\DataTables\UsersDataTable;
+use App\Http\Controllers\Controller;
 
 class UserAdminController extends Controller
 {

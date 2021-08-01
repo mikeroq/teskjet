@@ -1,14 +1,14 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\BrandController;
-use App\Http\Controllers\NavigationController;
+use App\Http\Controllers\Admin\BrandController;
+use App\Http\Controllers\Admin\NavigationController;
 use App\Http\Controllers\TicketController;
 use App\Http\Controllers\CustomerController;
-use App\Http\Controllers\DeviceTypeController;
-use App\Http\Controllers\NavigationGenerationController;
-use App\Http\Controllers\UserAdminController;
-use App\Http\Controllers\NavigationTypeController;
+use App\Http\Controllers\Admin\DeviceTypeController;
+use App\Http\Controllers\Admin\NavigationGenerationController;
+use App\Http\Controllers\Admin\UserAdminController;
+use App\Http\Controllers\Admin\NavigationTypeController;
 use App\Http\Controllers\LandingController;
 
 /*
@@ -32,27 +32,28 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     // Dashboard Route
     Route::view('/dashboard', 'dashboard')->name('dashboard');
 
-    Route::get('/generate', [NavigationGenerationController::class, 'generate']);
+
 
     // Resource Routes
     Route::resource('customers', CustomerController::class);
     Route::resource('tickets', TicketController::class);
 
     // Admin Routes
-    Route::middleware(['auth','admin'])->group(function () {
-        Route::view('/admin', 'admin.dashboard')->name('admin.index');
-        Route::resource('admin/users', UserAdminController::class);
-        Route::resource('admin/navigation', NavigationController::class);
-        Route::resource('admin/brands', BrandController::class);
-        Route::resource('admin/devicetypes', DeviceTypeController::class);
-        Route::get('/admin/brands', [BrandController::class, 'index'])->name('admin.brands');
-        Route::get('/admin/devicetypes', [DeviceTypeController::class, 'index'])->name('admin.devicetypes');
-        Route::get('/admin/navtable/{id}', [NavigationController::class, 'getTable']);
-        Route::get('/admin/order_nav/{type}/{direction}/{id}', [NavigationController::class, 'order']);
-        Route::delete('/admin/navigation/child/{id}', [NavigationController::class, 'destroyChild']);
-        Route::patch('/admin/navigation/child/{navigation}', [NavigationController::class, 'updateChild']);
-        Route::get('/admin/json/navigation/child/{navigation}', [NavigationController::class, 'showChild']);
-        Route::get('/admin/json/navigation/{navigation}', [NavigationController::class, 'show']);
-        Route::get('/admin/json/navigationtype/{navigation_type}', [NavigationTypeController::class, 'index']);
+    Route::middleware(['auth','admin'])->prefix('admin')->group(function () {
+        Route::view('/', 'admin.dashboard')->name('admin.index');
+        Route::get('/generate', [NavigationGenerationController::class, 'generate']);
+        Route::resource('/users', UserAdminController::class);
+        Route::resource('/navigation', NavigationController::class);
+        Route::resource('/brands', BrandController::class);
+        Route::resource('/devicetypes', DeviceTypeController::class);
+        Route::get('/brands', [BrandController::class, 'index'])->name('admin.brands');
+        Route::get('/devicetypes', [DeviceTypeController::class, 'index'])->name('admin.devicetypes');
+        Route::get('/navtable/{id}', [NavigationController::class, 'getTable']);
+        Route::get('/order_nav/{type}/{direction}/{id}', [NavigationController::class, 'order']);
+        Route::delete('/navigation/child/{id}', [NavigationController::class, 'destroyChild']);
+        Route::patch('/navigation/child/{navigation}', [NavigationController::class, 'updateChild']);
+        Route::get('/json/navigation/child/{navigation}', [NavigationController::class, 'showChild']);
+        Route::get('/json/navigation/{navigation}', [NavigationController::class, 'show']);
+        Route::get('/json/navigationtype/{navigation_type}', [NavigationTypeController::class, 'index']);
     });
 });

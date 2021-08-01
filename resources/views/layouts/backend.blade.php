@@ -30,9 +30,9 @@
         window.Laravel = {!! json_encode(['csrfToken' => csrf_token()]) !!};
     </script>
 </head>
-<body>
+<body class="bg-dark">
     <div id="page-container"
-        class="sidebar-o enable-page-overlay sidebar-dark side-scroll page-header-fixed page-header-glass page-header-dark">
+        class="bg-black-10 sidebar-o enable-page-overlay sidebar-dark side-scroll page-header-fixed page-header-glass page-header-dark">
         @if (request()->is('admin*'))
             <x-admin-navigation></x-admin-navigation>
         @elseif (request()->is('user*'))
@@ -54,7 +54,7 @@
                             <i class="fas fa-plus mr-1"></i>
                             <span class="d-none d-sm-inline-block">Create</span>
                         </button>
-                        <div class="dropdown-menu p-2" aria-labelledby="dropdown-default-primary">
+                        <div class="dropdown-menu dropdown-menu-dark p-2" aria-labelledby="dropdown-default-primary">
                             <a class="dropdown-item" data-toggle="modal" data-target="#customer_create_modal"><i
                                     class="fas fa-users mr-1"></i> New Customer</a>
                         </div>
@@ -65,12 +65,12 @@
                             <i class="fas fa-user mr-1"></i>
                             <span class="d-none d-sm-inline-block">{{ Auth::user()->name }}</span>
                         </button>
-                        <div class="dropdown-menu dropdown-menu-right p-0" aria-labelledby="page-header-user-dropdown">
+                        <div class="dropdown-menu dropdown-menu-dark dropdown-menu-right p-0" aria-labelledby="page-header-user-dropdown">
                             <div class="p-2">
                                 <a class="dropdown-item" href="{{ route('profile.show') }}">
                                     <i class="far fa-fw fa-user mr-1"></i> User Settings
                                 </a>
-                                <div role="separator" class="dropdown-divider"></div>
+                                <li><hr class="dropdown-divider"></li>
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                     document.getElementById('logout-form').submit();">
                                     <i class="far fa-fw fa-arrow-alt-circle-left mr-1"></i> Sign Out
@@ -85,12 +85,15 @@
             </div>
         </header>
         <main id="main-container">
-            @yield('content')
+                <div class="bg-black-10">
+                    @yield('content')
+                </div>
+
         </main>
-        <footer id="page-footer" class="bg-body-light">
+        <footer id="page-footer" class="bg-dark">
             <div class="content py-0">
-                <div class="row font-size-sm">
-                    <div class="col-sm-6 order-sm-1 text-center text-sm-left">
+                <div class="row font-size-sm text-body-color-light">
+                    <div class="col-sm-6 order-sm-1 text-center text-primary-lighter text-sm-left">
                         <a class="font-w600" href="{{ route('dashboard') }}"
                             target="_blank">{{ config('app.name') }}</a> &copy; <span data-toggle="year-copy"></span>
                     </div>

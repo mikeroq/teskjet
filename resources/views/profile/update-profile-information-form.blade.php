@@ -69,6 +69,18 @@
                 <x-jet-input id="email" type="email" class="{{ $errors->has('email') ? 'is-invalid' : '' }}" wire:model.defer="state.email" />
                 <x-jet-input-error for="email" />
             </div>
+            <div class="form-group">
+                <x-jet-label for="timezone">Timezone</x-jet-label>
+                <select id="timezone" class="custom-select bg-black-10 text-gray-lighter border-dark {{ $errors->has('timezone') ? 'is-invalid' : '' }}" wire:model.defer="state.timezone">
+                    @if (empty(auth()->user()->timezone))
+                    <option selected disabled value>-- Select Timezone --</option>
+                    @endif
+                    @foreach (timezone_identifiers_list() as $timezone)
+                    <option class="text-gray bg-black-90" value="{{ $timezone }}"{{ $timezone == auth()->user()->timezone ? ' selected' : '' }}>{{ $timezone }}</option>
+                    @endforeach
+                </select>
+                <x-jet-input-error for="timezone" />
+            </div>
         </div>
     </x-slot>
 

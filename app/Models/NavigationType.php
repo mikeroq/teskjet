@@ -17,7 +17,7 @@ class NavigationType extends Model
 
     public function renderHTML()
     {
-        $pages = Navigation::where('navigation_type_id', $this->id)->orderBy('order_column', 'asc')->get();
+        $pages = Navigation::with('children')->where('navigation_type_id', $this->id)->orderBy('order_column', 'asc')->get();
         return View::make('admin.navtable', ['parent_pages' => $pages])->render();
     }
 

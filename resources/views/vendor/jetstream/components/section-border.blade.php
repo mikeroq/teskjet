@@ -1,3 +1,3 @@
-<div class="py-3">
-    <hr />
+<div class="pb-4">
+    <hr class="dropdown-divider">
 </div>

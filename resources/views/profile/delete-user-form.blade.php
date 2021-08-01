@@ -13,12 +13,13 @@
         </div>
 
         <div class="mt-3">
-            <x-jet-danger-button wire:click="confirmUserDeletion" wire:loading.attr="disabled">
+            <x-jet-danger-button class="mb-3" wire:click="confirmUserDeletion" wire:loading.attr="disabled">
                 {{ __('Delete Account') }}
             </x-jet-danger-button>
         </div>
 
         <!-- Delete User Confirmation Modal -->
+        @push('modal')
         <x-jet-dialog-modal wire:model="confirmingUserDeletion">
             <x-slot name="title">
                 {{ __('Delete Account') }}
@@ -48,6 +49,7 @@
                 </x-jet-danger-button>
             </x-slot>
         </x-jet-dialog-modal>
+        @endpush
     </x-slot>
 
 </x-jet-action-section>

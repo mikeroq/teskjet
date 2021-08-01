@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Models\Navigation;
 use Illuminate\Http\Request;
 use App\Models\NavigationType;
-use App\Models\Navigation;
+use App\Http\Controllers\Controller;
 
 class NavigationTypeController extends Controller
 {

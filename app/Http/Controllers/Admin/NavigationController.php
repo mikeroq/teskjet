@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Models\Navigation;
+use Illuminate\Http\Request;
 use App\Models\NavigationType;
 use App\Models\NavigationChild;
-use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 
 class NavigationController extends Controller
@@ -17,15 +18,15 @@ class NavigationController extends Controller
      */
     public function index()
     {
-        $parent_pages = Navigation::where('navigation_type_id', 1)->orderBy('order_column', 'asc')->get();
-        $admin_parent_pages = Navigation::where('navigation_type_id', 2)->orderBy('order_column', 'asc')->get();
+        $parent_pages = Navigation::with('children')->where('navigation_type_id', 1)->orderBy('order_column', 'asc')->get();
+        $admin_parent_pages = Navigation::with('children')->where('navigation_type_id', 2)->orderBy('order_column', 'asc')->get();
         $navigation_types = NavigationType::all();
         return view('admin.navigation', ['parent_pages' => $parent_pages, 'admin_pages' => $admin_parent_pages, 'navigation_types' => $navigation_types]);
     }
 
     public function getTable(Request $request)
     {
-        $parent_pages = Navigation::where('navigation_type_id', $request->id)->orderBy('order_column', 'asc')->get();
+        $parent_pages = Navigation::with('App\Models\NavigationChild')->where('navigation_type_id', $request->id)->orderBy('order_column', 'asc')->get();
         return view('admin.navtable', ['parent_pages' => $parent_pages]);
     }
 

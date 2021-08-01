@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\DataTables\DeviceTypesDataTable;
 use App\Models\DeviceType;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\DataTables\DeviceTypesDataTable;
 
 class DeviceTypeController extends Controller
 {

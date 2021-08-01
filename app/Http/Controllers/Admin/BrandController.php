@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Models\Brand;
+use App\Http\Controllers\Controller;
 use App\DataTables\BrandsDataTable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;

@@ -561,3 +561,41 @@ fieldset[disabled] .form-material.floating > label {
 .dtr-data button {
     width: 40px;
 }
+
+.dropdown-menu-dark {
+    color: #dee2e6;
+    background-color: #343a40;
+    border-color: rgba(0,0,0,.15);
+}
+.dropdown-menu-dark .dropdown-item {
+    color: #dee2e6;
+}
+
+.dropdown-menu-dark .dropdown-item:focus, .dropdown-menu-dark .dropdown-item:hover {
+    color: #fff;
+    background-color: rgba(255,255,255,.15);
+}
+hr {
+    margin: 1rem 0;
+    color: inherit;
+    background-color: currentColor;
+    border: 0;
+    opacity: .25;
+}
+.dropdown-divider {
+    height: 0;
+    margin: .5rem 0;
+    overflow: hidden;
+    border-top: 1px solid rgba(0,0,0,.15);
+}
+.dropdown-menu-dark .dropdown-divider {
+    border-color: rgba(0,0,0,.15);
+}
+
+.table-dark thead th {
+    border-bottom-color: #343a40 !important;
+}
+
+.modal-footer {
+    border-top-color: #343a40 !important;
+}
