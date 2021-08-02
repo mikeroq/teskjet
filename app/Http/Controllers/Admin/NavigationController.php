@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use App\Models\NavigationType;
 use App\Models\NavigationChild;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Validator;
 
 class NavigationController extends Controller
 {

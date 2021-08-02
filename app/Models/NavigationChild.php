@@ -3,11 +3,12 @@
 namespace App\Models;
 
 use App\Listeners\NavigationUpdate;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Spatie\EloquentSortable\Sortable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
-use Spatie\EloquentSortable\Sortable;
 use Spatie\EloquentSortable\SortableTrait;
+use App\Services\GenerateNavigationService;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class NavigationChild extends Model implements Sortable
 {
@@ -32,4 +33,12 @@ class NavigationChild extends Model implements Sortable
         'user_level',
         'order_column'
     ];
+
+    protected static function booted()
+    {
+        static::saved(function () {
+            GenerateNavigationService::generate();
+        });
+    }
+
 }

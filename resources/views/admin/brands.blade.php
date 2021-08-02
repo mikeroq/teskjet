@@ -2,9 +2,9 @@
 @section('content')
     <x-page-header title="Brands Management" subtitle="Admin Panel"></x-page-header>
     <div class="content p-0">
-        <div class="block p-2">
-            <div class="block-content">
-                {{$dataTable->table(['class' => 'table table-striped table-vcenter'],true)}}
+        <div class="block block-themed block-transparent bg-black-25 mb-0">
+            <div class="block-content text-gray pb-3">
+                {{ $dataTable->table(['class' => 'table table-striped table-vcenter table-dark'], true) }}
             </div>
         </div>
     </div>
@@ -23,7 +23,7 @@
                         </button>
                     </div>
                 </div>
-                <div id="brand_create_body" class="modal-body">
+                <div id="brand_create_body" class="modal-body bg-dark text-gray">
                     <div class="form-group">
                         <label for="brand_name">Name</label>
                         <input type="text" class="form-control" id="brand_name" name="brand_name" placeholder="Enter Brand Name" required>
@@ -37,7 +37,7 @@
                         <input type="text" class="form-control" id="brand_phone" name="brand_phone" placeholder="Ender Support Phone (optional)">
                     </div>
                 </div>
-                <div class="modal-footer modal-footer-fixed">
+                <div class="modal-footer modal-footer-fixed bg-dark bg-black-10">
 
                     <button type="submit" class="btn btn-primary" id="brand_create">
                         <i class="fas fa-plus mr-1"></i>&nbsp;
@@ -62,7 +62,7 @@
                         </button>
                     </div>
                 </div>
-                <div id="brand_edit_body" class="modal-body">
+                <div id="brand_edit_body" class="modal-body bg-dark text-gray">
                     <div class="form-group">
                         <label for="edit_name">Name</label>
                         <input type="text" class="form-control" id="edit_name" name="edit_name" placeholder="Enter Brand Name" required>
@@ -76,7 +76,7 @@
                         <input type="text" class="form-control" id="edit_phone" name="edit_phone" placeholder="Ender Support Phone (optional)">
                     </div>
                 </div>
-                <div class="modal-footer modal-footer-fixed">
+                <div class="modal-footer modal-footer-fixed bg-dark bg-black-10">
                     <button type="submit" class="btn btn-primary" id="brand_edit">
                         <i class="fas fa-plus mr-1"></i>&nbsp;
                         <span>Update Brand</span>

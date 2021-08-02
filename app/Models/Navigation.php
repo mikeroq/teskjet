@@ -2,12 +2,12 @@
 
 namespace App\Models;
 
-use App\Listeners\NavigationUpdate;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Services\GenerateNavigationService;
+use Spatie\EloquentSortable\Sortable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
-use Spatie\EloquentSortable\Sortable;
 use Spatie\EloquentSortable\SortableTrait;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
  * App\Navigation
@@ -68,5 +68,12 @@ class Navigation extends Model implements Sortable
     public function parent()
     {
         return $this->belongsTo('\App\Models\NavigationType');
+    }
+
+    protected static function booted()
+    {
+        static::saved(function () {
+            GenerateNavigationService::generate();
+        });
     }
 }

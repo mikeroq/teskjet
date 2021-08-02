@@ -28,7 +28,7 @@ class CustomersDataTable extends DataTable
             ->editColumn('action', function($item) {
                 return '
                     <div class="btn-group" role="group">
-                        <button  class="btn btn-sm btn-danger delete" data-delete="'.$item->id.'" data-name="'.$item->name.'"><i class="far fa-trash-alt"></i></button>
+                        <button  class="btn btn-sm btn-danger delete" data-delete="'.$item->id.'" data-name="'.$item->name.'"><i class="far fa-trash-alt fa-fw"></i></button>
                     </div>
                 ';
             })
@@ -62,10 +62,10 @@ class CustomersDataTable extends DataTable
                     "<'row'<'col-sm-12'tr>>" .
                     "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>")
                     ->buttons(
-                        Button::make('create')->addClass('btn-primary')->text('<i class="fas fa-plus"></i> Add')->action("$('#customer_create_modal').modal('toggle');"),
+                        Button::make('create')->addClass('btn-primary')->text('<i class="fas fa-plus fa-fw"></i> Add')->action("$('#customer_create_modal').modal('toggle');"),
                         Button::make('export')->addClass('btn-primary'),
                         Button::make('print')->addClass('btn-primary'),
-                        Button::make('reset')->addClass('btn-primary')->text('<i class="fas fa-sync-alt"></i> Refresh')
+                        Button::make('reset')->addClass('btn-primary')->text('<i class="fas fa-sync-alt fa-fw"></i> Refresh')
                     );
     }
 
@@ -77,12 +77,12 @@ class CustomersDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            Column::make('id')->footer('ID'),
+            Column::make('id')->footer('ID')->title('ID'),
             Column::make('name')->footer('Name'),
             Column::make('phone')->footer('Phone'),
             Column::make('type')->footer('Type'),
             Column::make('taxable')->footer('Taxable'),
-            Column::computed('action')->exportable(false)->printable(false)->orderable(false)->searchable(false)->class("text-right")
+            Column::computed('actions')->exportable(false)->printable(false)->orderable(false)->searchable(false)->class("text-right")->footer("Actions")
         ];
     }
 

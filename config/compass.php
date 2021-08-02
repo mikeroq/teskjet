@@ -12,7 +12,7 @@ return [
     |
     */
 
-    'path' => env('COMPASS_PATH', 'compass'),
+    'path' => env('COMPASS_PATH', 'admin/compass'),
 
     /*
     |--------------------------------------------------------------------------

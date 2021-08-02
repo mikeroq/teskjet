@@ -26,8 +26,8 @@ class BrandsDataTable extends DataTable
             ->editColumn('action', function($item) {
                 return '
                     <div class="btn-group" role="group">
-                        <button  class="btn btn-sm btn-danger delete" data-delete="'.$item->id.'" data-name="'.$item->name.'"><i class="far fa-trash-alt"></i></button>
-                        <button  class="btn btn-sm btn-success edit" data-id="'.$item->id.'"><i class="fas fa-pencil-alt"></i></button>
+                        <button  class="btn btn-sm btn-danger delete" data-delete="'.$item->id.'" data-name="'.$item->name.'"><i class="far fa-trash-alt fa-fw"></i></button>
+                        <button  class="btn btn-sm btn-success edit" data-id="'.$item->id.'"><i class="fas fa-pencil-alt fa-fw"></i></button>
                     </div>
                 ';
             })
@@ -61,10 +61,10 @@ class BrandsDataTable extends DataTable
                     "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>")
                     ->orderBy(1)
                     ->buttons(
-                        Button::make('create')->addClass('btn-primary')->text('<i class="fas fa-plus"></i> Add')->action("$('#brand_create_modal').modal('toggle');"),
+                        Button::make('create')->addClass('btn-primary')->text('<i class="fas fa-plus fa-fw"></i> Add')->action("$('#brand_create_modal').modal('toggle');"),
                         Button::make('export')->addClass('btn-primary'),
                         Button::make('print')->addClass('btn-primary'),
-                        Button::make('reset')->addClass('btn-primary')->text('<i class="fas fa-sync-alt"></i> Refresh')
+                        Button::make('reset')->addClass('btn-primary')->text('<i class="fas fa-sync-alt fa-fw"></i> Refresh')
                     );
     }
 

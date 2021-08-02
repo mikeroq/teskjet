@@ -2,21 +2,19 @@
 @section('content')
     <x-page-header title="Navigation Management" subtitle="Admin Panel"></x-page-header>
     <div class="content mb-0 p-0">
-        <div class="block block-rounded block-themed block-bordered mb-0">
-            <ul class="nav nav-tabs nav-tabs-alt nav-tabs-block" id="tabs">
-                @foreach ($navigation_types as $type)
-                <li class="nav-item">
-                    <a class="nav-link @if ($loop->first) active @endif" id="{{ $type->slug }}">{{ $type->name }}</a>
-                </li>
-                @endforeach
-            </ul>
-        </div>
+        <ul class="nav nav-tabs nav-tabs-alt nav-tabs-block" id="tabs">
+            @foreach ($navigation_types as $type)
+            <li class="nav-item">
+                <a class="nav-link @if ($loop->first) active @endif" id="{{ $type->slug }}">{{ $type->name }}</a>
+            </li>
+            @endforeach
+        </ul>
     </div>
     <div class="content tab-content">
         @foreach ($navigation_types as $type)
         <div class="tab-pane @if ($loop->first) active @endif" id="{{ $type->slug }}_tab" role="tabpanel">
-            <div class="block block-rounded block-themed ajax-reload" id="{{ $type->slug }}_block">
-                <div class="block-header block-header-default">
+            <div class="block block-rounded block-themed block-transparent bg-black-25 ajax-reload" id="{{ $type->slug }}_block">
+                <div class="block-header block-header-default bg-black-10">
                     <h3 class="block-title">{{ $type->name }} Navigation</h3>
                     <div class="block-options">
                         <button class="btn-block-option refresh_table" data-type="{{ $type->slug }}" data-type_id="{{ $type->id }}">
@@ -28,7 +26,7 @@
                         </button>
                     </div>
                 </div>
-                <div class="block-content p-0">
+                <div class="block-content text-gray p-0">
                     <div class="table-responsive" id="{{ $type->slug }}_table_div" data-navtype="{{ $type->slug }}" data-id="{{ $type->id }}">
                         {!! $type->renderHTML() !!}
                     </div>
@@ -39,7 +37,7 @@
     </div>
 @endsection
 @push('modal')
-<x-form-modal title="Add Page" slug="create_nav" type="create">
+<x-form-modal title="Add Page" slug="nav" type="create">
     <div class="form-group">
         <div class="form-material">
             <select name="nav_type" id="nav_type" class="form-control">
@@ -94,7 +92,7 @@
         </div>
     </div>
 </x-form-modal>
-<x-form-modal title="Edit Page" slug="edit_nav" type="edit">
+<x-form-modal title="Edit Page" slug="nav" type="edit">
     <div class="form-group">
         <div class="form-material">
             <input type="text" class="form-control" id="edit_title" name="edit_title" required>
@@ -174,7 +172,7 @@ $(function() {
         var nav_type = $(this).data('navtype');
         $('#nav_type').val(nav_type);
         $('#parent').val(parent);
-        $('#create_nav_modal').modal('show');
+        $('#nav_create_moddal').modal('show');
     });
     $(document).on('click','.add_nav_modal', function() {
         var nav_type = $(this).data('navtype');
@@ -184,7 +182,7 @@ $(function() {
             });
         });
         $('#nav_type').val(nav_type);
-        $('#create_nav_modal').modal('show');
+        $('#nav_create_modal').modal('show');
     });
     // Delete Handler
     $(document).on('click','.delete',function(){
@@ -213,22 +211,22 @@ $(function() {
             if (data.type == "child") {
                 $('#edit_icon_group').hide();
             }
-            var frm = $("#edit_nav_form");
+            var frm = $("#nav_edit_form");
             for (i in data) {
                 frm.find('[name="edit_' + i + '"]').val(data[i]);
             }
             $('#epreview').removeClass().addClass(data.icon);
-            $('#edit_nav_modal').modal('toggle');
+            $('#nav_edit_modal').modal('toggle');
             edit_id = data.id;
         });
     });
     // Create Modal Processing
-    $('#create_nav_form').submit(function(event) {
+    $('#nav_create_form').submit(function(event) {
         event.preventDefault();
-        $("#create_nav").spinbutton();
+        $("#nav_create").spinbutton();
         var formData = new FormData(this);
         $.fn.ajaxCreateModal({
-            slug: 'create_nav',
+            slug: 'nav_create',
             url: '/admin/navigation',
             method: 'POST',
             form: $(this).serialize(),
@@ -265,8 +263,8 @@ $(function() {
 
 
 
-            $('#edit_nav_form').submit(function(event) {
-                $("#edit_nav_btn").spinbutton();
+            $('#nav_edit_form').submit(function(event) {
+                $("#nav_edit_btn").spinbutton();
                 event.preventDefault();
                 var form = $(this);
                 $.ajax({
@@ -276,9 +274,9 @@ $(function() {
                     encode      : true
                 }).done(function(data) {
                     if (data.success) {
-                        $("#edit_nav").spinbutton("success","fas fa-pencil-alt mr-1","Update Link");
-                        $('#edit_nav_modal').modal('toggle');
-                        $("#edit_nav_form").trigger("reset");
+                        $("#nav_edit").spinbutton("success","fas fa-pencil-alt mr-1","Update Link");
+                        $('#nav_edit_modal').modal('toggle');
+                        $("#nav_edit_form").trigger("reset");
                         Swal.fire({
                             icon: 'success',
                             title: 'Navigation Edited!',
@@ -287,10 +285,10 @@ $(function() {
                             timer: 2000
                         })
                         $('#' + data.type + '_table_div').load('/admin/navtable/' + data.type_id + '/');
-                        $("#edit_nav_btn").spinbutton("reset","fas fa-pencil-alt mr-1","Update Link");
+                        $("#nav_edit_btn").spinbutton("reset","fas fa-pencil-alt mr-1","Update Link");
                     }
                     else {
-                        $("#edit_nav_btn").spinbutton("reset","fas fa-pencil-alt mr-1","Update Link");
+                        $("#nav_edit_btn").spinbutton("reset","fas fa-pencil-alt mr-1","Update Link");
                         Swal.fire(
                             'Error',
                             data.error,
@@ -298,7 +296,7 @@ $(function() {
                         )
                     }
                 }).fail(function(jqXHR, textStatus, errorThrown) {
-                    $("#edit_nav_btn").spinbutton("reset","fas fa-pencil-alt mr-1","Update Link");
+                    $("#nav_edit_btn").spinbutton("reset","fas fa-pencil-alt mr-1","Update Link");
                     Swal.fire(
                         'Error',
                         errorThrown,

@@ -39,7 +39,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::resource('tickets', TicketController::class);
 
     // Admin Routes
-    Route::middleware(['auth','admin'])->prefix('admin')->group(function () {
+    Route::middleware(['admin'])->prefix('admin')->group(function () {
         Route::view('/', 'admin.dashboard')->name('admin.index');
         Route::get('/generate', [NavigationGenerationController::class, 'generate']);
         Route::resource('/users', UserAdminController::class);

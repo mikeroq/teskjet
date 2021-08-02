@@ -24,8 +24,8 @@ class UsersDataTable extends DataTable
             ->editColumn('action', function($item) {
                 return '
                     <div class="btn-group" role="group">
-                        <button  class="btn btn-sm btn-danger delete" data-delete="'.$item->id.'" data-email="'.$item->email.'"><i class="far fa-trash-alt"></i></button>
-                        <button  class="btn btn-sm btn-success edit" data-id="'.$item->id.'"><i class="fas fa-pencil-alt"></i></button>
+                        <button  class="btn btn-sm btn-danger delete" data-delete="'.$item->id.'" data-email="'.$item->email.'"><i class="far fa-trash-alt fa-fw"></i></button>
+                        <button  class="btn btn-sm btn-success edit" data-id="'.$item->id.'"><i class="fas fa-pencil-alt fa-fw"></i></button>
                     </div>
                 ';
             });
@@ -60,7 +60,7 @@ class UsersDataTable extends DataTable
                     ->buttons(
                         Button::make('export')->addClass('btn-primary'),
                         Button::make('print')->addClass('btn-primary'),
-                        Button::make('reset')->addClass('btn-primary')->text('<i class="fas fa-sync-alt"></i> Refresh')
+                        Button::make('reset')->addClass('btn-primary')->text('<i class="fas fa-sync-alt fa-fw"></i> Refresh')
                     );
     }
 

@@ -1,5 +1,5 @@
-<div class="modal right fade" id="{{ $slug }}_modal" tabindex="-1" role="dialog" aria-labelledby="{{ $slug }}_modal" aria-hidden="true">
-    <form action="" method="POST" id="{{ $slug }}_form">
+<div class="modal right fade" id="{{ $slug }}_{{ $type }}_modal" tabindex="-1" role="dialog" aria-labelledby="{{ $slug }}_{{ $type }}_modal" aria-hidden="true">
+    <form action="" method="POST" id="{{ $slug }}_{{ $type }}_form">
         @csrf
         <div class="modal-dialog" role="document">
             <div class="modal-content block block-themed">
@@ -11,11 +11,11 @@
                         </button>
                     </div>
                 </div>
-                <div id="{{ $slug }}_body" class="modal-body">
+                <div id="{{ $slug }}_{{ $type }}_body" class="modal-body bg-dark text-gray">
                     {{ $slot }}
                 </div>
-                <div class="modal-footer modal-footer-fixed">
-                    <button type="submit" class="btn btn-primary" id="{{ $slug }}_btn">
+                <div class="modal-footer modal-footer-fixed bg-dark bg-black-10">
+                    <button type="submit" class="btn btn-primary" id="{{ $slug }}_{{ $type }}_btn">
                         <i class="{{ $icon }} fa-fw mr-1"></i>
                         <span>{{ $btn }}</span>
                     </button>

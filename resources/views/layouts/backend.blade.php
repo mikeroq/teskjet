@@ -85,10 +85,7 @@
             </div>
         </header>
         <main id="main-container">
-                <div class="bg-black-10">
                     @yield('content')
-                </div>
-
         </main>
         <footer id="page-footer" class="bg-dark">
             <div class="content py-0">

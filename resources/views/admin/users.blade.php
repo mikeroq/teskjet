@@ -2,12 +2,12 @@
 @section('content')
 	<x-page-header title="User Management" subtitle="Admin Panel"></x-page-header>
 	<div class="content p-0">
-		<div class="block p-2">
-			<div class="block-content">
-				{{$dataTable->table(['class' => 'table table-striped table-vcenter'],true)}}
-			</div>
-		</div>
-	</div>
+        <div class="block block-themed block-transparent bg-black-25 mb-0">
+            <div class="block-content text-gray pb-3">
+                {{ $dataTable->table(['class' => 'table table-striped table-vcenter table-dark'], true) }}
+            </div>
+        </div>
+    </div>
 @endsection
 @push('modal')
 <div class="modal right fade" id="brand_create_modal" tabindex="-1" role="dialog" aria-labelledby="brand_create_modal" aria-hidden="true">

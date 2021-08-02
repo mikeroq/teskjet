@@ -1,60 +1,34 @@
 @push('modal')
-    <div class="modal right fade" id="customer_create_modal" tabindex="-1" role="dialog"
-        aria-labelledby="customer_create_modal" aria-hidden="true">
-        <form action="{{ route('customers.store') }}" method="POST" id="customer_create_form">
-            @csrf
-            <div class="modal-dialog" role="document">
-                <div class="modal-content block block-themed">
-                    <div class="block-header bg-primary-dark">
-                        <h3 class="block-title"><i class="fas fa-user mr-1" id="edit_icon"></i> Add New Customer</h3>
-                        <div class="block-options">
-                            <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">
-                                <i class="fa fa-fw fa-times"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div id="customer_create_body" class="modal-body">
-                        <div class="form-group">
-                            <div class="form-material floating">
-                                <input type="text" class="form-control" id="customer_name" name="customer_name" required>
-                                <label for="customer_name">Name</label>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="form-material floating">
-                                <input type="text" class="form-control" id="customer_phone" name="customer_phone" required>
-                                <label for="customer_phone">Phone</label>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="form-material floating">
-                                <select class="form-control" name="customer_type" id="customer_type" required>
-                                    <option></option>
-                                    @foreach (__('types/customer.type') as $value => $label)
-                                        <option value="{{ $value }}">{{ $label }}</option>
-                                    @endforeach
-                                </select>
-                                <label for="customer_type">Type</label>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="custom-control custom-switch mb-1">
-                                <input type="checkbox" class="custom-control-input" id="customer_taxable"
-                                    name="customer_taxable" value="1">
-                                <label class="custom-control-label" for="customer_taxable">Taxable</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer modal-footer-fixed">
-                        <button type="submit" class="btn btn-primary" id="customer_create">
-                            <i class="fas fa-plus mr-1"></i>&nbsp;
-                            <span>Add Customer</span>
-                        </button>
-                    </div>
-                </div>
+    <x-form-modal type="create" slug="customer" title="Add New Customer" icon="fas fa-user" btn="Add Customer">
+        <div class="form-group">
+            <label for="customer_name">Name</label>
+            <input type="text" class="form-control" id="customer_name" name="customer_name" placeholder="Enter Customer Name (required)" required>
+        </div>
+        <div class="form-group">
+            <label for="customer_phone">Phone</label>
+            <input type="text" class="form-control" id="customer_phone" name="customer_phone" placeholder="Enter Customer Phone (required)" required>
+        </div>
+        <div class="form-group">
+            <label for="customer_type">Type</label>
+            <select class="form-control" name="customer_type" id="customer_type" required>
+                <option selected disabled>--- Select Type ---</option>
+                @foreach (__('types/customer.type') as $value => $label)
+                    <option value="{{ $value }}">{{ $label }}</option>
+                @endforeach
+            </select>
+        </div>
+        {{-- <div class="form-group">
+            <div class="custom-control custom-switch mb-1">
+                <input type="checkbox" class="custom-control-input" id="customer_taxable"
+                    name="customer_taxable" value="1">
+                <label class="custom-control-label" for="customer_taxable">Taxable</label>
             </div>
-        </form>
-    </div>
+        </div> --}}
+        <div class="custom-control custom-checkbox custom-control-success custom-control-lg mb-1">
+            <input type="checkbox" class="custom-control-input" id="example-cb-custom-light-lg2" name="example-cb-custom-light-lg2" checked>
+            <label class="custom-control-label" for="example-cb-custom-light-lg2">Taxable</label>
+          </div>
+    </x-form-modal>
 @endpush
 @push('scripts')
     <script type="text/javascript">

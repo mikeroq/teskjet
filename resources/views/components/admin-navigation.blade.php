@@ -55,7 +55,7 @@
                 @endforeach
                 <li class="nav-main-heading">External Laravel Panels</li>
                 <li class="nav-main-item">
-                    <a class="nav-main-link" href="/routes">
+                    <a class="nav-main-link" href="/admin/routes">
                         <i class="nav-main-link-icon fas fa-map"></i>
                         <span class="nav-main-link-name">Routes</span>
                     </a>
@@ -76,6 +76,12 @@
                     <a class="nav-main-link" href="/telescope">
                         <i class="nav-main-link-icon fas fa-microscope"></i>
                         <span class="nav-main-link-name">Telescope</span>
+                    </a>
+                </li>
+                <li class="nav-main-item">
+                    <a class="nav-main-link" href="/admin/compass">
+                        <i class="nav-main-link-icon fas fa-compass"></i>
+                        <span class="nav-main-link-name">Compass</span>
                     </a>
                 </li>
             </ul>
