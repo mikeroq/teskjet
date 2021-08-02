@@ -82,7 +82,7 @@ class CustomersDataTable extends DataTable
             Column::make('phone')->footer('Phone'),
             Column::make('type')->footer('Type'),
             Column::make('taxable')->footer('Taxable'),
-            Column::computed('actions')->exportable(false)->printable(false)->orderable(false)->searchable(false)->class("text-right")->footer("Actions")
+            Column::computed('action')->exportable(false)->printable(false)->orderable(false)->searchable(false)->class("text-right")->footer('Actions')->title('Actions')
         ];
     }
 

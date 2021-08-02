@@ -27,7 +27,7 @@
         <div class="custom-control custom-checkbox custom-control-success custom-control-lg mb-1">
             <input type="checkbox" class="custom-control-input" id="example-cb-custom-light-lg2" name="example-cb-custom-light-lg2" checked>
             <label class="custom-control-label" for="example-cb-custom-light-lg2">Taxable</label>
-          </div>
+        </div>
     </x-form-modal>
 @endpush
 @push('scripts')
