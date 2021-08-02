@@ -50,7 +50,7 @@
                                     <td>{{ $history->fieldName() }} was changed from {{ $history->oldValue() }} to
                                         {{ $history->newValue() }}</td>
                                 @endif
-                                <td>{{ $history->userResponsible()->full_name }}</td>
+                                <td>{{ $history->userResponsible()->name }}</td>
                             </tr>
                         @endforeach
                     </tbody>

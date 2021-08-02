@@ -1,6 +1,9 @@
 <div class="modal right fade" id="{{ $slug }}_{{ $type }}_modal" tabindex="-1" role="dialog" aria-labelledby="{{ $slug }}_{{ $type }}_modal" aria-hidden="true">
     <form action="" method="POST" id="{{ $slug }}_{{ $type }}_form">
         @csrf
+        @if($type == "edit")
+        @method('PATCH')
+        @endif
         <div class="modal-dialog" role="document">
             <div class="modal-content block block-themed">
                 <div class="block-header bg-primary-dark">

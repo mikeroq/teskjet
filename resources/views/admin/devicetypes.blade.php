@@ -10,67 +10,18 @@
     </div>
 @endsection
 @push('modal')
-<div class="modal right fade" id="devicetype_create_modal" tabindex="-1" role="dialog" aria-labelledby="devicetype_create_modal" aria-hidden="true">
-    <form action="{{ route('devicetypes.store') }}" method="POST" id="devicetype_create_form">
-        @csrf
-        <div class="modal-dialog" role="document">
-            <div class="modal-content block block-themed">
-                <div class="block-header bg-primary-dark">
-                    <h3 class="block-title"><i class="far fa-registered mr-1" id="edit_icon"></i> Create Device Type</h3>
-                    <div class="block-options">
-                        <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">
-                            <i class="fa fa-fw fa-times"></i>
-                        </button>
-                    </div>
-                </div>
-                <div id="devicetype_create_body" class="modal-body">
-                    <div class="form-group">
-                        <label for="devicetype_name">Name</label>
-                        <input type="text" class="form-control" id="devicetype_name" name="devicetype_name" placeholder="Enter Device Type" required>
-                    </div>
-                </div>
-                <div class="modal-footer modal-footer-fixed">
-
-                    <button type="submit" class="btn btn-primary" id="devicetype_create">
-                        <i class="fas fa-plus mr-1"></i>&nbsp;
-                        <span>Add Device Type</span>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </form>
-</div>
-<div class="modal right fade" id="devicetype_edit_modal" tabindex="-1" role="dialog" aria-labelledby="devicetype_edit_modal" aria-hidden="true">
-    <form action="" method="POST" id="devicetype_edit_form">
-        @csrf
-        @method('patch')
-        <div class="modal-dialog" role="document">
-            <div class="modal-content block block-themed">
-                <div class="block-header bg-primary-dark">
-                    <h3 class="block-title"><i class="fas fa-pencil-alt mr-1" id="edit_icon"></i> Edit Device Type</h3>
-                    <div class="block-options">
-                        <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">
-                            <i class="fa fa-fw fa-times"></i>
-                        </button>
-                    </div>
-                </div>
-                <div id="devicetype_edit_body" class="modal-body">
-                    <div class="form-group">
-                        <label for="devicetype_name">Name</label>
-                        <input type="text" class="form-control" id="edit_devicetype_name" name="edit_devicetype_name" placeholder="Enter Device Type" required>
-                    </div>
-                </div>
-                <div class="modal-footer modal-footer-fixed">
-
-                    <button type="submit" class="btn btn-primary" id="devicetype_edit">
-                        <i class="fas fa-plus mr-1"></i>&nbsp;
-                        <span>Update Device Type</span>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </form>
-</div>
+<x-form-modal type="create" slug="devicetype" title="Create Device Type" icon="far fa-registered" btn="Add Device Type">
+    <div class="form-group">
+        <label for="devicetype_name">Name</label>
+        <input type="text" class="form-control" id="devicetype_name" name="devicetype_name" placeholder="Enter Device Type" required>
+    </div>
+</x-form-modal>
+<x-form-modal type="edit" slug="devicetype" title="Edit Device Type" icon="fas fa-pencil-alt" btn="Edit Customer">
+    <div class="form-group">
+        <label for="devicetype_name">Name</label>
+        <input type="text" class="form-control" id="edit_devicetype_name" name="edit_devicetype_name" placeholder="Enter Device Type" required>
+    </div>
+</x-form-modal>
 @endpush
 @push('scripts')
     <script type="text/javascript">
