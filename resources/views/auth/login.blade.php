@@ -50,7 +50,7 @@
                                             <a class="btn btn-sm btn-dark d-block d-lg-inline-block mb-1"
                                                 href="{{ route('password.request') }}">
                                                 <i class="fa fa-exclamation-triangle text-muted mr-1"></i>
-                                                {{ __('Forgot your password?') }}
+                                                Forgot Password
                                             </a>
                                         @endif
                                         @if (Route::has('register'))
@@ -70,6 +70,7 @@
                 </div>
             </div>
             <div class="md-6 d-none d-md-flex align-items-md-center justify-content-md-center text-md-center">
+
             </div>
         </div>
     </div>
