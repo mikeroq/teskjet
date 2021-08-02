@@ -31,7 +31,7 @@
                     @if (! is_null($account))
                         <div class="form-group row">
                             <div class="col-sm-10 col-md-8 col-xl-6">
-                                <button class="btn btn-block btn-alt-primary bg-transparent d-flex align-items-center justify-content-between" disabled>
+                                <button class="btn btn-block btn-alt-primary d-flex align-items-center justify-content-between" disabled>
                                     <span>
                                         <i class="fab fa-fw fa-{{ $provider }} opacity-50 mr-1"></i>
                                         {{ $account->name }}
