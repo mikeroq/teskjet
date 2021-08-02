@@ -16,6 +16,23 @@ CREATE TABLE `brands` (
   `support_number` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `compass_routeables`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `compass_routeables` (
+  `uuid` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `route_hash` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `content` longtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `example` tinyint(1) NOT NULL DEFAULT 0,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  UNIQUE KEY `compass_routeables_uuid_unique` (`uuid`),
+  KEY `compass_routeables_route_hash_title_index` (`route_hash`,`title`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `connected_accounts`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -173,6 +190,19 @@ CREATE TABLE `navigations` (
   CONSTRAINT `navigations_navigation_type_id_foreign` FOREIGN KEY (`navigation_type_id`) REFERENCES `navigation_types` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `online_mailables`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `online_mailables` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `uuid` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `expires_at` timestamp NULL DEFAULT NULL,
+  `content` blob NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `password_resets`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -199,6 +229,40 @@ CREATE TABLE `personal_access_tokens` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `personal_access_tokens_token_unique` (`token`),
   KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `revisions`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `revisions` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `revisionable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `revisionable_id` bigint(20) unsigned NOT NULL,
+  `user_id` bigint(20) unsigned DEFAULT NULL,
+  `key` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `old_value` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `new_value` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `revisions_revisionable_id_revisionable_type_index` (`revisionable_id`,`revisionable_type`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `sent_emails`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `sent_emails` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `date` date DEFAULT NULL,
+  `from` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `to` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `cc` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `bcc` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `subject` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `body` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `sessions`;
@@ -273,6 +337,7 @@ CREATE TABLE `users` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `user_level` int(11) NOT NULL DEFAULT 0,
+  `timezone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_email_unique` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -294,3 +359,8 @@ INSERT INTO `migrations` VALUES (7,'2021_06_01_145800_add_two_factor_confirmed_c
 INSERT INTO `migrations` VALUES (8,'2021_07_25_181345_create_sessions_table',1);
 INSERT INTO `migrations` VALUES (9,'2021_07_26_040426_add_user_level_to_users_table',1);
 INSERT INTO `migrations` VALUES (10,'2018_08_08_100000_create_telescope_entries_table',2);
+INSERT INTO `migrations` VALUES (11,'2021_07_31_021756_create_sent_emails_table',3);
+INSERT INTO `migrations` VALUES (12,'2021_07_31_042315_create_online_mailables_table',4);
+INSERT INTO `migrations` VALUES (13,'2019_08_08_100000_create_compass_routeables_table',5);
+INSERT INTO `migrations` VALUES (14,'2021_07_31_190727_add_timezone_to_users_table',6);
+INSERT INTO `migrations` VALUES (15,'2013_04_09_062329_create_revisions_table',7);
