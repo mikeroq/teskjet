@@ -25,7 +25,7 @@ class NavigationController extends Controller
 
     public function getTable(Request $request)
     {
-        $parent_pages = Navigation::with('App\Models\NavigationChild')->where('navigation_type_id', $request->id)->orderBy('order_column', 'asc')->get();
+        $parent_pages = Navigation::with('children')->where('navigation_type_id', $request->id)->orderBy('order_column', 'asc')->get();
         return view('admin.navtable', ['parent_pages' => $parent_pages]);
     }
 
