@@ -40,9 +40,9 @@ class GenerateNav extends Command
     {
         try {
             GenerateNavigationService::generate();
-            echo "Navigation Generated.";
+            $this->info('Navigation Generated successfully.');
         } catch (\Exception $e) {
-            echo $e;
+            $this->error($e);
         }
     }
 }

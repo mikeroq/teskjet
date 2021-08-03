@@ -21,6 +21,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Eloquent\Builder|DeviceType whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|DeviceType whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Device[] $devices
+ * @property-read int|null $devices_count
  */
 class DeviceType extends Model
 {

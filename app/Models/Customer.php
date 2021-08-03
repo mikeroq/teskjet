@@ -31,6 +31,19 @@ use Propaganistas\LaravelPhone\Casts\E164PhoneNumberCast;
  * @method static \Illuminate\Database\Eloquent\Builder|Customer whereTaxable($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Customer whereType($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Customer whereUpdatedAt($value)
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Device[] $devices
+ * @property-read int|null $devices_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\CustomerLocation[] $locations
+ * @property-read int|null $locations_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Venturecraft\Revisionable\Revision[] $revisionHistory
+ * @property-read int|null $revision_history_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Ticket[] $tickets
+ * @property-read int|null $tickets_count
+ * @method static \Illuminate\Database\Query\Builder|Customer onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Customer whereDeletedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|Customer withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|Customer withoutTrashed()
  */
 
 class Customer extends Model

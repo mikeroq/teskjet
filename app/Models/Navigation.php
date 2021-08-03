@@ -2,11 +2,14 @@
 
 namespace App\Models;
 
-use App\Services\GenerateNavigationService;
+use App\Enums\UserType;
+use BenSampo\Enum\Traits\CastsEnums;
 use Spatie\EloquentSortable\Sortable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Spatie\EloquentSortable\SortableTrait;
+use App\Services\GenerateNavigationService;
+use App\Services\TestService;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
@@ -20,7 +23,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property string $icon
  * @property string|null $url
  * @property string $route
- * @property int $user_level
+ * @property UserType $user_level
  * @property int $order_id
  * @property-read Navigation $parent
  * @property-read \Illuminate\Database\Eloquent\Collection|Navigation[] $subcategories
@@ -39,12 +42,23 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @method static \Illuminate\Database\Eloquent\Builder|Navigation whereUrl($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Navigation whereUserLevel($value)
  * @mixin \Eloquent
+ * @property int $navigation_type_id
+ * @property int $order_column
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\NavigationChild[] $children
+ * @property-read int|null $children_count
+ * @property-read mixed $level
+ * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
+ * @property-read int|null $notifications_count
+ * @method static \Illuminate\Database\Eloquent\Builder|Navigation ordered(string $direction = 'asc')
+ * @method static \Illuminate\Database\Eloquent\Builder|Navigation whereNavigationTypeId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Navigation whereOrderColumn($value)
  */
 class Navigation extends Model implements Sortable
 {
     use HasFactory;
     use SortableTrait;
     use Notifiable;
+    use CastsEnums;
 
     protected $fillable = [
         'navigation_type_id',
@@ -53,6 +67,10 @@ class Navigation extends Model implements Sortable
         'url',
         'user_level',
         'order_column'
+    ];
+
+    protected $casts = [
+        'user_level' => UserType::class,
     ];
 
     public function buildSortQuery()
@@ -75,5 +93,10 @@ class Navigation extends Model implements Sortable
         static::saved(function () {
             GenerateNavigationService::generate();
         });
+    }
+
+    public function getLevelAttribute()
+    {
+        return $this->user_level->description;
     }
 }

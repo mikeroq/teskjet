@@ -242,6 +242,7 @@ namespace App\Models{
  * @property int $order_column
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\NavigationChild[] $children
  * @property-read int|null $children_count
+ * @property-read mixed $level
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
  * @property-read int|null $notifications_count
  * @method static \Illuminate\Database\Eloquent\Builder|Navigation ordered(string $direction = 'asc')
@@ -261,8 +262,9 @@ namespace App\Models{
  * @property int $navigation_id
  * @property string $title
  * @property string|null $url
- * @property int $user_level
+ * @property \App\Enums\UserType $user_level
  * @property int $order_column
+ * @property-read mixed $level
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
  * @property-read int|null $notifications_count
  * @property-read \App\Models\Navigation $parent
@@ -350,6 +352,7 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property \App\Enums\UserType $user_level
+ * @property string|null $timezone
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\ConnectedAccount[] $connectedAccounts
  * @property-read int|null $connected_accounts_count
  * @property-read \App\Models\ConnectedAccount|null $currentConnectedAccount
@@ -374,6 +377,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|User wherePassword($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereProfilePhotoPath($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereRememberToken($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereTimezone($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereTwoFactorConfirmed($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereTwoFactorRecoveryCodes($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereTwoFactorSecret($value)

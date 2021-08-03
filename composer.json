@@ -22,6 +22,7 @@
         "laravel/telescope": "^4.6",
         "laravel/tinker": "^2.5",
         "league/commonmark": "^2.0",
+        "livewire-ui/modal": "^1.0",
         "livewire/livewire": "^2.5",
         "propaganistas/laravel-phone": "^4.3",
         "protonemedia/laravel-mixins": "^3.0",
@@ -30,10 +31,7 @@
         "spatie/eloquent-sortable": "^4.0",
         "spatie/laravel-remote": "^1.0",
         "vaimo/composer-patches": "^4.22",
-        "venturecraft/revisionable": "^1.38",
-        "yajra/laravel-datatables-buttons": "^4.0",
-        "yajra/laravel-datatables-html": "^4.0",
-        "yajra/laravel-datatables-oracle": "~9.0"
+        "venturecraft/revisionable": "^1.38"
     },
     "require-dev": {
         "andrey-helldar/migrate-db": "^1.2",

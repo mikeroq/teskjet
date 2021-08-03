@@ -30,6 +30,9 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Device whereSerialNumber($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Device whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property-read \App\Models\Brand $brand
+ * @property-read \App\Models\Customer $customer
+ * @property-read \App\Models\DeviceType $deviceType
  */
 class Device extends Model
 {

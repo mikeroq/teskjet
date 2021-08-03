@@ -20,6 +20,13 @@ use Venturecraft\Revisionable\RevisionableTrait;
  * @method static \Illuminate\Database\Eloquent\Builder|Ticket whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Ticket whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Venturecraft\Revisionable\Revision[] $revisionHistory
+ * @property-read int|null $revision_history_count
+ * @property-read \App\Models\User $user
+ * @method static \Illuminate\Database\Query\Builder|Ticket onlyTrashed()
+ * @method static \Illuminate\Database\Query\Builder|Ticket withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|Ticket withoutTrashed()
+ * @property-read \App\Models\Customer $customer
  */
 class Ticket extends Model
 {
@@ -34,6 +41,6 @@ class Ticket extends Model
 
     public function customer()
     {
-        return $this->belongsTo('App\Modems\Customer');
+        return $this->belongsTo('App\Models\Customer');
     }
 }

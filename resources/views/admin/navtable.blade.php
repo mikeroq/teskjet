@@ -16,7 +16,7 @@
                 {{$page->title}}
             </td>
             <td>{{$page->url}}</td>
-            <td>{{$page->user_level}}</td>
+            <td>{{$page->level}}</td>
             <td align="right">
                 <div class="btn-group" role="group">
                     <button class="btn btn-sm btn-success add-child" data-navtype="{{ $page->navigation_type_id }}" data-id="{{$page->id}}"><i class="fas fa-plus fa-fw"></i></button>
@@ -36,7 +36,7 @@
                 {{$child->title}}
             </td>
             <td>{{$child->url}}</td>
-            <td>{{$child->user_level}}</td>
+            <td>{{$child->level}}</td>
             <td align="right">
                 <div class="btn-group" role="group">
                     <button class="btn btn-sm btn-danger delete" data-type="child" data-delete="{{$child->id}}" data-name="{{$child->title}}"><i class="far fa-trash-alt fa-fw"></i></button>

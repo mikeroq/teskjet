@@ -16,7 +16,7 @@
         <div class="content-side content-side-full">
             <ul class="nav-main">
                 @foreach ($navigation as $nav)
-                    @if (Auth::user()->getRawOriginal('user_level') >= $nav->user_level)
+                    @if (($nav->user_level == Auth::user()->user_level->description) || ($nav->user_level == "User" && Auth::user()->user_level->description == "Admin"))
                         @if ($nav->children)
                             <li class="nav-main-item{{ request()->is($nav->url . '*') ? ' open' : '' }}">
                                 <a class="nav-main-link nav-main-link-submenu{{ request()->is($nav->url) ? ' active' : '' }}"

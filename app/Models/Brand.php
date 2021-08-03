@@ -24,6 +24,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Brand whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Brand whereWebsite($value)
  * @mixin \Eloquent
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Device[] $devices
+ * @property-read int|null $devices_count
  */
 class Brand extends Model
 {

@@ -1,4 +1,7 @@
 {
-    "/js/app.js": "/js/app.js",
+    "/js/dashmix.app.js": "/js/dashmix.app.js",
+    "/js/custom.js": "/js/custom.js",
+    "/js/laravel.app.js": "/js/laravel.app.js",
+    "/js/pages/tables_datatables.js": "/js/pages/tables_datatables.js",
     "/css/app.css": "/css/app.css"
 }
