@@ -48,16 +48,28 @@ class EditModal extends ModalComponent
         $this->customer->taxable = $this->taxable;
         $this->customer->save();
 
-        $this->alert('success', 'Edit Successful', [
-            'position' =>  'center',
-            'timer' =>  '2000',
-            'toast' =>  false,
-            'showCancelButton' =>  false,
-            'showConfirmButton' =>  false,
-        ]);
+        if ($this->customer->wasChanged()) {
+            $this->alert('success', 'Edit Successful', [
+                'position' =>  'center',
+                'timer' =>  '2000',
+                'toast' =>  false,
+                'showCancelButton' =>  false,
+                'showConfirmButton' =>  false,
+            ]);
 
-        $this->emit('customerShowRefresh');
-        $this->closeModal();
+            $this->emit('customerShowRefresh');
+            $this->closeModal();
+        } else {
+            $this->alert('info', 'Notice', [
+                'position' =>  'top-end',
+                'text' => 'You did not modify any fields. Nothing was changed.',
+                'toast' =>  true,
+                'timer' => '3000',
+                'showCancelButton' =>  false,
+                'showConfirmButton' =>  false,
+            ]);
+        }
+
 
         // return redirect()->to(route('customers.show', $this->customer->id));
     }

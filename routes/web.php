@@ -6,7 +6,6 @@ use App\Http\Controllers\Admin\NavigationController;
 use App\Http\Controllers\TicketController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\Admin\DeviceTypeController;
-use App\Http\Controllers\Admin\NavigationGenerationController;
 use App\Http\Controllers\Admin\UserAdminController;
 use App\Http\Controllers\Admin\NavigationTypeController;
 use App\Http\Controllers\LandingController;
@@ -41,7 +40,6 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     // Admin Routes
     Route::middleware(['admin'])->prefix('admin')->group(function () {
         Route::view('/', 'admin.dashboard')->name('admin.index');
-        Route::get('/generate', [NavigationGenerationController::class, 'generate']);
         Route::resource('/users', UserAdminController::class);
         Route::resource('/navigation', NavigationController::class);
         Route::resource('/brands', BrandController::class);

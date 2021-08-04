@@ -3,10 +3,11 @@
 namespace App\Models;
 
 use App\Traits\ConvertTimezone;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Venturecraft\Revisionable\RevisionableTrait;
+use Propaganistas\LaravelPhone\PhoneNumber;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Venturecraft\Revisionable\RevisionableTrait;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Propaganistas\LaravelPhone\Casts\E164PhoneNumberCast;
 
 /**
@@ -88,6 +89,11 @@ class Customer extends Model
     public function tickets()
     {
         return $this->hasMany('App\Models\Ticket');
+    }
+
+    public function getFormattedPhoneAttribute()
+    {
+        return PhoneNumber::make($this->phone, 'US')->formatNational();
     }
 
     protected $revisionCreationsEnabled = true;

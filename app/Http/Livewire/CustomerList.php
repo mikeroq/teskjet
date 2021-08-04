@@ -16,10 +16,13 @@ class CustomerList extends DataTableComponent
             Column::make('Name')
                 ->sortable()
                 ->searchable(),
-            Column::make('Phone')
+            Column::make('Phone', 'formatted_phone')
                 ->sortable()
                 ->searchable(),
             Column::make('Type')
+                ->sortable()
+                ->searchable(),
+            Column::make('Created At')
                 ->sortable()
                 ->searchable(),
         ];

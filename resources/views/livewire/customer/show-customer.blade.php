@@ -23,7 +23,7 @@
         <div class="block-content text-gray">
             <p>
                 {{ $customer->name }}<br />
-                {{ phone($customer->phone, 'US') }}<br />
+                {{ $customer->formatted_phone }}<br />
                 {{ $customer->type }}<br />
                 {{ $customer->displayable_taxable }}<br />
                 {{ $customer->created_at->format('Y-m-d h:i a') }}
