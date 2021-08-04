@@ -15,7 +15,7 @@
                 <label for="type">Type</label>
                 <select class="form-control @error('type') is-invalid @enderror" wire:model="type" required>
                     @foreach (__('types/customer.type') as $value => $label)
-                    <option value="{{ $value }}" wire:key="{{ $value }}"></option>{{ $label }}</option>
+                    <option value="{{ $value }}" wire:key="{{ $value }}">{{ $label }}</option>
                     @endforeach
                 </select>
                 @error('type') <div class="invalid-feedback">{{ $message }}</div> @enderror

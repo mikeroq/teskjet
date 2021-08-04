@@ -15,6 +15,8 @@ class EditModal extends ModalComponent
 
     public Customer $customer;
 
+
+
     public function mount(int $customerId)
     {
         $this->customer = Customer::find($customerId);
@@ -46,17 +48,18 @@ class EditModal extends ModalComponent
         $this->customer->taxable = $this->taxable;
         $this->customer->save();
 
-        $this->flash('success', 'Edit Successful', [
+        $this->alert('success', 'Edit Successful', [
             'position' =>  'center',
-            'timer' =>  '1500',
+            'timer' =>  '2000',
             'toast' =>  false,
             'showCancelButton' =>  false,
             'showConfirmButton' =>  false,
         ]);
 
+        $this->emit('customerShowRefresh');
         $this->closeModal();
-        
-        return redirect()->to(route('customers.show', $this->customer->id));
+
+        // return redirect()->to(route('customers.show', $this->customer->id));
     }
 
     public function render()
