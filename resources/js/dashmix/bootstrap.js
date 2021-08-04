@@ -11,7 +11,7 @@ import 'bootstrap';
 import 'popper.js';
 import 'jquery.appear';
 import 'jquery-scroll-lock';
-import 'sweetalert2'
+const Swal = window.Swal = require('sweetalert2');
 
 
 // ..and assign to window the ones that need it

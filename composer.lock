@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "71ed2b936eafb1bbc520c127caa66610",
+    "content-hash": "8e8b202cb048cfb58ad6d2e0b2d3dd4e",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2165,6 +2165,70 @@
             "time": "2021-07-22T14:31:53+00:00"
         },
         {
+            "name": "jantinnerezo/livewire-alert",
+            "version": "2.1.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jantinnerezo/livewire-alert.git",
+                "reference": "e5e05f63c42b1410433a1c70d2a9a9d48939f949"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jantinnerezo/livewire-alert/zipball/e5e05f63c42b1410433a1c70d2a9a9d48939f949",
+                "reference": "e5e05f63c42b1410433a1c70d2a9a9d48939f949",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "^5.5 || ^6.0 || ^7.0 || ^8.0",
+                "livewire/livewire": "^2.0",
+                "php": "^7.1|^7.2|^7.3|^7.4|^8.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Jantinnerezo\\LivewireAlert\\LivewireAlertServiceProvider"
+                    ],
+                    "aliases": {
+                        "LivewireAlert": "Jantinnerezo\\LivewireAlert\\LivewireAlertFacade"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Jantinnerezo\\LivewireAlert\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jantinn Erezo",
+                    "email": "erezojantinn@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "This package provides a simple alert utilities for your livewire components.",
+            "homepage": "https://github.com/jantinnerezo/livewire-alert",
+            "keywords": [
+                "jantinnerezo",
+                "livewire-alert"
+            ],
+            "support": {
+                "issues": "https://github.com/jantinnerezo/livewire-alert/issues",
+                "source": "https://github.com/jantinnerezo/livewire-alert/tree/2.1.6"
+            },
+            "funding": [
+                {
+                    "url": "https://www.paypal.com/paypalme/jantinn",
+                    "type": "custom"
+                }
+            ],
+            "time": "2021-05-06T07:45:52+00:00"
+        },
+        {
             "name": "jaybizzle/crawler-detect",
             "version": "v1.2.106",
             "source": {
@@ -3680,23 +3744,69 @@
             "time": "2021-07-07T22:54:46+00:00"
         },
         {
-            "name": "livewire-ui/modal",
-            "version": "1.0.0",
+            "name": "livewire-ui/livewire-ui",
+            "version": "0.1.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/livewire-ui/modal.git",
-                "reference": "13ddf19ba43529e8644186ff32f0cfdad57ee538"
+                "url": "https://github.com/livewire-ui/livewire-ui.git",
+                "reference": "4cb14e029376de0025a9a255cbdba0299ea11218"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/livewire-ui/modal/zipball/13ddf19ba43529e8644186ff32f0cfdad57ee538",
-                "reference": "13ddf19ba43529e8644186ff32f0cfdad57ee538",
+                "url": "https://api.github.com/repos/livewire-ui/livewire-ui/zipball/4cb14e029376de0025a9a255cbdba0299ea11218",
+                "reference": "4cb14e029376de0025a9a255cbdba0299ea11218",
                 "shasum": ""
             },
             "require": {
+                "illuminate/support": "^8.0",
+                "php": "^7.4|^8.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "LivewireUI\\LivewireUIServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "LivewireUI\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Philo Hermans",
+                    "email": "me@philohermans.com"
+                }
+            ],
+            "description": "Laravel Livewire components library.",
+            "keywords": [
+                "laravel",
+                "livewire"
+            ],
+            "support": {
+                "issues": "https://github.com/livewire-ui/livewire-ui/issues",
+                "source": "https://github.com/livewire-ui/livewire-ui/tree/0.1.0"
+            },
+            "time": "2021-04-01T11:57:18+00:00"
+        },
+        {
+            "name": "livewire-ui/modal-bootstrap",
+            "version": "dev-main",
+            "dist": {
+                "type": "path",
+                "url": "src/modal-bootstrap",
+                "reference": "c79d719fa75e0ea546590458ab53d1e0e0540677"
+            },
+            "require": {
+                "livewire-ui/livewire-ui": "^0.1.0",
                 "livewire/livewire": "^2.0",
-                "php": "^7.4|^8.0",
-                "spatie/laravel-package-tools": "^1.9"
+                "php": "^7.4|^8.0"
             },
             "require-dev": {
                 "orchestra/testbench": "^6.15",
@@ -3715,7 +3825,19 @@
                     "LivewireUI\\Modal\\": "src"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "autoload-dev": {
+                "psr-4": {
+                    "LivewireUI\\Modal\\Tests\\": "tests"
+                }
+            },
+            "scripts": {
+                "test": [
+                    "vendor/bin/phpunit"
+                ],
+                "test-coverage": [
+                    "vendor/bin/phpunit --coverage-html coverage"
+                ]
+            },
             "license": [
                 "MIT"
             ],
@@ -3731,11 +3853,9 @@
                 "livewire",
                 "modal"
             ],
-            "support": {
-                "issues": "https://github.com/livewire-ui/modal/issues",
-                "source": "https://github.com/livewire-ui/modal/tree/1.0.0"
-            },
-            "time": "2021-07-04T17:23:15+00:00"
+            "transport-options": {
+                "relative": true
+            }
         },
         {
             "name": "livewire/livewire",
@@ -12983,7 +13103,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "livewire-ui/modal-bootstrap": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

@@ -54,7 +54,7 @@
                             <span class="d-none d-sm-inline-block">Create</span>
                         </button>
                         <div class="dropdown-menu dropdown-menu-dark p-2" aria-labelledby="dropdown-default-primary">
-                            <a class="dropdown-item" onclick="Livewire.emit('openModal', 'create-customer-modal')"><i
+                            <a class="dropdown-item" onclick="Livewire.emit('openModal', 'modals.customer-create-modal')"><i
                                     class="fas fa-users mr-1"></i> New Customer</a>
                         </div>
                     </div>
@@ -97,12 +97,13 @@
             </div>
         </footer>
     </div>
-    {{-- <script src="/assets/js/bootstrap-pincode-input.js"></script> --}}
     <script src="{{ mix('js/custom.js') }}" defer></script>
     @stack('scripts')
     @stack('modals')
     @stack('modal')
     @livewireScripts
     @livewire('livewire-ui-modal')
+    @livewireUIScripts
+    <x-livewire-alert::scripts />
 </body>
 </html>

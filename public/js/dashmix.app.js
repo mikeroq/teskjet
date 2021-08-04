@@ -6012,8 +6012,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var jquery_appear__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(jquery_appear__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var jquery_scroll_lock__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! jquery-scroll-lock */ "./node_modules/jquery-scroll-lock/jquery-scrollLock.js");
 /* harmony import */ var jquery_scroll_lock__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(jquery_scroll_lock__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
-/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_6__);
 window._ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
 window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'; // Import all vital core JS files..
@@ -6025,7 +6023,9 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'; // 
 
 
 
- // ..and assign to window the ones that need it
+
+var Swal = window.Swal = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js"); // ..and assign to window the ones that need it
+
 
 window.$ = window.jQuery = (jquery__WEBPACK_IMPORTED_MODULE_0___default());
 window.SimpleBar = simplebar__WEBPACK_IMPORTED_MODULE_1__.default;

@@ -4,9 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Brand;
 use App\Http\Controllers\Controller;
-use App\DataTables\BrandsDataTable;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 
 class BrandController extends Controller
 {
@@ -15,9 +13,9 @@ class BrandController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(BrandsDataTable $dataTable)
+    public function index()
     {
-        return $dataTable->render('admin.brands');
+        return view('admin.brands');
     }
 
     /**

@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Admin;
 
 use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
-use App\Models\Customer;
+use App\Models\User;
 
-class CustomerList extends DataTableComponent
+class UserTable extends DataTableComponent
 {
 
     public function columns(): array
@@ -16,22 +16,17 @@ class CustomerList extends DataTableComponent
             Column::make('Name')
                 ->sortable()
                 ->searchable(),
-            Column::make('Phone')
+            Column::make('Email')
                 ->sortable()
                 ->searchable(),
-            Column::make('Type')
+            Column::make('User Level', 'level')
                 ->sortable()
                 ->searchable(),
         ];
     }
 
-    public function getTableRowUrl($row): string
-    {
-        return route('customers.show', $row);
-    }
-
     public function query(): Builder
     {
-        return Customer::query();
+        return User::query();
     }
 }

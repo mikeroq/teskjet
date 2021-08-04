@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-use App\DataTables\UsersDataTable;
 use App\Http\Controllers\Controller;
 
 class UserAdminController extends Controller
@@ -14,9 +13,9 @@ class UserAdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(UsersDataTable $dataTable)
+    public function index()
     {
-        return $dataTable->render('admin.users');
+        return view('admin.users');
     }
 
     /**

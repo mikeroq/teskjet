@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Models\DeviceType;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\DataTables\DeviceTypesDataTable;
 
 class DeviceTypeController extends Controller
 {
@@ -14,9 +13,9 @@ class DeviceTypeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(DeviceTypesDataTable $dataTable)
+    public function index()
     {
-        return $dataTable->render('admin.devicetypes');
+        return view('admin.devicetypes');
     }
 
     /**

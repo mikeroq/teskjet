@@ -6,7 +6,7 @@ return [
     |--------------------------------------------------------------------------
     */
     'type' => [
-        '0' => "Residential",
+        '1' => "Residential",
         '2' => "Business",
         '3' => "Non Profit Business",
         '4' => "Government",
