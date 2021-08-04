@@ -111,5 +111,10 @@
     @livewire('livewire-ui-modal')
     @livewireUIScripts
     <x-livewire-alert::scripts />
+    <script>
+        window.addEventListener('update-title', event => {
+            document.title = event.detail.title;
+        });
+    </script>
 </body>
 </html>

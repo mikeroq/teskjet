@@ -58,6 +58,7 @@ class EditModal extends ModalComponent
             ]);
 
             $this->emit('customerShowRefresh');
+            $this->dispatchBrowserEvent('update-title', ['title' => $this->customer->name . ' - Viewing Customer - ' . config('app.name')]);
             $this->closeModal();
         } else {
             $this->alert('info', 'Notice', [
