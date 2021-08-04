@@ -1,4 +1,6 @@
 @extends('layouts.backend')
+
+@section('title', 'Device Types Admin')
 @section('content')
     <x-page-header title="Device Type Management" subtitle="Admin Panel"></x-page-header>
     <div class="content p-0">

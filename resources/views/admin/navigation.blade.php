@@ -1,4 +1,6 @@
 @extends('layouts.backend')
+
+@section('title', 'Navigation Admin')
 @section('content')
     <x-page-header title="Navigation Management" subtitle="Admin Panel"></x-page-header>
     <div class="content mb-0 p-0">

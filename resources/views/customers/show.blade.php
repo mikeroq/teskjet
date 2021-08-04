@@ -1,5 +1,6 @@
 @extends('layouts.backend')
 
+@section('title', $customer->name . ' - Viewing Customer')
 @section('content')
     <x-page-header :title="$customer->name" subtitle="Viewing Customer">
         <x-action-dropdown id="customer_action_dropdown">

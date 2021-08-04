@@ -1,5 +1,6 @@
 @extends('layouts.backend')
 
+@section('title', 'Customer List')
 @section('content')
     <x-page-header title="Customer List"></x-page-header>
     <div class="content p-0">

@@ -1,5 +1,5 @@
 @extends('layouts.backend')
-
+@section('title', 'Edit Profile')
 @section('content')
     <x-page-header title="{{ $user->name }}" subtitle="Edit Profile">
     </x-page-header>

@@ -1,4 +1,6 @@
 @extends('layouts.backend')
+
+@section('title', 'Brands Admin')
 @section('content')
     <x-page-header title="Brands Management" subtitle="Admin Panel"></x-page-header>
     <div class="content p-0">
