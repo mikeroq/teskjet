@@ -30,7 +30,7 @@
     <link rel="stylesheet" href="/assets/css/bootstrap-pincode-input.css">
     @yield('css_after')
     @livewireStyles
-    <script src="{{ mix('js/dashmix.app.js') }}" defer></script>
+    <script src="{{ assets('/assets/js/dashmix.app.js') }}" defer></script>
     <script>
         window.Laravel = {!! json_encode(['csrfToken' => csrf_token()]) !!};
     </script>
@@ -103,7 +103,7 @@
             </div>
         </footer>
     </div>
-    <script src="{{ mix('js/custom.js') }}" defer></script>
+    <script src="{{ asset('/assets/js/custom.js') }}" defer></script>
     @stack('scripts')
     @stack('modals')
     @stack('modal')
