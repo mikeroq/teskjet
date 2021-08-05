@@ -1,19 +1,14 @@
 <nav id="sidebar" aria-label="Main Navigation">
-    <div class="bg-header-dark">
-        <div class="content-header bg-white-10">
-            <a class="font-w600 text-white tracking-wide" href="{{ route('dashboard') }}">
-                {{ config('app.name') }}
-            </a>
-            <div>
-                <a class="d-lg-none text-white ml-2" data-toggle="layout" data-action="sidebar_close"
-                    href="javascript:void(0)">
-                    <i class="fa fa-times-circle"></i>
-                </a>
-            </div>
-        </div>
+    <div class="content-header">
+        <a class="fw-semibold text-dual" href="{{ route('dashboard') }}">
+            <span class="smini-visible">
+                <i class="fa fa-circle-notch text-primary"></i>
+            </span>
+            <span class="smini-hide fs-5 tracking-wider">{{ config('app.name') }}</span>
+        </a>
     </div>
     <div class="js-sidebar-scroll">
-        <div class="content-side content-side-full">
+        <div class="content-side">
             <ul class="nav-main">
                 @foreach ($navigation as $nav)
                     @if (($nav->user_level == Auth::user()->user_level->description) || ($nav->user_level == "User" && Auth::user()->user_level->description == "Admin"))
@@ -29,7 +24,6 @@
                                         <li class="nav-main-item">
                                             <a class="nav-main-link{{ request()->is($child->url) ? ' active' : '' }}"
                                                 href="/{{ $child->url }}">
-                                                <i class="fas fa-sort-up fa-rotate-90 fa-fw mr-1"></i>
                                                 <span class="nav-main-link-name">{{ $child->title }}</span>
                                             </a>
                                         </li>

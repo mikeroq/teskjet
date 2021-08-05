@@ -1692,12 +1692,17 @@ function directives(el, attributes, originalAttributeOverride) {
   });
 }
 var isDeferringHandlers = false;
-var directiveHandlerStack = [];
+var directiveHandlerStacks = new Map();
+var currentHandlerStackKey = Symbol();
 function deferHandlingDirectives(callback) {
   isDeferringHandlers = true;
+  let key = Symbol();
+  currentHandlerStackKey = key;
+  directiveHandlerStacks.set(key, []);
   let flushHandlers = () => {
-    while (directiveHandlerStack.length)
-      directiveHandlerStack.shift()();
+    while (directiveHandlerStacks.get(key).length)
+      directiveHandlerStacks.get(key).shift()();
+    directiveHandlerStacks.delete(key);
   };
   let stopDeferring = () => {
     isDeferringHandlers = false;
@@ -1728,7 +1733,7 @@ function getDirectiveHandler(el, directive2) {
       return;
     handler3.inline && handler3.inline(el, directive2, utilities);
     handler3 = handler3.bind(handler3, el, directive2, utilities);
-    isDeferringHandlers ? directiveHandlerStack.push(handler3) : handler3();
+    isDeferringHandlers ? directiveHandlerStacks.get(currentHandlerStackKey).push(handler3) : handler3();
   };
   fullHandler.runCleanups = doCleanup;
   return fullHandler;
@@ -1857,7 +1862,7 @@ function start() {
   onAttributesAdded((el, attrs) => {
     directives(el, attrs).forEach((handle) => handle());
   });
-  let outNestedComponents = (el) => !closestRoot(el.parentNode || closestRoot(el));
+  let outNestedComponents = (el) => !closestRoot(el.parentElement);
   Array.from(document.querySelectorAll(allSelectors())).filter(outNestedComponents).forEach((el) => {
     initTree(el);
   });
@@ -1878,6 +1883,8 @@ function addInitSelector(selectorCallback) {
   initSelectorCallbacks.push(selectorCallback);
 }
 function closestRoot(el) {
+  if (!el)
+    return;
   if (rootSelectors().some((selector) => el.matches(selector)))
     return el;
   if (!el.parentElement)
@@ -1994,7 +2001,7 @@ var Alpine = {
   get raw() {
     return raw;
   },
-  version: "3.2.2",
+  version: "3.2.3",
   disableEffectScheduling,
   setReactivityEngine,
   addRootSelector,
@@ -2114,7 +2121,7 @@ function setStylesFromObject(el, value) {
   let previousStyles = {};
   Object.entries(value).forEach(([key, value2]) => {
     previousStyles[key] = el.style[key];
-    el.style[key] = value2;
+    el.style.setProperty(key, value2);
   });
   setTimeout(() => {
     if (el.style.length === 0) {
@@ -2667,7 +2674,7 @@ function isListeningForASpecificKeyThatHasntBeenPressed(e, modifiers) {
   }
   if (keyModifiers.length === 0)
     return false;
-  if (keyModifiers.length === 1 && keyModifiers[0] === keyToModifier(e.key))
+  if (keyModifiers.length === 1 && keyToModifiers(e.key).includes(keyModifiers[0]))
     return false;
   const systemKeyModifiers = ["ctrl", "shift", "alt", "meta", "cmd", "super"];
   const selectedSystemKeyModifiers = systemKeyModifiers.filter((modifier) => keyModifiers.includes(modifier));
@@ -2679,22 +2686,33 @@ function isListeningForASpecificKeyThatHasntBeenPressed(e, modifiers) {
       return e[`${modifier}Key`];
     });
     if (activelyPressedKeyModifiers.length === selectedSystemKeyModifiers.length) {
-      if (keyModifiers[0] === keyToModifier(e.key))
+      if (keyToModifiers(e.key).includes(keyModifiers[0]))
         return false;
     }
   }
   return true;
 }
-function keyToModifier(key) {
-  switch (key) {
-    case "/":
-      return "slash";
-    case " ":
-    case "Spacebar":
-      return "space";
-    default:
-      return key && kebabCase(key);
-  }
+function keyToModifiers(key) {
+  if (!key)
+    return [];
+  key = kebabCase(key);
+  let modifierToKeyMap = {
+    ctrl: "control",
+    slash: "/",
+    space: "-",
+    spacebar: "-",
+    cmd: "meta",
+    esc: "escape",
+    up: "arrow-up",
+    down: "arrow-down",
+    left: "arrow-left",
+    right: "arrow-right"
+  };
+  modifierToKeyMap[key] = key;
+  return Object.keys(modifierToKeyMap).map((modifier) => {
+    if (modifierToKeyMap[modifier] === key)
+      return modifier;
+  }).filter((modifier) => modifier);
 }
 
 // packages/alpinejs/src/directives/x-model.js
@@ -2845,11 +2863,10 @@ directive("data", skipDuringClone((el, {expression}, {cleanup}) => {
   let reactiveData = reactive(data2);
   initInterceptors(reactiveData);
   let undo = addScopeToNode(el, reactiveData);
-  if (reactiveData["init"])
-    reactiveData["init"]();
+  reactiveData["init"] && evaluate(el, reactiveData["init"]);
   cleanup(() => {
     undo();
-    reactiveData["destroy"] && reactiveData["destroy"]();
+    reactiveData["destroy"] && evaluate(el, reactiveData["destroy"]);
   });
 }));
 
@@ -2910,6 +2927,8 @@ function loop(el, iteratorNames, evaluateItems, evaluateKey) {
     if (isNumeric3(items) && items >= 0) {
       items = Array.from(Array(items).keys(), (i) => i + 1);
     }
+    if (items === void 0)
+      items = [];
     let lookup = el._x_lookup;
     let prevKeys = el._x_prevKeys;
     let scopes = [];
@@ -4935,6 +4954,23 @@ module.exports = {
   stripBOM: stripBOM
 };
 
+
+/***/ }),
+
+/***/ "./resources/js/app.js":
+/*!*****************************!*\
+  !*** ./resources/js/app.js ***!
+  \*****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var alpinejs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! alpinejs */ "./node_modules/alpinejs/dist/module.esm.js");
+__webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
+
+
+window.Alpine = alpinejs__WEBPACK_IMPORTED_MODULE_0__.default;
+alpinejs__WEBPACK_IMPORTED_MODULE_0__.default.start();
 
 /***/ }),
 
@@ -22181,6 +22217,19 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
 
 /***/ }),
 
+/***/ "./resources/css/app.css":
+/*!*******************************!*\
+  !*** ./resources/css/app.css ***!
+  \*******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
 /***/ "./node_modules/process/browser.js":
 /*!*****************************************!*\
   !*** ./node_modules/process/browser.js ***!
@@ -22404,7 +22453,42 @@ process.umask = function() { return 0; };
 /******/ 		return module.exports;
 /******/ 	}
 /******/ 	
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = __webpack_modules__;
+/******/ 	
 /************************************************************************/
+/******/ 	/* webpack/runtime/chunk loaded */
+/******/ 	(() => {
+/******/ 		var deferred = [];
+/******/ 		__webpack_require__.O = (result, chunkIds, fn, priority) => {
+/******/ 			if(chunkIds) {
+/******/ 				priority = priority || 0;
+/******/ 				for(var i = deferred.length; i > 0 && deferred[i - 1][2] > priority; i--) deferred[i] = deferred[i - 1];
+/******/ 				deferred[i] = [chunkIds, fn, priority];
+/******/ 				return;
+/******/ 			}
+/******/ 			var notFulfilled = Infinity;
+/******/ 			for (var i = 0; i < deferred.length; i++) {
+/******/ 				var [chunkIds, fn, priority] = deferred[i];
+/******/ 				var fulfilled = true;
+/******/ 				for (var j = 0; j < chunkIds.length; j++) {
+/******/ 					if ((priority & 1 === 0 || notFulfilled >= priority) && Object.keys(__webpack_require__.O).every((key) => (__webpack_require__.O[key](chunkIds[j])))) {
+/******/ 						chunkIds.splice(j--, 1);
+/******/ 					} else {
+/******/ 						fulfilled = false;
+/******/ 						if(priority < notFulfilled) notFulfilled = priority;
+/******/ 					}
+/******/ 				}
+/******/ 				if(fulfilled) {
+/******/ 					deferred.splice(i--, 1)
+/******/ 					var r = fn();
+/******/ 					if (r !== undefined) result = r;
+/******/ 				}
+/******/ 			}
+/******/ 			return result;
+/******/ 		};
+/******/ 	})();
+/******/ 	
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
 /******/ 		// define getter functions for harmony exports
@@ -22454,22 +22538,66 @@ process.umask = function() { return 0; };
 /******/ 		};
 /******/ 	})();
 /******/ 	
+/******/ 	/* webpack/runtime/jsonp chunk loading */
+/******/ 	(() => {
+/******/ 		// no baseURI
+/******/ 		
+/******/ 		// object to store loaded and loading chunks
+/******/ 		// undefined = chunk not loaded, null = chunk preloaded/prefetched
+/******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
+/******/ 		var installedChunks = {
+/******/ 			"/js/laravel.app": 0,
+/******/ 			"css/app": 0
+/******/ 		};
+/******/ 		
+/******/ 		// no chunk on demand loading
+/******/ 		
+/******/ 		// no prefetching
+/******/ 		
+/******/ 		// no preloaded
+/******/ 		
+/******/ 		// no HMR
+/******/ 		
+/******/ 		// no HMR manifest
+/******/ 		
+/******/ 		__webpack_require__.O.j = (chunkId) => (installedChunks[chunkId] === 0);
+/******/ 		
+/******/ 		// install a JSONP callback for chunk loading
+/******/ 		var webpackJsonpCallback = (parentChunkLoadingFunction, data) => {
+/******/ 			var [chunkIds, moreModules, runtime] = data;
+/******/ 			// add "moreModules" to the modules object,
+/******/ 			// then flag all "chunkIds" as loaded and fire callback
+/******/ 			var moduleId, chunkId, i = 0;
+/******/ 			for(moduleId in moreModules) {
+/******/ 				if(__webpack_require__.o(moreModules, moduleId)) {
+/******/ 					__webpack_require__.m[moduleId] = moreModules[moduleId];
+/******/ 				}
+/******/ 			}
+/******/ 			if(runtime) var result = runtime(__webpack_require__);
+/******/ 			if(parentChunkLoadingFunction) parentChunkLoadingFunction(data);
+/******/ 			for(;i < chunkIds.length; i++) {
+/******/ 				chunkId = chunkIds[i];
+/******/ 				if(__webpack_require__.o(installedChunks, chunkId) && installedChunks[chunkId]) {
+/******/ 					installedChunks[chunkId][0]();
+/******/ 				}
+/******/ 				installedChunks[chunkIds[i]] = 0;
+/******/ 			}
+/******/ 			return __webpack_require__.O(result);
+/******/ 		}
+/******/ 		
+/******/ 		var chunkLoadingGlobal = self["webpackChunk"] = self["webpackChunk"] || [];
+/******/ 		chunkLoadingGlobal.forEach(webpackJsonpCallback.bind(null, 0));
+/******/ 		chunkLoadingGlobal.push = webpackJsonpCallback.bind(null, chunkLoadingGlobal.push.bind(chunkLoadingGlobal));
+/******/ 	})();
+/******/ 	
 /************************************************************************/
-var __webpack_exports__ = {};
-// This entry need to be wrapped in an IIFE because it need to be in strict mode.
-(() => {
-"use strict";
-/*!*****************************!*\
-  !*** ./resources/js/app.js ***!
-  \*****************************/
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var alpinejs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! alpinejs */ "./node_modules/alpinejs/dist/module.esm.js");
-__webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
-
-
-window.Alpine = alpinejs__WEBPACK_IMPORTED_MODULE_0__.default;
-alpinejs__WEBPACK_IMPORTED_MODULE_0__.default.start();
-})();
-
+/******/ 	
+/******/ 	// startup
+/******/ 	// Load entry module and return exports
+/******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
+/******/ 	__webpack_require__.O(undefined, ["css/app"], () => (__webpack_require__("./resources/js/app.js")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/app"], () => (__webpack_require__("./resources/css/app.css")))
+/******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
+/******/ 	
 /******/ })()
 ;

@@ -18,26 +18,20 @@
     <link rel="manifest" href="/assets/favicons/site.webmanifest">
     @yield('css_before')
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
-    <link rel="stylesheet" id="css-main" href="{{ asset('/assets/css/dashmix.css') }}">
-    <link rel="stylesheet" id="css-theme" href="{{ asset('/assets/css/themes/xinspire.css') }}">
-    <link rel="stylesheet" id="css-main" href="{{ asset('/assets/css/custom.css') }}">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.3/css/buttons.bootstrap4.min.css">
+    <link rel="stylesheet" id="css-main" href="{{ asset('/assets/css/oneui.css') }}">
+    <link rel="stylesheet" id="css-theme" href="{{ asset('/assets/css/themes/amethyst.css') }}">
     <link rel="stylesheet" href="/assets/css/bootstrap-side-modals.css" />
-    <link href="//cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://bootstrap-colors-extended.herokuapp.com/bootstrap-colors.css" />
-    <link rel="stylesheet" href="https://bootstrap-colors-extended.herokuapp.com/bootstrap-colors-themes.css" />
-    <link rel="stylesheet" href="/assets/css/bootstrap-pincode-input.css">
+    <link rel="stylesheet" href="/assets/css/sweetalert2.dark.min.css">
     @yield('css_after')
     @livewireStyles
-    <script src="{{ mix('js/dashmix.app.js') }}" defer></script>
+    <script src="{{ mix('js/laravel.app.js') }}" defer></script>
     <script>
         window.Laravel = {!! json_encode(['csrfToken' => csrf_token()]) !!};
     </script>
 </head>
-<body class="bg-dark">
+<body>
     <div id="page-container"
-        class="bg-black-10 sidebar-o enable-page-overlay sidebar-dark side-scroll page-header-fixed page-header-glass page-header-dark">
+        class="sidebar-o enable-page-overlay sidebar-dark side-scroll page-header-fixed page-header-dark dark-mode">
         @if (request()->is('admin*'))
             <x-admin-navigation></x-admin-navigation>
         @elseif (request()->is('user*'))
@@ -47,38 +41,36 @@
         @endif
         <header id="page-header">
             <div class="content-header">
-                <div>
-                    <button type="button" class="btn btn-dual" data-toggle="layout" data-action="sidebar_toggle">
+                <div class="d-flex align-items-center">
+                    <button type="button" class="btn btn-sm btn-alt-secondary me-2 d-lg-none" data-toggle="layout" data-action="sidebar_toggle">
                         <i class="fa fa-fw fa-bars"></i>
                     </button>
+                    <!-- Toggle Mini Sidebar -->
+            <!-- Layout API, functionality initialized in Template._uiApiLayout()-->
+            <button type="button" class="btn btn-sm btn-alt-secondary me-2 d-none d-lg-inline-block" data-toggle="layout" data-action="sidebar_mini_toggle">
+                <i class="fa fa-fw fa-ellipsis-v"></i>
+              </button>
+              <!-- END Toggle Mini Sidebar -->
                 </div>
-                <div>
-                    <div class="dropdown d-inline-block">
-                        <button type="button" class="btn btn-dual dropdown-toggle mr-1" id="dropdown-default-primary"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-plus mr-1"></i>
-                            <span class="d-none d-sm-inline-block">Create</span>
+                <!-- Right Section -->
+                <div class="d-flex align-items-center">
+                    <!-- User Dropdown -->
+                    <div class="dropdown d-inline-block ms-2">
+                        <button type="button" class="btn btn-sm btn-alt-secondary d-flex align-items-center" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="d-none d-sm-inline-block ms-2">{{ Auth::user()->name }}</span>
+                            <i class="fa fa-fw fa-angle-down d-none d-sm-inline-block ms-1 mt-1"></i>
                         </button>
-                        <div class="dropdown-menu dropdown-menu-dark p-2" aria-labelledby="dropdown-default-primary">
-                            <a class="dropdown-item" onclick="Livewire.emit('openModal', 'modals.customer-create-modal')"><i
-                                    class="fas fa-users mr-1"></i> New Customer</a>
-                        </div>
-                    </div>
-                    <div class="dropdown d-inline-block">
-                        <button type="button" class="btn btn-dual dropdown-toggle" id="page-header-user-dropdown"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-user mr-1"></i>
-                            <span class="d-none d-sm-inline-block">{{ Auth::user()->name }}</span>
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-dark dropdown-menu-right p-0" aria-labelledby="page-header-user-dropdown">
+                        <div class="dropdown-menu dropdown-menu-md dropdown-menu-end p-0 border-0" aria-labelledby="page-header-user-dropdown">
                             <div class="p-2">
-                                <a class="dropdown-item" href="{{ route('profile.show') }}">
-                                    <i class="far fa-fw fa-user mr-1"></i> User Settings
+                                <a class="dropdown-item d-flex align-items-center justify-content-between" href="{{ route('profile.show') }}">
+                                    <span class="fs-sm fw-medium">User Settings</span>
                                 </a>
-                                <li><hr class="dropdown-divider"></li>
-                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                            </div>
+                            <div role="separator" class="dropdown-divider m-0"></div>
+                            <div class="p-2">
+                                <a class="dropdown-item d-flex align-items-center justify-content-between" href="{{ route('logout') }}" onclick="event.preventDefault();
                                     document.getElementById('logout-form').submit();">
-                                    <i class="far fa-fw fa-arrow-alt-circle-left mr-1"></i> Sign Out
+                                    <span class="fs-sm fw-medium">Log Out</span>
                                 </a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                     @csrf
@@ -92,18 +84,19 @@
         <main id="main-container">
             @yield('content')
         </main>
-        <footer id="page-footer" class="bg-dark">
-            <div class="content py-0">
-                <div class="row font-size-sm text-body-color-light">
-                    <div class="col-sm-6 order-sm-1 text-center text-primary-lighter text-sm-left">
-                        <a class="font-w600" href="{{ route('dashboard') }}"
-                            target="_blank">{{ config('app.name') }}</a> &copy; <span data-toggle="year-copy"></span>
+        <footer id="page-footer" class="bg-body-light">
+            <div class="content py-3">
+                <div class="row fs-sm">
+                    <div class="col-sm-6 order-sm-2 py-1 text-sm-end">
+                    </div>
+                    <div class="col-sm-6 order-sm-1 py-1 text-center text-sm-start">
+                        <a class="fw-semibold" href="{{ route('dashboard') }}">{{ config('app.name') }}</a>  &copy; <span data-toggle="year-copy"></span>
                     </div>
                 </div>
             </div>
         </footer>
     </div>
-    <script src="{{ mix('js/custom.js') }}" defer></script>
+    <script src="{{ mix('js/oneui.app.js') }}"></script>
     @stack('scripts')
     @stack('modals')
     @stack('modal')

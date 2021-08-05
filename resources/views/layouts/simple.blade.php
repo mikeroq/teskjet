@@ -3,8 +3,13 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>{{ config('app.name') }}</title>
-    <meta name="author" content="pixelcave">
+    <title>
+        @if(View::hasSection('title'))
+            @yield('title') - {{ config('app.name') }}
+        @else
+            {{ config('app.name') }}
+        @endif
+    </title>
     <meta name="robots" content="noindex, nofollow">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicons/apple-touch-icon.png">
@@ -13,13 +18,13 @@
     <link rel="manifest" href="/assets/favicons/site.webmanifest">
     @yield('css_before')
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
-    <link rel="stylesheet" id="css-main" href="{{ asset('assets/css/dashmix.css') }}">
-    <link rel="stylesheet" id="css-theme" href="{{ asset('assets/css/themes/xinspire.css') }}">
-    <link rel="stylesheet" id="css-main" href="{{ asset('assets/css/custom.css') }}">
-    <link rel="stylesheet" href="/css/bootstrap-pincode-input.css">
+    <link rel="stylesheet" id="css-main" href="{{ asset('/assets/css/oneui.css') }}">
+    <link rel="stylesheet" id="css-theme" href="{{ asset('/assets/css/themes/amethyst.css') }}">
+    <link rel="stylesheet" href="/assets/css/bootstrap-side-modals.css" />
+    <link rel="stylesheet" href="/assets/css/sweetalert2.dark.min.css">
     @yield('css_after')
     @livewireStyles
-    <script src="{{ mix('js/app.js') }}" defer></script>
+    <script src="{{ mix('js/laravel.app.js') }}" defer></script>
     <script>
         window.Laravel = {!! json_encode(['csrfToken' => csrf_token()]) !!};
     </script>
@@ -30,15 +35,18 @@
             @yield('content')
         </main>
     </div>
-    <script src="{{ asset('assets/js/dashmix.app.js') }}"></script>
-    <script src="{{ asset('assets/js/bootstrap.js') }}"></script>
-    <script src="assets/js/plugins/jquery-validation/jquery.validate.min.js"></script>
-    <script src="assets/js/plugins/jquery-validation/additional-methods.js"></script>
-    <script src="assets/js/plugins/pwstrength-bootstrap/pwstrength-bootstrap.min.js"></script>
-    <script src="assets/js/bootstrap-pincode-input.js"></script>
-    <script src="assets/js/nashmix.js"></script>
+    <script src="{{ mix('js/oneui.app.js') }}"></script>
     @stack('scripts')
     @stack('modals')
+    @stack('modal')
     @livewireScripts
+    @livewire('livewire-ui-modal')
+    @livewireUIScripts
+    <x-livewire-alert::scripts />
+    <script>
+        window.addEventListener('update-title', event => {
+            document.title = event.detail.title;
+        });
+    </script>
 </body>
 </html>

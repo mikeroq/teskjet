@@ -5,37 +5,41 @@
  */
 
 class pageAnimations {
-    /*
-     * Animation toggle functionality
-     *
-     */
-    static animationsToggle() {
-        let animationClass, animationButton, currentSection;
+  /*
+   * Animation toggle functionality
+   *
+   */
+  static animationsToggle() {
+    let animationClass, animationButton, currentSection;
 
-        // On button click
-        jQuery('.js-animation-section button').on('click', e => {
-            animationButton = jQuery(e.currentTarget);
-            animationClass  = animationButton.data('animation-class');
-            currentSection  = animationButton.parents('.js-animation-section');
+    // On button click
+    document.querySelectorAll('.js-animation-section button').forEach(btn => {
+      btn.addEventListener('click', e => {
+        animationClass = btn.dataset.animationClass;
+        currentSection = btn.closest('.js-animation-section');
+  
+        // Update class preview
+        currentSection.querySelector('.js-animation-preview').textContent = animationClass;
+  
+        // Update animation object classes
+        let animationObject = currentSection.querySelector('.js-animation-object')
+          
+        animationObject.classList = '';
+        animationObject.classList.add('js-animation-object');
+        animationObject.classList.add('animated');
+        animationObject.classList.add(animationClass);
+      });
+    });
+  }
 
-            // Update class preview
-            jQuery('.js-animation-preview', currentSection).html(animationClass);
-
-            // Update animation object classes
-            jQuery('.js-animation-object', currentSection)
-                .removeClass()
-                .addClass('js-animation-object animated ' + animationClass);
-        });
-    }
-
-    /*
-     * Init functionality
-     *
-     */
-    static init() {
-        this.animationsToggle();
-    }
+  /*
+   * Init functionality
+   *
+   */
+  static init() {
+    this.animationsToggle();
+  }
 }
 
 // Initialize when page loads
-jQuery(() => { pageAnimations.init(); });
+One.onLoad(pageAnimations.init());

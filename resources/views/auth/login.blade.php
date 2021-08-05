@@ -1,56 +1,70 @@
 @extends('layouts.auth')
 
 @section('content')
-    <x-jet-validation-errors class="mb-4" />
-    @if (session('status'))
-        <div class="mb-4 font-medium text-sm text-green-600">
-            {{ session('status') }}
-        </div>
-    @endif
-    <form class="js-validation-signin" method="POST" action="{{ route('login') }}">
-        @csrf
-            <div class="form-group">
-                <label for="email">Email Address</label>
-                    <input id="email" type="email"
-                        class="form-control form-control-lg form-control-alt" name="email"
-                        value="{{ old('email') }}" required autocomplete="email" autofocus>
+    <div class="p-4 w-100 flex-grow-1 d-flex align-items-center">
+        <div class="w-100">
+            <div class="text-center mb-5">
+                <p class="mb-3">
+                    <i class="far fa-2x fa-life-ring text-primary-light"></i>
+                </p>
+                <h1 class="fw-bold mb-2">
+                    Sign In
+                </h1>
+                <p class="fw-medium text-muted">
+                    Welcome, please login or <a href="{{ route('register') }}">sign up</a> for a new account.
+                </p>
             </div>
-            <div class="form-group">
-                <label for="email">Password</label>
-                    <input id="password" type="password"
-                        class="form-control form-control-lg form-control-alt" name="password"
-                        required autocomplete="password">
-            </div>
-            <div class="form-group">
-                <div class="custom-control custom-checkbox custom-control-primary">
-                    <input type="checkbox" class="custom-control-input" name="remember"
-                        id="remember_me" checked>
-                    <label class="custom-control-label"
-                        for="remember_me">{{ __('Remember me') }}</label>
+            <div class="row g-0 justify-content-center">
+                <div class="col-sm-8 col-xl-4">
+                    @if (session('status'))
+                        <div class="mb-4 font-medium text-sm text-green-600">
+                            {{ session('status') }}
+                        </div>
+                    @endif
+                    <x-jet-validation-errors class="mb-4" />
+                    <form method="POST" action="{{ route('login') }}">
+                        @csrf
+                        <div class="mb-4">
+                            <label for="email">Email Address</label>
+                            <input id="email" type="email"
+                                class="form-control form-control-lg form-control-alt" name="email"
+                                value="{{ old('email') }}" required autocomplete="email" autofocus>
+                        </div>
+                        <div class="mb-4">
+                            <label for="email">Password</label>
+                            <input id="password" type="password"
+                                class="form-control form-control-lg form-control-alt" name="password"
+                                required autocomplete="password">
+                        </div>
+                        <div class="mb-4">
+                            <div class="custom-control custom-checkbox custom-control-primary">
+                                <input type="checkbox" class="custom-control-input" name="remember"
+                                    id="remember_me" checked>
+                                <label class="custom-control-label"
+                                    for="remember_me">{{ __('Remember me') }}</label>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            @if (Route::has('password.request'))
+                                <div>
+                                    <a class="text-muted fs-sm fw-medium d-block d-lg-inline-block mb-1" href="{{ route('password.request') }}">
+                                        Forgot Password?
+                                    </a>
+                                </div>
+                            @endif
+                            <div>
+                                <button type="submit" class="btn btn-lg btn-dark">
+                                    <i class="fa fa-fw fa-sign-in-alt me-1 opacity-50"></i> Sign In
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                    @if (JoelButcher\Socialstream\Socialstream::show())
+                        <x-socialstream-providers />
+                    @endif
                 </div>
             </div>
-        <div class="form-group">
-            <button type="submit" class="btn btn-block btn-hero-lg btn-hero-primary">
-                <i class="fa fa-fw fa-sign-in-alt mr-1"></i> Sign In
-            </button>
-            <p class="mt-3 mb-0 d-lg-flex justify-content-lg-between">
-                @if (Route::has('password.request'))
-                    <a class="btn btn-sm btn-dark d-block d-lg-inline-block mb-1"
-                        href="{{ route('password.request') }}">
-                        <i class="fa fa-exclamation-triangle text-muted mr-1"></i>
-                        Forgot Password
-                    </a>
-                @endif
-                @if (Route::has('register'))
-                    <a class="btn btn-sm btn-dark d-block d-lg-inline-block mb-1"
-                        href="{{ route('register') }}">
-                        <i class="fa fa-plus text-muted mr-1"></i> Register
-                    </a>
-                @endif
-            </p>
+        <!-- END Sign In Form -->
         </div>
-    </form>
-    @if (JoelButcher\Socialstream\Socialstream::show())
-        <x-socialstream-providers />
-    @endif
+    </div>
 @endsection

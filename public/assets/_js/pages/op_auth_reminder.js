@@ -5,38 +5,38 @@
  */
 
 class pageAuthReminder {
-    /*
-     * Init Password Reminder Form Validation, for more examples you can check out https://github.com/jzaefferer/jquery-validation
-     *
-     */
-    static initValidation() {
-        // Load default options for jQuery Validation plugin
-        Dashmix.helpers('validation');
+  /*
+   * Init Password Reminder Form Validation, for more examples you can check out https://github.com/jzaefferer/jquery-validation
+   *
+   */
+  static initValidation() {
+    // Load default options for jQuery Validation plugin
+    One.helpers('jq-validation');
 
-        // Init Form Validation
-        jQuery('.js-validation-reminder').validate({
-            rules: {
-                'reminder-credential': {
-                    required: true,
-                    minlength: 3
-                }
-            },
-            messages: {
-                'reminder-credential': {
-                    required: 'Please enter a valid credential'
-                }
-            }
-        });
-    }
+    // Init Form Validation
+    jQuery('.js-validation-reminder').validate({
+      rules: {
+        'reminder-credential': {
+          required: true,
+          minlength: 3
+        }
+      },
+      messages: {
+        'reminder-credential': {
+          required: 'Please enter a valid credential'
+        }
+      }
+    });
+  }
 
-    /*
-     * Init functionality
-     *
-     */
-    static init() {
-        this.initValidation();
-    }
+  /*
+   * Init functionality
+   *
+   */
+  static init() {
+    this.initValidation();
+  }
 }
 
 // Initialize when page loads
-jQuery(() => { pageAuthReminder.init(); });
+One.onLoad(pageAuthReminder.init());

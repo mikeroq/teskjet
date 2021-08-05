@@ -5,98 +5,105 @@
  */
 
 class pageEcomDashboard {
-    /*
-    * Chart.js, for more examples you can check out http://www.chartjs.org/docs
-    *
-    */
-    static initOverviewChart() {
-        // Set Global Chart.js configuration
-        Chart.defaults.color = '#495057';
-        Chart.defaults.scale.grid.color = 'transparent';
-        Chart.defaults.scale.grid.zeroLineColor = 'transparent';
-        Chart.defaults.scale.beginAtZero = true;
-        Chart.defaults.elements.point.radius = 0;
-        Chart.defaults.elements.point.hoverRadius = 0;
-        Chart.defaults.plugins.tooltip.radius = 3;
-        Chart.defaults.plugins.legend.labels.boxWidth = 12;
+  /*
+   * Chart.js, for more examples you can check out http://www.chartjs.org/docs
+   *
+   */
+  static initOverviewChart() {
+    // Set Global Chart.js configuration
+    Chart.defaults.color = '#818d96';
+    Chart.defaults.scale.grid.lineWidth = 0;
+    Chart.defaults.scale.beginAtZero = true;
+    Chart.defaults.elements.point.radius = 0;
+    Chart.defaults.elements.point.hoverRadius = 0;
+    Chart.defaults.plugins.tooltip.radius = 3;
+    Chart.defaults.plugins.legend.labels.boxWidth = 12;
 
-        // Get Chart Container
-        let chartOverviewCon  = jQuery('.js-chartjs-overview');
+    // Get Chart Container
+    let chartOverviewCon = document.getElementById('js-chartjs-overview');
 
-        // Set Chart Variables
-        let chartOverview, chartOverviewOptions, chartOverviewData;
+    // Set Chart Variables
+    let chartOverview, chartOverviewOptions, chartOverviewData;
 
-        // Overview Chart Options
-        chartOverviewOptions = {
-            maintainAspectRatio: false,
-            tension: .4,
-            scales: {
-                y: {
-                    suggestedMin: 0,
-                    suggestedMax: 600
-                }
-            },
-            interaction: {
-                intersect: false,
-            },
-            plugins: {
-                tooltip: {
-                    callbacks: {
-                        label: function (context) {
-                            return '$ ' + context.parsed.y;
-                        }
-                    }
-                }
+    // Overview Chart Options
+    chartOverviewOptions = {
+      maintainAspectRatio: false,
+      tension: .4,
+      scales: {
+          x: {
+            grid: {
+              drawBorder: false
             }
-        };
-
-        // Overview Chart Data
-        chartOverviewData = {
-            labels: ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'],
-            datasets: [
-                {
-                    label: 'This Week',
-                    fill: true,
-                    backgroundColor: 'rgba(6, 101, 208, .5)',
-                    borderColor: 'transparent',
-                    pointBackgroundColor: 'rgba(6, 101, 208, 1)',
-                    pointBorderColor: '#fff',
-                    pointHoverBackgroundColor: '#fff',
-                    pointHoverBorderColor: 'rgba(6, 101, 208, 1)',
-                    data: [369, 255, 420, 330, 460, 160, 350]
-                },
-                {
-                    label: 'Last Week',
-                    fill: true,
-                    backgroundColor: 'rgba(6, 101, 208, .2)',
-                    borderColor: 'transparent',
-                    pointBackgroundColor: 'rgba(6, 101, 208, .2)',
-                    pointBorderColor: '#fff',
-                    pointHoverBackgroundColor: '#fff',
-                    pointHoverBorderColor: 'rgba(6, 101, 208, .2)',
-                    data: [270, 460, 290, 231, 419, 450, 280]
-                }
-            ]
-        };
-
-        // Init Overview Chart
-        if (chartOverviewCon.length) {
-            chartOverview = new Chart(chartOverviewCon, {
-                type: 'line',
-                data: chartOverviewData,
-                options: chartOverviewOptions
-            });
+          },
+          y: {
+            grid: {
+              drawBorder: false
+            },
+            suggestedMin: 0,
+            suggestedMax: 500
+          }
+      },
+      interaction: {
+        intersect: false,
+      },
+      plugins: {
+        tooltip: {
+          callbacks: {
+            label: function(context) {
+              return ' $' + context.parsed.y;
+            }
+          }
         }
-    }
+      }
+    };
 
-    /*
-    * Init functionality
-    *
-    */
-    static init() {
-        this.initOverviewChart();
+    // Overview Chart Data
+    chartOverviewData = {
+      labels: ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'],
+      datasets: [
+        {
+          label: 'This Week',
+          fill: true,
+          backgroundColor: 'rgba(132, 94, 247, .3)',
+          borderColor: 'transparent',
+          pointBackgroundColor: 'rgba(132, 94, 247, 1)',
+          pointBorderColor: '#fff',
+          pointHoverBackgroundColor: '#fff',
+          pointHoverBorderColor: 'rgba(132, 94, 247, 1)',
+          data: [390, 290, 410, 290, 450, 180, 360]
+        },
+        {
+          label: 'Last Week',
+          fill: true,
+          backgroundColor: 'rgba(0, 0, 0, .15)',
+          borderColor: 'transparent',
+          pointBackgroundColor: 'rgba(0, 0, 0, .3)',
+          pointBorderColor: '#fff',
+          pointHoverBackgroundColor: '#fff',
+          pointHoverBorderColor: 'rgba(0, 0, 0, .3)',
+          data: [180, 360, 236, 320, 210, 295, 260]
+        }
+      ]
+    };
+
+    // Init Overview Chart
+    if (chartOverviewCon !== null) {
+      chartOverview = new Chart(chartOverviewCon, {
+        type: 'line',
+        data: chartOverviewData,
+        options: chartOverviewOptions
+      });
     }
+  }
+
+  /*
+   * Init functionality
+   *
+   */
+  static init() {
+    this.initOverviewChart();
+  }
 }
 
 // Initialize when page loads
-jQuery(() => { pageEcomDashboard.init(); });
+One.onLoad(pageEcomDashboard.init());

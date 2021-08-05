@@ -5,45 +5,47 @@
  */
 
 class pageIcons {
-    /*
-     * Icon Search functionality
-     *
-     */
-    static iconSearch() {
-        let searchItems = jQuery('.js-icon-list > div');
-        let searchValue = '', el;
+  /*
+   * Icon Search functionality
+   *
+   */
+  static iconSearch() {
+    let searchItems = document.querySelectorAll('.js-icon-list > div > code');
+    let searchForm = document.querySelector('.js-form-icon-search');
+    let searchInput = document.querySelector('.js-icon-search');
+    let searchValue = '';
 
-        // Disable form submission
-        jQuery('.js-form-icon-search').on('submit', () => false);
+    // Disable form submission
+    searchForm.addEventListener('submit', e => e.preventDefault());
 
-        // When user types
-        jQuery('.js-icon-search').on('keyup', e => {
-            searchValue = jQuery(e.currentTarget).val().toLowerCase();
+    // When user types
+    searchInput.addEventListener('keyup', e => {
+      searchValue = searchInput.value;
 
-            if (searchValue.length > 2) { // If ore than 2 characters, search the icons
-                searchItems.hide();
-
-                jQuery('code', searchItems).each((index, element) => {
-                    el = jQuery(element);
-
-                    if (el.text().match(searchValue)) {
-                        el.parent('div').fadeIn(250);
-                    }
-                });
-            } else if (searchValue.length === 0) { // If text was deleted, show all icons
-                searchItems.show();
-            }
+      if (searchValue.length > 2) { // If ore than 2 characters, search the icons
+        searchItems.forEach(item => {
+          if (item.textContent.includes(searchValue)) {
+            item.parentNode.classList.remove('d-none');
+          } else {
+            item.parentNode.classList.add('d-none');
+          }
         });
-    }
+      } else if (searchValue.length === 0) { // If text was deleted, show all icons
+        searchItems.forEach(item => {
+          item.parentNode.classList.remove('d-none');
+        });
+      }
+    });
+  }
 
-    /*
-     * Init functionality
-     *
-     */
-    static init() {
-        this.iconSearch();
-    }
+  /*
+   * Init functionality
+   *
+   */
+  static init() {
+    this.iconSearch();
+  }
 }
 
 // Initialize when page loads
-jQuery(() => { pageIcons.init(); });
+One.onLoad(pageIcons.init());

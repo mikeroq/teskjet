@@ -16,11 +16,11 @@
     </x-action-dropdown>
 </x-page-header>
 <div class="content">
-    <div class="block block-rounded block-themed block-transparent bg-black-25">
-        <div class="block-header block-header-default bg-black-10">
+    <div class="block block-rounded block-themed">
+        <div class="block-header block-header-default">
             <h3 class="block-title">Customer Information</h3>
         </div>
-        <div class="block-content text-gray">
+        <div class="block-content">
             <p>
                 {{ $customer->name }}<br />
                 {{ $customer->formatted_phone }}<br />
@@ -28,7 +28,7 @@
                 {{ $customer->displayable_taxable }}<br />
                 {{ $customer->created_at->format('Y-m-d h:i a') }}
             </p>
-            <table class="table table-striped table-dark">
+            <table class="table table-striped">
                 <thead>
                     <tr>
                         <th>Date</th>

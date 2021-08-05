@@ -12,10 +12,8 @@ const mix = require('laravel-mix');
  */
 
 mix
-    .js('resources/js/dashmix/app.js', 'public/js/dashmix.app.js')
-    .js('resources/js/dashmix/custom.js', 'public/js/custom.js')
     .js('resources/js/app.js', 'public/js/laravel.app.js')
-    .js('resources/js/pages/tables_datatables.js', 'public/js/pages/tables_datatables.js')
+    .js('resources/js/oneui/app.js', 'public/js/oneui.app.js')
 
     /* Tools */
     .browserSync('localhost:8000')

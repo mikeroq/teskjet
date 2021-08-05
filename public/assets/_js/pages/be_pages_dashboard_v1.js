@@ -1,221 +1,164 @@
 /*
- *  Document   : be_pages_dashboard.js
+ *  Document   : be_pages_dashboard_v1.js
  *  Author     : pixelcave
- *  Description: Custom JS code used in default Dashboard v1 Page
+ *  Description: Custom JS code used in Dashboard v1 Page
  */
 
 class pageDashboardv1 {
-    /*
-    * Chart.js, for more examples you can check out http://www.chartjs.org/docs
-    *
-    */
-    static initChartsMain() {
-        // Set Global Chart.js configuration
-        Chart.defaults.color = '#495057';
-        Chart.defaults.scale.grid.color = 'transparent';
-        Chart.defaults.scale.grid.zeroLineColor = 'transparent';
-        Chart.defaults.scale.display = false;
-        Chart.defaults.scale.beginAtZero = true;
-        Chart.defaults.elements.point.radius = 0;
-        Chart.defaults.elements.point.hoverRadius = 0;
-        Chart.defaults.plugins.tooltip.radius = 3;
-        Chart.defaults.plugins.legend.labels.boxWidth = 12;
+  /*
+   * Chart.js, for more examples you can check out http://www.chartjs.org/docs
+   *
+   */
+  static initCharts() {
+    // Set Global Chart.js configuration
+    Chart.defaults.color = '#818d96';
+    Chart.defaults.scale.display = false;
+    Chart.defaults.scale.beginAtZero = true;
+    Chart.defaults.elements.point.radius = 0;
+    Chart.defaults.elements.point.hoverRadius = 0;
+    Chart.defaults.plugins.tooltip.radius = 3;
+    Chart.defaults.plugins.legend.labels.boxWidth = 12;
 
-        // Get Chart Containers
-        let chartMainCon = jQuery('.js-chartjs-dashboard-earnings');
+    // Get Chart Containers
+    let chartEarningsCon = document.getElementById('js-chartjs-dashboard-earnings');
+    let chartSalesCon = document.getElementById('js-chartjs-dashboard-sales');
 
-        // Set Main Chart variables
-        let chartMain, chartMainOptions, chartMainData, chartMainDataYear, chartMainDataMonth, chartMainDataWeek;
+    // Set Chart Variables
+    let chartEarnings, chartEarningsOptions, chartEarningsData, chartSales, chartSalesOptions, chartSalesData;
 
-        // Main Chart Options
-        chartMainOptions = {
-            maintainAspectRatio: false,
-            tension: .4,
-            scales: {
-                y: {
-                    suggestedMin: 0,
-                    suggestedMax: 260
-                }
-            },
-            interaction: {
-                intersect: false,
-            },
-            plugins: {
-                tooltip: {
-                    callbacks: {
-                        label: function (context) {
-                            return ' ' + context.parsed.y + ' Sales';
-                        }
-                    }
-                }
+    // Earnigns Chart Options
+    chartEarningsOptions = {
+      maintainAspectRatio: false,
+      tension: .4,
+      scales: {
+          y: {
+            suggestedMin: 0,
+            suggestedMax: 3000
+          }
+      },
+      interaction: {
+        intersect: false,
+      },
+      plugins: {
+        tooltip: {
+          callbacks: {
+            label: function(context) {
+              return ' $' + context.parsed.y;
             }
-        };
-
-        // Main Chart Default Data
-        chartMainData = {
-            labels: ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'],
-            datasets: [
-                {
-                    label: 'This Year',
-                    fill: true,
-                    backgroundColor: 'rgba(6, 101, 208, .5)',
-                    borderColor: 'transparent',
-                    pointBackgroundColor: 'rgba(6, 101, 208, 1)',
-                    pointBorderColor: '#fff',
-                    pointHoverBackgroundColor: '#fff',
-                    pointHoverBorderColor: 'rgba(6, 101, 208, 1)',
-                    data: [50, 210, 110, 90, 230, 130, 190, 75, 155, 120, 140, 230]
-                },
-                {
-                    label: 'Last Year',
-                    fill: true,
-                    backgroundColor: 'rgba(6, 101, 208, .2)',
-                    borderColor: 'transparent',
-                    pointBackgroundColor: 'rgba(6, 101, 208, .2)',
-                    pointBorderColor: '#fff',
-                    pointHoverBackgroundColor: '#fff',
-                    pointHoverBorderColor: 'rgba(6, 101, 208, .2)',
-                    data: [210, 150, 90, 220, 150, 216, 143, 150, 240, 230, 136, 150]
-                }
-            ]
-        };
-
-        // Main Chart for Year
-        chartMainDataYear = {
-            labels: ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'],
-            datasets: [
-                {
-                    label: 'This Year',
-                    fill: true,
-                    backgroundColor: 'rgba(6, 101, 208, .5)',
-                    borderColor: 'transparent',
-                    pointBackgroundColor: 'rgba(6, 101, 208, 1)',
-                    pointBorderColor: '#fff',
-                    pointHoverBackgroundColor: '#fff',
-                    pointHoverBorderColor: 'rgba(6, 101, 208, 1)',
-                    data: [50, 210, 110, 90, 230, 130, 190, 75, 155, 120, 140, 230]
-                },
-                {
-                    label: 'Last Year',
-                    fill: true,
-                    backgroundColor: 'rgba(6, 101, 208, .2)',
-                    borderColor: 'transparent',
-                    pointBackgroundColor: 'rgba(6, 101, 208, .2)',
-                    pointBorderColor: '#fff',
-                    pointHoverBackgroundColor: '#fff',
-                    pointHoverBorderColor: 'rgba(6, 101, 208, .2)',
-                    data: [210, 150, 90, 220, 150, 216, 143, 150, 240, 230, 136, 150]
-                }
-            ]
-        };
-
-        // Set up month labels
-        let chartMainDataMonthLabels = [];
-
-        for (let i = 0; i < 30; i++) {
-            chartMainDataMonthLabels[i] = (i === 29) ? '1 day ago' : (30 - i) + ' days ago';
+          }
         }
+      }
+    };
 
-        // Main Chart Data for Month
-        chartMainDataMonth = {
-            labels: chartMainDataMonthLabels,
-            datasets: [
-                {
-                    label: 'This Month',
-                    fill: true,
-                    backgroundColor: 'rgba(6, 101, 208, .5)',
-                    borderColor: 'transparent',
-                    pointBackgroundColor: 'rgba(6, 101, 208, 1)',
-                    pointBorderColor: '#fff',
-                    pointHoverBackgroundColor: '#fff',
-                    pointHoverBorderColor: 'rgba(6, 101, 208, 1)',
-                    data: [50, 210, 110, 90, 230, 130, 190, 75, 155, 120, 140, 230, 50, 210, 110, 90, 230, 130, 155, 120, 140, 230, 50, 210, 110, 90, 230, 130, 190, 75]
-                },
-                {
-                    label: 'Last Month',
-                    fill: true,
-                    backgroundColor: 'rgba(6, 101, 208, .2)',
-                    borderColor: 'transparent',
-                    pointBackgroundColor: 'rgba(6, 101, 208, .2)',
-                    pointBorderColor: '#fff',
-                    pointHoverBackgroundColor: '#fff',
-                    pointHoverBorderColor: 'rgba(6, 101, 208, .2)',
-                    data: [210, 150, 90, 220, 150, 216, 143, 150, 136, 150, 210, 150, 90, 220, 150, 216, 240, 230, 136, 150, 210, 150, 90, 220, 150, 216, 143, 150, 240, 230]
-                }
-            ]
-        };
-
-        // Main Chart Data for Week
-        chartMainDataWeek = {
-            labels: ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'],
-            datasets: [
-                {
-                    label: 'This Week',
-                    fill: true,
-                    backgroundColor: 'rgba(6, 101, 208, .5)',
-                    borderColor: 'transparent',
-                    pointBackgroundColor: 'rgba(6, 101, 208, 1)',
-                    pointBorderColor: '#fff',
-                    pointHoverBackgroundColor: '#fff',
-                    pointHoverBorderColor: 'rgba(6, 101, 208, 1)',
-                    data: [34, 42, 62, 78, 39, 83, 98]
-                },
-                {
-                    label: 'Last Week',
-                    fill: true,
-                    backgroundColor: 'rgba(6, 101, 208, .2)',
-                    borderColor: 'transparent',
-                    pointBackgroundColor: 'rgba(6, 101, 208, .2)',
-                    pointBorderColor: '#fff',
-                    pointHoverBackgroundColor: '#fff',
-                    pointHoverBorderColor: 'rgba(6, 101, 208, .2)',
-                    data: [130, 95, 125, 160, 187, 110, 143]
-                }
-            ]
-        };
-
-        // Init Main Chart
-        if (chartMainCon.length) {
-            chartMain = new Chart(chartMainCon, {
-                type: 'line',
-                data: chartMainData,
-                options: chartMainOptions
-            });
+    // Earnigns Chart Options
+    chartSalesOptions = {
+      maintainAspectRatio: false,
+      tension: .4,
+      scales: {
+        y: {
+          suggestedMin: 0,
+          suggestedMax: 260
         }
+      },
+      interaction: {
+        intersect: false,
+      },
+      plugins: {
+        tooltip: {
+          callbacks: {
+            label: function(context) {
+              return context.parsed.y + ' Sales';
+            }
+          }
+        }
+      }
+    };
 
-        // Toggle to Week data
-        jQuery('[data-toggle="dashboard-chart-set-week"]').on('click', () => {
-            chartMain.data.labels = chartMainDataWeek.labels;
-            chartMain.data.datasets[0] = chartMainDataWeek.datasets[0];
-            chartMain.data.datasets[1] = chartMainDataWeek.datasets[1];
-            chartMain.update();
-        });
+    // Earnings Chart Data
+    chartEarningsData = {
+      labels: ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'],
+      datasets: [
+        {
+          label: 'This Year',
+          fill: true,
+          backgroundColor: 'rgba(132, 94, 247, .3)',
+          borderColor: 'transparent',
+          pointBackgroundColor: 'rgba(132, 94, 247, 1)',
+          pointBorderColor: '#fff',
+          pointHoverBackgroundColor: '#fff',
+          pointHoverBorderColor: 'rgba(132, 94, 247, 1)',
+          data: [2150, 1350, 1560, 980, 1260, 1720, 1115, 1690, 1870, 2420, 2100, 2730]
+        },
+        {
+          label: 'Last Year',
+          fill: true,
+          backgroundColor: 'rgba(33, 37, 41, .15)',
+          borderColor: 'transparent',
+          pointBackgroundColor: 'rgba(33, 37, 41, .3)',
+          pointBorderColor: '#fff',
+          pointHoverBackgroundColor: '#fff',
+          pointHoverBorderColor: 'rgba(33, 37, 41, .3)',
+          data: [2200, 1700, 1100, 1900, 1680, 2560, 1340, 1450, 2000, 2500, 1550, 1880]
+        }
+      ]
+    };
 
-        // Toggle to Month data
-        jQuery('[data-toggle="dashboard-chart-set-month"]').on('click', () => {
-            chartMain.data.labels = chartMainDataMonth.labels;
-            chartMain.data.datasets[0] = chartMainDataMonth.datasets[0];
-            chartMain.data.datasets[1] = chartMainDataMonth.datasets[1];
-            chartMain.update();
-        });
+    // Sales Chart Data
+    chartSalesData = {
+      labels: ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'],
+      datasets: [
+        {
+          label: 'This Year',
+          fill: true,
+          backgroundColor: 'rgba(34, 184, 207, .3)',
+          borderColor: 'transparent',
+          pointBackgroundColor: 'rgba(34, 184, 207, 1)',
+          pointBorderColor: '#fff',
+          pointHoverBackgroundColor: '#fff',
+          pointHoverBorderColor: 'rgba(34, 184, 207, 1)',
+          data: [175, 120, 169, 82, 135, 169, 132, 130, 192, 230, 215, 260]
+        },
+        {
+          label: 'Last Year',
+          fill: true,
+          backgroundColor: 'rgba(33, 37, 41, .15)',
+          borderColor: 'transparent',
+          pointBackgroundColor: 'rgba(33, 37, 41, .3)',
+          pointBorderColor: '#fff',
+          pointHoverBackgroundColor: '#fff',
+          pointHoverBorderColor: 'rgba(33, 37, 41, .3)',
+          data: [220, 170, 110, 215, 168, 227, 154, 135, 210, 240, 145, 178]
+        }
+      ]
+    };
 
-        // Toggle to Year data
-        jQuery('[data-toggle="dashboard-chart-set-year"]').on('click', () => {
-            chartMain.data.labels = chartMainDataYear.labels;
-            chartMain.data.datasets[0] = chartMainDataYear.datasets[0];
-            chartMain.data.datasets[1] = chartMainDataYear.datasets[1];
-            chartMain.update();
-        });
+    // Init Earnings Chart
+    if (chartEarningsCon !== null) {
+      chartEarnings = new Chart(chartEarningsCon, {
+        type: 'line',
+        data: chartEarningsData,
+        options: chartEarningsOptions
+      });
     }
 
-    /*
-    * Init functionality
-    *
-    */
-    static init() {
-        this.initChartsMain();
+    // Init Sales Chart
+    if (chartSalesCon !== null) {
+      chartSales = new Chart(chartSalesCon, {
+        type: 'line',
+        data: chartSalesData,
+        options: chartSalesOptions
+      });
     }
+  }
+
+  /*
+   * Init functionality
+   *
+   */
+  static init() {
+    this.initCharts();
+  }
 }
 
 // Initialize when page loads
-jQuery(() => { pageDashboardv1.init(); });
+One.onLoad(pageDashboardv1.init());
