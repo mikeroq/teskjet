@@ -1,20 +1,19 @@
 @extends('layouts.simple')
 
 @section('content')
-    <div class="hero bg-white overflow-hidden">
+    <div class="hero bg-body-extra-light overflow-hidden">
         <div class="hero-inner">
             <div class="content content-full text-center">
-                <h1 class="font-w700 mb-2">
-                    <span class="text-primary">{{ config('app.name') }}</span>
+                <h1 class="fw-bold mb-2">
+                    {{ config('app.name') }}
                 </h1>
-                <h2 class="h4 font-w400 text-muted mb-4 invisible" data-toggle="appear" data-timeout="150">
+                <p class="fs-lg fw-medium text-muted mb-4">
                     Welcome to {{ config('app.name') }}. Click below to get started!
-                </h2>
-                <span class="m-2 d-inline-block invisible" data-toggle="appear" data-timeout="300">
-                    <a class="btn btn-alt-primary px-4 py-3" href="/dashboard">
-                        <i class="fa fa-fw fa-sign-in-alt mr-1"></i> Dashboard
-                    </a>
-                </span>
+                </p>
+                <a class="btn btn-alt-primary" href="/dashboard">
+                    Enter Dashboard
+                    <i class="fa fa-fw fa-arrow-right opacity-50 ms-1"></i>
+                </a>
             </div>
         </div>
     </div>

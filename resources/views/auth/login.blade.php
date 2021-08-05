@@ -7,11 +7,8 @@
                 <p class="mb-3">
                     <i class="far fa-2x fa-life-ring text-primary-light"></i>
                 </p>
-                <h1 class="fw-bold mb-2">
-                    Sign In
-                </h1>
                 <p class="fw-medium text-muted">
-                    Welcome, please login or <a href="{{ route('register') }}">sign up</a> for a new account.
+                    Welcome, please log in or <a href="{{ route('register') }}">register</a> for a new account.
                 </p>
             </div>
             <div class="row g-0 justify-content-center">
@@ -27,13 +24,13 @@
                         <div class="mb-4">
                             <label for="email">Email Address</label>
                             <input id="email" type="email"
-                                class="form-control form-control-lg form-control-alt" name="email"
+                                class="form-control form-control-alt" name="email"
                                 value="{{ old('email') }}" required autocomplete="email" autofocus>
                         </div>
                         <div class="mb-4">
                             <label for="email">Password</label>
                             <input id="password" type="password"
-                                class="form-control form-control-lg form-control-alt" name="password"
+                                class="form-control form-control-alt" name="password"
                                 required autocomplete="password">
                         </div>
                         <div class="mb-4">
@@ -53,15 +50,17 @@
                                 </div>
                             @endif
                             <div>
-                                <button type="submit" class="btn btn-lg btn-dark">
-                                    <i class="fa fa-fw fa-sign-in-alt me-1 opacity-50"></i> Sign In
+                                <button type="submit" class="btn btn-dark">
+                                    <i class="fa fa-fw fa-sign-in-alt me-1 opacity-50"></i> Log In
                                 </button>
                             </div>
                         </div>
                     </form>
-                    @if (JoelButcher\Socialstream\Socialstream::show())
-                        <x-socialstream-providers />
-                    @endif
+                    <div class="d-grid gap-2">
+                        @if (JoelButcher\Socialstream\Socialstream::show())
+                            <x-socialstream-providers />
+                        @endif
+                    </div>
                 </div>
             </div>
         <!-- END Sign In Form -->

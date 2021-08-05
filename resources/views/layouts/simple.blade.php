@@ -30,7 +30,7 @@
     </script>
 </head>
 <body>
-    <div id="page-container">
+    <div id="page-container" class="dark-mode">
         <main id="main-container">
             @yield('content')
         </main>

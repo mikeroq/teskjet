@@ -49,13 +49,10 @@
                         </p>
                         <ul class="list list-inline mb-0 py-2">
                             <li class="list-inline-item">
-                                <a class="text-white-75 fw-medium" href="javascript:void(0)">Legal</a>
+                                <a class="text-white-75 fw-medium" href="{{ route('terms.show') }}">Terms of Service</a>
                             </li>
                             <li class="list-inline-item">
-                                <a class="text-white-75 fw-medium" href="javascript:void(0)">Contact</a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a class="text-white-75 fw-medium" href="javascript:void(0)">Terms</a>
+                                <a class="text-white-75 fw-medium" href="{{ route('policy.show') }}">Privacy Policy</a>
                             </li>
                         </ul>
                     </div>
@@ -73,13 +70,10 @@
                         </p>
                         <ul class="list list-inline py-2 mb-0">
                             <li class="list-inline-item">
-                                <a class="text-muted fw-medium" href="javascript:void(0)">Legal</a>
+                                <a class="text-muted fw-medium" href="{{ route('terms.show') }}">Terms of Service</a>
                             </li>
                             <li class="list-inline-item">
-                                <a class="text-muted fw-medium" href="javascript:void(0)">Contact</a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a class="text-muted fw-medium" href="javascript:void(0)">Terms</a>
+                                <a class="text-muted fw-medium" href="{{ route('policy.show') }}">Privacy Policy</a>
                             </li>
                         </ul>
                     </div>

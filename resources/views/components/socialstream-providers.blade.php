@@ -1,30 +1,30 @@
     @if (JoelButcher\Socialstream\Socialstream::hasFacebookSupport())
-        <a href="{{ route('oauth.redirect', ['provider' => JoelButcher\Socialstream\Providers::facebook()]) }}" class="btn btn-block btn-hero-primary bg-default text-left">
-            <i class="fa fab fa-facebook mr-1"></i> Sign in with Facebook
+        <a href="{{ route('oauth.redirect', ['provider' => JoelButcher\Socialstream\Providers::facebook()]) }}" class="btn btn-sm btn-primary text-start">
+            <i class="fa fab fa-facebook fa-fw mr-1"></i> LOG IN WITH FACEBOOK
         </a>
     @endif
 
     @if (JoelButcher\Socialstream\Socialstream::hasGoogleSupport())
-        <a href="{{ route('oauth.redirect', ['provider' => JoelButcher\Socialstream\Providers::google()]) }}" class="btn btn-block btn-hero-primary bg-xplay-light text-left">
-            <i class="fa fab fa-google mr-1"></i> Sign in with Google
+        <a href="{{ route('oauth.redirect', ['provider' => JoelButcher\Socialstream\Providers::google()]) }}" class="btn btn-sm btn-warning text-start">
+            <i class="fa fab fa-google fa-fw mr-1"></i> LOG IN WITH GOOGLE
         </a>
     @endif
 
     @if (JoelButcher\Socialstream\Socialstream::hasTwitterSupport())
-        <a href="{{ route('oauth.redirect', ['provider' => JoelButcher\Socialstream\Providers::twitter()]) }}" class="btn btn-block btn-hero-primary bg-xplay-light text-left">
-            <i class="fa fab fa-twitter mr-1"></i> Sign in with Twitter
+        <a href="{{ route('oauth.redirect', ['provider' => JoelButcher\Socialstream\Providers::twitter()]) }}" class="btn btn-sm btn-primary text-start">
+            <i class="fa fab fa-twitter fa-fw mr-1"></i> LOG IN WITH TWITTER
         </a>
     @endif
 
     @if (JoelButcher\Socialstream\Socialstream::hasLinkedInSupport())
-        <a href="{{ route('oauth.redirect', ['provider' => JoelButcher\Socialstream\Providers::linkedin()]) }}" class="btn btn-block btn-hero-primary bg-xpro text-left">
-            <i class="fa fab fa-linkedin mr-1"></i> Sign in with LinkedIn
+        <a href="{{ route('oauth.redirect', ['provider' => JoelButcher\Socialstream\Providers::linkedin()]) }}" class="btn btn-sm btn-primary text-start">
+            <i class="fa fab fa-linkedin fa-fw mr-1"></i> LOG IN WITH LINKEDIN
         </a>
     @endif
 
     @if (JoelButcher\Socialstream\Socialstream::hasGithubSupport())
-        <a href="{{ route('oauth.redirect', ['provider' => JoelButcher\Socialstream\Providers::google()]) }}" class="btn btn-block btn-hero-primary bg-xwork text-left">
-            <i class="fa fab fa-github mr-1"></i> Sign in with GitHub
+        <a href="{{ route('oauth.redirect', ['provider' => JoelButcher\Socialstream\Providers::google()]) }}" class="btn btn-sm btn-dark text-start">
+            <i class="fa fab fa-github fa-fw mr-1"></i> LOG IN WITH GITHUB
         </a>
     @endif
 
