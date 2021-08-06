@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Navigation;
+use Exception;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
@@ -18,7 +19,7 @@ class GenerateNavigationService
             Storage::disk('local')->put('admin_navigation.json', $admin_navigation->toJson(JSON_UNESCAPED_SLASHES));
             Storage::disk('local')->put('usercp_navigation.json', $usercp_navigation->toJson(JSON_UNESCAPED_SLASHES));
             Log::info("Navigation generated");
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             Log::error("Navigation generation failed: $e");
         }
     }

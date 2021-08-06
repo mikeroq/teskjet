@@ -41,7 +41,8 @@
         "spatie/eloquent-sortable": "^4.0",
         "spatie/laravel-remote": "^1.0",
         "vaimo/composer-patches": "^4.22",
-        "venturecraft/revisionable": "^1.38"
+        "venturecraft/revisionable": "^1.38",
+        "ext-json": "*"
     },
     "require-dev": {
         "andrey-helldar/migrate-db": "^1.2",
