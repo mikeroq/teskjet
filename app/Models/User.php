@@ -12,6 +12,7 @@ use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 use BenSampo\Enum\Traits\CastsEnums;
 use App\Enums\UserType;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 
 /**
  * App\Models\User
@@ -64,7 +65,7 @@ use App\Enums\UserType;
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUserLevel($value)
  * @mixin \Eloquent
  */
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens;
     use HasFactory;

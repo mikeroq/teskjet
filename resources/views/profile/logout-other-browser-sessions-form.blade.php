@@ -50,12 +50,11 @@
             </div>
         @endif
 
-        <div class="d-flex mt-3">
-            <x-jet-button class="mb-3" wire:click="confirmLogout" wire:loading.attr="disabled">
+            <x-jet-button wire:click="confirmLogout" wire:loading.attr="disabled">
                 {{ __('Log Out Other Browser Sessions') }}
             </x-jet-button>
-        </div>
-       
+
+
     </x-slot>
 
 </x-jet-action-section>

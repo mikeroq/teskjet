@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\DeviceTypeController;
 use App\Http\Controllers\Admin\UserAdminController;
 use App\Http\Controllers\Admin\NavigationTypeController;
 use App\Http\Controllers\LandingController;
+use App\Http\Controllers\User\UserControlPanelController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,7 +32,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     // Dashboard Route
     Route::view('/dashboard', 'dashboard')->name('dashboard');
 
-
+    Route::get('/user/security', [UserControlPanelController::class, 'showSecurity'])->middleware('password.confirm');
 
     // Resource Routes
     Route::resource('customers', CustomerController::class);

@@ -9,13 +9,14 @@
 import * as bootstrap from 'bootstrap';
 import SimpleBar from 'simplebar';
 import Helpers from './helpers';
-import Swal from 'sweetalert2/src/sweetalert2.js'
+import Swal from 'sweetalert2/src/sweetalert2.js';
+import $ from "jquery";
 
 // Assignments
 window.bootstrap    = bootstrap;
 window.SimpleBar    = SimpleBar;
 window.Swal         = Swal;
-
+window.$            = $;
 // Template
 export default class Template {
   /*

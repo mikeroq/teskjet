@@ -24,10 +24,14 @@
             <p class="mt-3">
                 {{ __('Store these recovery codes in a secure password manager. They can be used to recover access to your account if your two factor authentication device is lost.') }}
             </p>
-            <div class="bg-light rounded p-3">
-                @foreach (json_decode(decrypt($this->user->two_factor_recovery_codes), true) as $code)
-                    <div>{{ $code }}</div>
-                @endforeach
+            <div class="bg-dark rounded p-3 mb-3">
+
+                    <code class="text-body-color-light font-size-sm font-monospace">
+                        @foreach (json_decode(decrypt($this->user->two_factor_recovery_codes), true) as $code)
+                        {{ $code }}<br>
+                        @endforeach
+                    </code>
+
             </div>
         @endif
 
@@ -36,7 +40,8 @@
                 {{ __('Two factor authentication is now enabled. Scan the following QR code using your phone\'s authenticator application.') }}
             </p>
             <div class="mt-3">
-                {!! $this->user->twoFactorQrCodeSvg() !!}
+                <div style="border: 3px #fff solid; width: 198px;">{!! $this->user->twoFactorQrCodeSvg() !!}</div>
+
             </div>
         @endif
 
@@ -52,34 +57,31 @@
 
         <div class="mt-3">
             @if (! $this->setup && !$this->enabled)
-            <x-jet-confirms-password wire:then="generateTwoFactorAuthenticationSecret">
-                <x-jet-button class="mb-3" type="button" wire:loading.attr="disabled">
+
+                <x-jet-button type="button" wire:loading.attr="disabled" wire:click="generateTwoFactorAuthenticationSecret">
                     {{ __('Enable') }}
                 </x-jet-button>
-            </x-jet-confirms-password>
+
             @else
                 @if ($showingRecoveryCodes)
-                    <x-jet-confirms-password wire:then="regenerateRecoveryCodes">
-                        <x-jet-secondary-button class="mr-3 mb-3">
+
+                        <x-jet-secondary-button wire:click="regenerateRecoveryCodes">
                             {{ __('Regenerate Recovery Codes') }}
                         </x-jet-secondary-button>
-                    </x-jet-confirms-password>
+
                 @else
-                    <x-jet-confirms-password wire:then="showRecoveryCodes">
-                        <x-jet-secondary-button class="mr-3 mb-3">
+                        <x-jet-secondary-button wire:click="showRecoveryCodes">
                             {{ __('Show Recovery Codes') }}
                         </x-jet-secondary-button>
-                    </x-jet-confirms-password>
+
                 @endif
 
                 @if($this->enabled)
-                    <x-jet-confirms-password wire:then="disableTwoFactorAuthentication">
-                        <x-jet-danger-button class="mb-3" wire:loading.attr="disabled">
+                        <x-jet-danger-button  wire:loading.attr="disabled" wire:click="disableTwoFactorAuthentication">
                             {{ __('Disable') }}
                         </x-jet-danger-button>
-                    </x-jet-confirms-password>
                 @else
-                    <x-jet-button class="mb-3" wire:click="confirmEnableTwoFactorAuthentication" wire:loading.attr="disabled">
+                    <x-jet-button wire:click="confirmEnableTwoFactorAuthentication" wire:loading.attr="disabled">
                         {{ __('Confirm') }}
                     </x-jet-button>
                 @endif

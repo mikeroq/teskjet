@@ -8,7 +8,7 @@
 
     <div class="col-md-7">
         <div class="block block-rounded block-themed block-transparent bg-black-25 text-gray">
-            <div class="block-content">
+            <div class="block-content pb-3">
                 {{ $content }}
             </div>
         </div>
