@@ -22,6 +22,7 @@
     <link rel="stylesheet" id="css-theme" href="{{ asset('/assets/css/themes/amethyst.css') }}">
     <link rel="stylesheet" href="/assets/css/bootstrap-side-modals.css" />
     <link rel="stylesheet" href="/assets/css/sweetalert2.dark.min.css">
+    <link rel="stylesheet" href="/assets/css/ico.css">
     @yield('css_after')
     @livewireStyles
     <script src="{{ mix('js/laravel.app.js') }}" defer></script>

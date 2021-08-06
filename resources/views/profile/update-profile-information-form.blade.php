@@ -15,7 +15,7 @@
 
         <!-- Profile Photo -->
         @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
-            <div class="form-group" x-data="{photoName: null, photoPreview: null}">
+            <div class="mb-4" x-data="{photoName: null, photoPreview: null}">
                 <!-- Profile Photo File Input -->
                 <input type="file" hidden
                        wire:model="photo"
@@ -57,30 +57,26 @@
 
         <div class="w-md-75">
             <!-- Name -->
-            <div class="form-group">
-                <x-jet-label for="name" value="{{ __('Name') }}" />
+            <x-form-group label="Name" id="name">
                 <x-jet-input id="name" type="text" class="{{ $errors->has('name') ? 'is-invalid' : '' }}" wire:model.defer="state.name" autocomplete="name" />
                 <x-jet-input-error for="name" />
-            </div>
+            </x-form-group>
 
             <!-- Email -->
-            <div class="form-group">
-                <x-jet-label for="email" value="{{ __('Email') }}" />
+            <x-form-group label="Email" id="email">
                 <x-jet-input id="email" type="email" class="{{ $errors->has('email') ? 'is-invalid' : '' }}" wire:model.defer="state.email" />
                 <x-jet-input-error for="email" />
-            </div>
-            <div class="form-group">
-                <x-jet-label for="timezone">Timezone</x-jet-label>
-                <select id="timezone" class="custom-select bg-black-10 text-gray-lighter border-dark {{ $errors->has('timezone') ? 'is-invalid' : '' }}" wire:model.defer="state.timezone">
+            </x-form-group>
+            <x-form-group id="timezone" label="Timezone">
+                <select id="timezone" class="form-select form-select-alt{{ $errors->has('timezone') ? 'is-invalid' : '' }}" wire:model.defer="state.timezone">
                     @if (empty(auth()->user()->timezone))
                     <option selected disabled value>-- Select Timezone --</option>
                     @endif
                     @foreach (timezone_identifiers_list() as $timezone)
-                    <option class="text-gray bg-black-90" value="{{ $timezone }}"{{ $timezone == auth()->user()->timezone ? ' selected' : '' }}>{{ $timezone }}</option>
+                    <option value="{{ $timezone }}"{{ $timezone == auth()->user()->timezone ? ' selected' : '' }}>{{ $timezone }}</option>
                     @endforeach
                 </select>
-                <x-jet-input-error for="timezone" />
-            </div>
+            </x-form-group>
         </div>
     </x-slot>
 

@@ -1,26 +1,22 @@
 <div>
-<x-page-header :title="$customer->name" subtitle="Viewing Customer">
-    <x-action-dropdown id="customer_action_dropdown">
-        <a class="dropdown-item" wire:click='$emit("openModal", "customer.edit-modal", {{ json_encode(["customerId" => $customer->id]) }})'>
-            <i class="fas fa-edit mr-1 fa-fw"></i>
-            Edit Customer
-        </a>
-        <a class="dropdown-item" data-toggle="modal" data-target="#customer_location_create_modal">
-            <i class="fas fa-location-arrow mr-1 fa-fw"></i>
-            Add Location
-        </a>
-        <a class="dropdown-item" id="del">
-            <i class="fas fa-times mr-1 fa-fw"></i>
-            Delete Customer
-        </a>
-    </x-action-dropdown>
-</x-page-header>
-<div class="content">
-    <div class="block block-rounded block-themed">
-        <div class="block-header block-header-default">
-            <h3 class="block-title">Customer Information</h3>
-        </div>
-        <div class="block-content">
+    <x-page-header :title="$customer->name" subtitle="Viewing Customer">
+        <x-action-dropdown id="customer_action_dropdown">
+            <a class="dropdown-item" wire:click='$emit("openModal", "customer.edit-modal", {{ json_encode(["customerId" => $customer->id]) }})'>
+                <i class="fas fa-edit mr-1 fa-fw"></i>
+                Edit Customer
+            </a>
+            <a class="dropdown-item" data-toggle="modal" data-target="#customer_location_create_modal">
+                <i class="fas fa-location-arrow mr-1 fa-fw"></i>
+                Add Location
+            </a>
+            <a class="dropdown-item" id="del">
+                <i class="fas fa-times mr-1 fa-fw"></i>
+                Delete Customer
+            </a>
+        </x-action-dropdown>
+    </x-page-header>
+    <div class="content">
+        <x-block>
             <p>
                 {{ $customer->name }}<br />
                 {{ $customer->formatted_phone }}<br />
@@ -52,7 +48,6 @@
                     @endforeach
                 </tbody>
             </table>
-        </div>
+        </x-block>
     </div>
-</div>
 </div>

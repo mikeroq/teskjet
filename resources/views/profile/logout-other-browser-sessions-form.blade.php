@@ -55,38 +55,7 @@
                 {{ __('Log Out Other Browser Sessions') }}
             </x-jet-button>
         </div>
-        @push('modal')
-        <!-- Log out Other Devices Confirmation Modal -->
-        <x-jet-dialog-modal wire:model="confirmingLogout">
-            <x-slot name="title">
-                {{ __('Log Out Other Browser Sessions') }}
-            </x-slot>
-
-            <x-slot name="content">
-                {{ __('Please enter your password to confirm you would like to log out of your other browser sessions across all of your devices.') }}
-
-                <div class="mt-3 w-md-75" x-data="{}" x-on:confirming-logout-other-browser-sessions.window="setTimeout(() => $refs.password.focus(), 250)">
-                    <x-jet-input type="password" placeholder="{{ __('Password') }}"
-                                 x-ref="password"
-                                 class="{{ $errors->has('password') ? 'is-invalid' : '' }}"
-                                 wire:model.defer="password"
-                                 wire:keydown.enter="logoutOtherBrowserSessions" />
-
-                    <x-jet-input-error for="password" class="mt-2" />
-                </div>
-            </x-slot>
-
-            <x-slot name="footer">
-                <x-jet-secondary-button wire:click="$toggle('confirmingLogout')" wire:loading.attr="disabled">
-                    {{ __('Cancel') }}
-                </x-jet-secondary-button>
-
-                <x-jet-button class="ml-2" wire:click="logoutOtherBrowserSessions" wire:loading.attr="disabled">
-                    {{ __('Log out Other Browser Sessions') }}
-                </x-jet-button>
-            </x-slot>
-        </x-jet-dialog-modal>
-        @endpush
+       
     </x-slot>
 
 </x-jet-action-section>

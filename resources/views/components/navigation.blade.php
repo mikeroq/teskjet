@@ -2,7 +2,7 @@
     <div class="content-header">
         <a class="fw-semibold text-dual" href="{{ route('dashboard') }}">
             <span class="smini-visible">
-                <i class="fa fa-circle-notch text-primary"></i>
+                <i class="ico-send text-primary"></i>
             </span>
             <span class="smini-hide fs-5 tracking-wider">{{ config('app.name') }}</span>
         </a>

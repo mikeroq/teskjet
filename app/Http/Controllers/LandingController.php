@@ -12,6 +12,6 @@ class LandingController extends Controller
         if (Auth::check()) {
             return redirect()->route('dashboard');
         }
-        return view('welcome');
+        return redirect()->route('login');
     }
 }

@@ -1,0 +1,1 @@
+<x-jet-input id="name" type="password" />

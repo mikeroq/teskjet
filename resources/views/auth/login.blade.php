@@ -5,7 +5,7 @@
         <div class="w-100">
             <div class="text-center mb-5">
                 <p class="mb-3">
-                    <i class="far fa-2x fa-life-ring text-primary-light"></i>
+                    <i class="ico-send fa-3x text-primary-light"></i>
                 </p>
                 <p class="fw-medium text-muted">
                     Welcome, please log in or <a href="{{ route('register') }}">register</a> for a new account.
@@ -63,7 +63,6 @@
                     </div>
                 </div>
             </div>
-        <!-- END Sign In Form -->
         </div>
     </div>
 @endsection

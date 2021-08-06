@@ -22,9 +22,10 @@
     <link rel="stylesheet" id="css-theme" href="{{ asset('/assets/css/themes/amethyst.css') }}">
     <link rel="stylesheet" href="/assets/css/bootstrap-side-modals.css" />
     <link rel="stylesheet" href="/assets/css/sweetalert2.dark.min.css">
+    <link rel="stylesheet" href="/assets/css/ico.css">
     @yield('css_after')
     @livewireStyles
-    <script src="{{ mix('js/laravel.app.js') }}" defer></script>
+
     <script>
         window.Laravel = {!! json_encode(['csrfToken' => csrf_token()]) !!};
     </script>
@@ -97,6 +98,7 @@
         </footer>
     </div>
     <script src="{{ mix('js/oneui.app.js') }}"></script>
+    <script src="{{ mix('js/laravel.app.js') }}" defer></script>
     @stack('scripts')
     @stack('modals')
     @stack('modal')

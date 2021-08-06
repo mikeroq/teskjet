@@ -1,0 +1,81 @@
+
+.form-control.form-control-alt {
+    border-color: #ebeef2;
+    background-color: #ebeef2;
+    transition: none;
+  }
+
+  .form-control.form-control-alt:focus {
+    border-color: #dde2e9;
+    background-color: #dde2e9;
+    box-shadow: none;
+  }
+
+  .form-control.form-control-alt.is-valid {
+    border-color: #e0edcf;
+    background-color: #e0edcf;
+  }
+
+  .form-control.form-control-alt.is-valid:focus {
+    border-color: #e5f0d6;
+    background-color: #e5f0d6;
+  }
+
+  .form-control.form-control-alt.is-invalid {
+    border-color: #f8d4d4;
+    background-color: #f8d4d4;
+  }
+
+  .form-control.form-control-alt.is-invalid:focus {
+    border-color: #f9dddd;
+    background-color: #f9dddd;
+  }
+
+  .dark-mode .form-control.form-control-alt {
+    color: #bec8d5;
+    border-color: #19222d;
+    background-color: #19222d;
+  }
+
+  .dark-mode .form-control.form-control-alt:focus {
+    color: #fff;
+    border-color: #171e28;
+    background-color: #171e28;
+    box-shadow: none;
+  }
+
+  .dark-mode .form-control.form-control-alt.is-valid {
+    border-color: rgba(20, 83, 45, 0.85);
+    background-color: rgba(20, 83, 45, 0.85);
+  }
+
+  .dark-mode .form-control.form-control-alt.is-valid::-moz-placeholder {
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .dark-mode .form-control.form-control-alt.is-valid::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .dark-mode .form-control.form-control-alt.is-valid:focus {
+    border-color: #14532d;
+    background-color: #14532d;
+  }
+
+  .dark-mode .form-control.form-control-alt.is-invalid {
+    border-color: rgba(127, 29, 29, 0.85);
+    background-color: rgba(127, 29, 29, 0.85);
+  }
+
+  .dark-mode .form-control.form-control-alt.is-invalid::-moz-placeholder {
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .dark-mode .form-control.form-control-alt.is-invalid::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .dark-mode .form-control.form-control-alt.is-invalid:focus {
+    border-color: #7f1d1d;
+    background-color: #7f1d1d;
+  }

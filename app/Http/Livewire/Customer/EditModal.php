@@ -66,6 +66,7 @@ class EditModal extends ModalComponent
                 'text' => 'You did not modify any fields. Nothing was changed.',
                 'toast' =>  true,
                 'timer' => '3000',
+                'html' => view('components.test')->render(),
                 'showCancelButton' =>  false,
                 'showConfirmButton' =>  false,
             ]);

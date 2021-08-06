@@ -47,7 +47,8 @@
                                         </x-jet-secondary-button>
                                     @endif
                                     @if (($this->accounts->count() > 1 || ! is_null($this->user->password)))
-                                        <x-jet-danger-button wire:click="confirmRemove({{ $account->id }})" wire:loading.attr="disabled">
+
+                                        <x-jet-danger-button onclick="Livewire.emit('openModal', 'profile.remove-connected-account')" wire:loading.attr="disabled">
                                             {{ __('Remove') }}
                                         </x-jet-danger-button>
                                     @endif
@@ -72,23 +73,5 @@
                 </div>
             @endforeach
         </div>
-        <x-jet-dialog-modal wire:model="confirmingRemove">
-            <x-slot name="title">
-                {{ __('Remove Connected Account') }}
-            </x-slot>
-
-            <x-slot name="content">
-                {{ __('Please confirm your removal of this account - this action cannot be undone.') }}
-            </x-slot>
-
-            <x-slot name="footer">
-                <x-jet-secondary-button wire:click="$toggle('confirmingRemove')" wire:loading.attr="disabled">
-                    {{ __('Nevermind') }}
-                </x-jet-secondary-button>
-                <x-jet-danger-button wire:click="removeConnectedAccount({{ $this->selectedAccountId }})" wire:loading.attr="disabled">
-                    {{ __('Remove Connected Account') }}
-                </x-jet-danger-button>
-            </x-slot>
-        </x-jet-dialog-modal>
     </x-slot>
 </x-jet-action-section>
