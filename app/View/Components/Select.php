@@ -2,20 +2,23 @@
 
 namespace App\View\Components;
 
-use Illuminate\View\Component;
 use Illuminate\Contracts\View\View;
+use Illuminate\View\Component;
 
-class Block extends Component
+class Select extends Component
 {
-    public string $title;
+    public string $label;
+    public string $id;
+
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($title = '')
+    public function __construct($id = '', $label = '')
     {
-        $this->title = $title;
+        $this->label = $label;
+        $this->id = $id;
     }
 
     /**
@@ -25,6 +28,6 @@ class Block extends Component
      */
     public function render(): View
     {
-        return view('components.block');
+        return view('components.select');
     }
 }

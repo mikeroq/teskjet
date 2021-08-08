@@ -7,7 +7,6 @@ use App\Http\Controllers\TicketController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\Admin\DeviceTypeController;
 use App\Http\Controllers\Admin\UserAdminController;
-use App\Http\Controllers\Admin\NavigationTypeController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\User\UserControlPanelController;
 
@@ -24,11 +23,7 @@ use App\Http\Controllers\User\UserControlPanelController;
 
 Route::get('/', [LandingController::class, 'index']);
 
-Route::get('/users-table', function () {
-    return view('userstable');
-});
-
-Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+Route::middleware(['auth:sanctum'])->group(function () {
     // Dashboard Route
     Route::view('/dashboard', 'dashboard')->name('dashboard');
 
@@ -44,15 +39,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         Route::resource('/users', UserAdminController::class);
         Route::resource('/navigation', NavigationController::class);
         Route::resource('/brands', BrandController::class);
-        Route::resource('/devicetypes', DeviceTypeController::class);
+        Route::resource('/device-types', DeviceTypeController::class);
         Route::get('/brands', [BrandController::class, 'index'])->name('admin.brands');
-        Route::get('/devicetypes', [DeviceTypeController::class, 'index'])->name('admin.devicetypes');
-        Route::get('/navtable/{id}', [NavigationController::class, 'getTable']);
-        Route::get('/order_nav/{type}/{direction}/{id}', [NavigationController::class, 'order']);
-        Route::delete('/navigation/child/{id}', [NavigationController::class, 'destroyChild']);
-        Route::patch('/navigation/child/{navigation}', [NavigationController::class, 'updateChild']);
-        Route::get('/json/navigation/child/{navigation}', [NavigationController::class, 'showChild']);
-        Route::get('/json/navigation/{navigation}', [NavigationController::class, 'show']);
-        Route::get('/json/navigationtype/{navigation_type}', [NavigationTypeController::class, 'index']);
+        Route::get('/device-types', [DeviceTypeController::class, 'index'])->name('admin.device_types');
     });
 });

@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\View;
 
 /**
  * App\Models\NavigationType
@@ -17,15 +17,15 @@ use Illuminate\Support\Facades\View;
  * @property int $children
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Navigation[] $navigations
  * @property-read int|null $navigations_count
- * @method static \Illuminate\Database\Eloquent\Builder|NavigationType newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|NavigationType newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|NavigationType query()
- * @method static \Illuminate\Database\Eloquent\Builder|NavigationType whereChildren($value)
- * @method static \Illuminate\Database\Eloquent\Builder|NavigationType whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|NavigationType whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|NavigationType whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|NavigationType whereSlug($value)
- * @method static \Illuminate\Database\Eloquent\Builder|NavigationType whereUpdatedAt($value)
+ * @method static Builder|NavigationType newModelQuery()
+ * @method static Builder|NavigationType newQuery()
+ * @method static Builder|NavigationType query()
+ * @method static Builder|NavigationType whereChildren($value)
+ * @method static Builder|NavigationType whereCreatedAt($value)
+ * @method static Builder|NavigationType whereId($value)
+ * @method static Builder|NavigationType whereName($value)
+ * @method static Builder|NavigationType whereSlug($value)
+ * @method static Builder|NavigationType whereUpdatedAt($value)
  * @mixin \Eloquent
  */
 class NavigationType extends Model
@@ -37,11 +37,7 @@ class NavigationType extends Model
         'slug'
     ];
 
-    public function renderHTML()
-    {
-        $pages = Navigation::with('children')->where('navigation_type_id', $this->id)->orderBy('order_column', 'asc')->get();
-        return View::make('admin.navtable', ['parent_pages' => $pages])->render();
-    }
+
 
     public function navigations()
     {

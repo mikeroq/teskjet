@@ -2,13 +2,14 @@
 
 namespace App\View\Components;
 
+use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
 class ActionDropdown extends Component
 {
 
-    public $id;
-    public $buttonName;
+    public string $id;
+    public string $buttonName;
 
     /**
      * Create a new component instance.
@@ -24,9 +25,9 @@ class ActionDropdown extends Component
     /**
      * Get the view / contents that represent the component.
      *
-     * @return \Illuminate\Contracts\View\View|\Closure|string
+     * @return View|
      */
-    public function render()
+    public function render(): View
     {
         return view('components.action-dropdown');
     }

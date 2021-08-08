@@ -3,14 +3,15 @@
 namespace App\View\Components;
 
 use Illuminate\View\Component;
+use Illuminate\View\View;
 
 class FormModal extends Component
 {
-    public $type;
-    public $slug;
-    public $title;
-    public $icon;
-    public $btn;
+    public string $type;
+    public string $slug;
+    public string $title;
+    public string $icon;
+    public string $btn;
     /**
      * Create a new component instance.
      *
@@ -39,9 +40,9 @@ class FormModal extends Component
     /**
      * Get the view / contents that represent the component.
      *
-     * @return \Illuminate\View\View|string
+     * @return View
      */
-    public function render()
+    public function render(): View
     {
         return view('components.form-modal');
     }

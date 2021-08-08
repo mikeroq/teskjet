@@ -3,16 +3,18 @@
 namespace App\Http\Livewire\Modals;
 
 use App\Models\Customer;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use LivewireUI\Modal\ModalComponent;
 
 class CustomerCreateModal extends ModalComponent
 {
-    public $name;
-    public $phone;
-    public $type;
-    public $taxable;
+    public string $name;
+    public string $phone;
+    public string $type;
+    public string $taxable;
 
-    public function create()
+    public function create(): RedirectResponse
     {
         $validated = $this->validate([
             'name' => 'required',
@@ -45,7 +47,7 @@ class CustomerCreateModal extends ModalComponent
         return redirect()->to(route('customers.show', $customer->id));
     }
 
-    public function render()
+    public function render(): View
     {
         return view('livewire.modals.customer-create-modal');
     }

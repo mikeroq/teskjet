@@ -2,12 +2,13 @@
 
 namespace App\View\Components;
 
+use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
 class FormGroup extends Component
 {
-    public $label;
-    public $id;
+    public string $label;
+    public string $id;
 
     /**
      * Create a new component instance.
@@ -23,9 +24,9 @@ class FormGroup extends Component
     /**
      * Get the view / contents that represent the component.
      *
-     * @return \Illuminate\Contracts\View\View|\Closure|string
+     * @return View
      */
-    public function render()
+    public function render(): View
     {
         return view('components.form-group');
     }

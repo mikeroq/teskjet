@@ -18,33 +18,34 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                    <x-jet-validation-errors class="mb-4" />
+                    <x-jet-validation-errors class="mb-4"/>
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
                         <div class="mb-4">
                             <label for="email">Email Address</label>
                             <input id="email" type="email"
-                                class="form-control form-control-alt" name="email"
-                                value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                   class="form-control form-control-alt" name="email"
+                                   value="{{ old('email') }}" required autocomplete="email" autofocus>
                         </div>
                         <div class="mb-4">
-                            <label for="email">Password</label>
+                            <label for="password">Password</label>
                             <input id="password" type="password"
-                                class="form-control form-control-alt" name="password"
-                                required autocomplete="password">
+                                   class="form-control form-control-alt" name="password"
+                                   required autocomplete="password">
                         </div>
                         <div class="mb-4">
                             <div class="custom-control custom-checkbox custom-control-primary">
                                 <input type="checkbox" class="custom-control-input" name="remember"
-                                    id="remember_me" checked>
+                                       id="remember_me" checked>
                                 <label class="custom-control-label"
-                                    for="remember_me">{{ __('Remember me') }}</label>
+                                       for="remember_me">{{ __('Remember me') }}</label>
                             </div>
                         </div>
                         <div class="d-flex justify-content-between align-items-center mb-4">
                             @if (Route::has('password.request'))
                                 <div>
-                                    <a class="text-muted fs-sm fw-medium d-block d-lg-inline-block mb-1" href="{{ route('password.request') }}">
+                                    <a class="text-muted fs-sm fw-medium d-block d-lg-inline-block mb-1"
+                                       href="{{ route('password.request') }}">
                                         Forgot Password?
                                     </a>
                                 </div>
@@ -58,7 +59,7 @@
                     </form>
                     <div class="d-grid gap-2">
                         @if (JoelButcher\Socialstream\Socialstream::show())
-                            <x-socialstream-providers />
+                            <x-socialstream-providers/>
                         @endif
                     </div>
                 </div>

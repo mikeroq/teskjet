@@ -2,12 +2,12 @@
 
 namespace App\Http\Livewire\Profile;
 
-use Livewire\Component;
+use Illuminate\Contracts\View\View;
 use LivewireUI\Modal\ModalComponent;
 
 class RemoveConnectedAccount extends ModalComponent
 {
-    public function render()
+    public function render(): View
     {
         return view('livewire.profile.remove-connected-account');
     }

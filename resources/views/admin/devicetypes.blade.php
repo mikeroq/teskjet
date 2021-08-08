@@ -3,9 +3,9 @@
 @section('title', 'Device Types Admin')
 @section('content')
     <x-page-header title="Device Type Management" subtitle="Admin Panel"></x-page-header>
-    <div class="content p-0">
+    <div class="content">
         <x-block class="pb-3">
-            <livewire:admin.device-type-table />
+            <livewire:admin.device-type-table/>
         </x-block>
     </div>
 @endsection

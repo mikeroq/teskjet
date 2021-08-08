@@ -3,23 +3,24 @@
 namespace App\Http\Livewire\Customer;
 
 use App\Models\Customer;
+use Illuminate\Contracts\View\View;
 use LivewireUI\Modal\ModalComponent;
 
 
 class EditModal extends ModalComponent
 {
-    public $name;
-    public $phone;
-    public $type;
-    public $taxable;
+    public string $name;
+    public string $phone;
+    public string $type;
+    public string $taxable;
 
     public Customer $customer;
 
 
 
-    public function mount(int $customerId)
+    public function mount(int $customerId): void
     {
-        $this->customer = Customer::find($customerId);
+        $this->customer = Customer::findOrFail($customerId);
 
         $this->name = $this->customer->name;
         $this->phone = $this->customer->getRawOriginal('phone');
@@ -27,9 +28,9 @@ class EditModal extends ModalComponent
         $this->taxable = $this->customer->taxable;
     }
 
-    public function update()
+    public function update(): void
     {
-        $validated = $this->validate([
+        $this->validate([
             'name' => 'required',
             'phone' => 'required|phone:AUTO,US',
             'type' => 'required',
@@ -76,7 +77,7 @@ class EditModal extends ModalComponent
         // return redirect()->to(route('customers.show', $this->customer->id));
     }
 
-    public function render()
+    public function render(): View
     {
         return view('livewire.customer.edit-modal');
     }

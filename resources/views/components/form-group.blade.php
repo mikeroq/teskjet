@@ -1,4 +1,6 @@
 <div {{ $attributes->merge(['class' => 'mb-4']) }}>
-    <label class="form-label" for="{{ $id }}">{{ $label }}</label>
+    @if($label)
+        <label class="form-label" for="{{ $id }}">{{ $label }}</label>
+    @endif
     {{ $slot }}
 </div>
