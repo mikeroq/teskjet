@@ -102,3 +102,8 @@
 
 .cm-s-easymde .CodeMirror-activeline-background { background: rgba(255,255,255,0.1); }
 .cm-s-easymde .CodeMirror-matchingbracket { text-decoration: underline; color: white !important; }
+
+code {
+    overflow-x: scroll !important;
+
+}
