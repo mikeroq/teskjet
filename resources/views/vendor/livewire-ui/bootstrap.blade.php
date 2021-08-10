@@ -21,14 +21,13 @@
                                 <button type="button" class="btn-block-option" x-on:click="bsCloseModal('{{ $id }}')" aria-label="Close">
                                     <i class="fa fa-fw fa-times"></i>
                                 </button>
-                            </span>
+                            </div>
                         </div>
                     </div>
                     @livewire($component['name'], $component['attributes'], key($id))
                 </div>
             </div>
         </div>
-    </div>
     @empty
     @endforelse
 </div>

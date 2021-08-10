@@ -3,9 +3,15 @@
 namespace App\Models;
 
 use App\Traits\ConvertTimezone;
+use Eloquent;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Carbon;
+use Laravelista\Comments\Commentable;
 use Propaganistas\LaravelPhone\PhoneNumber;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Venturecraft\Revisionable\Revision;
 use Venturecraft\Revisionable\RevisionableTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Propaganistas\LaravelPhone\Casts\E164PhoneNumberCast;
@@ -15,8 +21,8 @@ use Propaganistas\LaravelPhone\Casts\E164PhoneNumberCast;
  *
  * @mixin Eloquent
  * @property int $id
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
  * @property string $name
  * @property string $phone
  * @property string $type
@@ -32,14 +38,14 @@ use Propaganistas\LaravelPhone\Casts\E164PhoneNumberCast;
  * @method static \Illuminate\Database\Eloquent\Builder|Customer whereTaxable($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Customer whereType($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Customer whereUpdatedAt($value)
- * @property \Illuminate\Support\Carbon|null $deleted_at
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Device[] $devices
+ * @property Carbon|null $deleted_at
+ * @property-read Collection|Device[] $devices
  * @property-read int|null $devices_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\CustomerLocation[] $locations
+ * @property-read Collection|CustomerLocation[] $locations
  * @property-read int|null $locations_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\Venturecraft\Revisionable\Revision[] $revisionHistory
+ * @property-read Collection|Revision[] $revisionHistory
  * @property-read int|null $revision_history_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Ticket[] $tickets
+ * @property-read Collection|Ticket[] $tickets
  * @property-read int|null $tickets_count
  * @method static \Illuminate\Database\Query\Builder|Customer onlyTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|Customer whereDeletedAt($value)
@@ -49,7 +55,7 @@ use Propaganistas\LaravelPhone\Casts\E164PhoneNumberCast;
 
 class Customer extends Model
 {
-    use HasFactory, RevisionableTrait, SoftDeletes, ConvertTimezone;
+    use HasFactory, RevisionableTrait, SoftDeletes, ConvertTimezone, Commentable;
 
     protected $fillable = [
         'name',
@@ -67,7 +73,7 @@ class Customer extends Model
         'displayable_taxable'
     ];
 
-    public function getDisplayableTaxableAttribute()
+    public function getDisplayableTaxableAttribute(): string
     {
         return $this->taxable?"Taxable":"Non Taxable";
     }
@@ -76,35 +82,35 @@ class Customer extends Model
     {
         return collect(trans('types/customer.type'))->get($attribute);
     }
-    public function devices()
+    public function devices(): HasMany
     {
         return $this->hasMany('App\Models\Device');
     }
 
-    public function locations()
+    public function locations(): HasMany
     {
         return $this->hasMany('App\Models\CustomerLocation');
     }
 
-    public function tickets()
+    public function tickets(): HasMany
     {
         return $this->hasMany('App\Models\Ticket');
     }
 
-    public function getFormattedPhoneAttribute()
+    public function getPhoneAttribute($attribute): string
     {
-        return PhoneNumber::make($this->phone, 'US')->formatNational();
+        return PhoneNumber::make($attribute, 'US')->formatNational();
     }
 
-    protected $revisionCreationsEnabled = true;
-    protected $revisionFormattedFieldNames = [
+    protected bool $revisionCreationsEnabled = true;
+    protected array $revisionFormattedFieldNames = [
         'name'      => 'Name',
         'phone'     => 'Phone',
         'type'      => 'Customer Type',
         'taxable'   => 'Tax Status',
         'created_at'=> 'Record Created'
     ];
-    protected $revisionFormattedFields = [
+    protected array $revisionFormattedFields = [
         'taxable'     => 'boolean:Non Taxable|Taxable'
     ];
 }

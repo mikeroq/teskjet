@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * App\Device
@@ -30,23 +31,23 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Device whereSerialNumber($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Device whereUpdatedAt($value)
  * @mixin \Eloquent
- * @property-read \App\Models\Brand $brand
- * @property-read \App\Models\Customer $customer
- * @property-read \App\Models\DeviceType $deviceType
+ * @property-read Brand $brand
+ * @property-read Customer $customer
+ * @property-read DeviceType $deviceType
  */
 class Device extends Model
 {
     use HasFactory;
 
-    public function brand()
+    public function brand(): BelongsTo
     {
         return $this->belongsTo('App\Models\Brand');
     }
-    public function deviceType()
+    public function deviceType(): BelongsTo
     {
         return $this->belongsTo('App\Models\DeviceType');
     }
-    public function customer()
+    public function customer(): BelongsTo
     {
         return $this->belongsTo('App\Models\Customer');
     }

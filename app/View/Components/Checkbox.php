@@ -2,10 +2,9 @@
 
 namespace App\View\Components;
 
-use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class Select extends Component
+class Checkbox extends Component
 {
     public string $label;
     public string $id;
@@ -26,10 +25,10 @@ class Select extends Component
     /**
      * Get the view / contents that represent the component.
      *
-     * @return View
+     * @return \Illuminate\Contracts\View\View|\Closure|string
      */
-    public function render(): View
+    public function render()
     {
-        return view('components.select');
+        return view('components.checkbox');
     }
 }

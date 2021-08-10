@@ -1,26 +1,26 @@
 <?php
 
-namespace App\Http\Livewire\Modals;
+namespace App\Http\Livewire\Customer\Modals;
 
 use App\Models\Customer;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use LivewireUI\Modal\ModalComponent;
 
-class CustomerCreateModal extends ModalComponent
+class CreateCustomerModal extends ModalComponent
 {
-    public string $name;
-    public string $phone;
-    public string $type;
-    public string $taxable;
+    public string $name = '';
+    public string $phone = '';
+    public string $type = '';
+    public int $taxable = 0;
 
-    public function create(): RedirectResponse
+    public function create()
     {
         $validated = $this->validate([
             'name' => 'required',
-            'phone' => 'required|phone:AUTO,US',
+            'phone' => 'required|phone:AUTO,US|unique:customers,phone',
             'type' => 'required',
-            'taxable' => 'nullable'
+            'taxable' => 'numeric|nullable'
         ],
         [
             'name.required' => 'The name cannot be empty.',
@@ -49,7 +49,7 @@ class CustomerCreateModal extends ModalComponent
 
     public function render(): View
     {
-        return view('livewire.modals.customer-create-modal');
+        return view('livewire.customer.modals.create-customer-modal');
     }
 
     public static function bsModalTitle(): string

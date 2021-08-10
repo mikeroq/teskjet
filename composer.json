@@ -15,6 +15,7 @@
     ],
     "require": {
         "php": "^8.0",
+        "ext-json": "*",
         "barryvdh/laravel-snappy": "^0.4.8",
         "bensampo/laravel-enum": "^3.4",
         "dcblogdev/laravel-sent-emails": "^1.0",
@@ -31,6 +32,7 @@
         "laravel/sanctum": "^2.6",
         "laravel/telescope": "^4.6",
         "laravel/tinker": "^2.5",
+        "laravelista/comments": "^4.5",
         "league/commonmark": "^2.0",
         "livewire-ui/modal-bootstrap": "dev-main",
         "livewire/livewire": "^2.5",
@@ -39,10 +41,10 @@
         "rappasoft/laravel-livewire-tables": "^1.11",
         "sammyjo20/wagonwheel": "^2.0",
         "spatie/eloquent-sortable": "^4.0",
+        "spatie/laravel-permission": "^4.2",
         "spatie/laravel-remote": "^1.0",
         "vaimo/composer-patches": "^4.22",
-        "venturecraft/revisionable": "^1.38",
-        "ext-json": "*"
+        "venturecraft/revisionable": "^1.38"
     },
     "require-dev": {
         "andrey-helldar/migrate-db": "^1.2",

@@ -2,15 +2,23 @@
 
 namespace App\Models;
 
+use App\Traits\ConvertTimezone;
+use Eloquent;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Carbon;
+use Propaganistas\LaravelPhone\Casts\E164PhoneNumberCast;
+use Venturecraft\Revisionable\RevisionableTrait;
 
 /**
  * App\Models\CustomerLocation
  *
  * @property int $id
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
  * @property int $customer_id
  * @property string $name
  * @property string $address
@@ -19,29 +27,56 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $state
  * @property string $zip
  * @property string $phone
- * @property-read \App\Models\Customer $customer
- * @method static \Illuminate\Database\Eloquent\Builder|CustomerLocation newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|CustomerLocation newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|CustomerLocation query()
- * @method static \Illuminate\Database\Eloquent\Builder|CustomerLocation whereAddress($value)
- * @method static \Illuminate\Database\Eloquent\Builder|CustomerLocation whereAddress2($value)
- * @method static \Illuminate\Database\Eloquent\Builder|CustomerLocation whereCity($value)
- * @method static \Illuminate\Database\Eloquent\Builder|CustomerLocation whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|CustomerLocation whereCustomerId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|CustomerLocation whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|CustomerLocation whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|CustomerLocation wherePhone($value)
- * @method static \Illuminate\Database\Eloquent\Builder|CustomerLocation whereState($value)
- * @method static \Illuminate\Database\Eloquent\Builder|CustomerLocation whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|CustomerLocation whereZip($value)
- * @mixin \Eloquent
+ * @property-read Customer $customer
+ * @method static Builder|CustomerLocation newModelQuery()
+ * @method static Builder|CustomerLocation newQuery()
+ * @method static Builder|CustomerLocation query()
+ * @method static Builder|CustomerLocation whereAddress($value)
+ * @method static Builder|CustomerLocation whereAddress2($value)
+ * @method static Builder|CustomerLocation whereCity($value)
+ * @method static Builder|CustomerLocation whereCreatedAt($value)
+ * @method static Builder|CustomerLocation whereCustomerId($value)
+ * @method static Builder|CustomerLocation whereId($value)
+ * @method static Builder|CustomerLocation whereName($value)
+ * @method static Builder|CustomerLocation wherePhone($value)
+ * @method static Builder|CustomerLocation whereState($value)
+ * @method static Builder|CustomerLocation whereUpdatedAt($value)
+ * @method static Builder|CustomerLocation whereZip($value)
+ * @mixin Eloquent
  */
 class CustomerLocation extends Model
 {
-    use HasFactory;
+    use HasFactory, RevisionableTrait, SoftDeletes, ConvertTimezone;
 
-    public function customer()
+    protected $fillable = [
+        'customer_id',
+        'name',
+        'address',
+        'address_2',
+        'city',
+        'state',
+        'zip',
+        'phone'
+    ];
+
+    protected $casts = [
+        'phone' => E164PhoneNumberCast::class.':US'
+    ];
+
+    public function customer(): BelongsTo
     {
         return $this->belongsTo('App\Models\Customer');
     }
+
+    protected bool $revisionCreationsEnabled = true;
+    protected array $revisionFormattedFieldNames = [
+        'name' => 'Name',
+        'address' => 'Address Line 1',
+        'address_2' => 'Address Line 2',
+        'city'   => 'City',
+        'state' => 'State',
+        'zip' => 'Zip',
+        'phone' => 'Phone',
+        'created_at' => 'Record Created'
+    ];
 }

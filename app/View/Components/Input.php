@@ -5,22 +5,27 @@ namespace App\View\Components;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class Select extends Component
+class Input extends Component
 {
-    public string $label;
+
     public string $id;
+    public string $type;
     public string $error;
+    public string $label;
+    public string $wrapper;
 
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($id = '', $label = '')
+    public function __construct($type = 'text', $id = '', $label = '', $wrapper = 'true')
     {
-        $this->label = $label;
+        $this->type = $type;
         $this->id = $id;
         $this->error = '';
+        $this->label = $label;
+        $this->wrapper = $wrapper;
     }
 
     /**
@@ -30,6 +35,6 @@ class Select extends Component
      */
     public function render(): View
     {
-        return view('components.select');
+        return view('components.input');
     }
 }

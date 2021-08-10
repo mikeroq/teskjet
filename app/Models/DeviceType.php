@@ -2,16 +2,19 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Carbon;
 
 /**
  * App\DeviceType
  *
  * @property int $id
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
  * @property string $name
  * @method static \Illuminate\Database\Eloquent\Builder|DeviceType newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|DeviceType newQuery()
@@ -21,14 +24,15 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Eloquent\Builder|DeviceType whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|DeviceType whereUpdatedAt($value)
  * @mixin \Eloquent
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Device[] $devices
+ * @property-read Collection|Device[] $devices
  * @property-read int|null $devices_count
  */
 class DeviceType extends Model
 {
     use HasFactory;
+    use SoftDeletes;
 
-    public function devices()
+    public function devices(): HasMany
     {
         return $this->hasMany('App\Models\Device');
     }

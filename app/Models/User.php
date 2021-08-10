@@ -2,9 +2,16 @@
 
 namespace App\Models;
 
+use Database\Factories\UserFactory;
+use Eloquent;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\DatabaseNotification;
+use Illuminate\Notifications\DatabaseNotificationCollection;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Carbon;
 use JoelButcher\Socialstream\HasConnectedAccounts;
 use JoelButcher\Socialstream\SetsProfilePhotoFromUrl;
 use Laravel\Fortify\TwoFactorAuthenticatable;
@@ -13,6 +20,9 @@ use Laravel\Sanctum\HasApiTokens;
 use BenSampo\Enum\Traits\CastsEnums;
 use App\Enums\UserType;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Laravel\Sanctum\PersonalAccessToken;
+use Laravelista\Comments\Commenter;
+use Spatie\Permission\Traits\HasRoles;
 
 /**
  * App\Models\User
@@ -20,7 +30,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
  * @property int $id
  * @property string $name
  * @property string $email
- * @property \Illuminate\Support\Carbon|null $email_verified_at
+ * @property Carbon|null $email_verified_at
  * @property string|null $password
  * @property string|null $two_factor_secret
  * @property string|null $two_factor_recovery_codes
@@ -29,41 +39,41 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
  * @property int|null $current_team_id
  * @property int|null $current_connected_account_id
  * @property string|null $profile_photo_path
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
  * @property UserType $user_level
  * @property string|null $timezone
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\ConnectedAccount[] $connectedAccounts
+ * @property-read Collection|ConnectedAccount[] $connectedAccounts
  * @property-read int|null $connected_accounts_count
- * @property-read \App\Models\ConnectedAccount|null $currentConnectedAccount
+ * @property-read ConnectedAccount|null $currentConnectedAccount
  * @property-read string|bool $is_two_factor_enabled
  * @property-read mixed $level
  * @property-read string $profile_photo_url
- * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
+ * @property-read DatabaseNotificationCollection|DatabaseNotification[] $notifications
  * @property-read int|null $notifications_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Sanctum\PersonalAccessToken[] $tokens
+ * @property-read Collection|PersonalAccessToken[] $tokens
  * @property-read int|null $tokens_count
- * @method static \Database\Factories\UserFactory factory(...$parameters)
- * @method static \Illuminate\Database\Eloquent\Builder|User newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|User newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|User query()
- * @method static \Illuminate\Database\Eloquent\Builder|User whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereCurrentConnectedAccountId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereCurrentTeamId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereEmail($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereEmailVerifiedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User wherePassword($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereProfilePhotoPath($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereRememberToken($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereTimezone($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereTwoFactorConfirmed($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereTwoFactorRecoveryCodes($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereTwoFactorSecret($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereUserLevel($value)
- * @mixin \Eloquent
+ * @method static UserFactory factory(...$parameters)
+ * @method static Builder|User newModelQuery()
+ * @method static Builder|User newQuery()
+ * @method static Builder|User query()
+ * @method static Builder|User whereCreatedAt($value)
+ * @method static Builder|User whereCurrentConnectedAccountId($value)
+ * @method static Builder|User whereCurrentTeamId($value)
+ * @method static Builder|User whereEmail($value)
+ * @method static Builder|User whereEmailVerifiedAt($value)
+ * @method static Builder|User whereId($value)
+ * @method static Builder|User whereName($value)
+ * @method static Builder|User wherePassword($value)
+ * @method static Builder|User whereProfilePhotoPath($value)
+ * @method static Builder|User whereRememberToken($value)
+ * @method static Builder|User whereTimezone($value)
+ * @method static Builder|User whereTwoFactorConfirmed($value)
+ * @method static Builder|User whereTwoFactorRecoveryCodes($value)
+ * @method static Builder|User whereTwoFactorSecret($value)
+ * @method static Builder|User whereUpdatedAt($value)
+ * @method static Builder|User whereUserLevel($value)
+ * @mixin Eloquent
  */
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -77,6 +87,8 @@ class User extends Authenticatable implements MustVerifyEmail
     use SetsProfilePhotoFromUrl;
     use TwoFactorAuthenticatable;
     use CastsEnums;
+    use Commenter;
+    use HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -121,9 +133,9 @@ class User extends Authenticatable implements MustVerifyEmail
     /**
      * Get the URL to the user's profile photo.
      *
-     * @return string
+     * @return string|null
      */
-    public function getProfilePhotoUrlAttribute()
+    public function getProfilePhotoUrlAttribute(): ?string
     {
         if (filter_var($this->profile_photo_path, FILTER_VALIDATE_URL)) {
             return $this->profile_photo_path;
@@ -132,9 +144,9 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->getPhotoUrl();
     }
 
-    public function isAdmin()
+    public function isAdmin(): bool
     {
-        return $this->user_level->value == UserType::ADMIN ? true : false;
+        return $this->user_level->value === UserType::ADMIN;
     }
 
     public function getLevelAttribute()

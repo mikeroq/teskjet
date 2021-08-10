@@ -1,4 +1,4 @@
-<?php
+<?php /** @noinspection PhpPureAttributeCanBeAddedInspection */
 
 namespace App\Policies;
 
@@ -13,7 +13,7 @@ class ConnectedAccountPolicy
     /**
      * Determine whether the user can view any models.
      *
-     * @param  \App\Models\User  $user
+     * @param  User  $user
      * @return mixed
      */
     public function viewAny(User $user)
@@ -24,11 +24,11 @@ class ConnectedAccountPolicy
     /**
      * Determine whether the user can view the model.
      *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\ConnectedAccount  $connectedAccount
-     * @return mixed
+     * @param  User  $user
+     * @param  ConnectedAccount  $connectedAccount
+     * @return bool
      */
-    public function view(User $user, ConnectedAccount $connectedAccount)
+    public function view(User $user, ConnectedAccount $connectedAccount): bool
     {
         return $user->ownsConnectedAccount($connectedAccount);
     }
@@ -36,10 +36,10 @@ class ConnectedAccountPolicy
     /**
      * Determine whether the user can create models.
      *
-     * @param  \App\Models\User  $user
+     * @param  User  $user
      * @return mixed
      */
-    public function create(User $user)
+    public function create(User $user): mixed
     {
         return true;
     }
@@ -47,11 +47,11 @@ class ConnectedAccountPolicy
     /**
      * Determine whether the user can update the model.
      *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\ConnectedAccount  $connectedAccount
+     * @param  User  $user
+     * @param  ConnectedAccount  $connectedAccount
      * @return mixed
      */
-    public function update(User $user, ConnectedAccount $connectedAccount)
+    public function update(User $user, ConnectedAccount $connectedAccount): mixed
     {
         return $user->ownsConnectedAccount($connectedAccount);
     }
@@ -59,11 +59,11 @@ class ConnectedAccountPolicy
     /**
      * Determine whether the user can delete the model.
      *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\ConnectedAccount  $connectedAccount
-     * @return mixed
+     * @param  User  $user
+     * @param  ConnectedAccount  $connectedAccount
+     * @return bool
      */
-    public function delete(User $user, ConnectedAccount $connectedAccount)
+    public function delete(User $user, ConnectedAccount $connectedAccount): bool
     {
         return $user->ownsConnectedAccount($connectedAccount);
     }

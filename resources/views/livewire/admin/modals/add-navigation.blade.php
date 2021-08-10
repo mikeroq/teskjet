@@ -11,7 +11,7 @@
                 </x-form-group>
             @endif
             <x-form-group label="Link Title" id="title">
-                <x-jet-input type="text" class="@error('title') is-invalid @enderror" id="title" required wire:model="title" autofocus>
+                <x-jet-input type="text" class="@error('title') is-invalid @enderror" id="title" required wire:model="title" autofocus />
                 @error('title') <div class="invalid-feedback">{{ $message }}</div> @enderror
             </x-form-group>
             <x-form-group label="Link Icon" id="icon">

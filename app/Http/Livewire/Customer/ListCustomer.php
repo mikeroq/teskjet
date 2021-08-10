@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Customer;
 
 use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use App\Models\Customer;
 
-class CustomerList extends DataTableComponent
+class ListCustomer extends DataTableComponent
 {
 
     public function columns(): array
@@ -16,7 +16,7 @@ class CustomerList extends DataTableComponent
             Column::make('Name')
                 ->sortable()
                 ->searchable(),
-            Column::make('Phone', 'formatted_phone')
+            Column::make('Phone')
                 ->sortable()
                 ->searchable(),
             Column::make('Type')

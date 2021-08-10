@@ -1,18 +1,18 @@
 <?php
 
-namespace App\Http\Livewire\Customer;
+namespace App\Http\Livewire\Customer\Modals;
 
 use App\Models\Customer;
 use Illuminate\Contracts\View\View;
 use LivewireUI\Modal\ModalComponent;
 
 
-class EditModal extends ModalComponent
+class EditCustomerModal extends ModalComponent
 {
     public string $name;
     public string $phone;
     public string $type;
-    public string $taxable;
+    public int $taxable;
 
     public Customer $customer;
 
@@ -23,7 +23,7 @@ class EditModal extends ModalComponent
         $this->customer = Customer::findOrFail($customerId);
 
         $this->name = $this->customer->name;
-        $this->phone = $this->customer->getRawOriginal('phone');
+        $this->phone = $this->customer->phone;
         $this->type = $this->customer->getRawOriginal('type');
         $this->taxable = $this->customer->taxable;
     }
@@ -42,7 +42,9 @@ class EditModal extends ModalComponent
             'phone.phone' => 'Must be a valid North American phone number.',
             'type.required' => 'Please choose a type.',
         ]);
-
+        if ($this->taxable !== 1) {
+            $this->taxable = 0;
+        }
         $this->customer->name = $this->name;
         $this->customer->phone = $this->phone;
         $this->customer->type = $this->type;
@@ -67,19 +69,15 @@ class EditModal extends ModalComponent
                 'text' => 'You did not modify any fields. Nothing was changed.',
                 'toast' =>  true,
                 'timer' => '3000',
-                'html' => view('components.test')->render(),
                 'showCancelButton' =>  false,
                 'showConfirmButton' =>  false,
             ]);
         }
-
-
-        // return redirect()->to(route('customers.show', $this->customer->id));
     }
 
     public function render(): View
     {
-        return view('livewire.customer.edit-modal');
+        return view('livewire.customer.modals.edit-customer-modal');
     }
 
     public static function bsModalTitle(): string

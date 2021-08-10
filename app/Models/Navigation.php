@@ -5,9 +5,13 @@ namespace App\Models;
 use App\Enums\UserType;
 use BenSampo\Enum\Traits\CastsEnums;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Notifications\DatabaseNotification;
+use Illuminate\Notifications\DatabaseNotificationCollection;
+use Illuminate\Support\Carbon;
 use Spatie\EloquentSortable\Sortable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
@@ -19,8 +23,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * App\Navigation
  *
  * @property int $id
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
  * @property int $parent_id
  * @property string $title
  * @property string $icon
@@ -29,7 +33,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property UserType $user_level
  * @property int $order_id
  * @property-read Navigation $parent
- * @property-read \Illuminate\Database\Eloquent\Collection|Navigation[] $subcategories
+ * @property-read Collection|Navigation[] $subcategories
  * @property-read int|null $subcategories_count
  * @method static Builder|Navigation newModelQuery()
  * @method static Builder|Navigation newQuery()
@@ -47,10 +51,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @mixin \Eloquent
  * @property int $navigation_type_id
  * @property int $order_column
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\NavigationChild[] $children
+ * @property-read Collection|NavigationChild[] $children
  * @property-read int|null $children_count
  * @property-read mixed $level
- * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
+ * @property-read DatabaseNotificationCollection|DatabaseNotification[] $notifications
  * @property-read int|null $notifications_count
  * @method static Builder|Navigation ordered(string $direction = 'asc')
  * @method static Builder|Navigation whereNavigationTypeId($value)

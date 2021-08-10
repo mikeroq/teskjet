@@ -4,9 +4,13 @@ namespace App\Models;
 
 use App\Enums\UserType;
 use BenSampo\Enum\Traits\CastsEnums;
+use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Notifications\DatabaseNotification;
+use Illuminate\Notifications\DatabaseNotificationCollection;
+use Illuminate\Support\Carbon;
 use Spatie\EloquentSortable\Sortable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
@@ -18,17 +22,17 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * App\Models\NavigationChild
  *
  * @property int $id
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
  * @property int $navigation_id
  * @property string $title
  * @property string|null $url
  * @property UserType $user_level
  * @property int $order_column
  * @property-read mixed $level
- * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
+ * @property-read DatabaseNotificationCollection|DatabaseNotification[] $notifications
  * @property-read int|null $notifications_count
- * @property-read \App\Models\Navigation $parent
+ * @property-read Navigation $parent
  * @method static Builder|NavigationChild newModelQuery()
  * @method static Builder|NavigationChild newQuery()
  * @method static Builder|NavigationChild ordered(string $direction = 'asc')
@@ -41,7 +45,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @method static Builder|NavigationChild whereUpdatedAt($value)
  * @method static Builder|NavigationChild whereUrl($value)
  * @method static Builder|NavigationChild whereUserLevel($value)
- * @mixin \Eloquent
+ * @mixin Eloquent
  */
 class NavigationChild extends Model implements Sortable
 {

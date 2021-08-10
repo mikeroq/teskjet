@@ -11,8 +11,8 @@ use BenSampo\Enum\Contracts\LocalizedEnum;
  */
 final class UserType extends Enum implements LocalizedEnum
 {
-    const ADMIN = 9;
-    const USER = 0;
+    public const ADMIN = 9;
+    public const USER = 0;
 
     public function toArray()
     {

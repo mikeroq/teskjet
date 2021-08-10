@@ -10,13 +10,13 @@
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('/assets/favicons/favicon-16x16.png') }}">
     <link rel="manifest" href="{{ asset('/assets/favicons/site.webmanifest) }}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
-    <link rel="stylesheet" id="css-main" href="{{ asset('/assets/css/oneui.css') }}">
-    <link rel="stylesheet" id="css-theme" href="{{ asset('/assets/css/themes/amethyst.css') }}">
+    <link rel="stylesheet" id="css-main" href="/assets/css/oneui.css">
+    <link rel="stylesheet" id="css-theme" href="/assets/css/themes/amethyst.css">
 </head>
 <body>
 <div id="page-container" class="dark-mode">
     <main id="main-container">
-        <div class="bg-image" style="background-image: url('{{ asset('/assets/media/photos/photo16@2x.jpg') }}');">
+        <div class="bg-image" style="background-image: url('/assets/media/photos/photo16@2x.jpg');">
             <div class="hero bg-primary-dark-op align-items-sm-end">
                 <div class="hero-inner">
                     <div class="content content-full">
