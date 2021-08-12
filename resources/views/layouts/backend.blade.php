@@ -24,21 +24,19 @@
     <link rel="stylesheet" href="/assets/css/bootstrap-side-modals.css" />
     <link rel="stylesheet" href="/assets/css/sweetalert2.dark.min.css">
     <link rel="stylesheet" href="/assets/css/ico.css">
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/styles/base16/dracula.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/styles/atom-one-dark.min.css">
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/highlight.min.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/easymde/dist/easymde.min.css">
     <script src="https://unpkg.com/easymde/dist/easymde.min.js"></script>
-    <script>hljs.highlightAll();</script>
     @yield('css_after')
     @livewireStyles
-
     <script>
+        hljs.highlightAll();
         window.Laravel = {!! json_encode(['csrfToken' => csrf_token()]) !!};
     </script>
 </head>
 <body>
-    <div id="page-container"
-        class="sidebar-o enable-page-overlay sidebar-dark side-scroll page-header-fixed page-header-dark dark-mode">
+    <div id="page-container" class="sidebar-o enable-page-overlay sidebar-dark side-scroll page-header-fixed page-header-dark dark-mode">
         @if (request()->is('admin*'))
             <x-admin-navigation></x-admin-navigation>
         @elseif (request()->is('user*'))

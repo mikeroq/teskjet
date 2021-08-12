@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Carbon;
 use Propaganistas\LaravelPhone\Casts\E164PhoneNumberCast;
+use Propaganistas\LaravelPhone\PhoneNumber;
 use Venturecraft\Revisionable\RevisionableTrait;
 
 /**
@@ -66,6 +67,11 @@ class CustomerLocation extends Model
     public function customer(): BelongsTo
     {
         return $this->belongsTo('App\Models\Customer');
+    }
+
+    public function getPhoneAttribute($attribute): string
+    {
+        return PhoneNumber::make($attribute, 'US')->formatNational();
     }
 
     protected bool $revisionCreationsEnabled = true;

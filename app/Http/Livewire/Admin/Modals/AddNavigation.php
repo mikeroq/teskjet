@@ -66,14 +66,13 @@ class AddNavigation extends ModalComponent
             NavigationChild::create($insert);
         }
 
-        $this->title = '';
-        $this->icon = '';
-        $this->url = '';
-        $this->user_level = '0';
-
-        $this->forceClose()->closeModal();
-
-        $this->emit('refreshNavigationTable');
+        $this->reset([
+            'title',
+            'icon',
+            'url',
+            'user_level'
+        ]);
+        $this->forceClose()->closeModalWithEvents(['refreshNavigationTable']);
         $this->alert('success', 'Added Navigation', [
             'timer' =>  '2000'
         ]);

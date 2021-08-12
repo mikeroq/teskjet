@@ -10,8 +10,7 @@
     <div class="alert alert-warning">@lang('comments::comments.there_are_no_comments')</div>
 @endif
 
-<x-block>
-    <table class="table table-borderless">
+
         @php
             $comments = $comments->sortByDesc('created_at');
 
@@ -53,27 +52,26 @@
                 @endforeach
             @endif
         @endforeach
-    </table>
-</x-block>
+
 
 @isset ($perPage)
     {{ $grouped_comments->links() }}
 @endisset
-<x-block>
-    @auth
-        @include('comments::_form')
-    @elseif(Config::get('comments.guest_commenting') == true)
-        @include('comments::_form', [
-            'guest_commenting' => true
-        ])
-    @else
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">@lang('comments::comments.authentication_required')</h5>
-                <p class="card-text">@lang('comments::comments.you_must_login_to_post_a_comment')</p>
-                <a href="{{ route('login') }}" class="btn btn-primary">@lang('comments::comments.log_in')</a>
-            </div>
+
+@auth
+    @include('comments::_form')
+@elseif(Config::get('comments.guest_commenting') == true)
+    @include('comments::_form', [
+        'guest_commenting' => true
+    ])
+@else
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">@lang('comments::comments.authentication_required')</h5>
+            <p class="card-text">@lang('comments::comments.you_must_login_to_post_a_comment')</p>
+            <a href="{{ route('login') }}" class="btn btn-primary">@lang('comments::comments.log_in')</a>
         </div>
-    @endauth
-</x-block>
+    </div>
+@endauth
+
 

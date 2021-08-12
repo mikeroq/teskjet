@@ -4,46 +4,33 @@
     $markdown->setSafeMode(true);
     $markdown->setBreaksEnabled(true)
 @endphp
-<tbody id="comment-{{ $comment->getKey() }}">
-    <tr class="bg-body-light align-middle">
-        <td></td>
-        <td>
-            <div class="d-flex flex-row justify-content-between">
-                <div class="align-middle">
-                    <a href="" class="align-middle">{{ $comment->commenter->name }}</a> <span class="text-muted align-middle">{{ $comment->created_at->diffForHumans() }}</span>
-                </div>
-
-                <div class="dropdown" id="comment-dropdown-{{ $comment->getKey() }}">
-                    <button type="button" class="btn btn-sm btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fa fa-cog fa-fw mr-1"></i>
-                    </button>
-                    <div class="dropdown-menu dropdown-menu-right fs-sm">
-                        @can('edit comment', $comment)
-                            <button data-bs-toggle="modal" data-bs-target="#comment-modal-{{ $comment->getKey() }}" class="dropdown-item">@lang('comments::comments.edit')</button>
-                        @endcan
-                        @can('delete comment', $comment)
-                            <a href="{{ route('comments.destroy', $comment->getKey()) }}" onclick="event.preventDefault();document.getElementById('comment-delete-form-{{ $comment->getKey() }}').submit();" class="dropdown-item">@lang('comments::comments.delete')</a>
-                            <form id="comment-delete-form-{{ $comment->getKey() }}" action="{{ route('comments.destroy', $comment->getKey()) }}" method="POST" style="display: none;">
-                                @method('DELETE')
-                                @csrf
-                            </form>
-                        @endcan
-                    </div>
-                </div>
+<div class="block">
+    <div class="block-header block-header-default">
+        <h3 class="block-title">{{ $comment->commenter->name }} <small>{{ $comment->created_at->diffForHumans() }}</small></h3>
+        <div class="dropdown" id="comment-dropdown-{{ $comment->getKey() }}">
+            <button type="button" class="btn btn-sm btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fa fa-cog fa-fw mr-1"></i>
+            </button>
+            <div class="dropdown-menu dropdown-menu-right fs-sm">
+                @can('edit comment', $comment)
+                    <button data-bs-toggle="modal" data-bs-target="#comment-modal-{{ $comment->getKey() }}" class="dropdown-item">@lang('comments::comments.edit')</button>
+                @endcan
+                @can('delete comment', $comment)
+                    <a href="{{ route('comments.destroy', $comment->getKey()) }}" onclick="event.preventDefault();document.getElementById('comment-delete-form-{{ $comment->getKey() }}').submit();" class="dropdown-item">@lang('comments::comments.delete')</a>
+                    <form id="comment-delete-form-{{ $comment->getKey() }}" action="{{ route('comments.destroy', $comment->getKey()) }}" method="POST" style="display: none;">
+                        @method('DELETE')
+                        @csrf
+                    </form>
+                @endcan
             </div>
-
-        </td>
-    </tr>
-    <tr>
-        <td class="d-none d-sm-table-cell text-center" style="width: 140px;">
-            <p>
-                <a href="">
-                    <img class="img-avatar" src="https://www.gravatar.com/avatar/{{ md5($comment->commenter->email ?? $comment->guest_email) }}.jpg?s=64" alt="">
-                </a>
-            </p>
-            <p class="fs-sm fw-medium">{{ $comment->commenter->email }}</p>
-        </td>
-        <td>
+        </div>
+    </div>
+    <div class="block-content row p-0">
+        <div class="bg-black-10 col-2">
+            <img class="img-avatar" src="{{ $comment->commenter->profile_photo_url }}" alt=""><br />
+            <p>{{ $comment->commenter->email }}</p>
+        </div>
+        <div class="col p-3">
             {!! $markdown->text($comment->comment) !!}
             @can('edit comment', $comment)
                 <div class="modal fade" id="comment-modal-{{ $comment->getKey() }}" tabindex="-1" role="dialog">
@@ -94,9 +81,12 @@
                     ])
                 @endforeach
             @endif
-        </td>
-    </tr>
-</tbody>
+
+        </div>
+    </div>
+</div>
+
+
 {{-- Recursion for children --}}
 @if($grouped_comments->has($comment->getKey()) && $indentationLevel > $maxIndentationLevel)
     {{-- TODO: Don't repeat code. Extract to a new file and include it. --}}

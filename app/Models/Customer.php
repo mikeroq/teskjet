@@ -27,6 +27,9 @@ use Propaganistas\LaravelPhone\Casts\E164PhoneNumberCast;
  * @property string $phone
  * @property string $type
  * @property bool $taxable
+ * @property int $default_address
+ * @property int $shipping_address
+ * @property int $billing_address
  * @property-read mixed $displayable_taxable
  * @method static \Illuminate\Database\Eloquent\Builder|Customer newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Customer newQuery()
@@ -61,7 +64,10 @@ class Customer extends Model
         'name',
         'phone',
         'type',
-        'taxable'
+        'taxable',
+        'default_address',
+        'shipping_address',
+        'billing_address'
     ];
 
     protected $casts = [

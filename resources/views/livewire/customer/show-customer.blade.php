@@ -67,7 +67,7 @@
                         <h1 class="mb-0">
                             <span>{{ $customer->name }}</span>
                         </h1>
-                        <p class="fw-medium text-muted">{{ $customer->formatted_phone }}</p>
+                        <p class="fw-medium text-muted">{{ $customer->phone }}</p>
                     </div>
                 </div>
                 <div class="block-content bg-body-light text-center">
@@ -92,40 +92,35 @@
             <div class="block block-rounded">
                 <div class="block-content">
                     <div class="row">
-                        <div class="col-lg-6">
-                            <!-- Billing Address -->
-                            <div class="block block-rounded block-bordered">
-                                <div class="block-header border-bottom">
-                                    <h3 class="block-title">Billing Address</h3>
-                                </div>
-                                <div class="block-content">
-                                    <address class="fs-sm">
-                                        Supported Community Lifestyles<br>
-                                        Attn: Accounting Department<br>
-                                        P.O. Box 429<br>
-                                        Ponca City, OK 74602
-                                    </address>
-                                </div>
-                            </div>
-                            <!-- END Billing Address -->
-                        </div>
-                        <div class="col-lg-6">
-                            <!-- Shipping Address -->
-                            <div class="block block-rounded block-bordered">
-                                <div class="block-header border-bottom">
-                                    <h3 class="block-title">Shipping Address</h3>
-                                </div>
-                                <div class="block-content">
-                                    <address class="fs-sm">
-                                        Supported Community Lifestyles<br>
-                                        Attn: Receiving Department<br>
-                                        419 East Grand Ave<br>
-                                        Ponca City, OK 74601
-                                    </address>
+                        @foreach($customer->locations as $location)
+                            <div class="col-lg-6">
+                                <div class="block block-rounded block-bordered">
+                                    <div class="block-header block-header-default">
+                                        <h3 class="block-title">Address</h3>
+                                        <div class="block-options">
+                                            <button type="button" class="btn-block-option">
+                                                <i class="fas fa-home"></i>
+                                            </button>
+                                            <button type="button" class="btn-block-option">
+                                                <i class="fas fa-truck"></i>
+                                            </button>
+                                            <button type="button" class="btn-block-option">
+                                                <i class="fas fa-dollar-sign"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="block-content">
+                                        <address class="fs-sm">
+                                            @if($location->name) {{ $location->name }} @else {{ $customer->name }} @endif<br>
+                                            {{ $location->address }}<br>
+                                            @if($location->address_2) {{ $location->address_2 }}<br> @endif
+                                            {{ $location->city }}, {{ $location->state }} {{ $location->zip }}<br>
+                                            {{ $location->phone }}
+                                        </address>
+                                    </div>
                                 </div>
                             </div>
-                            <!-- END Shipping Address -->
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
