@@ -98,8 +98,8 @@
                                     <div class="block-header block-header-default">
                                         <h3 class="block-title">Address</h3>
                                         <div class="block-options">
-                                            <button type="button" class="btn-block-option">
-                                                <i class="fas fa-home"></i>
+                                            <button type="button" class="btn-block-option" wire:click="triggerLocationDelete({{ $location->id }})">
+                                                <i class="fas fa-trash"></i>
                                             </button>
                                             <button type="button" class="btn-block-option">
                                                 <i class="fas fa-truck"></i>
