@@ -62,52 +62,54 @@
                     <div class="row">
                         @foreach($customer->locations as $location)
                             <div class="col-lg-6">
-                                <div class="block block-rounded block-bordered">
-                                    <div class="block-header block-header-default">
-                                        <h3 class="block-title">Address</h3>
+                                <x-block title="Address" class="block-bordered block-rounded">
+                                    <x-slot name="options">
                                         <div class="block-options">
-                                            <button type="button" class="btn-block-option" wire:click="$emit('openModal', 'customer.modals.edit-location-modal', {{ json_encode(['locationId' => $location->id], JSON_THROW_ON_ERROR) }})">
+                                            <button type="button" class="btn-block-option" wire:click="$emit('openModal', 'customer.modals.edit-location-modal', {{ json_encode(['locationId' => $location->id], JSON_THROW_ON_ERROR) }})" title="Edit address">
                                                 <i class="fa fa-pencil"></i>
                                             </button>
-                                            <button type="button" class="btn-block-option" wire:click="triggerLocationDelete({{ $location->id }})">
+                                            <button type="button" class="btn-block-option" wire:click="triggerLocationDelete({{ $location->id }})" title="Delete address">
                                                 <i class="fas fa-trash"></i>
                                             </button>
-                                            @if($customer->default_address !== $location->id)
-                                            <button type="button" class="btn-block-option" wire:click="setDefaultAddress({{ $location->id }})">
+                                        </div>
+                                    </x-slot>
+                                    <address>
+                                        @if($location->name) {{ $location->name }}<br> @endif
+                                        {{ $location->address }}<br>
+                                        @if($location->address_2) {{ $location->address_2 }}<br> @endif
+                                        {{ $location->city }}, {{ $location->state }} {{ $location->zip }}<br>
+                                        {{ $location->phone }}
+                                    </address>
+                                    <x-slot name="footer">
+                                        @if($customer->default_address === $location->id)
+                                            <button type="button" class="btn-block-option btn-block-option-disabled disabled" title="Primary address" disabled>
                                                 <i class="fas fa-star"></i>
                                             </button>
-                                            @endif
-                                            @if($customer->shipping_address !== $location->id)
-                                                <button type="button" class="btn-block-option" wire:click="setShippingAddress({{ $location->id }})">
-                                                    <i class="fas fa-truck"></i>
-                                                </button>
-                                            @endif
-                                            @if($customer->billing_address !== $location->id)
-                                                <button type="button" class="btn-block-option" wire:click="setBillingAddress({{ $location->id }})">
-                                                    <i class="fas fa-dollar-sign"></i>
-                                                </button>
-                                            @endif
-                                        </div>
-                                    </div>
-                                    <div class="block-content">
-                                        <address class="fs-sm">
-                                            @if($location->name) {{ $location->name }}<br> @endif
-                                            {{ $location->address }}<br>
-                                            @if($location->address_2) {{ $location->address_2 }}<br> @endif
-                                            {{ $location->city }}, {{ $location->state }} {{ $location->zip }}<br>
-                                            {{ $location->phone }}
-                                            @if($customer->default_address === $location->id)
-                                            <br><b>Default Address</b>
-                                            @endif
-                                            @if($customer->shipping_address === $location->id)
-                                            <br><b>Shipping Address</b>
-                                            @endif
-                                            @if($customer->billing_address === $location->id)
-                                            <br><b>Billing Address</b>
-                                            @endif
-                                        </address>
-                                    </div>
-                                </div>
+                                        @else
+                                            <button type="button" class="btn-block-option btn-block-faded" wire:click="setDefaultAddress({{ $location->id }})" title="Set as primary address">
+                                                <i class="fas fa-star"></i>
+                                            </button>
+                                        @endif
+                                        @if($customer->shipping_address === $location->id)
+                                            <button type="button" class="btn-block-option btn-block-option-disabled  disabled" title="Shipping address" disabled>
+                                                <i class="fas fa-truck"></i>
+                                            </button>
+                                        @else
+                                            <button type="button" class="btn-block-option btn-block-faded" wire:click="setShippingAddress({{ $location->id }})" title="Set as shipping address">
+                                                <i class="fas fa-truck"></i>
+                                            </button>
+                                        @endif
+                                        @if($customer->billing_address === $location->id)
+                                            <button type="button" class="btn-block-option btn-block-option-disabled  disabled" title="Billing address" disabled>
+                                                <i class="fas fa-dollar-sign"></i>
+                                            </button>
+                                        @else
+                                            <button type="button" class="btn-block-option btn-block-faded" wire:click="setBillingAddress({{ $location->id }})" title="Set as billing address">
+                                                <i class="fas fa-dollar-sign"></i>
+                                            </button>
+                                        @endif
+                                    </x-slot>
+                                </x-block>
                             </div>
                         @endforeach
                     </div>
