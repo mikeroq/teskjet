@@ -41,12 +41,9 @@ class CreateLocationModal extends ModalComponent
             'zip' => 'required',
             'phone' => 'nullable|phone:AUTO,US'
         ],
-            [
-                'name.required' => 'The name cannot be empty.',
-                'phone.required' => 'The phone cannot be empty.',
-                'phone.phone' => 'Must be a valid North American phone number.',
-                'type.required' => 'Please choose a type.',
-            ]);
+        [
+            'phone.phone' => 'Must be a valid North American phone number.',
+        ]);
         $validated['customer_id'] = $this->customer->id;
         $location = CustomerLocation::create($validated);
 
@@ -65,7 +62,7 @@ class CreateLocationModal extends ModalComponent
         ]);
 
         $this->emit('customerShowRefresh');
-        $this->closeModal();
+        $this->forceClose()->closeModal();
         $this->reset([
             'name',
             'address',

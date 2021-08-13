@@ -17,50 +17,18 @@
     </x-page-header>
     <div class="content mb-0 p-0 sticky-top sticky-offset">
         <ul class="nav nav-tabs nav-tabs-block" id="tabs" role="tablist">
-            <li class="nav-item">
-                <button :class="{ 'active': tab === '#overview' }" class="nav-link" role="tab" aria-controls="overview" x-on:click.prevent="tab='#overview'; window.location.hash = '#overview' " id="overview-tab">
-                    Overview
-                </button>
-            </li>
-            <li class="nav-item">
-                <button :class="{ 'active': tab === '#addresses' }" class="nav-link" role="tab" aria-controls="addresses" x-on:click.prevent="tab='#addresses'; window.location.hash = '#addresses'" id="addresses-tab">
-                    Addresses
-                </button>
-            </li>
-            <li class="nav-item">
-                <button :class="{ 'active': tab === '#contacts' }" class="nav-link" role="tab" aria-controls="contacts" x-on:click.prevent="tab='#contacts'; window.location.hash = '#contacts'" id="contacts-tab">
-                    Contacts
-                </button>
-            </li>
-            <li class="nav-item">
-                <button :class="{ 'active': tab === '#tickets' }" class="nav-link" role="tab" aria-controls="tickets" x-on:click.prevent="tab='#tickets'; window.location.hash = '#tickets'" id="tickets-tab">
-                    Tickets
-                </button>
-            </li>
-            <li class="nav-item">
-                <button :class="{ 'active': tab === '#devices' }" class="nav-link" role="tab" aria-controls="devices" x-on:click.prevent="tab='#devices'; window.location.hash = '#devices'" id="devices-tab">
-                    Devices
-                </button>
-            </li>
-            <li class="nav-item">
-                <button :class="{ 'active': tab === '#licenses' }" class="nav-link" role="tab" aria-controls="licenses" x-on:click.prevent="tab='#licenses'; window.location.hash = '#licenses'" id="ticklicenses">
-                    Licenses
-                </button>
-            </li>
-            <li class="nav-item">
-                <button :class="{ 'active': tab === '#notes' }" class="nav-link" role="tab" aria-controls="notes" x-on:click.prevent="tab='#notes'; window.location.hash = '#notes'" id="notes-tab">
-                    Notes
-                </button>
-            </li>
-            <li class="nav-item ms-auto">
-                <button :class="{ 'active': tab === '#history' }" class="nav-link" role="tab" aria-controls="history" x-on:click.prevent="tab='#history'; window.location.hash = '#history'" id="history-tab">
-                    Revisions
-                </button>
-            </li>
+            <x-tab-button id="overview" name="Overview"/>
+            <x-tab-button id="addresses" name="Addresses"/>
+            <x-tab-button id="contacts" name="Contacts"/>
+            <x-tab-button id="tickets" name="Tickets"/>
+            <x-tab-button id="devices" name="Devices"/>
+            <x-tab-button id="licenses" name="Licenses"/>
+            <x-tab-button id="notes" name="Notes"/>
+            <x-tab-button id="history" name="History" class="ms-auto"/>
         </ul>
     </div>
     <div class="content tab-content">
-        <div x-show="tab == '#overview'" x-cloak id="overview" role="tabpanel" aria-labelledby="overview-tab">
+        <x-tab-pane id="overview">
             <div class="block block-rounded">
                 <div class="block-content text-center">
                     <div class="py-4">
@@ -87,8 +55,8 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div x-show="tab == '#addresses'" id="addresses" role="tabpanel" aria-labelledby="addresses-tab">
+        </x-tab-pane>
+        <x-tab-pane id="addresses">
             <div class="block block-rounded">
                 <div class="block-content">
                     <div class="row">
@@ -98,24 +66,45 @@
                                     <div class="block-header block-header-default">
                                         <h3 class="block-title">Address</h3>
                                         <div class="block-options">
+                                            <button type="button" class="btn-block-option" wire:click="$emit('openModal', 'customer.modals.edit-location-modal', {{ json_encode(['locationId' => $location->id], JSON_THROW_ON_ERROR) }})">
+                                                <i class="fa fa-pencil"></i>
+                                            </button>
                                             <button type="button" class="btn-block-option" wire:click="triggerLocationDelete({{ $location->id }})">
                                                 <i class="fas fa-trash"></i>
                                             </button>
-                                            <button type="button" class="btn-block-option">
-                                                <i class="fas fa-truck"></i>
+                                            @if($customer->default_address !== $location->id)
+                                            <button type="button" class="btn-block-option" wire:click="setDefaultAddress({{ $location->id }})">
+                                                <i class="fas fa-star"></i>
                                             </button>
-                                            <button type="button" class="btn-block-option">
-                                                <i class="fas fa-dollar-sign"></i>
-                                            </button>
+                                            @endif
+                                            @if($customer->shipping_address !== $location->id)
+                                                <button type="button" class="btn-block-option" wire:click="setShippingAddress({{ $location->id }})">
+                                                    <i class="fas fa-truck"></i>
+                                                </button>
+                                            @endif
+                                            @if($customer->billing_address !== $location->id)
+                                                <button type="button" class="btn-block-option" wire:click="setBillingAddress({{ $location->id }})">
+                                                    <i class="fas fa-dollar-sign"></i>
+                                                </button>
+                                            @endif
                                         </div>
                                     </div>
                                     <div class="block-content">
                                         <address class="fs-sm">
-                                            @if($location->name) {{ $location->name }} @else {{ $customer->name }} @endif<br>
+                                            @if($location->name) {{ $location->name }}<br> @endif
                                             {{ $location->address }}<br>
                                             @if($location->address_2) {{ $location->address_2 }}<br> @endif
                                             {{ $location->city }}, {{ $location->state }} {{ $location->zip }}<br>
                                             {{ $location->phone }}
+                                            @if($customer->default_address === $location->id)
+                                            <br><b>Default Address</b>
+                                            @endif
+                                            @if($customer->shipping_address === $location->id)
+                                            <br><b>Shipping Address</b>
+                                            @endif
+                                            @if($customer->billing_address === $location->id)
+                                            <br><b>Billing Address</b>
+                                            @endif
                                         </address>
                                     </div>
                                 </div>
@@ -124,23 +113,23 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div x-show="tab == '#contacts'" id="contacts" role="tabpanel" aria-labelledby="contacts-tab">
+        </x-tab-pane>
+        <x-tab-pane id="contacts">
             <x-block><p>Contacts</p></x-block>
-        </div>
-        <div x-show="tab == '#tickets'" id="tickets" role="tabpanel" aria-labelledby="tickets-tab">
+        </x-tab-pane>
+        <x-tab-pane id="tickets">
             <x-block><p>Tickets</p></x-block>
-        </div>
-        <div x-show="tab == '#devices'" id="devices" role="tabpanel" aria-labelledby="devices-tab">
+        </x-tab-pane>
+        <x-tab-pane id="devices">
             <x-block><p>Devices</p></x-block>
-        </div>
-        <div x-show="tab == '#licenses'" id="licenses" role="tabpanel" aria-labelledby="licenses-tab">
+        </x-tab-pane>
+        <x-tab-pane id="licenses">
             <x-block><p>Licenses</p></x-block>
-        </div>
-        <div x-show="tab == '#notes'" id="notes" role="tabpanel" aria-labelledby="notes-tab">
+        </x-tab-pane>
+        <x-tab-pane id="notes">
             @comments(['model' => $customer])
-        </div>
-        <div x-show="tab == '#history'" id="history" role="tabpanel" aria-labelledby="history-tab">
+        </x-tab-pane>
+        <x-tab-pane id="history">
             <x-block>
                 <table class="table table-striped">
                     <thead>
@@ -153,13 +142,11 @@
                     <tbody>
                     @foreach ($customer->revisionHistory()->orderBy('created_at', 'desc')->get() as $history)
                         <tr>
-                            <td>{{ $history->created_at->setTimezone(auth()->user()->timezone)->format('Y-m-d h:i a') }}
-                            </td>
-                            @if ($history->key == 'created_at' && !$history->old_value)
+                            <td>{{ $history->created_at->setTimezone(auth()->user()->timezone)->format('Y-m-d h:i a') }}</td>
+                            @if ($history->key === 'created_at' && !$history->old_value)
                                 <td>Created Customer</td>
                             @else
-                                <td>{{ $history->fieldName() }} was changed from {{ $history->oldValue() }} to
-                                    {{ $history->newValue() }}</td>
+                                <td>{{ $history->fieldName() }} was changed from {{ $history->oldValue() }} to {{ $history->newValue() }}</td>
                             @endif
                             <td>{{ $history->userResponsible()->name }}</td>
                         </tr>
@@ -167,6 +154,6 @@
                     </tbody>
                 </table>
             </x-block>
-        </div>
+        </x-tab-pane>
     </div>
 </div>

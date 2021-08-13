@@ -42,7 +42,7 @@ class CreateCustomerModal extends ModalComponent
             'showConfirmButton' =>  false,
         ]);
 
-        $this->closeModal();
+        $this->forceClose()->closeModal();
         $this->reset();
         return redirect()->to(route('customers.show', $customer->id));
     }

@@ -16,7 +16,10 @@ class EditCustomerModal extends ModalComponent
 
     public Customer $customer;
 
-
+    public static function bsModalTitle(): string
+    {
+        return 'Editing Customer';
+    }
 
     public function mount(int $customerId): void
     {
@@ -62,7 +65,7 @@ class EditCustomerModal extends ModalComponent
 
             $this->emit('customerShowRefresh');
             $this->dispatchBrowserEvent('update-title', ['title' => $this->customer->name . ' - Viewing Customer - ' . config('app.name')]);
-            $this->closeModal();
+            $this->forceClose()->closeModal();
         } else {
             $this->alert('info', 'Notice', [
                 'position' =>  'top-end',
@@ -78,11 +81,6 @@ class EditCustomerModal extends ModalComponent
     public function render(): View
     {
         return view('livewire.customer.modals.edit-customer-modal');
-    }
-
-    public static function bsModalTitle(): string
-    {
-        return 'Editing Customer';
     }
 }
 
