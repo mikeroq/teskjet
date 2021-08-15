@@ -146,11 +146,16 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function isAdmin(): bool
     {
-        return $this->user_level->value === UserType::ADMIN;
+        return $this->hasRole('Admin');
     }
 
     public function getLevelAttribute()
     {
         return $this->user_level->description;
+    }
+
+    public function getUserRolesAttribute()
+    {
+        return $this->getRoleNames()->implode(', ');
     }
 }

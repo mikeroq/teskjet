@@ -37,6 +37,7 @@
 </head>
 <body>
     <div id="page-container" class="sidebar-o enable-page-overlay sidebar-dark side-scroll page-header-fixed page-header-dark dark-mode">
+
         @if (request()->is('admin*'))
             <x-admin-navigation></x-admin-navigation>
         @elseif (request()->is('user*'))
@@ -100,6 +101,7 @@
                 </div>
             </div>
         </footer>
+            @livewire('livewire-ui-spotlight')
     </div>
     <script src="{{ mix('js/oneui.app.js') }}"></script>
     <script src="{{ mix('js/laravel.app.js') }}" defer></script>
@@ -108,6 +110,7 @@
     @stack('modal')
     @livewireScripts
     @livewire('livewire-ui-modal')
+
     @livewireUIScripts
     <x-livewire-alert::scripts />
     <script>

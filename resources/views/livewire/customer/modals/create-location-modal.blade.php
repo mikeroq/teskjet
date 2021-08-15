@@ -21,7 +21,7 @@
                     <x-input wrapper="false" label="Zip" id="zip" wire:model="zip" required/>
                 </div>
             </div>
-            <x-input label="Phone" id="phone" wire:model="phone" required />
+            <x-input label="Phone" id="phone" wire:model="phone" />
         </div>
         <div class="modal-footer modal-footer-fixed bg-dark bg-black-10">
             <button type="submit" class="btn btn-primary">

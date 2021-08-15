@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b10f6123a6d83f089a7a7166c9feb850",
+    "content-hash": "d98ce6fd1556071040e4ace040210c35",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -3974,6 +3974,81 @@
                 "symlink": false,
                 "relative": true
             }
+        },
+        {
+            "name": "livewire-ui/spotlight",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/livewire-ui/spotlight.git",
+                "reference": "127657438778a0e01f5a30e99af41be72d3cf5cf"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/livewire-ui/spotlight/zipball/127657438778a0e01f5a30e99af41be72d3cf5cf",
+                "reference": "127657438778a0e01f5a30e99af41be72d3cf5cf",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/contracts": "^8.0",
+                "livewire-ui/livewire-ui": "^0.1.0",
+                "livewire/livewire": "^2.4",
+                "php": "^8.0",
+                "spatie/laravel-package-tools": "^1.4.3"
+            },
+            "require-dev": {
+                "brianium/paratest": "^6.2",
+                "nunomaduro/collision": "^5.3",
+                "orchestra/testbench": "^6.15",
+                "phpunit/phpunit": "^9.3",
+                "vimeo/psalm": "^4.4"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "LivewireUI\\Spotlight\\SpotlightServiceProvider"
+                    ],
+                    "aliases": {
+                        "Spotlight": "LivewireUI\\Spotlight\\SpotlightFacade"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "LivewireUI\\Spotlight\\": "src",
+                    "LivewireUI\\Spotlight\\Database\\Factories\\": "database/factories"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Philo Hermans",
+                    "email": "me@philohermans.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Livewire component that provides Spotlight/Alfred-like functionality to your Laravel application.",
+            "homepage": "https://github.com/livewire-ui/spotlight",
+            "keywords": [
+                "laravel",
+                "livewire-ui",
+                "spotlight"
+            ],
+            "support": {
+                "issues": "https://github.com/livewire-ui/spotlight/issues",
+                "source": "https://github.com/livewire-ui/spotlight/tree/1.0.0"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/livewire-ui",
+                    "type": "github"
+                }
+            ],
+            "time": "2021-06-25T15:02:33+00:00"
         },
         {
             "name": "livewire/livewire",

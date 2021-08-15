@@ -4,7 +4,7 @@
         <div class="modal-body">
             <x-input label="Location Name" id="name" wire:model="name" />
             <x-input label="Address" id="address" wire:model="address" required />
-            <x-input label="Address 2" id="address_2" wire:model="address2" />
+            <x-input label="Address 2" id="address_2" wire:model="address_2" />
             <div class="row g-4">
                 <div class="col-6">
                     <x-input wrapper="false" label="City" id="city" wire:model="city" required />

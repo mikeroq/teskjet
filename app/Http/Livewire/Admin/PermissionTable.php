@@ -5,9 +5,9 @@ namespace App\Http\Livewire\Admin;
 use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
-use App\Models\User;
+use Spatie\Permission\Models\Permission;
 
-class UserTable extends DataTableComponent
+class PermissionTable extends DataTableComponent
 {
 
     public function columns(): array
@@ -16,10 +16,13 @@ class UserTable extends DataTableComponent
             Column::make('Name')
                 ->sortable()
                 ->searchable(),
-            Column::make('Email')
+            Column::make('Description')
                 ->sortable()
                 ->searchable(),
-            Column::make('Roles', 'userRoles')
+            Column::make('Guard', 'guard_name')
+                ->sortable()
+                ->searchable(),
+            Column::make('Created At')
                 ->sortable()
                 ->searchable(),
         ];
@@ -27,6 +30,6 @@ class UserTable extends DataTableComponent
 
     public function query(): Builder
     {
-        return User::query();
+        return Permission::query();
     }
 }

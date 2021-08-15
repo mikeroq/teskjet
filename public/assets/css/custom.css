@@ -111,3 +111,57 @@
     opacity: .65 !important;
     color: #FFD700 !important;
 }
+
+.dark-mode .btn-block-option:focus, .dark-mode .btn-block-option:hover {
+    color: #a7afbc;
+    opacity: 1 !important;
+}
+
+.spotlight-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 100vh;
+
+}
+
+.spotlight-backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 100vh;
+    backdrop-filter: blur(2px);
+}
+
+.spotlight-absolute {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
+.transition-opacity {
+    transition-property: opacity;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+}
+
+
+.spotlight-relative {
+    position: relative;
+    width: 500px;
+}
+.z-2000 {
+    z-index: 2000 !important;
+}
+
+.force-focus {
+    background-color: #22242e !important;
+}

@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\PermissionController;
+use App\Http\Controllers\Admin\RoleController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\NavigationController;
@@ -40,6 +42,9 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::resource('/navigation', NavigationController::class);
         Route::resource('/brands', BrandController::class);
         Route::resource('/device-types', DeviceTypeController::class);
+        Route::get('/permissions', [PermissionController::class, 'index'])->name('admin.permissions');
+        Route::get('/roles', [RoleController::class, 'index'])->name('admin.roles');
+        Route::get('/roles/{role}', [RoleController::class, 'show'])->name('admin.roles.show');
         Route::get('/brands', [BrandController::class, 'index'])->name('admin.brands');
         Route::get('/device-types', [DeviceTypeController::class, 'index'])->name('admin.device_types');
     });

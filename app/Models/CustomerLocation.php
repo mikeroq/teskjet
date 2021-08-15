@@ -71,6 +71,9 @@ class CustomerLocation extends Model
 
     public function getPhoneAttribute($attribute): string
     {
+        if ($attribute === null) {
+            return '';
+        }
         return PhoneNumber::make($attribute, 'US')->formatNational();
     }
 

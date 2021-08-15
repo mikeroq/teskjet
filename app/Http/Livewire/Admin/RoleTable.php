@@ -5,9 +5,9 @@ namespace App\Http\Livewire\Admin;
 use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
-use App\Models\User;
+use Spatie\Permission\Models\Role;
 
-class UserTable extends DataTableComponent
+class RoleTable extends DataTableComponent
 {
 
     public function columns(): array
@@ -16,17 +16,25 @@ class UserTable extends DataTableComponent
             Column::make('Name')
                 ->sortable()
                 ->searchable(),
-            Column::make('Email')
+            Column::make('Description')
                 ->sortable()
                 ->searchable(),
-            Column::make('Roles', 'userRoles')
+            Column::make('Guard', 'guard_name')
+                ->sortable()
+                ->searchable(),
+            Column::make('Created At')
                 ->sortable()
                 ->searchable(),
         ];
     }
 
+    public function getTableRowUrl($row): string
+    {
+        return route('admin.roles.show', $row);
+    }
+
     public function query(): Builder
     {
-        return User::query();
+        return Role::query();
     }
 }

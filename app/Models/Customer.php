@@ -6,6 +6,7 @@ use App\Traits\ConvertTimezone;
 use Eloquent;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Carbon;
 use Laravelista\Comments\Commentable;
@@ -103,8 +104,31 @@ class Customer extends Model
         return $this->hasMany('App\Models\Ticket');
     }
 
+    public function primaryContact(): BelongsTo
+    {
+        return $this->belongsTo('App\Models\CustomerContact', 'primary_contact');
+    }
+
+    public function primaryAddress(): BelongsTo
+    {
+        return $this->belongsTo('App\Models\CustomerLocation', 'default_address');
+    }
+
+    public function shippingAddress(): BelongsTo
+    {
+        return $this->belongsTo('App\Models\CustomerLocation', 'shipping_address');
+    }
+
+    public function billingAddress(): BelongsTo
+    {
+        return $this->belongsTo('App\Models\CustomerLocation', 'billing_address');
+    }
+
     public function getPhoneAttribute($attribute): string
     {
+        if ($attribute === null) {
+            return '';
+        }
         return PhoneNumber::make($attribute, 'US')->formatNational();
     }
 
@@ -114,7 +138,10 @@ class Customer extends Model
         'phone'     => 'Phone',
         'type'      => 'Customer Type',
         'taxable'   => 'Tax Status',
-        'created_at'=> 'Record Created'
+        'created_at'=> 'Record Created',
+        'default_address' => 'Primary Address',
+        'shipping_address' => 'Shipping Address',
+        'billing_address' => 'Billing Address'
     ];
     protected array $revisionFormattedFields = [
         'taxable'     => 'boolean:Non Taxable|Taxable'

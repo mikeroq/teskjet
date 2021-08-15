@@ -27,31 +27,36 @@
             <x-tab-button id="history" name="History" class="ms-auto"/>
         </ul>
     </div>
-    <div class="content tab-content">
+    <div class="tab-content">
         <x-tab-pane id="overview">
-            <div class="block block-rounded">
-                <div class="block-content text-center">
-                    <div class="py-4">
-                        <h1 class="mb-0">
-                            <span>{{ $customer->name }}</span>
-                        </h1>
-                        <p class="fw-medium text-muted">{{ $customer->phone }}</p>
+            <div class="row g-0 flex-md-10-auto">
+                <div class="col-md-4 col-lg-5 col-xl-3 order-md-1 bg-body-dark">
+                    <div class="content">
+                        <div class="d-md-none push">
+                            <button type="button" class="btn btn-block btn-secondary" data-toggle="class-toggle" data-target="#side-content" data-class="d-none">
+                                Customer Details
+                            </button>
+                        </div>
+                        <div id="side-content" class="d-none d-md-block push">
+                            <h2 class="h4 font-w400 mb-3">About</h2>
+                            <table class="table table-striped table-borderless fs-sm">
+                                <tbody>
+                                <tr>
+                                    <td style="width: 20%;">Created</td>
+                                    <td class="text-end">{{ $customer->created_at->format(config('app.datetime_format')) }}</td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 20%;">Updated</td>
+                                    <td class="text-end">{{ $customer->updated_at }}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
-                <div class="block-content bg-body-light text-center">
-                    <div class="row items-push text-uppercase text-muted">
-                        <div class="col-6 col-md-4">
-                            <div class="fw-semibold text-dark mb-1">Customer Type</div>
-                            {{ $customer->type }}
-                        </div>
-                        <div class="col-6 col-md-4">
-                            <div class="fw-semibold text-dark mb-1">Taxable Status</div>
-                            {{ $customer->displayable_taxable }}
-                        </div>
-                        <div class="col-6 col-md-4">
-                            <div class="fw-semibold text-dark mb-1">Created</div>
-                            {{ $customer->created_at->format('Y-m-d h:i a') }}
-                        </div>
+                <div class="col-md-8 col-lg-7 col-xl-9 order-md-0">
+                    <div class="content content-full">
+
                     </div>
                 </div>
             </div>
@@ -59,28 +64,29 @@
         <x-tab-pane id="addresses">
             <div class="block block-rounded">
                 <div class="block-content">
-                    <div class="row">
-                        @foreach($customer->locations as $location)
-                            <div class="col-lg-6">
-                                <x-block title="Address" class="block-bordered block-rounded">
-                                    <x-slot name="options">
-                                        <div class="block-options">
-                                            <button type="button" class="btn-block-option" wire:click="$emit('openModal', 'customer.modals.edit-location-modal', {{ json_encode(['locationId' => $location->id], JSON_THROW_ON_ERROR) }})" title="Edit address">
-                                                <i class="fa fa-pencil"></i>
-                                            </button>
-                                            <button type="button" class="btn-block-option" wire:click="triggerLocationDelete({{ $location->id }})" title="Delete address">
-                                                <i class="fas fa-trash"></i>
-                                            </button>
-                                        </div>
-                                    </x-slot>
-                                    <address>
-                                        @if($location->name) {{ $location->name }}<br> @endif
-                                        {{ $location->address }}<br>
-                                        @if($location->address_2) {{ $location->address_2 }}<br> @endif
-                                        {{ $location->city }}, {{ $location->state }} {{ $location->zip }}<br>
-                                        {{ $location->phone }}
-                                    </address>
-                                    <x-slot name="footer">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover table-vcenter">
+                            <thead>
+                            <tr>
+                                <th>Location Name</th>
+                                <th>Address</th>
+                                <th>City</th>
+                                <th>State</th>
+                                <th>Zip</th>
+                                <th>Phone</th>
+                                <th class="text-end">Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($customer->locations as $location)
+                                <tr>
+                                    <td>@if($location->name) {{ $location->name }} @else {{ $customer->name }} @endif</td>
+                                    <td>{{ $location->address }}@if($location->address_2), {{$location->address_2 }}@endif</td>
+                                    <td>{{ $location->city }}</td>
+                                    <td>{{ $location->state }} </td>
+                                    <td>{{ $location->zip }}</td>
+                                    <td>@if($location->phone) {{ $location->phone }} @else {{ $customer->phone }} @endif</td>
+                                    <td class="text-end">
                                         @if($customer->default_address === $location->id)
                                             <button type="button" class="btn-block-option btn-block-option-disabled disabled" title="Primary address" disabled>
                                                 <i class="fas fa-star"></i>
@@ -108,10 +114,17 @@
                                                 <i class="fas fa-dollar-sign"></i>
                                             </button>
                                         @endif
-                                    </x-slot>
-                                </x-block>
-                            </div>
-                        @endforeach
+                                        <button type="button" class="btn-block-option" wire:click="$emit('openModal', 'customer.modals.edit-location-modal', {{ json_encode(['locationId' => $location->id], JSON_THROW_ON_ERROR) }})" title="Edit address">
+                                            <i class="fa fa-pencil"></i>
+                                        </button>
+                                        <button type="button" class="btn-block-option" wire:click="triggerLocationDelete({{ $location->id }})" title="Delete address">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
