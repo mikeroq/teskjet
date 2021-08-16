@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Storage;
 
 class GenerateNavigationService
 {
-    public static function generate()
+    public static function generate(): void
     {
         $navigation = Navigation::with(['children' => function($query) {
             $query->orderBy('order_column', 'ASC');}])->where('navigation_type_id', 1)->orderBy('order_column', 'ASC')->get();
