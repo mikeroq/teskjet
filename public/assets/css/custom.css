@@ -165,3 +165,122 @@
 .force-focus {
     background-color: #22242e !important;
 }
+
+.flex-00-auto {
+    -ms-flex: 0 0 auto;
+    flex: 0 0 auto;
+}
+
+.flex-10-auto {
+    -ms-flex: 1 0 auto;
+    flex: 1 0 auto;
+}
+
+@media (min-width: 576px) {
+    .flex-sm-00-auto {
+        -ms-flex: 0 0 auto;
+        flex: 0 0 auto;
+    }
+    .flex-sm-10-auto {
+        -ms-flex: 1 0 auto;
+        flex: 1 0 auto;
+    }
+}
+
+@media (min-width: 768px) {
+    .flex-md-00-auto {
+        -ms-flex: 0 0 auto;
+        flex: 0 0 auto;
+    }
+    .flex-md-10-auto {
+        -ms-flex: 1 0 auto;
+        flex: 1 0 auto;
+    }
+}
+
+@media (min-width: 992px) {
+    .flex-lg-00-auto {
+        -ms-flex: 0 0 auto;
+        flex: 0 0 auto;
+    }
+    .flex-lg-10-auto {
+        -ms-flex: 1 0 auto;
+        flex: 1 0 auto;
+    }
+}
+
+@media (min-width: 1200px) {
+    .flex-xl-00-auto {
+        -ms-flex: 0 0 auto;
+        flex: 0 0 auto;
+    }
+    .flex-xl-10-auto {
+        -ms-flex: 1 0 auto;
+        flex: 1 0 auto;
+    }
+}
+.order-md-0 {
+    -ms-flex-order: 0;
+    order: 0;
+}
+.order-md-1 {
+    -ms-flex-order: 1;
+    order: 1;
+}
+.order-md-2 {
+    -ms-flex-order: 2;
+    order: 2;
+}
+.order-md-3 {
+    -ms-flex-order: 3;
+    order: 3;
+}
+.order-md-4 {
+    -ms-flex-order: 4;
+    order: 4;
+}
+.order-md-5 {
+    -ms-flex-order: 5;
+    order: 5;
+}
+.order-md-6 {
+    -ms-flex-order: 6;
+    order: 6;
+}
+.order-md-7 {
+    -ms-flex-order: 7;
+    order: 7;
+}
+.order-md-8 {
+    -ms-flex-order: 8;
+    order: 8;
+}
+.order-md-9 {
+    -ms-flex-order: 9;
+    order: 9;
+}
+.order-md-10 {
+    -ms-flex-order: 10;
+    order: 10;
+}
+.order-md-11 {
+    -ms-flex-order: 11;
+    order: 11;
+}
+.order-md-12 {
+    -ms-flex-order: 12;
+    order: 12;
+}
+.dark-mode .nav-tabs-block .nav-link.active,
+.dark-mode .nav-tabs-block .nav-item.show .nav-link {
+    background-color: #252732 !important;
+}
+
+.dark-mode .form-check-input {
+    border: 0 !important;
+    background-color: #24252c !important;
+}
+
+.dark-mode .form-check-input:checked {
+    background-color: #151e31 !important;
+}

@@ -18,6 +18,7 @@
                 <tr>
                     <th>Link Name</th>
                     <th>URL Slug</th>
+                    <th>Hidden</th>
                     <th>User Level</th>
                     <th class="text-end">Actions</th>
                 </tr>
@@ -25,11 +26,12 @@
                 @forelse($parent_pages as $parent)
                     <tr class="table-active">
                         <td>
-                            <i class="{{$parent->icon}} fa-fw mr-1"></i>
-                            {{$parent->title}}
+                            <i class="{{ $parent->icon }} fa-fw mr-1"></i>
+                            {{ $parent->title }}
                         </td>
-                        <td>/{{$parent->url}}</td>
-                        <td>{{$parent->level}}</td>
+                        <td>/{{ $parent->url }}</td>
+                        <td>{{ $parent->displayableHidden }}</td>
+                        <td>{{ $parent->level }}</td>
                         <td class="text-end">
                             <div class="btn-group" role="group">
                                 <button onclick="this.blur()" class="btn btn-sm btn-secondary" wire:click="$emit('openModal', 'admin.modals.add-navigation', {{ json_encode(['type' => $type->id, 'parent' => $parent->id], JSON_THROW_ON_ERROR) }})" title="Add child link"><i class="fas fa-plus fa-fw"></i></button>
@@ -46,14 +48,15 @@
                                 <i class="fa fa-blank fa-fw mr-1"></i>
                                 <i class="fas fa-level-up-alt fa-rotate-90 fa-fw mr-1"></i>
 
-                                {{$child->title}}
+                                {{ $child->title }}
                             </td>
-                            <td>/{{$child->url}}</td>
-                            <td>{{$child->level}}</td>
+                            <td>/{{ $child->url }}</td>
+                            <td>{{ $child->displayableHidden }}</td>
+                            <td>{{ $child->level }}</td>
                             <td class="text-end">
                                 <div class="btn-group" role="group">
                                     <button onclick="this.blur()" class="btn btn-sm btn-secondary delete" wire:click="triggerNavigationChildDelete({{ $child->id }})" title="Delete link"><i class="far fa-trash-alt fa-fw"></i></button>
-                                    <button onclick="this.blur()" class="btn btn-sm btn-secondary edit" wire:click="$emit('openModal', 'admin.modals.add-navigation', {{ json_encode(['type' => 'child', 'id' => $child->id], JSON_THROW_ON_ERROR) }})" title="Edit link"><i class="fas fa-pencil-alt fa-fw"></i></button>
+                                    <button onclick="this.blur()" class="btn btn-sm btn-secondary edit" wire:click="$emit('openModal', 'admin.modals.edit-navigation-modal', {{ json_encode(['type' => 'child', 'id' => $child->id], JSON_THROW_ON_ERROR) }})" title="Edit link"><i class="fas fa-pencil-alt fa-fw"></i></button>
                                     <button onclick="this.blur()" class="btn btn-sm btn-secondary sortable" wire:click="orderChild({{ $child->id }}, 'up')" @if($loop->first) disabled @endif title="Move link up"><i class="fas fa-angle-up fa-fw"></i></button>
                                     <button onclick="this.blur()" class="btn btn-sm btn-secondary sortable" wire:click="orderChild({{ $child->id }}, 'down')" @if($loop->last) disabled @endif title="Move link down"><i class="fas fa-angle-down fa-fw"></i></button>
                                 </div>

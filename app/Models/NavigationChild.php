@@ -28,6 +28,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property string $title
  * @property string|null $url
  * @property UserType $user_level
+ * @property bool $is_hidden
  * @property int $order_column
  * @property-read mixed $level
  * @property-read DatabaseNotificationCollection|DatabaseNotification[] $notifications
@@ -70,11 +71,17 @@ class NavigationChild extends Model implements Sortable
         'title',
         'url',
         'user_level',
+        'is_hidden',
         'order_column'
     ];
 
     protected $casts = [
         'user_level' => UserType::class,
+        'is_hidden' => 'boolean'
+    ];
+
+    protected $appends = [
+        'displayable_hidden'
     ];
 
     protected static function booted() :void
@@ -87,5 +94,10 @@ class NavigationChild extends Model implements Sortable
     public function getLevelAttribute()
     {
         return $this->user_level->description;
+    }
+
+    public function getDisplayableHiddenAttribute(): string
+    {
+        return $this->is_hidden ? "Yes" : "No";
     }
 }

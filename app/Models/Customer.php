@@ -17,7 +17,7 @@ use Venturecraft\Revisionable\RevisionableTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Propaganistas\LaravelPhone\Casts\E164PhoneNumberCast;
 
-/**
+/**a
  * Customer
  *
  * @mixin Eloquent
@@ -82,7 +82,7 @@ class Customer extends Model
 
     public function getDisplayableTaxableAttribute(): string
     {
-        return $this->taxable?"Taxable":"Non Taxable";
+        return $this->taxable ? "Taxable" : "Non Taxable";
     }
 
     public function getTypeAttribute($attribute)

@@ -30,6 +30,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property string $icon
  * @property string|null $url
  * @property string $route
+ * @property bool $is_hidden
  * @property UserType $user_level
  * @property int $order_id
  * @property-read Navigation $parent
@@ -74,11 +75,17 @@ class Navigation extends Model implements Sortable
         'icon',
         'url',
         'user_level',
+        'is_hidden',
         'order_column'
     ];
 
     protected $casts = [
         'user_level' => UserType::class,
+        'is_hidden' => 'boolean'
+    ];
+
+    protected $appends = [
+        'displayable_hidden'
     ];
 
     public function buildSortQuery(): Navigation|Builder
@@ -106,5 +113,10 @@ class Navigation extends Model implements Sortable
     public function getLevelAttribute()
     {
         return $this->user_level->description;
+    }
+
+    public function getDisplayableHiddenAttribute(): string
+    {
+        return $this->is_hidden ? "Yes":"No";
     }
 }

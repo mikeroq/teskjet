@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\User\UserProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\NavigationController;
@@ -35,9 +36,11 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::resource('customers', CustomerController::class);
     Route::resource('tickets', TicketController::class);
 
+    Route::get('/users/{user}', [UserProfileController::class, 'show'])->name('users.profile');
+
     // Admin Routes
     Route::middleware(['admin'])->prefix('admin')->group(function () {
-        Route::view('/', 'admin.dashboard')->name('admin.index');
+        Route::view('/dashboard', 'admin.dashboard')->name('admin.index');
         Route::resource('/users', UserAdminController::class);
         Route::resource('/navigation', NavigationController::class);
         Route::resource('/brands', BrandController::class);

@@ -20,6 +20,7 @@ class AddNavigation extends ModalComponent
     public string $parent_title = '';
     public string $navigation_type_id = '';
     public string $navigation_type_name = '';
+    public int $is_hidden = 0;
 
     public function mount($type, $parent): void
     {
@@ -49,7 +50,8 @@ class AddNavigation extends ModalComponent
             'title' => 'required',
             'icon' => 'nullable',
             'url' => 'required',
-            'user_level' => 'required'
+            'user_level' => 'required',
+            'is_hidden' => 'numeric|nullable'
         ]);
 
         if ($this->parent === '0') {
@@ -70,7 +72,8 @@ class AddNavigation extends ModalComponent
             'title',
             'icon',
             'url',
-            'user_level'
+            'user_level',
+            'is_hidden'
         ]);
         $this->forceClose()->closeModalWithEvents(['refreshNavigationTable']);
         $this->alert('success', 'Added Navigation', [

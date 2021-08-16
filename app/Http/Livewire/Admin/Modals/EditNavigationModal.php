@@ -10,9 +10,11 @@ use LivewireUI\Modal\ModalComponent;
 class EditNavigationModal extends ModalComponent
 {
     public string $title;
-    public string $icon;
+    public mixed $icon;
     public string $url;
     public string $user_level;
+    public string $type;
+    public string $is_hidden;
 
     public Navigation|NavigationChild $navigation;
 
@@ -23,11 +25,12 @@ class EditNavigationModal extends ModalComponent
         } else {
             $this->navigation = NavigationChild::findOrFail($id);
         }
-
+        $this->type = $type;
         $this->title = $this->navigation->title;
         $this->icon = $this->navigation->icon;
         $this->url = $this->navigation->url;
         $this->user_level = $this->navigation->user_level;
+        $this->is_hidden = $this->navigation->is_hidden;
 
     }
 
@@ -37,6 +40,7 @@ class EditNavigationModal extends ModalComponent
             'title' => 'required',
             'icon' => 'nullable',
             'url' => 'required',
+            'is_hidden' => 'nullable|numeric',
             'user_level' => 'required'
         ]);
 

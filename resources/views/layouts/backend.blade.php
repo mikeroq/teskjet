@@ -38,9 +38,9 @@
 <body>
     <div id="page-container" class="sidebar-o enable-page-overlay sidebar-dark side-scroll page-header-fixed page-header-dark dark-mode">
 
-        @if (request()->is('admin*'))
+        @if (request()->is('admin/*'))
             <x-admin-navigation></x-admin-navigation>
-        @elseif (request()->is('user*'))
+        @elseif (request()->is('user/*'))
             <x-user-panel-navigation></x-user-panel-navigation>
         @else
             <x-navigation></x-navigation>

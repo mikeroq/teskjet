@@ -42,6 +42,7 @@
         "rappasoft/laravel-livewire-tables": "^1.11",
         "sammyjo20/wagonwheel": "^2.0",
         "spatie/eloquent-sortable": "^4.0",
+        "spatie/laravel-backup": "^7.6",
         "spatie/laravel-permission": "^4.2",
         "spatie/laravel-remote": "^1.0",
         "vaimo/composer-patches": "^4.22",
