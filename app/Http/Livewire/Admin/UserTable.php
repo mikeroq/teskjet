@@ -9,6 +9,13 @@ use App\Models\User;
 
 class UserTable extends DataTableComponent
 {
+    public mixed $delete_id;
+
+    protected $listeners = [
+        'refreshUserTable' => '$refresh',
+        'confirmedDelete',
+        'cancelledDelete'
+    ];
 
     public function columns(): array
     {
@@ -22,7 +29,36 @@ class UserTable extends DataTableComponent
             Column::make('Roles', 'userRoles')
                 ->sortable()
                 ->searchable(),
+            Column::make('Actions')->addClass('text-end')
         ];
+    }
+
+    public function rowView(): string
+    {
+        return 'admin.user-row';
+    }
+
+    public function triggerDelete($delete_id): void
+    {
+        $this->delete_id = $delete_id;
+        $this->confirm('Are you sure you want to delete?', [
+            'onConfirmed' => 'confirmedDelete',
+            'onCancelled' => 'cancelledDelete'
+        ]);
+    }
+
+    public function confirmedDelete(): void
+    {
+        User::findOrFail($this->delete_id)->delete();
+        $this->alert(
+            'success',
+            'User deleted!'
+        );
+    }
+
+    public function cancelledDelete(): void
+    {
+        $this->alert('info', 'Customer was not deleted.');
     }
 
     public function query(): Builder

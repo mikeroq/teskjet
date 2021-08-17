@@ -15,7 +15,8 @@ class ShowCustomer extends Component
         'customerShowRefresh' => '$refresh',
         'confirmedDeleteLocation',
         'confirmedDelete',
-        'cancelledDelete'
+        'cancelledDelete',
+        'cancelledLocationDelete'
     ];
 
     public function render()
@@ -76,6 +77,11 @@ class ShowCustomer extends Component
     }
 
     public function cancelledDelete(): void
+    {
+        $this->alert('info', 'Customer was not deleted.');
+    }
+
+    public function cancelledLocationDelete(): void
     {
         $this->alert('info', 'Location was not deleted.');
     }
