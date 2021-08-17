@@ -12,6 +12,7 @@
             class="modal right fade" tabindex="-1" role="dialog"
             aria-hidden="true"
         >
+            <div class="modal-backdrop"></div>
             <div class="modal-dialog dark-mode" x-bind:class="modalWidth" role="document"
                  @click.outside="closeModalOnEscape()"
             >

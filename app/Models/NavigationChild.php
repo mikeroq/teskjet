@@ -89,6 +89,9 @@ class NavigationChild extends Model implements Sortable
         static::saved(function () {
             GenerateNavigationService::generate();
         });
+        static::deleted(function () {
+            GenerateNavigationService::generate();
+        });
     }
 
     public function getLevelAttribute()

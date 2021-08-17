@@ -288,3 +288,9 @@
 .nav-main-link-submenu {
     cursor: pointer !important;
 }
+
+.modal-backdrop {
+    z-index: 0 !important;
+    background-color: #0000008a;
+    backdrop-filter: blur(2px);
+}
