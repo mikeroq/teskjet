@@ -41,10 +41,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
     // Admin Routes
     Route::middleware(['admin'])->prefix('admin')->group(function () {
         Route::view('/dashboard', 'admin.dashboard')->name('admin.index');
-        Route::resource('/users', UserAdminController::class);
-        Route::resource('/navigation', NavigationController::class);
-        Route::resource('/brands', BrandController::class);
-        Route::resource('/device-types', DeviceTypeController::class);
+        Route::get('/users', [UserAdminController::class, 'index'])->name('admin.users');
+        Route::get('/navigation', [NavigationController::class, 'index'])->name('admin.navigation');
         Route::get('/permissions', [PermissionController::class, 'index'])->name('admin.permissions');
         Route::get('/roles', [RoleController::class, 'index'])->name('admin.roles');
         Route::get('/roles/{role}', [RoleController::class, 'show'])->name('admin.roles.show');

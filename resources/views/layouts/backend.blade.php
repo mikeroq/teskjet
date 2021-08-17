@@ -37,14 +37,29 @@
 </head>
 <body>
     <div id="page-container" class="sidebar-o enable-page-overlay sidebar-dark side-scroll page-header-fixed page-header-dark dark-mode">
-
-        @if (request()->is('admin/*'))
-            <x-admin-navigation></x-admin-navigation>
-        @elseif (request()->is('user/*'))
-            <x-user-panel-navigation></x-user-panel-navigation>
-        @else
-            <x-navigation></x-navigation>
-        @endif
+        <nav id="sidebar" aria-label="Main Navigation">
+            <div class="content-header">
+                <a class="fw-semibold text-dual" href="{{ route('dashboard') }}">
+            <span class="smini-visible">
+                <i class="ico-send text-primary"></i>
+            </span>
+                    <span class="smini-hide fs-5 tracking-wider">{{ config('app.name') }}</span>
+                </a>
+            </div>
+            <div class="js-sidebar-scroll">
+                <div class="content-side">
+                    <ul class="nav-main">
+                        @if (request()->is('admin/*'))
+                            <x-admin-navigation></x-admin-navigation>
+                        @elseif (request()->is('user/*'))
+                            <x-user-panel-navigation></x-user-panel-navigation>
+                        @else
+                            <x-navigation></x-navigation>
+                        @endif
+                    </ul>
+                </div>
+            </div>
+        </nav>
         <header id="page-header">
             <div class="content-header">
                 <div class="d-flex align-items-center">
@@ -62,7 +77,7 @@
                 <div class="d-flex align-items-center">
                     <!-- User Dropdown -->
                     <div class="dropdown d-inline-block ms-2">
-                        <button type="button" class="btn btn-sm btn-alt-secondary d-flex align-items-center" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <button type="button" class="btn btn-alt-secondary d-flex align-items-center" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <span class="d-none d-sm-inline-block ms-2">{{ Auth::user()->name }}</span>
                             <i class="fa fa-fw fa-angle-down d-none d-sm-inline-block ms-1 mt-1"></i>
                         </button>

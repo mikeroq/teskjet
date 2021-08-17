@@ -284,3 +284,7 @@
 .dark-mode .form-check-input:checked {
     background-color: #151e31 !important;
 }
+
+.nav-main-link-submenu {
+    cursor: pointer !important;
+}

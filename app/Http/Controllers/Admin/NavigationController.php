@@ -16,9 +16,7 @@ class NavigationController extends Controller
      */
     public function index(): View
     {
-        $parent_pages = Navigation::with('children')->where('navigation_type_id', 1)->orderBy('order_column')->get();
-        $admin_parent_pages = Navigation::with('children')->where('navigation_type_id', 2)->orderBy('order_column')->get();
         $navigation_types = NavigationType::all();
-        return view('admin.navigation', ['parent_pages' => $parent_pages, 'admin_pages' => $admin_parent_pages, 'navigation_types' => $navigation_types]);
+        return view('admin.navigation', ['navigation_types' => $navigation_types]);
     }
 }

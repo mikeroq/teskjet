@@ -9,7 +9,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Log;
 use LivewireUI\Modal\ModalComponent;
 
-class AddNavigation extends ModalComponent
+class CreateNavigation extends ModalComponent
 {
 
     public string $title = '';
@@ -41,7 +41,7 @@ class AddNavigation extends ModalComponent
 
     public function render(): View
     {
-        return view('livewire.admin.modals.add-navigation');
+        return view('livewire.admin.modals.create-navigation');
     }
 
     public function create(): void
