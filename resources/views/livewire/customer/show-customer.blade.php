@@ -9,7 +9,7 @@
                 <i class="fas fa-location-arrow mr-1 fa-fw"></i>
                 Add Location
             </button>
-            <button class="dropdown-item">
+            <button class="dropdown-item" wire:click="triggerDelete()">
                 <i class="fas fa-times mr-1 fa-fw"></i>
                 Delete Customer
             </button>

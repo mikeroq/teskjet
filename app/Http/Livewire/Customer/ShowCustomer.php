@@ -9,11 +9,12 @@ use Livewire\Component;
 class ShowCustomer extends Component
 {
     public Customer $customer;
-    public $delete_location_id;
+    public mixed $delete_location_id;
 
     public $listeners = [
         'customerShowRefresh' => '$refresh',
         'confirmedDeleteLocation',
+        'confirmedDelete',
         'cancelledDelete'
     ];
 
@@ -29,6 +30,24 @@ class ShowCustomer extends Component
             'onConfirmed' => 'confirmedDeleteLocation',
             'onCancelled' => 'cancelledDelete'
         ]);
+    }
+
+    public function triggerDelete(): void
+    {
+        $this->confirm('Are you sure you want to delete?', [
+            'onConfirmed' => 'confirmedDelete',
+            'onCancelled' => 'cancelledDelete'
+        ]);
+    }
+
+    public function confirmedDelete(): void
+    {
+        $this->customer->delete();
+        $this->alert(
+            'success',
+            'Location deleted!'
+        );
+        $this->redirectRoute('customers.index');
     }
 
     public function confirmedDeleteLocation(): void
