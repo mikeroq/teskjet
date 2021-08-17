@@ -58,7 +58,7 @@ class UserTable extends DataTableComponent
 
     public function cancelledDelete(): void
     {
-        $this->alert('info', 'Customer was not deleted.');
+        $this->alert('info', 'User was not deleted.');
     }
 
     public function query(): Builder

@@ -22,6 +22,7 @@ class EditBrand extends ModalComponent
         $this->support_number = $this->brand->support_number;
 
     }
+
     public function update(): void
     {
         $validated = $this->validate([

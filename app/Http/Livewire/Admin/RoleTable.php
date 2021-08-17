@@ -9,6 +9,13 @@ use Spatie\Permission\Models\Role;
 
 class RoleTable extends DataTableComponent
 {
+    public mixed $delete_id;
+
+    protected $listeners = [
+        'refreshRoleTable' => '$refresh',
+        'confirmedDelete',
+        'cancelledDelete'
+    ];
 
     public function columns(): array
     {
@@ -25,12 +32,41 @@ class RoleTable extends DataTableComponent
             Column::make('Created At')
                 ->sortable()
                 ->searchable(),
+            Column::make('Actions')->addClass('text-end')
         ];
     }
 
-    public function getTableRowUrl($row): string
+    public function rowView(): string
     {
-        return route('admin.roles.show', $row);
+        return 'admin.role-row';
+    }
+
+//    public function getTableRowUrl($row): string
+//    {
+//        return route('admin.roles.show', $row);
+//    }
+
+    public function triggerDelete($delete_id): void
+    {
+        $this->delete_id = $delete_id;
+        $this->confirm('Are you sure you want to delete?', [
+            'toast' => false,
+            'position' => 'center',
+            'showConfirmButton' => true,
+            'cancelButtonText' => 'Nope',
+            'onConfirmed' => 'confirmedDelete',
+            'onCancelled' => 'cancelledDelete'
+        ]);
+    }
+
+    public function confirmedDelete(): void
+    {
+        Role::findorFail($this->delete_id)->delete();
+
+        $this->alert(
+            'success',
+            'Role deleted!'
+        );
     }
 
     public function query(): Builder
