@@ -23,7 +23,7 @@ class CreateDeviceType extends ModalComponent
     public function create(): void
     {
         $validated = $this->validate([
-            'name' => 'required'
+            'name' => 'required|unique'
         ]);
 
         DeviceType::create($validated);

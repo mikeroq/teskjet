@@ -29,8 +29,7 @@ class DeviceTypeTable extends DataTableComponent
 
     public function rowView(): string
     {
-        // Becomes /resources/views/location/to/my/row.blade.php
-        return 'admin.device-types-row';
+        return 'admin.brand-type-row';
     }
 
     public function query(): Builder

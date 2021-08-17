@@ -9,6 +9,13 @@ use App\Models\Brand;
 
 class BrandTable extends DataTableComponent
 {
+    public string $delete_id;
+
+    protected $listeners = [
+        'refreshBrandTable' => '$refresh',
+        'confirmedDelete',
+        'cancelledDelete'
+    ];
 
     public function columns(): array
     {
@@ -22,11 +29,41 @@ class BrandTable extends DataTableComponent
         Column::make('Support Number')
             ->sortable()
             ->searchable(),
+        Column::make('Actions')->addClass('text-end')
         ];
+
+    }
+
+    public function rowView(): string
+    {
+        return 'admin.brand-row';
     }
 
     public function query(): Builder
     {
         return Brand::query();
+    }
+
+    public function triggerDelete($delete_id): void
+    {
+        $this->delete_id = $delete_id;
+        $this->confirm('Are you sure you want to delete?', [
+            'toast' => false,
+            'position' => 'center',
+            'showConfirmButton' => true,
+            'cancelButtonText' => 'Nope',
+            'onConfirmed' => 'confirmedDelete',
+            'onCancelled' => 'cancelledDelete'
+        ]);
+    }
+
+    public function confirmedDelete(): void
+    {
+        Brand::findorFail($this->delete_id)->delete();
+
+        $this->alert(
+            'success',
+            'Brand deleted!'
+        );
     }
 }
