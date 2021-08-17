@@ -9,6 +9,13 @@ use App\Models\DeviceType;
 
 class DeviceTypeTable extends DataTableComponent
 {
+    public string $delete_id;
+
+    protected $listeners = [
+        'refreshDeviceTypeTable' => '$refresh',
+        'confirmedDelete',
+        'cancelledDelete'
+    ];
 
     public function columns(): array
     {
@@ -16,11 +23,42 @@ class DeviceTypeTable extends DataTableComponent
             Column::make('Name')
                 ->sortable()
                 ->searchable(),
+            Column::make('Actions')->addClass('text-end')
         ];
+    }
+
+    public function rowView(): string
+    {
+        // Becomes /resources/views/location/to/my/row.blade.php
+        return 'admin.device-types-row';
     }
 
     public function query(): Builder
     {
         return DeviceType::query();
+    }
+
+    public function triggerDelete($delete_id): void
+    {
+        $this->delete_id = $delete_id;
+        $this->confirm('Are you sure you want to delete?', [
+            'toast' => false,
+            'position' => 'center',
+            'showConfirmButton' => true,
+            'cancelButtonText' => 'Nope',
+            'onConfirmed' => 'confirmedDelete',
+            'onCancelled' => 'cancelledDelete'
+        ]);
+    }
+
+
+    public function confirmedDelete(): void
+    {
+        DeviceType::findorFail($this->delete_id)->delete();
+
+        $this->alert(
+            'success',
+            'Device Type deleted!'
+        );
     }
 }
