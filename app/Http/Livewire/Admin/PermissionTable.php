@@ -9,6 +9,13 @@ use Spatie\Permission\Models\Permission;
 
 class PermissionTable extends DataTableComponent
 {
+    public mixed $delete_id;
+
+    protected $listeners = [
+        'refreshPermissionTable' => '$refresh',
+        'confirmedDelete',
+        'cancelledDelete'
+    ];
 
     public function columns(): array
     {
@@ -25,7 +32,36 @@ class PermissionTable extends DataTableComponent
             Column::make('Created At')
                 ->sortable()
                 ->searchable(),
+            Column::make('Actions')->addClass('text-end')
         ];
+    }
+
+    public function rowView(): string
+    {
+        return 'admin.permission-row';
+    }
+
+    public function triggerDelete($delete_id): void
+    {
+        $this->delete_id = $delete_id;
+        $this->confirm('Are you sure you want to delete?', [
+            'toast' => false,
+            'position' => 'center',
+            'showConfirmButton' => true,
+            'cancelButtonText' => 'Nope',
+            'onConfirmed' => 'confirmedDelete',
+            'onCancelled' => 'cancelledDelete'
+        ]);
+    }
+
+    public function confirmedDelete(): void
+    {
+        Permission::findorFail($this->delete_id)->delete();
+
+        $this->alert(
+            'success',
+            'Role deleted!'
+        );
     }
 
     public function query(): Builder
