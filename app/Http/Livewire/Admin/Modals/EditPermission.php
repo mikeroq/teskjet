@@ -41,6 +41,7 @@ class EditPermission extends ModalComponent
     {
         return 'Editing Permission';
     }
+
     public function render()
     {
         return view('livewire.admin.modals.edit-permission');

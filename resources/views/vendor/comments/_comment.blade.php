@@ -12,7 +12,13 @@
             <h3 class="block-title lh-base">
                 {{ $comment->commenter->name }}<br>
                 <small>{{ $comment->commenter->email }}</small><br>
-                <small class="text-light">{{ $comment->created_at->diffForHumans() }}</small>
+                <small class="text-light">
+                    @if($comment->created_at->isCurrentDay())
+                        <span title="{{ $comment->created_at->tz($comment->commenter->timezone)->format("M jS, Y g:ia") }}">{{ $comment->created_at->diffForHumans() }}</span>
+                    @else
+                        {{ $comment->created_at->tz($comment->commenter->timezone)->format("M jS, Y g:ia") }}
+                    @endif
+                </small>
             </h3>
 
 
@@ -38,8 +44,8 @@
 
                     {!! $markdown->text($comment->comment) !!}
                     @can('edit comment', $comment)
-                        <div class="modal fade" id="comment-modal-{{ $comment->getKey() }}" tabindex="-1" role="dialog">
-                            <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+                        <div class="modal right fade" id="comment-modal-{{ $comment->getKey() }}" tabindex="-1" role="dialog">
+                            <div class="modal-dialog modal-xl" role="document">
                                 <div class="modal-content">
                                     <form method="POST" action="{{ route('comments.update', $comment->getKey()) }}">
                                         @method('PUT')
@@ -53,12 +59,12 @@
                                                     </button>
                                                 </div>
                                             </div>
-                                            <div class="block-content fs-sm">
+                                            <div class="block-content">
                                                 <div class="mb-4">
-                                                    <textarea required class="form-control form-control-alt" name="message" rows="6">{{ $comment->comment }}</textarea>
+                                                    <textarea required class="form-control form-control-alt" style="height: calc(100vh - 150px);" name="message">{{ $comment->comment }}</textarea>
                                                 </div>
                                             </div>
-                                            <div class="block-content block-content-full text-end bg-body">
+                                            <div class="modal-footer modal-footer-fixed bg-dark bg-black-10">
                                                 <button type="button" class="btn btn-sm btn-alt-secondary me-1" data-bs-dismiss="modal">@lang('comments::comments.cancel')</button>
                                                 <button type="submit" class="btn btn-sm btn-primary" data-bs-dismiss="modal">@lang('comments::comments.update')</button>
                                             </div>
