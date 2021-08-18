@@ -2,15 +2,15 @@
     <x-page-header :title="$role->name" subtitle="Viewing Role">
         <x-action-dropdown id="role_action_dropdown">
             <button class="dropdown-item" wire:click=''>
-                <i class="fas fa-edit mr-1 fa-fw"></i>
+                <i class="fas fa-edit me-1 fa-fw"></i>
                 Edit Role
             </button>
             <button class="dropdown-item" wire:click=''>
-                <i class="fas fa-location-arrow mr-1 fa-fw"></i>
+                <i class="fas fa-location-arrow me-1 fa-fw"></i>
                 Add Permission
             </button>
             <button class="dropdown-item">
-                <i class="fas fa-times mr-1 fa-fw"></i>
+                <i class="fas fa-times me-1 fa-fw"></i>
                 Delete Role
             </button>
         </x-action-dropdown>

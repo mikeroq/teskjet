@@ -33,17 +33,17 @@
                             <div class="col-sm-10 col-md-8 col-xl-6">
                                 <button class="btn btn-block btn-alt-primary d-flex align-items-center justify-content-between" disabled>
                                     <span>
-                                        <i class="fab fa-fw fa-{{ $provider }} opacity-50 mr-1"></i>
+                                        <i class="fab fa-fw fa-{{ $provider }} opacity-50 me-1"></i>
                                         {{ $account->name }}
                                     </span>
-                                    <i class="fa fa-fw fa-check mr-1"></i>
+                                    <i class="fa fa-fw fa-check me-1"></i>
                                 </button>
                             </div>
                             <div class="col-sm-12 col-md-4 col-xl-6 d-md-flex align-items-md-center">
                                 <div class="flex items-center space-x-6">
                                     @if (Laravel\Jetstream\Jetstream::managesProfilePhotos() && ! is_null($account->avatar_path))
                                         <x-jet-secondary-button wire:click="setAvatarAsProfilePhoto({{ $account->id }})">
-                                            <i class="fas fa-fw fa-image mr-1"></i> {{ __('Use Avatar') }}
+                                            <i class="fas fa-fw fa-image me-1"></i> {{ __('Use Avatar') }}
                                         </x-jet-secondary-button>
                                     @endif
                                     @if (($this->accounts->count() > 1 || ! is_null($this->user->password)))
@@ -59,7 +59,7 @@
                         <div class="form-group row">
                             <div class="col-sm-10 col-md-8 col-xl-6">
                                 <a class="btn btn-block btn-dark text-left" href="{{ route('oauth.redirect', ['provider' => $provider]) }}">
-                                    <i class="fab fa-fw fa-{{ $provider }} opacity-50 mr-1"></i>
+                                    <i class="fab fa-fw fa-{{ $provider }} opacity-50 me-1"></i>
                                     Connect to {{ __(ucfirst($provider)) }}
                                 </a>
                             </div>

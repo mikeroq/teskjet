@@ -3,10 +3,10 @@
         <h3 class="block-title">{{ $type->name }} Navigation</h3>
         <div class="block-options">
             <button class="btn-block-option" wire:click="$refresh" title="Refresh link table">
-                <i class="fas fa-sync-alt mr-1"></i>
+                <i class="fas fa-sync-alt me-1"></i>
             </button>
             <button class="btn-block-option" wire:click="$emit('openModal', 'admin.modals.create-navigation', {{ json_encode(['type' => $type->id, 'parent' => '0'], JSON_THROW_ON_ERROR) }})" title="Create a new link">
-                <i class="fas fa-plus mr-1"></i>
+                <i class="fas fa-plus me-1"></i>
                 Add Link
             </button>
         </div>
