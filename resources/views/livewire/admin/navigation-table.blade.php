@@ -34,7 +34,7 @@
                         <td>{{ $parent->level }}</td>
                         <td class="text-end">
                             <div class="btn-group" role="group">
-                                <button onclick="this.blur()" class="btn btn-sm btn-secondary" wire:click="$emit('openModal', 'admin.modals.add-navigation', {{ json_encode(['type' => $type->id, 'parent' => $parent->id], JSON_THROW_ON_ERROR) }})" title="Add child link"><i class="fas fa-plus fa-fw"></i></button>
+                                <button onclick="this.blur()" class="btn btn-sm btn-secondary" wire:click="$emit('openModal', 'admin.modals.create-navigation', {{ json_encode(['type' => $type->id, 'parent' => $parent->id], JSON_THROW_ON_ERROR) }})" title="Add child link"><i class="fas fa-plus fa-fw"></i></button>
                                 <button onclick="this.blur()" class="btn btn-sm btn-secondary" wire:click="$emit('openModal', 'admin.modals.edit-navigation-modal', {{ json_encode(['type' => 'parent', 'id' => $parent->id], JSON_THROW_ON_ERROR) }})" title="Edit link"><i class="fas fa-pencil-alt fa-fw"></i></button>
                                 <button onclick="this.blur()" class="btn btn-sm btn-secondary" wire:click="orderParent({{ $parent->id }}, 'up')" @if($loop->first) disabled @endif title="Move link up"><i class="fas fa-angle-up fa-fw"></i></button>
                                 <button onclick="this.blur()" class="btn btn-sm btn-secondary" wire:click="orderParent({{ $parent->id }}, 'down')" @if($loop->last) disabled @endif title="Move link down"><i class="fas fa-angle-down fa-fw"></i></button>
