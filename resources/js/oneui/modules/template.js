@@ -11,12 +11,15 @@ import SimpleBar from 'simplebar';
 import Helpers from './helpers';
 import Swal from 'sweetalert2/src/sweetalert2.js';
 import $ from "jquery";
+import TomSelect from "tom-select";
 
 // Assignments
 window.bootstrap    = bootstrap;
 window.SimpleBar    = SimpleBar;
 window.Swal         = Swal;
 window.$            = $;
+window.TomSelect    = TomSelect;
+
 // Template
 export default class Template {
   /*

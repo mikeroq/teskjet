@@ -8,7 +8,14 @@
     {{ $row->userRoles }}
 </x-livewire-tables::bs5.table.cell>
 <x-livewire-tables::bs5.table.cell class="text-end">
+
     <div class="btn-group" role="group">
+        @if(auth()->user()->can('view users'))
+        <a class="btn btn-sm btn-secondary" href="{{ route('users.profile', $row->id) }}"><i class="fas fa-eye fa-fw"></i></a>
+        @endif
+        @if(auth()->user()->can('delete users'))
         <button onclick="this.blur()" class="btn btn-sm btn-secondary" wire:click="triggerDelete({{ $row->id }})" title="Delete User"><i class="far fa-trash-alt fa-fw"></i></button>
+        @endif
     </div>
+
 </x-livewire-tables::bs5.table.cell>

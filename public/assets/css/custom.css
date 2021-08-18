@@ -68,8 +68,8 @@
 
 .EasyMDEContainer .CodeMirror {
     border: none !important;
-    border-bottom-left-radius: 0px;
-    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
 }
 
 .cm-s-easymde.CodeMirror, .cm-s-easymde .CodeMirror-gutters {

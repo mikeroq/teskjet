@@ -1,5 +1,5 @@
 <x-livewire-tables::bs5.table.cell>
-    {{ $row->name }}
+    <a href="{{ route('admin.roles.show', $row->id) }}">{{ $row->name }}</a>
 </x-livewire-tables::bs5.table.cell>
 <x-livewire-tables::bs5.table.cell>
     {{ $row->description }}

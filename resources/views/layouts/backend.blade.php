@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="/assets/css/bootstrap-side-modals.css" />
     <link rel="stylesheet" href="/assets/css/sweetalert2.dark.min.css">
     <link rel="stylesheet" href="/assets/css/ico.css">
+    <link href="https://cdn.jsdelivr.net/npm/tom-select@1.7.8/dist/css/tom-select.bootstrap5.min.css" rel="stylesheet">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/styles/atom-one-dark.min.css">
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/highlight.min.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/easymde/dist/easymde.min.css">
