@@ -26,7 +26,7 @@
                 @forelse($parent_pages as $parent)
                     <tr>
                         <td>
-                            <i class="{{ $parent->icon }} fa-fw mr-1"></i>
+                            <i class="{{ $parent->icon }} fa-fw me-1"></i>
                             {{ $parent->title }}
                         </td>
                         <td>/{{ $parent->url }}</td>
@@ -45,9 +45,8 @@
                     @foreach($parent->children()->orderBy('order_column', 'ASC')->get() as $child)
                         <tr data-mtype="child">
                             <td>
-                                <i class="fa fa-blank fa-fw mr-1"></i>
-                                <i class="fas fa-level-up-alt fa-rotate-90 fa-fw mr-1"></i>
-
+                                <i class="fa fa-blank fa-fw me-1"></i>
+                                <i class="fas fa-level-up-alt fa-rotate-90 fa-fw me-1"></i>
                                 {{ $child->title }}
                             </td>
                             <td>/{{ $child->url }}</td>

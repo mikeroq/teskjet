@@ -25,7 +25,7 @@
                             <h1 class="h2 text-white fw-bold mt-5 mb-3">@yield('message')</h1>
                             <h2 class="h3 text-white-75 fw-normal text-muted mb-5">We are sorry but your request cannot be fulfilled..</h2>
                             <a class="btn btn-secondary" href="{{ URL::previous() }}">
-                                <i class="fa fa-arrow-left mr-1"></i> Back to Home
+                                <i class="fa fa-arrow-left me-1"></i> Back to Home
                             </a>
                         </div>
                     </div>

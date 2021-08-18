@@ -22,7 +22,7 @@
         </h3>
         <div class="dropdown" id="comment-dropdown-{{ $comment->getKey() }}">
             <button type="button" class="btn btn-sm btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fa fa-cog fa-fw mr-1"></i>
+                <i class="fa fa-cog fa-fw me-1"></i>
             </button>
             <div class="dropdown-menu dropdown-menu-right fs-sm">
                 @can('edit comment', $comment)

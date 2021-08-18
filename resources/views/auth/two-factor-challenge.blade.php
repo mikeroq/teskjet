@@ -32,7 +32,7 @@
                     </x-form-group>
                     {{-- <x-form-group class="text-center">
                         <x-jet-button id="auth_btn" disabled>
-                            <i class="fas fa-fw fa-key mr-1"></i> Verify
+                            <i class="fas fa-fw fa-key me-1"></i> Verify
                         </x-jet-button>
                     </x-form-group> --}}
                     <x-form-group class="text-center">

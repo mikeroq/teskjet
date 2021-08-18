@@ -30,7 +30,7 @@
                     </x-form-group>
                     <x-form-group class="text-center">
                         <x-jet-button>
-                            <i class="fa fa-fw fa-reply mr-1"></i> {{ __('Email Password Reset Link') }}
+                            <i class="fa fa-fw fa-reply me-1"></i> {{ __('Email Password Reset Link') }}
                         </x-jet-button>
                     </x-form-group>
                 </form>

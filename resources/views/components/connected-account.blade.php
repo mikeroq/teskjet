@@ -8,31 +8,31 @@
                     <span>
                         @switch($provider)
                             @case(JoelButcher\Socialstream\Providers::facebook())
-                                <i class="fab fa-fw fa-facebook opacity-50 mr-1"></i>
+                                <i class="fab fa-fw fa-facebook opacity-50 me-1"></i>
                                 @break
                             @case(JoelButcher\Socialstream\Providers::google())
-                                <i class="fab fa-fw fa-google opacity-50 mr-1"></i>
+                                <i class="fab fa-fw fa-google opacity-50 me-1"></i>
                                 @break
                             @case(JoelButcher\Socialstream\Providers::twitter())
-                                <i class="fab fa-fw fa-twitter opacity-50 mr-1"></i>
+                                <i class="fab fa-fw fa-twitter opacity-50 me-1"></i>
                                 @break
                             @case(JoelButcher\Socialstream\Providers::linkedin())
-                                <i class="fab fa-fw fa-linkedin opacity-50 mr-1"></i>
+                                <i class="fab fa-fw fa-linkedin opacity-50 me-1"></i>
                                 @break
                             @case(JoelButcher\Socialstream\Providers::github())
-                                <i class="fab fa-fw fa-github opacity-50 mr-1"></i>
+                                <i class="fab fa-fw fa-github opacity-50 me-1"></i>
                                 @break
                             @case(JoelButcher\Socialstream\Providers::gitlab())
-                                <i class="fab fa-fw fa-gitlab opacity-50 mr-1"></i>
+                                <i class="fab fa-fw fa-gitlab opacity-50 me-1"></i>
                                 @break
                             @case(JoelButcher\Socialstream\Providers::bitbucket())
-                                <i class="fab fa-fw fa-bitbucket opacity-50 mr-1"></i>
+                                <i class="fab fa-fw fa-bitbucket opacity-50 me-1"></i>
                                 @break
                             @default
                         @endswitch
                         {{ __(ucfirst($provider)) }}
                     </span>
-                    <i class="fa fa-fw fa-check mr-1"></i>
+                    <i class="fa fa-fw fa-check me-1"></i>
                 </button>
             </div>
             <div class="col-sm-12 col-md-4 col-xl-6 mt-1 d-md-flex align-items-md-center font-size-sm">
@@ -45,25 +45,25 @@
                 <button class="btn btn-block btn-alt-info text-left" disabled>
                     @switch($provider)
                         @case(JoelButcher\Socialstream\Providers::facebook())
-                            <i class="fab fa-fw fa-facebook opacity-50 mr-1"></i>
+                            <i class="fab fa-fw fa-facebook opacity-50 me-1"></i>
                             @break
                         @case(JoelButcher\Socialstream\Providers::google())
-                            <i class="fab fa-fw fa-google opacity-50 mr-1"></i>
+                            <i class="fab fa-fw fa-google opacity-50 me-1"></i>
                             @break
                         @case(JoelButcher\Socialstream\Providers::twitter())
-                            <i class="fab fa-fw fa-twitter opacity-50 mr-1"></i>
+                            <i class="fab fa-fw fa-twitter opacity-50 me-1"></i>
                             @break
                         @case(JoelButcher\Socialstream\Providers::linkedin())
-                            <i class="fab fa-fw fa-linkedin opacity-50 mr-1"></i>
+                            <i class="fab fa-fw fa-linkedin opacity-50 me-1"></i>
                             @break
                         @case(JoelButcher\Socialstream\Providers::github())
-                            <i class="fab fa-fw fa-github opacity-50 mr-1"></i>
+                            <i class="fab fa-fw fa-github opacity-50 me-1"></i>
                             @break
                         @case(JoelButcher\Socialstream\Providers::gitlab())
-                            <i class="fab fa-fw fa-gitlab opacity-50 mr-1"></i>
+                            <i class="fab fa-fw fa-gitlab opacity-50 me-1"></i>
                             @break
                         @case(JoelButcher\Socialstream\Providers::bitbucket())
-                            <i class="fab fa-fw fa-bitbucket opacity-50 mr-1"></i>
+                            <i class="fab fa-fw fa-bitbucket opacity-50 me-1"></i>
                             @break
                         @default
                     @endswitch
