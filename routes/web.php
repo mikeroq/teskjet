@@ -36,6 +36,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::resource('customers', CustomerController::class);
     Route::resource('tickets', TicketController::class);
 
+    Route::get('/users', [UserAdminController::class, 'index'])->name('users.index');
     Route::get('/users/{user}', [UserProfileController::class, 'show'])->name('users.profile');
 
     // Admin Routes

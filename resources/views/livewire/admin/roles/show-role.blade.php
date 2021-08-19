@@ -24,6 +24,7 @@
                     @endforeach
                 </select>
             </x-form-group>
+            <x-input label="Test" id="test"></x-input>
         </x-block>
         <x-block title="Users">
             <p>
@@ -40,7 +41,7 @@
     <script>
 
         new TomSelect("#select-tags",{
-            plugins: ['remove_button', 'no_backspace_delete', 'no_active_items'],
+            plugins: ['remove_button', 'no_backspace_delete', 'no_active_items', 'dropdown_input'],
             onItemAdd:function(){
                 this.setTextboxValue('');
                 this.refreshOptions();
