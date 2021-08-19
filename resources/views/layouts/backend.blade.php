@@ -42,7 +42,7 @@
             <div class="content-header">
                 <a class="fw-semibold text-dual" href="{{ route('dashboard') }}">
             <span class="smini-visible">
-                <i class="ico-send text-primary"></i>
+                <i class="ico-nyan text-primary fs-4"></i>
             </span>
                     <span class="smini-hide fs-5 tracking-wider">{{ config('app.name') }}</span>
                 </a>
