@@ -1,3 +1,7 @@
+:root {
+    color-scheme: dark;
+}
+
 .sticky-offset {
     top: 64px;
 }
@@ -293,4 +297,61 @@
     z-index: 0 !important;
     background-color: #0000008a;
     backdrop-filter: blur(2px);
+}
+
+.items .item {
+    display: inline-flex;
+    align-items: center;
+    justify-content: initial;
+    width: initial;
+    height: initial;
+    transition: initial;
+    background: #2c2e3b !important;
+    color: #fff !important;
+}
+
+.ts-input {
+    color: #bec8d5 !important;
+    border-color: #19222d !important;
+    background-color: #19222d !important;
+    font-family: Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+    display: block !important;
+    width: 100% !important;
+    padding: .375rem .75rem !important;
+    font-size: 1rem !important;
+    font-weight: 400 !important;
+    line-height: 1.5 !important;
+    background-clip: padding-box !important;
+
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    appearance: none !important;
+    border-radius: .25rem !important;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out !important;
+}
+
+.ts-input.focus {
+    color: #fff !important;
+    border-color: #22242e !important;
+    background-color: #22242e !important;
+    box-shadow: none !important;
+}
+
+.ts-control.plugin-remove_button .item .remove {
+    border-left: none !important;
+}
+.ts-dropdown, .ts-dropdown.form-control, .ts-dropdown.form-select {
+    background: #252732 !important;
+    color: #fff;
+}
+.ts-dropdown-content {
+    color: #c9ced6 !important;
+}
+
+.ts-dropdown .create:hover, .ts-dropdown .option:hover, .ts-dropdown .active {
+    background-color: #434556 !important;
+    color: #fff !important;
+}
+.ts-input > input {
+    color: #fff !important;
 }
