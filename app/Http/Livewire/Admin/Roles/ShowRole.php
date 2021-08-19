@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Admin\Roles;
 
+use Illuminate\Database\Eloquent\Collection;
 use Livewire\Component;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
@@ -9,7 +10,7 @@ use Spatie\Permission\Models\Role;
 class ShowRole extends Component
 {
     public Role $role;
-    public $permissions;
+    public Collection|Permission $permissions;
 
     public function render()
     {

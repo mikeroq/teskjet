@@ -84,6 +84,7 @@
     </main>
 </div>
 <script src="{{ mix('js/oneui.app.js') }}"></script>
+<script src="{{ asset('vendor/larapass/js/larapass.js') }}"></script>
 @stack('scripts')
 @stack('modals')
 @stack('modal')

@@ -19,7 +19,7 @@
                         </div>
                     @endif
                     <x-jet-validation-errors class="mb-4"/>
-                    <form method="POST" action="{{ route('login') }}">
+                    <form method="POST" id="login-form" action="{{ route('login') }}">
                         @csrf
                         <div class="mb-4">
                             <label for="email">Email Address</label>
@@ -67,3 +67,20 @@
         </div>
     </div>
 @endsection
+@push('scripts')
+    <script>
+        const login = (event) => {
+            event.preventDefault()
+            new Larapass({
+                login: 'webauthn/login',
+                loginOptions: 'webauthn/login/options'
+            }).login({
+                email: document.getElementById('email').value
+            }).then(response => alert('Authentication successful!'))
+                .catch(error => alert('Something went wrong, try again!'))
+        }
+
+        document.getElementById('login-form').addEventListener('submit', login)
+    </script>
+@endpush
+

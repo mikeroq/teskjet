@@ -18,6 +18,7 @@
         "ext-json": "*",
         "barryvdh/laravel-snappy": "^0.4.8",
         "bensampo/laravel-enum": "^3.4",
+        "darkghosthunter/larapass": "^3.0",
         "dcblogdev/laravel-sent-emails": "^1.0",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",

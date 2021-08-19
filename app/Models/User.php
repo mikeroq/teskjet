@@ -23,6 +23,8 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Laravel\Sanctum\PersonalAccessToken;
 use Laravelista\Comments\Commenter;
 use Spatie\Permission\Traits\HasRoles;
+use DarkGhostHunter\Larapass\Contracts\WebAuthnAuthenticatable;
+use DarkGhostHunter\Larapass\WebAuthnAuthentication;
 
 /**
  * App\Models\User
@@ -75,7 +77,7 @@ use Spatie\Permission\Traits\HasRoles;
  * @method static Builder|User whereUserLevel($value)
  * @mixin Eloquent
  */
-class User extends Authenticatable implements MustVerifyEmail
+class User extends Authenticatable implements MustVerifyEmail, WebAuthnAuthenticatable
 {
     use HasApiTokens;
     use HasFactory;
@@ -89,6 +91,7 @@ class User extends Authenticatable implements MustVerifyEmail
     use CastsEnums;
     use Commenter;
     use HasRoles;
+    use WebAuthnAuthentication;
 
     /**
      * The attributes that are mass assignable.
