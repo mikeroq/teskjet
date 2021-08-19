@@ -37,15 +37,6 @@
 }
 
 
-/*
-
-    Name:       dracula
-    Author:     Michael Kaminsky (http://github.com/mkaminsky11)
-
-    Original dracula color scheme by Zeno Rocha (https://github.com/zenorocha/dracula-theme)
-
-*/
-
 .editor-toolbar {
     background-color: #252732 !important;
     border: none !important;
@@ -81,35 +72,108 @@
     color: #f8f8f2 !important;
     border: none;
 }
-.cm-s-easymde .CodeMirror-gutters { color: #282a36; }
-.cm-s-easymde .CodeMirror-cursor { border-left: solid thin #f8f8f0; }
-.cm-s-easymde .CodeMirror-linenumber { color: #6D8A88; }
-.cm-s-easymde .CodeMirror-selected { background: rgba(255, 255, 255, 0.10); }
-.cm-s-easymde .CodeMirror-line::selection, .cm-s-easymde .CodeMirror-line > span::selection, .cm-s-easymde .CodeMirror-line > span > span::selection { background: rgba(255, 255, 255, 0.10); }
-.cm-s-easymde .CodeMirror-line::-moz-selection, .cm-s-easymde .CodeMirror-line > span::-moz-selection, .cm-s-easymde .CodeMirror-line > span > span::-moz-selection { background: rgba(255, 255, 255, 0.10); }
-.cm-s-easymde span.cm-comment { color: #6272a4; }
-.cm-s-easymde span.cm-string, .cm-s-easymde span.cm-string-2 { color: #f1fa8c; }
-.cm-s-easymde span.cm-number { color: #bd93f9; }
-.cm-s-easymde span.cm-variable { color: #50fa7b; }
-.cm-s-easymde span.cm-variable-2 { color: white; }
-.cm-s-easymde span.cm-def { color: #50fa7b; }
-.cm-s-easymde span.cm-operator { color: #ff79c6; }
-.cm-s-easymde span.cm-keyword { color: #ff79c6; }
-.cm-s-easymde span.cm-atom { color: #bd93f9; }
-.cm-s-easymde span.cm-meta { color: #f8f8f2; }
-.cm-s-easymde span.cm-tag { color: #ff79c6; }
-.cm-s-easymde span.cm-attribute { color: #50fa7b; }
-.cm-s-easymde span.cm-qualifier { color: #50fa7b; }
-.cm-s-easymde span.cm-property { color: #66d9ef; }
-.cm-s-easymde span.cm-builtin { color: #50fa7b; }
-.cm-s-easymde span.cm-variable-3, .cm-s-easymde span.cm-type { color: #ffb86c; }
 
-.cm-s-easymde .CodeMirror-activeline-background { background: rgba(255,255,255,0.1); }
-.cm-s-easymde .CodeMirror-matchingbracket { text-decoration: underline; color: white !important; }
+.cm-s-easymde .CodeMirror-gutters {
+    color: #282a36;
+}
+
+.cm-s-easymde .CodeMirror-cursor {
+    border-left: solid thin #f8f8f0;
+}
+
+.cm-s-easymde .CodeMirror-linenumber {
+    color: #6D8A88;
+}
+
+.cm-s-easymde .CodeMirror-selected {
+    background: rgba(255, 255, 255, 0.10);
+}
+
+.cm-s-easymde .CodeMirror-line::selection, .cm-s-easymde .CodeMirror-line > span::selection, .cm-s-easymde .CodeMirror-line > span > span::selection {
+    background: rgba(255, 255, 255, 0.10);
+}
+
+.cm-s-easymde .CodeMirror-line::-moz-selection, .cm-s-easymde .CodeMirror-line > span::-moz-selection, .cm-s-easymde .CodeMirror-line > span > span::-moz-selection {
+    background: rgba(255, 255, 255, 0.10);
+}
+
+.cm-s-easymde span.cm-comment {
+    color: #6272a4;
+}
+
+.cm-s-easymde span.cm-string, .cm-s-easymde span.cm-string-2 {
+    color: #f1fa8c;
+}
+
+.cm-s-easymde span.cm-number {
+    color: #bd93f9;
+}
+
+.cm-s-easymde span.cm-variable {
+    color: #50fa7b;
+}
+
+.cm-s-easymde span.cm-variable-2 {
+    color: white;
+}
+
+.cm-s-easymde span.cm-def {
+    color: #50fa7b;
+}
+
+.cm-s-easymde span.cm-operator {
+    color: #ff79c6;
+}
+
+.cm-s-easymde span.cm-keyword {
+    color: #ff79c6;
+}
+
+.cm-s-easymde span.cm-atom {
+    color: #bd93f9;
+}
+
+.cm-s-easymde span.cm-meta {
+    color: #f8f8f2;
+}
+
+.cm-s-easymde span.cm-tag {
+    color: #ff79c6;
+}
+
+.cm-s-easymde span.cm-attribute {
+    color: #50fa7b;
+}
+
+.cm-s-easymde span.cm-qualifier {
+    color: #50fa7b;
+}
+
+.cm-s-easymde span.cm-property {
+    color: #66d9ef;
+}
+
+.cm-s-easymde span.cm-builtin {
+    color: #50fa7b;
+}
+
+.cm-s-easymde span.cm-variable-3, .cm-s-easymde span.cm-type {
+    color: #ffb86c;
+}
+
+.cm-s-easymde .CodeMirror-activeline-background {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.cm-s-easymde .CodeMirror-matchingbracket {
+    text-decoration: underline;
+    color: white !important;
+}
 
 .btn-block-faded {
     opacity: .50 !important;
 }
+
 .btn-block-option-disabled {
     pointer-events: none !important;
     opacity: .65 !important;
@@ -162,6 +226,7 @@
     position: relative;
     width: 500px;
 }
+
 .z-2000 {
     z-index: 2000 !important;
 }
@@ -185,6 +250,7 @@
         -ms-flex: 0 0 auto;
         flex: 0 0 auto;
     }
+
     .flex-sm-10-auto {
         -ms-flex: 1 0 auto;
         flex: 1 0 auto;
@@ -196,6 +262,7 @@
         -ms-flex: 0 0 auto;
         flex: 0 0 auto;
     }
+
     .flex-md-10-auto {
         -ms-flex: 1 0 auto;
         flex: 1 0 auto;
@@ -207,6 +274,7 @@
         -ms-flex: 0 0 auto;
         flex: 0 0 auto;
     }
+
     .flex-lg-10-auto {
         -ms-flex: 1 0 auto;
         flex: 1 0 auto;
@@ -218,63 +286,78 @@
         -ms-flex: 0 0 auto;
         flex: 0 0 auto;
     }
+
     .flex-xl-10-auto {
         -ms-flex: 1 0 auto;
         flex: 1 0 auto;
     }
 }
+
 .order-md-0 {
     -ms-flex-order: 0;
     order: 0;
 }
+
 .order-md-1 {
     -ms-flex-order: 1;
     order: 1;
 }
+
 .order-md-2 {
     -ms-flex-order: 2;
     order: 2;
 }
+
 .order-md-3 {
     -ms-flex-order: 3;
     order: 3;
 }
+
 .order-md-4 {
     -ms-flex-order: 4;
     order: 4;
 }
+
 .order-md-5 {
     -ms-flex-order: 5;
     order: 5;
 }
+
 .order-md-6 {
     -ms-flex-order: 6;
     order: 6;
 }
+
 .order-md-7 {
     -ms-flex-order: 7;
     order: 7;
 }
+
 .order-md-8 {
     -ms-flex-order: 8;
     order: 8;
 }
+
 .order-md-9 {
     -ms-flex-order: 9;
     order: 9;
 }
+
 .order-md-10 {
     -ms-flex-order: 10;
     order: 10;
 }
+
 .order-md-11 {
     -ms-flex-order: 11;
     order: 11;
 }
+
 .order-md-12 {
     -ms-flex-order: 12;
     order: 12;
 }
+
 .dark-mode .nav-tabs-block .nav-link.active,
 .dark-mode .nav-tabs-block .nav-item.show .nav-link {
     background-color: #252732 !important;
@@ -315,7 +398,7 @@
     color: #bec8d5 !important;
     border-color: #252732 !important;
     background-color: #252732 !important;
-    font-family: Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+    font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     display: block !important;
     width: 100% !important;
     padding: .375rem .75rem !important;
@@ -328,7 +411,7 @@
     -moz-appearance: none !important;
     appearance: none !important;
     border-radius: .25rem !important;
-    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out !important;
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out !important;
 }
 
 .ts-input.focus {
@@ -341,10 +424,12 @@
 .ts-control.plugin-remove_button .item .remove {
     border-left: none !important;
 }
+
 .ts-dropdown, .ts-dropdown.form-control, .ts-dropdown.form-select {
     background: #252732 !important;
     color: #c8ccd0;
 }
+
 .ts-dropdown-content {
     color: #c9ced6 !important;
 }
@@ -353,6 +438,7 @@
     background-color: #434556 !important;
     color: #c8ccd0 !important;
 }
+
 .ts-input > input {
     color: #c8ccd0 !important;
 }

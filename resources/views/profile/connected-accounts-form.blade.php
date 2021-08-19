@@ -58,7 +58,7 @@
                     @else
                         <div class="form-group row">
                             <div class="col-sm-10 col-md-8 col-xl-6">
-                                <a class="btn btn-block btn-dark text-left" href="{{ route('oauth.redirect', ['provider' => $provider]) }}">
+                                <a class="btn btn-block btn-dark text-start" href="{{ route('oauth.redirect', ['provider' => $provider]) }}">
                                     <i class="fab fa-fw fa-{{ $provider }} opacity-50 me-1"></i>
                                     Connect to {{ __(ucfirst($provider)) }}
                                 </a>
