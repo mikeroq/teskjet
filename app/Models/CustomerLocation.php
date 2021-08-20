@@ -12,7 +12,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Carbon;
 use Propaganistas\LaravelPhone\Casts\E164PhoneNumberCast;
 use Propaganistas\LaravelPhone\PhoneNumber;
-use Venturecraft\Revisionable\RevisionableTrait;
 
 /**
  * App\Models\CustomerLocation
@@ -47,7 +46,7 @@ use Venturecraft\Revisionable\RevisionableTrait;
  */
 class CustomerLocation extends Model
 {
-    use HasFactory, RevisionableTrait, SoftDeletes, ConvertTimezone;
+    use HasFactory, SoftDeletes, ConvertTimezone;
 
     protected $fillable = [
         'customer_id',
@@ -76,16 +75,4 @@ class CustomerLocation extends Model
         }
         return PhoneNumber::make($attribute, 'US')->formatNational();
     }
-
-    protected bool $revisionCreationsEnabled = true;
-    protected array $revisionFormattedFieldNames = [
-        'name' => 'Name',
-        'address' => 'Address Line 1',
-        'address_2' => 'Address Line 2',
-        'city'   => 'City',
-        'state' => 'State',
-        'zip' => 'Zip',
-        'phone' => 'Phone',
-        'created_at' => 'Record Created'
-    ];
 }

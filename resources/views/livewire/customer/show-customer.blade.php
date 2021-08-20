@@ -117,28 +117,7 @@
             </x-tab-pane>
             <x-tab-pane id="history">
                 <x-block>
-                    <table class="table table-striped">
-                        <thead>
-                        <tr>
-                            <th>Date</th>
-                            <th>Action</th>
-                            <th>User</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @foreach ($customer->revisionHistory()->orderBy('created_at', 'desc')->get() as $history)
-                            <tr>
-                                <td>{{ $history->created_at->setTimezone(auth()->user()->timezone)->format('Y-m-d h:i a') }}</td>
-                                @if ($history->key === 'created_at' && !$history->old_value)
-                                    <td>Created Customer</td>
-                                @else
-                                    <td>{{ $history->fieldName() }} was changed from {{ $history->oldValue() }} to {{ $history->newValue() }}</td>
-                                @endif
-                                <td>{{ $history->userResponsible()->name }}</td>
-                            </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
+                    History Here?
                 </x-block>
             </x-tab-pane>
         </div>

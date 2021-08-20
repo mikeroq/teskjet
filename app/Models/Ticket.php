@@ -10,8 +10,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Carbon;
-use Venturecraft\Revisionable\Revision;
-use Venturecraft\Revisionable\RevisionableTrait;
 
 /**
  * App\Ticket
@@ -26,8 +24,6 @@ use Venturecraft\Revisionable\RevisionableTrait;
  * @method static \Illuminate\Database\Eloquent\Builder|Ticket whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Ticket whereUpdatedAt($value)
  * @mixin Eloquent
- * @property-read Collection|Revision[] $revisionHistory
- * @property-read int|null $revision_history_count
  * @property-read User $user
  * @method static Builder|Ticket onlyTrashed()
  * @method static Builder|Ticket withTrashed()
@@ -38,7 +34,6 @@ class Ticket extends Model
 {
     use HasFactory;
     use SoftDeletes;
-    use RevisionableTrait;
 
     public function user(): BelongsTo
     {

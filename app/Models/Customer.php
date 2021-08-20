@@ -12,8 +12,6 @@ use Illuminate\Support\Carbon;
 use Laravelista\Comments\Commentable;
 use Propaganistas\LaravelPhone\PhoneNumber;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Venturecraft\Revisionable\Revision;
-use Venturecraft\Revisionable\RevisionableTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Propaganistas\LaravelPhone\Casts\E164PhoneNumberCast;
 
@@ -47,8 +45,6 @@ use Propaganistas\LaravelPhone\Casts\E164PhoneNumberCast;
  * @property-read int|null $devices_count
  * @property-read Collection|CustomerLocation[] $locations
  * @property-read int|null $locations_count
- * @property-read Collection|Revision[] $revisionHistory
- * @property-read int|null $revision_history_count
  * @property-read Collection|Ticket[] $tickets
  * @property-read int|null $tickets_count
  * @method static \Illuminate\Database\Query\Builder|Customer onlyTrashed()
@@ -59,7 +55,7 @@ use Propaganistas\LaravelPhone\Casts\E164PhoneNumberCast;
 
 class Customer extends Model
 {
-    use HasFactory, RevisionableTrait, SoftDeletes, ConvertTimezone, Commentable;
+    use HasFactory, SoftDeletes, ConvertTimezone, Commentable;
 
     protected $fillable = [
         'name',
@@ -132,18 +128,4 @@ class Customer extends Model
         return PhoneNumber::make($attribute, 'US')->formatNational();
     }
 
-    protected bool $revisionCreationsEnabled = true;
-    protected array $revisionFormattedFieldNames = [
-        'name'      => 'Name',
-        'phone'     => 'Phone',
-        'type'      => 'Customer Type',
-        'taxable'   => 'Tax Status',
-        'created_at'=> 'Record Created',
-        'default_address' => 'Primary Address',
-        'shipping_address' => 'Shipping Address',
-        'billing_address' => 'Billing Address'
-    ];
-    protected array $revisionFormattedFields = [
-        'taxable'     => 'boolean:Non Taxable|Taxable'
-    ];
 }

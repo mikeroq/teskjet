@@ -2,8 +2,6 @@
 
 namespace App\Models;
 
-use App\Enums\UserType;
-use BenSampo\Enum\Traits\CastsEnums;
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -27,7 +25,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property int $navigation_id
  * @property string $title
  * @property string|null $url
- * @property UserType $user_level
+ * @property int $user_level
  * @property bool $is_hidden
  * @property int $order_column
  * @property-read mixed $level
@@ -53,7 +51,6 @@ class NavigationChild extends Model implements Sortable
     use HasFactory;
     use SortableTrait;
     use Notifiable;
-    use CastsEnums;
     use SoftDeletes;
 
     public function buildSortQuery(): Builder|NavigationChild
@@ -76,7 +73,6 @@ class NavigationChild extends Model implements Sortable
     ];
 
     protected $casts = [
-        'user_level' => UserType::class,
         'is_hidden' => 'boolean'
     ];
 
@@ -92,11 +88,6 @@ class NavigationChild extends Model implements Sortable
         static::deleted(function () {
             GenerateNavigationService::generate();
         });
-    }
-
-    public function getLevelAttribute()
-    {
-        return $this->user_level->description;
     }
 
     public function getDisplayableHiddenAttribute(): string

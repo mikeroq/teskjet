@@ -17,14 +17,10 @@ use JoelButcher\Socialstream\SetsProfilePhotoFromUrl;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
-use BenSampo\Enum\Traits\CastsEnums;
-use App\Enums\UserType;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Laravel\Sanctum\PersonalAccessToken;
 use Laravelista\Comments\Commenter;
 use Spatie\Permission\Traits\HasRoles;
-use DarkGhostHunter\Larapass\Contracts\WebAuthnAuthenticatable;
-use DarkGhostHunter\Larapass\WebAuthnAuthentication;
 
 /**
  * App\Models\User
@@ -43,7 +39,7 @@ use DarkGhostHunter\Larapass\WebAuthnAuthentication;
  * @property string|null $profile_photo_path
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
- * @property UserType $user_level
+ * @property int $user_level
  * @property string|null $timezone
  * @property-read Collection|ConnectedAccount[] $connectedAccounts
  * @property-read int|null $connected_accounts_count
@@ -77,7 +73,7 @@ use DarkGhostHunter\Larapass\WebAuthnAuthentication;
  * @method static Builder|User whereUserLevel($value)
  * @mixin Eloquent
  */
-class User extends Authenticatable implements MustVerifyEmail, WebAuthnAuthenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens;
     use HasFactory;
@@ -88,10 +84,8 @@ class User extends Authenticatable implements MustVerifyEmail, WebAuthnAuthentic
     use Notifiable;
     use SetsProfilePhotoFromUrl;
     use TwoFactorAuthenticatable;
-    use CastsEnums;
     use Commenter;
     use HasRoles;
-    use WebAuthnAuthentication;
 
     /**
      * The attributes that are mass assignable.
@@ -120,8 +114,7 @@ class User extends Authenticatable implements MustVerifyEmail, WebAuthnAuthentic
      * @var array
      */
     protected $casts = [
-        'email_verified_at' => 'datetime',
-        'user_level' => UserType::class,
+        'email_verified_at' => 'datetime'
     ];
 
     /**
@@ -152,12 +145,7 @@ class User extends Authenticatable implements MustVerifyEmail, WebAuthnAuthentic
         return $this->hasRole('Admin');
     }
 
-    public function getLevelAttribute()
-    {
-        return $this->user_level->description;
-    }
-
-    public function getUserRolesAttribute()
+    public function getUserRolesAttribute(): string
     {
         return $this->getRoleNames()->implode(', ');
     }
