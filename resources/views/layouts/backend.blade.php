@@ -1,41 +1,6 @@
 <!doctype html>
 <html lang="{{ config('app.locale') }}">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>
-        @if(View::hasSection('title'))
-            @yield('title') - {{ config('app.name') }}
-        @else
-            {{ config('app.name') }}
-        @endif
-    </title>
-    <meta name="robots" content="noindex, nofollow">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicons/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicons/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicons/favicon-16x16.png">
-    <link rel="manifest" href="/assets/favicons/site.webmanifest">
-    @yield('css_before')
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
-    <link rel="stylesheet" id="css-main" href="{{ asset('/assets/css/oneui.css') }}">
-    <link rel="stylesheet" id="css-theme" href="{{ asset('/assets/css/themes/amethyst.css') }}">
-    <link rel="stylesheet" id="css-theme" href="{{ asset('/assets/css/custom.css') }}">
-    <link rel="stylesheet" href="/assets/css/bootstrap-side-modals.css" />
-    <link rel="stylesheet" href="/assets/css/sweetalert2.dark.min.css">
-    <link rel="stylesheet" href="/assets/css/ico.css">
-    <link rel="stylesheet" href="/assets/css/tom-select.bootstrap5.css">
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/styles/atom-one-dark.min.css">
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/highlight.min.js"></script>
-    <link rel="stylesheet" href="https://unpkg.com/easymde/dist/easymde.min.css">
-    <script src="https://unpkg.com/easymde/dist/easymde.min.js"></script>
-    @yield('css_after')
-    @livewireStyles
-    <script>
-        hljs.highlightAll();
-        window.Laravel = {!! json_encode(['csrfToken' => csrf_token()]) !!};
-    </script>
-</head>
+<x-layout.head/>
 <body>
     <div id="page-container" class="sidebar-o enable-page-overlay sidebar-dark side-scroll page-header-fixed page-header-dark dark-mode">
         <nav id="sidebar" aria-label="Main Navigation">
