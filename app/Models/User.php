@@ -20,6 +20,7 @@ use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Laravel\Sanctum\PersonalAccessToken;
 use Laravelista\Comments\Commenter;
+use Spatie\Activitylog\Traits\CausesActivity;
 use Spatie\Permission\Traits\HasRoles;
 
 /**
@@ -86,6 +87,7 @@ class User extends Authenticatable implements MustVerifyEmail
     use TwoFactorAuthenticatable;
     use Commenter;
     use HasRoles;
+    use CausesActivity;
 
     /**
      * The attributes that are mass assignable.

@@ -125,13 +125,13 @@
                             <th>User</th>
                         </thead>
                         <tbody>
-                            @forelse($customer->activities as $activity)
+                            @forelse($customer->activities->sortByDesc('created_at') as $activity)
                                 <tr>
-                                    <td>{{ $activity->created_at }}</td>
+                                    <td>{{ tz($activity->created_at) }}</td>
                                     <td>{{ $activity->description }}</td>
                                     <td>
                                         @foreach($activity->changes['attributes'] as  $key => $change)
-                                        {{ $key }} from {{ $change }} to {{ $activity->changes['old'][$key] }}<br>
+                                        {{ Str::of($key)->replace('_', ' ')->title() }} from {{ $change }} to {{ $activity->changes['old'][$key] }}<br>
                                         @endforeach
                                     </td>
                                     <td>{{ $activity->causer->name }}</td>

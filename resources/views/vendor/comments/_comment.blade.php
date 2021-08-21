@@ -1,6 +1,5 @@
 @inject('markdown', 'Parsedown')
 @php
-    // TODO: There should be a better place for this.
     $markdown->setSafeMode(true);
     $markdown->setBreaksEnabled(true)
 @endphp
@@ -14,9 +13,9 @@
             <small>{{ $comment->commenter->email }}</small><br>
             <small class="text-light">
                 @if($comment->created_at->isCurrentDay())
-                    <span title="{{ $comment->created_at->tz($comment->commenter->timezone)->format("M jS, Y g:ia") }}">{{ $comment->created_at->diffForHumans() }}</span>
+                    <span title="{{ $comment->created_at->tz(auth()->user()->timezone)->format("M jS, Y g:ia") }}">{{ $comment->created_at->diffForHumans() }}</span>
                 @else
-                    {{ $comment->created_at->tz($comment->commenter->timezone)->format("M jS, Y g:ia") }}
+                    {{ $comment->created_at->tz(auth()->user()->timezone)->format("M jS, Y g:ia") }}
                 @endif
             </small>
         </h3>
@@ -80,7 +79,7 @@
         ?>
         {{-- Recursion for children --}}
         @if($grouped_comments->has($comment->getKey()) && $indentationLevel <= $maxIndentationLevel)
-            {{-- TODO: Don't repeat code. Extract to a new file and include it. --}}
+
             @foreach($grouped_comments[$comment->getKey()] as $child)
                 @include('comments::_comment', [
                     'comment' => $child,
@@ -93,7 +92,7 @@
 
 {{-- Recursion for children --}}
 @if($grouped_comments->has($comment->getKey()) && $indentationLevel > $maxIndentationLevel)
-    {{-- TODO: Don't repeat code. Extract to a new file and include it. --}}
+
     @foreach($grouped_comments[$comment->getKey()] as $child)
         @include('comments::_comment', [
             'comment' => $child,
