@@ -130,11 +130,16 @@
                                     <td>{{ tz($activity->created_at) }}</td>
                                     <td>{{ $activity->description }}</td>
                                     <td>
-                                        @foreach($activity->changes['attributes'] as  $key => $change)
-                                        {{ Str::of($key)->replace('_', ' ')->title() }} from {{ $change }} to {{ $activity->changes['old'][$key] }}<br>
-                                        @endforeach
+                                        @if($activity->description === "updated")
+                                            @foreach($activity->changes['attributes'] as  $key => $change)
+                                                {{ Str::of($key)->replace('_', ' ')->title() }} from {{ $change }} to {{ $activity->changes['old'][$key] }}<br>
+                                            @endforeach
+                                        @else
+
+                                        @endif
+
                                     </td>
-                                    <td>{{ $activity->causer->name }}</td>
+                                    <td><a href="{{ route('users.profile', $activity->causer->id) }}">{{ $activity->causer->name }}</a></td>
                                 </tr>
                             @empty
                                 <tr>

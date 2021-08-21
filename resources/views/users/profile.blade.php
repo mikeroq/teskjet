@@ -51,152 +51,52 @@
             <div class="col-md-7 col-xl-8">
                 <!-- Updates -->
                 <ul class="timeline timeline-alt py-0">
-                    <li class="timeline-event">
-                        <div class="timeline-event-icon bg-default">
-                            <i class="fab fa-facebook-f"></i>
-                        </div>
-                        <div class="timeline-event-block block">
-                            <div class="block-header">
-                                <h3 class="block-title">Facebook</h3>
-                                <div class="block-options">
-                                    <div class="timeline-event-time block-options-item fs-sm">
-                                        just now
+                    @forelse($user->actions->sortByDesc('created_at') as $activity)
+                        <li class="timeline-event">
+                            @switch($activity->description)
+                            @case('updated')
+                                <div class="timeline-event-icon bg-success">
+                                    <i class="fas fa-pencil-alt fa-fw"></i>
+                                </div>
+                                @break
+                            @case('created')
+                                <div class="timeline-event-icon bg-info">
+                                    <i class="fas fa-plus fa-fw"></i>
+                                </div>
+                                @break
+                            @endswitch
+                            <div class="timeline-event-block block block-themed">
+                                <div class="block-header block-header-default">
+                                    <h3 class="block-title">{{ $activity->description }} {{ config('tesk.activity.'.$activity->subject_type.'.name') }}</h3>
+                                    <div class="block-options">
+                                        <div class="timeline-event-time block-options-item fs-sm">
+                                            {{ tz($activity->created_at) }}
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="block-content">
-                                <p class="fw-semibold mb-2">
-                                    + 290 Page Likes
-                                </p>
-                                <p>
-                                    This is great, keep it up!
-                                </p>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="timeline-event">
-                        <div class="timeline-event-icon bg-modern">
-                            <i class="fa fa-briefcase"></i>
-                        </div>
-                        <div class="timeline-event-block block">
-                            <div class="block-header">
-                                <h3 class="block-title">Products</h3>
-                                <div class="block-options">
-                                    <div class="timeline-event-time block-options-item fs-sm">
-                                        4 hrs ago
-                                    </div>
+                                <div class="block-content">
+                                    <p>
+                                        @if($activity->description === "updated")
+                                            @foreach($activity->changes['attributes'] as  $key => $change)
+                                                {{ Str::of($key)->replace('_', ' ')->title() }} from {{ $change }} to {{ $activity->changes['old'][$key] }}<br>
+                                            @endforeach
+                                        @elseif($activity->description === "created")
+                                            @if(activity_config($activity->subject_type)['parent'] === true)
+                                                Added <a href="{{ route(activity_config($activity->subject_type)['route'], $activity->subject->id) }}">{{ $activity->subject->name }}</a>
+                                            @else
+                                                Added {{ activity_config($activity->subject_type)['name'] }} {{ $activity->subject->name }} to
+                                                <a href="{{ route(activity_config($activity->subject_type)['route'], $activity->subject->customer->id) }}">{{ $activity->subject->customer->name }}</a>
+                                            @endif
+                                        @endif
+                                    </p>
                                 </div>
                             </div>
-                            <div class="block-content block-content-full">
-                                <p class="fw-semibold mb-2">
-                                    3 New Products were added!
-                                </p>
-                                <div class="d-flex">
-                                    <a class="item item-rounded bg-info me-2" href="javascript:void(0)">
-                                        <i class="si si-rocket fa-2x text-white-75"></i>
-                                    </a>
-                                    <a class="item item-rounded bg-amethyst me-2" href="javascript:void(0)">
-                                        <i class="si si-calendar fa-2x text-white-75"></i>
-                                    </a>
-                                    <a class="item item-rounded bg-city me-2" href="javascript:void(0)">
-                                        <i class="si si-speedometer fa-2x text-white-75"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="timeline-event">
-                        <div class="timeline-event-icon bg-info">
-                            <i class="fab fa-twitter"></i>
-                        </div>
-                        <div class="timeline-event-block block">
-                            <div class="block-header">
-                                <h3 class="block-title">Twitter</h3>
-                                <div class="block-options">
-                                    <div class="timeline-event-time block-options-item fs-sm">
-                                        12 hrs ago
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="block-content">
-                                <p class="fw-semibold mb-2">
-                                    + 1150 Followers
-                                </p>
-                                <p>
-                                    You’re getting more and more followers, keep it up!
-                                </p>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="timeline-event">
-                        <div class="timeline-event-icon bg-smooth">
-                            <i class="fa fa-database"></i>
-                        </div>
-                        <div class="timeline-event-block block">
-                            <div class="block-header">
-                                <h3 class="block-title">Backup</h3>
-                                <div class="block-options">
-                                    <div class="timeline-event-time block-options-item fs-sm">
-                                        1 day ago
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="block-content">
-                                <p class="fw-semibold mb-2">
-                                    Database backup completed!
-                                </p>
-                                <p>
-                                    Download the <a href="javascript:void(0)">latest backup</a>.
-                                </p>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="timeline-event">
-                        <div class="timeline-event-icon bg-dark">
-                            <i class="fa fa-cog"></i>
-                        </div>
-                        <div class="timeline-event-block block">
-                            <div class="block-header">
-                                <h3 class="block-title">System</h3>
-                                <div class="block-options">
-                                    <div class="timeline-event-time block-options-item fs-sm">
-                                        1 week ago
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="block-content">
-                                <p class="fw-semibold mb-2">
-                                    App updated to v2.02
-                                </p>
-                                <p>
-                                    Check the complete changelog at the <a href="javascript:void(0)">activity page</a>.
-                                </p>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="timeline-event">
-                        <div class="timeline-event-icon bg-modern">
-                            <i class="fa fa-briefcase"></i>
-                        </div>
-                        <div class="timeline-event-block block">
-                            <div class="block-header">
-                                <h3 class="block-title">Products</h3>
-                                <div class="block-options">
-                                    <div class="timeline-event-time block-options-item fs-sm">
-                                        2 months ago
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="block-content block-content-full">
-                                <p class="fw-semibold mb-2">
-                                    1 New Product was added!
-                                </p>
-                                <a class="item item-rounded bg-muted" href="javascript:void(0)">
-                                    <i class="si si-wallet fa-2x text-white-75"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </li>
+                        </li>
+                    @empty
+                        <li class="timeline-event">
+                            No events found
+                        </li>
+                    @endforelse
                 </ul>
                 <!-- END Updates -->
             </div>

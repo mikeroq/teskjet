@@ -12,6 +12,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Carbon;
 use Propaganistas\LaravelPhone\Casts\E164PhoneNumberCast;
 use Propaganistas\LaravelPhone\PhoneNumber;
+use Spatie\Activitylog\LogOptions;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 /**
  * App\Models\CustomerLocation
@@ -46,7 +48,10 @@ use Propaganistas\LaravelPhone\PhoneNumber;
  */
 class CustomerLocation extends Model
 {
-    use HasFactory, SoftDeletes, ConvertTimezone;
+    use HasFactory;
+    use SoftDeletes;
+    use ConvertTimezone;
+    use LogsActivity;
 
     protected $fillable = [
         'customer_id',
@@ -74,5 +79,10 @@ class CustomerLocation extends Model
             return '';
         }
         return PhoneNumber::make($attribute, 'US')->formatNational();
+    }
+
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()->logFillable()->logOnlyDirty();
     }
 }
