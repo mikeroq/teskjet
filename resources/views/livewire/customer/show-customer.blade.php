@@ -117,7 +117,34 @@
             </x-tab-pane>
             <x-tab-pane id="history">
                 <x-block>
-                    History Here?
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <th>Date</th>
+                            <th>Action</th>
+                            <td>Changes</td>
+                            <th>User</th>
+                        </thead>
+                        <tbody>
+                            @forelse($customer->activities as $activity)
+                                <tr>
+                                    <td>{{ $activity->created_at }}</td>
+                                    <td>{{ $activity->description }}</td>
+                                    <td>
+                                        @foreach($activity->changes['attributes'] as  $key => $change)
+                                        {{ $key }} from {{ $change }} to {{ $activity->changes['old'][$key] }}<br>
+                                        @endforeach
+                                    </td>
+                                    <td>{{ $activity->causer->name }}</td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="4">No activity has been found</td>
+                                </tr>
+                            @endforelse
+
+                        </tbody>
+                    </table>
+
                 </x-block>
             </x-tab-pane>
         </div>
