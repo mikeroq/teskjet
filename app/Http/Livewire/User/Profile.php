@@ -3,12 +3,12 @@
 namespace App\Http\Livewire\User;
 
 use App\Models\User;
+use App\Traits\MyPagination;
 use Livewire\Component;
-use Livewire\WithPagination;
 
 class Profile extends Component
 {
-    use WithPagination;
+    use MyPagination;
 
     protected string $paginationTheme = 'bootstrap';
     public User $user;
