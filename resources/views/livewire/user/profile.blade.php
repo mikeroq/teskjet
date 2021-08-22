@@ -41,25 +41,26 @@
     <div class="content content-boxed">
         <div class="row">
             <div class="col-md-7 col-xl-8">
+                {{ $actions->links() }}
                 <ul class="timeline timeline-alt py-0">
                     @forelse($actions as $activity)
                         <li class="timeline-event">
                             @switch($activity->event)
                                 @case('updated')
-                                <div class="timeline-event-icon bg-success">
-                                    <i class="fas fa-pencil-alt fa-fw"></i>
-                                </div>
-                                @break
+                                    <div class="timeline-event-icon bg-success">
+                                        <i class="fas fa-pencil-alt fa-fw"></i>
+                                    </div>
+                                    @break
                                 @case('created')
-                                <div class="timeline-event-icon bg-info">
-                                    <i class="fas fa-plus fa-fw"></i>
-                                </div>
-                                @break
+                                    <div class="timeline-event-icon bg-info">
+                                        <i class="fas fa-plus fa-fw"></i>
+                                    </div>
+                                    @break
                                 @case('deleted')
-                                <div class="timeline-event-icon bg-danger">
-                                    <i class="fas fa-trash-alt fa-fw"></i>
-                                </div>
-                                @break
+                                    <div class="timeline-event-icon bg-danger">
+                                        <i class="fas fa-trash-alt fa-fw"></i>
+                                    </div>
+                                    @break
                             @endswitch
                             <div class="timeline-event-block block block-themed">
                                 <div class="block-header block-header-default">
@@ -74,20 +75,20 @@
                                     <p>
                                         @switch($activity->event)
                                             @case('updated')
-                                            @foreach($activity->changes['attributes'] as  $key => $change)
-                                                {{ Str::of($key)->replace('_', ' ')->title() }} from {{ $change }} to {{ $activity->changes['old'][$key] }}<br>
-                                            @endforeach
-                                            @break
+                                                @foreach($activity->changes['attributes'] as  $key => $change)
+                                                    {{ Str::of($key)->replace('_', ' ')->title() }} from {{ $activity->changes['old'][$key] }} to {{ $change }}<br>
+                                                @endforeach
+                                                @break
                                             @case('created')
-                                            @if($activity->subject)
-                                                Added <a href="{{ route(activity_config($activity->subject_type)['route'], $activity->subject->id) }}">{{ $activity->subject->name }}</a>
-                                            @else
-                                                Added {{ $activity->properties['attributes']['name'] }} (since been deleted)
-                                            @endif
-                                            @break
+                                                @if($activity->subject)
+                                                    Added <a href="{{ route(activity_config($activity->subject_type)['route'], $activity->subject->id) }}">{{ $activity->subject->name }}</a>
+                                                @else
+                                                    Added {{ $activity->properties['attributes']['name'] }} (since been deleted)
+                                                @endif
+                                                @break
                                             @case('deleted')
-                                            Deleted {{ $activity->properties['old']['name'] }}
-                                            @break
+                                                Deleted {{ $activity->properties['old']['name'] }}
+                                                @break
                                         @endswitch
                                     </p>
                                 </div>

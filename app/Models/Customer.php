@@ -4,57 +4,70 @@ namespace App\Models;
 
 use App\Traits\ConvertTimezone;
 use Eloquent;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Carbon;
+use Laravelista\Comments\Comment;
 use Laravelista\Comments\Commentable;
 use Propaganistas\LaravelPhone\PhoneNumber;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Propaganistas\LaravelPhone\Casts\E164PhoneNumberCast;
 use Spatie\Activitylog\LogOptions;
+use Spatie\Activitylog\Models\Activity;
 use Spatie\Activitylog\Traits\LogsActivity;
 
-/**a
- * Customer
+/**
+ * App\Models\Customer
  *
- * @mixin Eloquent
  * @property int $id
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * @property string $name
  * @property string $phone
- * @property string $type
+ * @property int $type
  * @property bool $taxable
+ * @property Carbon|null $deleted_at
  * @property int $default_address
  * @property int $shipping_address
  * @property int $billing_address
- * @property-read mixed $displayable_taxable
- * @method static \Illuminate\Database\Eloquent\Builder|Customer newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Customer newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Customer query()
- * @method static \Illuminate\Database\Eloquent\Builder|Customer whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Customer whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Customer whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Customer wherePhone($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Customer whereTaxable($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Customer whereType($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Customer whereUpdatedAt($value)
- * @property Carbon|null $deleted_at
+ * @property int $primary_contact
+ * @property-read Collection|Activity[] $activities
+ * @property-read int|null $activities_count
+ * @property-read Collection|Comment[] $approvedComments
+ * @property-read int|null $approved_comments_count
+ * @property-read Collection|Comment[] $comments
+ * @property-read int|null $comments_count
  * @property-read Collection|Device[] $devices
  * @property-read int|null $devices_count
+ * @property-read string $displayable_taxable
  * @property-read Collection|CustomerLocation[] $locations
  * @property-read int|null $locations_count
  * @property-read Collection|Ticket[] $tickets
  * @property-read int|null $tickets_count
- * @method static \Illuminate\Database\Query\Builder|Customer onlyTrashed()
- * @method static \Illuminate\Database\Eloquent\Builder|Customer whereDeletedAt($value)
- * @method static \Illuminate\Database\Query\Builder|Customer withTrashed()
- * @method static \Illuminate\Database\Query\Builder|Customer withoutTrashed()
+ * @method static Builder|Customer newModelQuery()
+ * @method static Builder|Customer newQuery()
+ * @method static Builder|Customer onlyTrashed()
+ * @method static Builder|Customer query()
+ * @method static Builder|Customer whereBillingAddress($value)
+ * @method static Builder|Customer whereCreatedAt($value)
+ * @method static Builder|Customer whereDefaultAddress($value)
+ * @method static Builder|Customer whereDeletedAt($value)
+ * @method static Builder|Customer whereId($value)
+ * @method static Builder|Customer whereName($value)
+ * @method static Builder|Customer wherePhone($value)
+ * @method static Builder|Customer wherePrimaryContact($value)
+ * @method static Builder|Customer whereShippingAddress($value)
+ * @method static Builder|Customer whereTaxable($value)
+ * @method static Builder|Customer whereType($value)
+ * @method static Builder|Customer whereUpdatedAt($value)
+ * @method static Builder|Customer withTrashed()
+ * @method static Builder|Customer withoutTrashed()
+ * @mixin Eloquent
  */
-
 class Customer extends Model
 {
     use HasFactory;
@@ -93,37 +106,37 @@ class Customer extends Model
     }
     public function devices(): HasMany
     {
-        return $this->hasMany('App\Models\Device');
+        return $this->hasMany(Device::class);
     }
 
     public function locations(): HasMany
     {
-        return $this->hasMany('App\Models\CustomerLocation');
+        return $this->hasMany(CustomerLocation::class);
     }
 
     public function tickets(): HasMany
     {
-        return $this->hasMany('App\Models\Ticket');
+        return $this->hasMany(Ticket::class);
     }
 
-    public function primaryContact(): BelongsTo
+    public function getPrimaryContact(): BelongsTo
     {
-        return $this->belongsTo('App\Models\CustomerContact', 'primary_contact');
+        return $this->belongsTo(CustomerContact::class, 'primary_contact');
     }
 
-    public function primaryAddress(): BelongsTo
+    public function getDefaultAddress(): BelongsTo
     {
-        return $this->belongsTo('App\Models\CustomerLocation', 'default_address');
+        return $this->belongsTo(CustomerLocation::class, 'default_address');
     }
 
-    public function shippingAddress(): BelongsTo
+    public function getShippingAddress(): BelongsTo
     {
-        return $this->belongsTo('App\Models\CustomerLocation', 'shipping_address');
+        return $this->belongsTo(CustomerLocation::class, 'shipping_address');
     }
 
-    public function billingAddress(): BelongsTo
+    public function getBillingAddress(): BelongsTo
     {
-        return $this->belongsTo('App\Models\CustomerLocation', 'billing_address');
+        return $this->belongsTo(CustomerLocation::class, 'billing_address');
     }
 
     public function getPhoneAttribute($attribute): string
@@ -136,6 +149,14 @@ class Customer extends Model
 
     public function getActivitylogOptions(): LogOptions
     {
-        return LogOptions::defaults()->logFillable()->logOnlyDirty();
+        return LogOptions::defaults()->logExcept([
+            'primary_contact',
+            'default_address',
+            'shipping_address',
+            'billing_address',
+            'deleted_at',
+            'updated_at',
+            'created_at'
+        ])->logOnlyDirty();
     }
 }

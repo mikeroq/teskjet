@@ -45,6 +45,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @method static Builder|NavigationChild whereUrl($value)
  * @method static Builder|NavigationChild whereUserLevel($value)
  * @mixin Eloquent
+ * @property Carbon|null $deleted_at
+ * @property-read string $displayable_hidden
+ * @method static \Illuminate\Database\Query\Builder|NavigationChild onlyTrashed()
+ * @method static Builder|NavigationChild whereDeletedAt($value)
+ * @method static Builder|NavigationChild whereIsHidden($value)
+ * @method static \Illuminate\Database\Query\Builder|NavigationChild withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|NavigationChild withoutTrashed()
  */
 class NavigationChild extends Model implements Sortable
 {

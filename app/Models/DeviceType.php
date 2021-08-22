@@ -26,6 +26,11 @@ use Illuminate\Support\Carbon;
  * @mixin \Eloquent
  * @property-read Collection|Device[] $devices
  * @property-read int|null $devices_count
+ * @property Carbon|null $deleted_at
+ * @method static \Illuminate\Database\Query\Builder|DeviceType onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|DeviceType whereDeletedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|DeviceType withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|DeviceType withoutTrashed()
  */
 class DeviceType extends Model
 {

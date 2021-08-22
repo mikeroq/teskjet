@@ -16,7 +16,9 @@ class Profile extends Component
     public function render()
     {
         return view('livewire.user.profile', [
-            'actions' => $this->user->actions()->orderBy('created_at', 'desc')->paginate(10 )
+            'actions' => $this->user->actions()
+                ->orderBy('created_at', 'desc')
+                ->paginate(5 )
         ]);
     }
 }

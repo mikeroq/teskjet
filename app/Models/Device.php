@@ -34,6 +34,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property-read Brand $brand
  * @property-read Customer $customer
  * @property-read DeviceType $deviceType
+ * @property string|null $deleted_at
+ * @method static \Illuminate\Database\Eloquent\Builder|Device whereDeletedAt($value)
  */
 class Device extends Model
 {

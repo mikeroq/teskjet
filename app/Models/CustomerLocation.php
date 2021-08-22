@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Traits\ConvertTimezone;
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -13,6 +14,7 @@ use Illuminate\Support\Carbon;
 use Propaganistas\LaravelPhone\Casts\E164PhoneNumberCast;
 use Propaganistas\LaravelPhone\PhoneNumber;
 use Spatie\Activitylog\LogOptions;
+use Spatie\Activitylog\Models\Activity;
 use Spatie\Activitylog\Traits\LogsActivity;
 
 /**
@@ -45,6 +47,13 @@ use Spatie\Activitylog\Traits\LogsActivity;
  * @method static Builder|CustomerLocation whereUpdatedAt($value)
  * @method static Builder|CustomerLocation whereZip($value)
  * @mixin Eloquent
+ * @property Carbon|null $deleted_at
+ * @property-read Collection|Activity[] $activities
+ * @property-read int|null $activities_count
+ * @method static Builder|CustomerLocation onlyTrashed()
+ * @method static Builder|CustomerLocation whereDeletedAt($value)
+ * @method static Builder|CustomerLocation withTrashed()
+ * @method static Builder|CustomerLocation withoutTrashed()
  */
 class CustomerLocation extends Model
 {
@@ -70,7 +79,7 @@ class CustomerLocation extends Model
 
     public function customer(): BelongsTo
     {
-        return $this->belongsTo('App\Models\Customer');
+        return $this->belongsTo(Customer::class);
     }
 
     public function getPhoneAttribute($attribute): string

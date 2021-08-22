@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Customer;
 
 use App\Models\Customer;
+use App\Models\CustomerContact;
 use App\Models\CustomerLocation;
 use Livewire\Component;
 
@@ -84,6 +85,31 @@ class ShowCustomer extends Component
     public function cancelledLocationDelete(): void
     {
         $this->alert('info', 'Location was not deleted.');
+    }
+
+    public function setDefault($id, $type, $column)
+    {
+        $model = match ($type) {
+            'location' => CustomerLocation::findOrFail($id),
+            'contact' => CustomerContact::findOrFail($id),
+        };
+
+        switch($column)
+        {
+            case 'default_address':
+                $this->customer->default_address = $model->id;
+                break;
+            case 'shipping_address':
+                $this->customer->shipping_address = $model->id;
+                break;
+            case 'billing_address':
+                $this->customer->billing_address = $model->id;
+                break;
+            case 'primary_contact':
+                $this->customer->primary_contact = $model->id;
+                break;
+        }
+
     }
 
     public function setDefaultAddress($locationId)

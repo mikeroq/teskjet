@@ -58,6 +58,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @method static Builder|Navigation ordered(string $direction = 'asc')
  * @method static Builder|Navigation whereNavigationTypeId($value)
  * @method static Builder|Navigation whereOrderColumn($value)
+ * @property Carbon|null $deleted_at
+ * @property-read string $displayable_hidden
+ * @method static \Illuminate\Database\Query\Builder|Navigation onlyTrashed()
+ * @method static Builder|Navigation whereDeletedAt($value)
+ * @method static Builder|Navigation whereIsHidden($value)
+ * @method static \Illuminate\Database\Query\Builder|Navigation withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|Navigation withoutTrashed()
  */
 class Navigation extends Model implements Sortable
 {

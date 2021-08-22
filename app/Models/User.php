@@ -73,6 +73,19 @@ use Spatie\Permission\Traits\HasRoles;
  * @method static Builder|User whereUpdatedAt($value)
  * @method static Builder|User whereUserLevel($value)
  * @mixin Eloquent
+ * @property-read Collection|\Spatie\Activitylog\Models\Activity[] $actions
+ * @property-read int|null $actions_count
+ * @property-read Collection|\Laravelista\Comments\Comment[] $approvedComments
+ * @property-read int|null $approved_comments_count
+ * @property-read Collection|\Laravelista\Comments\Comment[] $comments
+ * @property-read int|null $comments_count
+ * @property-read string $user_roles
+ * @property-read Collection|\App\Models\Permission[] $permissions
+ * @property-read int|null $permissions_count
+ * @property-read Collection|\App\Models\Role[] $roles
+ * @property-read int|null $roles_count
+ * @method static Builder|User permission($permissions)
+ * @method static Builder|User role($roles, $guard = null)
  */
 class User extends Authenticatable implements MustVerifyEmail
 {
