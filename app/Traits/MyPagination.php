@@ -6,6 +6,7 @@ use Livewire\WithPagination;
 trait MyPagination
 {
     use WithPagination;
+    protected string $paginationTheme = 'bootstrap';
 
     public function setPage($page): void
     {

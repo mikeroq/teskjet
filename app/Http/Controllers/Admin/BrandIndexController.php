@@ -3,18 +3,18 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Contracts\View\View;
+use Illuminate\Http\Request;
+use Illuminate\View\View;
 
-class BrandController extends Controller
+class BrandIndexController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Handle the incoming request.
      *
      * @return View
      */
-    public function index(): View
+    public function __invoke(): View
     {
         return view('admin.brands');
     }
-
 }

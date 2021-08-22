@@ -1,9 +1,15 @@
 <?php
 
+use App\Http\Controllers\Admin\BrandIndexController;
+use App\Http\Controllers\Admin\DeviceTypeIndexController;
+use App\Http\Controllers\Admin\NavigationIndexController;
 use App\Http\Controllers\Admin\PermissionController;
+use App\Http\Controllers\Admin\PermissionIndexController;
 use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Admin\UserAdminIndexController;
 use App\Http\Controllers\Customer\RedirectLocationController;
-use App\Http\Controllers\User\UserProfileController;
+use App\Http\Controllers\LandingRedirectController;
+use App\Http\Livewire\User\Profile;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\NavigationController;
@@ -25,17 +31,8 @@ use App\Http\Controllers\User\UserControlPanelController;
 |
 */
 
-Route::get('/', [LandingController::class, 'index']);
+Route::get('/', LandingRedirectController::class);
 
-Route::post('webauthn/register/options', [WebAuthnRegisterController::class, 'options'])
-    ->name('webauthn.register.options');
-Route::post('webauthn/register', [WebAuthnRegisterController::class, 'register'])
-    ->name('webauthn.register');
-
-Route::post('webauthn/login/options', [WebAuthnLoginController::class, 'options'])
-    ->name('webauthn.login.options');
-Route::post('webauthn/login', [WebAuthnLoginController::class, 'login'])
-    ->name('webauthn.login');
 
 Route::middleware(['auth:sanctum'])->group(function () {
     // Dashboard Route
@@ -48,18 +45,18 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('customer-location/{customerLocation}', RedirectLocationController::class)->name('customers.location');
     Route::resource('tickets', TicketController::class);
 
-    Route::get('/users', [UserAdminController::class, 'index'])->name('users.index');
-    Route::get('/users/{user}', [UserProfileController::class, 'show'])->name('users.profile');
+    Route::get('/users', UserAdminIndexController::class)->name('users.index');
+    Route::get('/users/{user}', Profile::class)->name('users.profile');
 
     // Admin Routes
     Route::middleware(['admin'])->prefix('admin')->group(function () {
         Route::view('/dashboard', 'admin.dashboard')->name('admin.index');
-        Route::get('/users', [UserAdminController::class, 'index'])->name('admin.users');
-        Route::get('/navigation', [NavigationController::class, 'index'])->name('admin.navigation');
-        Route::get('/permissions', [PermissionController::class, 'index'])->name('admin.permissions');
+        Route::get('/users', UserAdminIndexController::class)->name('admin.users');
+        Route::get('/navigation', NavigationIndexController::class)->name('admin.navigation');
+        Route::get('/permissions', PermissionIndexController::class)->name('admin.permissions');
         Route::get('/roles', [RoleController::class, 'index'])->name('admin.roles');
         Route::get('/roles/{role}', [RoleController::class, 'show'])->name('admin.roles.show');
-        Route::get('/brands', [BrandController::class, 'index'])->name('admin.brands');
-        Route::get('/device-types', [DeviceTypeController::class, 'index'])->name('admin.device_types');
+        Route::get('/brands', BrandIndexController::class)->name('admin.brands');
+        Route::get('/device-types', DeviceTypeIndexController::class)->name('admin.device_types');
     });
 });

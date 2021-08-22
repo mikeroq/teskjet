@@ -2,19 +2,19 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Navigation;
-use Illuminate\Contracts\View\View;
-use App\Models\NavigationType;
 use App\Http\Controllers\Controller;
+use App\Models\NavigationType;
+use Illuminate\Http\Request;
+use Illuminate\View\View;
 
-class NavigationController extends Controller
+class NavigationIndexController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Handle the incoming request.
      *
      * @return View
      */
-    public function index(): View
+    public function __invoke(): View
     {
         $navigation_types = NavigationType::all();
         return view('admin.navigation', ['navigation_types' => $navigation_types]);
