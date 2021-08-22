@@ -3,12 +3,10 @@
 return [
     'App\Models\Customer' => [
         'name' => 'Customer',
-        'route' => 'customers.show',
-        'parent' => true
+        'route' => 'customers.show'
     ],
     'App\Models\CustomerLocation' => [
         'name' => 'Customer Location',
-        'route' => 'customers.show',
-        'parent' => false
+        'route' => 'customers.location'
     ],
 ];

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Customer\RedirectLocationController;
 use App\Http\Controllers\User\UserProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\BrandController;
@@ -12,8 +13,6 @@ use App\Http\Controllers\Admin\DeviceTypeController;
 use App\Http\Controllers\Admin\UserAdminController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\User\UserControlPanelController;
-use App\Http\Controllers\Auth\WebAuthnRegisterController;
-use App\Http\Controllers\Auth\WebAuthnLoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,6 +45,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
     // Resource Routes
     Route::resource('customers', CustomerController::class);
+    Route::get('customer-location/{customerLocation}', RedirectLocationController::class)->name('customers.location');
     Route::resource('tickets', TicketController::class);
 
     Route::get('/users', [UserAdminController::class, 'index'])->name('users.index');
