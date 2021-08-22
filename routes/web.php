@@ -44,7 +44,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::resource('customers', CustomerController::class);
     Route::get('customer-location/{customerLocation}', RedirectLocationController::class)->name('customers.location');
     Route::resource('tickets', TicketController::class);
-
     Route::get('/users', UserAdminIndexController::class)->name('users.index');
     Route::get('/users/{user}', Profile::class)->name('users.profile');
 

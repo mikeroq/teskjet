@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Admin\Roles;
+namespace App\Http\Livewire\Admin\Role;
 
 use Illuminate\Database\Eloquent\Collection;
 use Livewire\Component;
