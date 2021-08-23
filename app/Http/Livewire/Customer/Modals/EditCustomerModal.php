@@ -55,7 +55,7 @@ class EditCustomerModal extends ModalComponent
         $this->customer->save();
 
         if ($this->customer->wasChanged()) {
-            $this->alert('success', 'Edit Successful', [
+            self::alert('success', 'Edit Successful', [
                 'position' =>  'center',
                 'timer' =>  '2000',
                 'toast' =>  false,
@@ -67,7 +67,7 @@ class EditCustomerModal extends ModalComponent
             $this->dispatchBrowserEvent('update-title', ['title' => $this->customer->name . ' - Viewing Customer - ' . config('app.name')]);
             $this->forceClose()->closeModal();
         } else {
-            $this->alert('info', 'Notice', [
+            self::alert('info', 'Notice', [
                 'position' =>  'top-end',
                 'text' => 'You did not modify any fields. Nothing was changed.',
                 'toast' =>  true,

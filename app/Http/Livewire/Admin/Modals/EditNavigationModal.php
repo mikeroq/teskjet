@@ -50,7 +50,7 @@ class EditNavigationModal extends ModalComponent
         $this->forceClose()->closeModal();
 
         $this->emit('refreshNavigationTable');
-        $this->alert('success', 'Edited Navigation', [
+        self::alert('success', 'Edited Navigation', [
             'timer' =>  '2000'
         ]);
 

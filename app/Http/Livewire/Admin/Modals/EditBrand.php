@@ -37,7 +37,7 @@ class EditBrand extends ModalComponent
         $this->forceClose()->closeModal();
 
         $this->emit('refreshBrandTable');
-        $this->alert('success', 'Updated', [
+        self::alert('success', 'Updated', [
             'timer' =>  '2000'
         ]);
 

@@ -76,7 +76,7 @@ class CreateNavigation extends ModalComponent
             'is_hidden'
         ]);
         $this->forceClose()->closeModalWithEvents(['refreshNavigationTable']);
-        $this->alert('success', 'Added Navigation', [
+        self::alert('success', 'Added Navigation', [
             'timer' =>  '2000'
         ]);
     }

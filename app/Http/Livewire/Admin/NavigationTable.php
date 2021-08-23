@@ -62,7 +62,7 @@ class NavigationTable extends Component
     public function triggerNavigationDelete($delete_id): void
     {
         $this->delete_id_parent = $delete_id;
-        $this->confirm('Are you sure you want to delete?', [
+        self::confirm('Are you sure you want to delete?', [
             'onConfirmed' => 'confirmedDeleteNavigation',
             'onCancelled' => 'cancelledDelete'
         ]);
@@ -71,7 +71,7 @@ class NavigationTable extends Component
     public function triggerNavigationChildDelete($delete_id): void
     {
         $this->delete_id_child = $delete_id;
-        $this->confirm('Are you sure you want to delete?', [
+        self::confirm('Are you sure you want to delete?', [
             'toast' => false,
             'position' => 'center',
             'showConfirmButton' => true,
@@ -86,7 +86,7 @@ class NavigationTable extends Component
     {
         Navigation::findorFail($this->delete_id_parent)->delete();
 
-        $this->alert(
+        self::alert(
             'success',
             'Navigation deleted!'
         );
@@ -96,7 +96,7 @@ class NavigationTable extends Component
     {
         NavigationChild::findorFail($this->delete_id_child)->delete();
 
-        $this->alert(
+        self::alert(
             'success',
             'Navigation deleted!'
         );
@@ -106,6 +106,6 @@ class NavigationTable extends Component
     {
         // Example code inside cancelled callback
 
-        $this->alert('info', 'Navigation was not deleted');
+        self::alert('info', 'Navigation was not deleted');
     }
 }

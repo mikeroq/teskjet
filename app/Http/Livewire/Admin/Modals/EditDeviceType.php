@@ -31,7 +31,7 @@ class EditDeviceType extends ModalComponent
         $this->forceClose()->closeModal();
 
         $this->emit('refreshDeviceTypeTable');
-        $this->alert('success', 'Updated', [
+        self::alert('success', 'Updated', [
             'timer' =>  '2000'
         ]);
 

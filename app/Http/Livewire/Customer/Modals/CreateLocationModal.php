@@ -52,7 +52,7 @@ class CreateLocationModal extends ModalComponent
             $this->customer->default_address = $location->id;
             $this->customer->save();
         }
-        $this->flash('success', 'Successful', [
+        self::flash('success', 'Successful', [
             'position' =>  'center',
             'timer' =>  '1500',
             'toast' =>  false,

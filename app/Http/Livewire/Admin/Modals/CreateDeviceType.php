@@ -30,7 +30,7 @@ class CreateDeviceType extends ModalComponent
 
         $this->reset();
         $this->forceClose()->closeModalWithEvents(['refreshDeviceTypeTable']);
-        $this->alert('success', 'Added Device Type', [
+        self::alert('success', 'Added Device Type', [
             'timer' =>  '2000'
         ]);
     }

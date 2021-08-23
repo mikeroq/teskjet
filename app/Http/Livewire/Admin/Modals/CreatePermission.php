@@ -29,7 +29,7 @@ class CreatePermission extends ModalComponent
 
         $this->reset();
         $this->forceClose()->closeModalWithEvents(['refreshPermissionTable']);
-        $this->alert('success', 'Added Role ', [
+        self::alert('success', 'Added Role ', [
             'timer' =>  '2000'
         ]);
     }

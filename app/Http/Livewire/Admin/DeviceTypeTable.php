@@ -40,7 +40,7 @@ class DeviceTypeTable extends DataTableComponent
     public function triggerDelete($delete_id): void
     {
         $this->delete_id = $delete_id;
-        $this->confirm('Are you sure you want to delete?', [
+        self::confirm('Are you sure you want to delete?', [
             'toast' => false,
             'position' => 'center',
             'showConfirmButton' => true,
@@ -55,7 +55,7 @@ class DeviceTypeTable extends DataTableComponent
     {
         DeviceType::findorFail($this->delete_id)->delete();
 
-        $this->alert(
+        self::alert(
             'success',
             'Device Type deleted!'
         );

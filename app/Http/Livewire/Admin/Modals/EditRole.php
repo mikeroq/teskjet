@@ -32,7 +32,7 @@ class EditRole extends ModalComponent
         $this->forceClose()->closeModal();
 
         $this->emit('refreshRoleTable');
-        $this->alert('success', 'Updated', [
+        self::alert('success', 'Updated', [
             'timer' =>  '2000'
         ]);
     }

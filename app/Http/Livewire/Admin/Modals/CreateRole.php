@@ -29,7 +29,7 @@ class CreateRole extends ModalComponent
 
         $this->reset();
         $this->forceClose()->closeModalWithEvents(['refreshRoleTable']);
-        $this->alert('success', 'Added Role ', [
+        self::alert('success', 'Added Role ', [
             'timer' =>  '2000'
         ]);
     }

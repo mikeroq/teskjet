@@ -41,7 +41,7 @@ class UserTable extends DataTableComponent
     public function triggerDelete($delete_id): void
     {
         $this->delete_id = $delete_id;
-        $this->confirm('Are you sure you want to delete?', [
+        self::confirm('Are you sure you want to delete?', [
             'onConfirmed' => 'confirmedDelete',
             'onCancelled' => 'cancelledDelete'
         ]);
@@ -50,7 +50,7 @@ class UserTable extends DataTableComponent
     public function confirmedDelete(): void
     {
         User::findOrFail($this->delete_id)->delete();
-        $this->alert(
+        self::alert(
             'success',
             'User deleted!'
         );
@@ -58,7 +58,7 @@ class UserTable extends DataTableComponent
 
     public function cancelledDelete(): void
     {
-        $this->alert('info', 'User was not deleted.');
+        self::alert('info', 'User was not deleted.');
     }
 
     public function query(): Builder

@@ -70,7 +70,7 @@ class EditLocationModal extends ModalComponent
         $this->location->save();
 
         if ($this->location->wasChanged()) {
-            $this->alert('success', 'Edit Successful', [
+            self::alert('success', 'Edit Successful', [
                 'position' =>  'center',
                 'timer' =>  '2000',
                 'toast' =>  false,
@@ -80,7 +80,7 @@ class EditLocationModal extends ModalComponent
             $this->emit('customerShowRefresh');
             $this->forceClose()->closeModal();
         } else {
-            $this->alert('info', 'Notice', [
+            self::alert('info', 'Notice', [
                 'position' =>  'top-end',
                 'text' => 'You did not modify any fields. Nothing was changed.',
                 'toast' =>  true,

@@ -31,7 +31,7 @@ class CreateCustomerModal extends ModalComponent
 
         $customer = Customer::create($validated);
 
-        $this->flash('success', 'Successful', [
+        self::flash('success', 'Successful', [
             'position' =>  'center',
             'timer' =>  '1500',
             'toast' =>  false,

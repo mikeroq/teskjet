@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Customer;
 use App\Models\Customer;
 use App\Models\CustomerContact;
 use App\Models\CustomerLocation;
+use Illuminate\Contracts\View\View;
 use Livewire\Component;
 
 class ShowCustomer extends Component
@@ -20,7 +21,7 @@ class ShowCustomer extends Component
         'cancelledLocationDelete'
     ];
 
-    public function render()
+    public function render(): View
     {
         return view('livewire.customer.show-customer');
     }
@@ -28,7 +29,7 @@ class ShowCustomer extends Component
     public function triggerLocationDelete($delete_id): void
     {
         $this->delete_location_id = $delete_id;
-        $this->confirm('Are you sure you want to delete?', [
+        self::confirm('Are you sure you want to delete?', [
             'onConfirmed' => 'confirmedDeleteLocation',
             'onCancelled' => 'cancelledDelete'
         ]);
@@ -36,7 +37,7 @@ class ShowCustomer extends Component
 
     public function triggerDelete(): void
     {
-        $this->confirm('Are you sure you want to delete?', [
+        self::confirm('Are you sure you want to delete?', [
             'onConfirmed' => 'confirmedDelete',
             'onCancelled' => 'cancelledDelete'
         ]);
@@ -45,7 +46,7 @@ class ShowCustomer extends Component
     public function confirmedDelete(): void
     {
         $this->customer->delete();
-        $this->alert(
+        self::alert(
             'success',
             'Location deleted!'
         );
@@ -71,7 +72,7 @@ class ShowCustomer extends Component
             $this->customer->save();
         }
         $this->emit('customerShowRefresh');
-        $this->alert(
+        self::alert(
             'success',
             'Location deleted!'
         );
@@ -79,15 +80,15 @@ class ShowCustomer extends Component
 
     public function cancelledDelete(): void
     {
-        $this->alert('info', 'Customer was not deleted.');
+        self::alert('info', 'Customer was not deleted.');
     }
 
     public function cancelledLocationDelete(): void
     {
-        $this->alert('info', 'Location was not deleted.');
+        self::alert('info', 'Location was not deleted.');
     }
 
-    public function setDefault($id, $type, $column)
+    public function setDefault($id, $type, $column): void
     {
         $model = match ($type) {
             'location' => CustomerLocation::findOrFail($id),
@@ -112,37 +113,37 @@ class ShowCustomer extends Component
 
     }
 
-    public function setDefaultAddress($locationId)
+    public function setDefaultAddress($locationId): void
     {
         $location = CustomerLocation::findOrFail($locationId);
         $this->customer->default_address = $location->id;
         $this->customer->save();
         $this->emit('customerShowRefresh');
-        $this->alert(
+        self::alert(
             'success',
             'Location set as default address!'
         );
     }
 
-    public function setBillingAddress($locationId)
+    public function setBillingAddress($locationId): void
     {
         $location = CustomerLocation::findOrFail($locationId);
         $this->customer->billing_address = $location->id;
         $this->customer->save();
         $this->emit('customerShowRefresh');
-        $this->alert(
+        self::alert(
             'success',
             'Location set as billing address!'
         );
     }
 
-    public function setShippingAddress($locationId)
+    public function setShippingAddress($locationId): void
     {
         $location = CustomerLocation::findOrFail($locationId);
         $this->customer->shipping_address = $location->id;
         $this->customer->save();
         $this->emit('customerShowRefresh');
-        $this->alert(
+        self::alert(
             'success',
             'Location set as shipping address !'
         );
