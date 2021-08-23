@@ -5,11 +5,11 @@ namespace App\Models;
 use App\Traits\ConvertTimezone;
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Collection;
 use Laravelista\Comments\Comment;
 use Laravelista\Comments\Commentable;
 use Propaganistas\LaravelPhone\PhoneNumber;
@@ -119,24 +119,33 @@ class Customer extends Model
         return $this->hasMany(Ticket::class);
     }
 
-    public function getPrimaryContact(): BelongsTo
+    public function getPrimaryContact(): HasOne
     {
-        return $this->belongsTo(CustomerContact::class, 'primary_contact');
+        return $this->hasOne(CustomerContact::class)->where('id', $this->primary_contact);
     }
 
-    public function getDefaultLocation(): BelongsTo
+    public function getDefaultLocation()
     {
-        return $this->belongsTo(CustomerLocation::class, 'default_address');
+        return CustomerLocation::find($this->default_address);
     }
 
-    public function getShippingLocation(): BelongsTo
+    public function getShippingLocation()
     {
-        return $this->belongsTo(CustomerLocation::class, 'shipping_address');
+        return CustomerLocation::find($this->shipping_address);
     }
 
-    public function getBillingLocation(): BelongsTo
+    public function getBillingLocation()
     {
-        return $this->belongsTo(CustomerLocation::class, 'billing_address');
+        return CustomerLocation::find($this->billing_address);
+    }
+
+    public function fetchLocations(): Collection
+    {
+        return collect([
+            $this->getDefaultLocation(),
+            $this->getBillingLocation(),
+            $this->getShippingLocation()
+        ])->concat($this->locations)->whereNotNull()->unique();
     }
 
     public function getPhoneAttribute($attribute): string
