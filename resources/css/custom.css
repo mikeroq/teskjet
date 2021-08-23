@@ -1,0 +1,465 @@
+:root {
+    color-scheme: dark;
+}
+
+.sticky-offset {
+    top: 64px;
+}
+
+.swal2-popup.swal2-toast {
+    box-shadow: none !important;
+}
+
+.dropdown-menu {
+    z-index: 1500 !important;
+}
+
+.dark-mode .form-select.form-select-alt {
+    color: #c8ccd0;
+    border-color: #252732;
+    border-top-color: rgb(37, 39, 50);
+    border-right-color: rgb(37, 39, 50);
+    border-bottom-color: rgb(37, 39, 50);
+    border-left-color: rgb(37, 39, 50);
+    background-color: #252732;
+}
+
+.dark-mode .form-select.form-select-alt:focus {
+    color: #fff;
+    border-color: #22242e;
+    background-color: #22242e;
+    box-shadow: none;
+}
+
+.dark-mode .form-select.form-select-alt.is-invalid {
+    border-color: rgba(127, 29, 29, 0.85);
+    background-color: rgba(127, 29, 29, 0.85);
+}
+
+
+.editor-toolbar {
+    background-color: #252732 !important;
+    border: none !important;
+}
+
+.editor-toolbar .easymde-dropdown, .editor-toolbar button {
+    color: #72747e;
+}
+
+.editor-toolbar button.active, .editor-toolbar button:hover {
+    background: #20222b !important;
+    border: none !important;
+}
+
+.editor-toolbar i.separator {
+    border-left: 1px solid #62646d !important;
+    border-right: none !important;
+}
+
+.editor-preview {
+    background-color: #282a36 !important;
+    color: #f8f8f2 !important;
+}
+
+.EasyMDEContainer .CodeMirror {
+    border: none !important;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.cm-s-easymde.CodeMirror, .cm-s-easymde .CodeMirror-gutters {
+    background-color: #282a36 !important;
+    color: #f8f8f2 !important;
+    border: none;
+}
+
+.cm-s-easymde .CodeMirror-gutters {
+    color: #282a36;
+}
+
+.cm-s-easymde .CodeMirror-cursor {
+    border-left: solid thin #f8f8f0;
+}
+
+.cm-s-easymde .CodeMirror-linenumber {
+    color: #6D8A88;
+}
+
+.cm-s-easymde .CodeMirror-selected {
+    background: rgba(255, 255, 255, 0.10);
+}
+
+.cm-s-easymde .CodeMirror-line::selection, .cm-s-easymde .CodeMirror-line > span::selection, .cm-s-easymde .CodeMirror-line > span > span::selection {
+    background: rgba(255, 255, 255, 0.10);
+}
+
+.cm-s-easymde .CodeMirror-line::-moz-selection, .cm-s-easymde .CodeMirror-line > span::-moz-selection, .cm-s-easymde .CodeMirror-line > span > span::-moz-selection {
+    background: rgba(255, 255, 255, 0.10);
+}
+
+.cm-s-easymde span.cm-comment {
+    color: #6272a4;
+}
+
+.cm-s-easymde span.cm-string, .cm-s-easymde span.cm-string-2 {
+    color: #f1fa8c;
+}
+
+.cm-s-easymde span.cm-number {
+    color: #bd93f9;
+}
+
+.cm-s-easymde span.cm-variable {
+    color: #50fa7b;
+}
+
+.cm-s-easymde span.cm-variable-2 {
+    color: white;
+}
+
+.cm-s-easymde span.cm-def {
+    color: #50fa7b;
+}
+
+.cm-s-easymde span.cm-operator {
+    color: #ff79c6;
+}
+
+.cm-s-easymde span.cm-keyword {
+    color: #ff79c6;
+}
+
+.cm-s-easymde span.cm-atom {
+    color: #bd93f9;
+}
+
+.cm-s-easymde span.cm-meta {
+    color: #f8f8f2;
+}
+
+.cm-s-easymde span.cm-tag {
+    color: #ff79c6;
+}
+
+.cm-s-easymde span.cm-attribute {
+    color: #50fa7b;
+}
+
+.cm-s-easymde span.cm-qualifier {
+    color: #50fa7b;
+}
+
+.cm-s-easymde span.cm-property {
+    color: #66d9ef;
+}
+
+.cm-s-easymde span.cm-builtin {
+    color: #50fa7b;
+}
+
+.cm-s-easymde span.cm-variable-3, .cm-s-easymde span.cm-type {
+    color: #ffb86c;
+}
+
+.cm-s-easymde .CodeMirror-activeline-background {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.cm-s-easymde .CodeMirror-matchingbracket {
+    text-decoration: underline;
+    color: white !important;
+}
+
+.btn-block-faded {
+    opacity: .50 !important;
+}
+
+.btn-block-option-disabled {
+    pointer-events: none !important;
+    opacity: .65 !important;
+    color: #FFD700 !important;
+}
+
+.dark-mode .btn-block-option:focus, .dark-mode .btn-block-option:hover {
+    color: #a7afbc;
+    opacity: 1 !important;
+}
+
+.spotlight-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 100vh;
+
+}
+
+.spotlight-backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 100vh;
+    backdrop-filter: blur(2px);
+}
+
+.spotlight-absolute {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
+.transition-opacity {
+    transition-property: opacity;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+}
+
+
+.spotlight-relative {
+    position: relative;
+    width: 500px;
+}
+
+.z-2000 {
+    z-index: 2000 !important;
+}
+
+.force-focus {
+    background-color: #22242e !important;
+}
+
+.flex-00-auto {
+    -ms-flex: 0 0 auto;
+    flex: 0 0 auto;
+}
+
+.flex-10-auto {
+    -ms-flex: 1 0 auto;
+    flex: 1 0 auto;
+}
+
+@media (min-width: 576px) {
+    .flex-sm-00-auto {
+        -ms-flex: 0 0 auto;
+        flex: 0 0 auto;
+    }
+
+    .flex-sm-10-auto {
+        -ms-flex: 1 0 auto;
+        flex: 1 0 auto;
+    }
+}
+
+@media (min-width: 768px) {
+    .flex-md-00-auto {
+        -ms-flex: 0 0 auto;
+        flex: 0 0 auto;
+    }
+
+    .flex-md-10-auto {
+        -ms-flex: 1 0 auto;
+        flex: 1 0 auto;
+    }
+}
+
+@media (min-width: 992px) {
+    .flex-lg-00-auto {
+        -ms-flex: 0 0 auto;
+        flex: 0 0 auto;
+    }
+
+    .flex-lg-10-auto {
+        -ms-flex: 1 0 auto;
+        flex: 1 0 auto;
+    }
+}
+
+@media (min-width: 1200px) {
+    .flex-xl-00-auto {
+        -ms-flex: 0 0 auto;
+        flex: 0 0 auto;
+    }
+
+    .flex-xl-10-auto {
+        -ms-flex: 1 0 auto;
+        flex: 1 0 auto;
+    }
+}
+
+.order-md-0 {
+    -ms-flex-order: 0;
+    order: 0;
+}
+
+.order-md-1 {
+    -ms-flex-order: 1;
+    order: 1;
+}
+
+.order-md-2 {
+    -ms-flex-order: 2;
+    order: 2;
+}
+
+.order-md-3 {
+    -ms-flex-order: 3;
+    order: 3;
+}
+
+.order-md-4 {
+    -ms-flex-order: 4;
+    order: 4;
+}
+
+.order-md-5 {
+    -ms-flex-order: 5;
+    order: 5;
+}
+
+.order-md-6 {
+    -ms-flex-order: 6;
+    order: 6;
+}
+
+.order-md-7 {
+    -ms-flex-order: 7;
+    order: 7;
+}
+
+.order-md-8 {
+    -ms-flex-order: 8;
+    order: 8;
+}
+
+.order-md-9 {
+    -ms-flex-order: 9;
+    order: 9;
+}
+
+.order-md-10 {
+    -ms-flex-order: 10;
+    order: 10;
+}
+
+.order-md-11 {
+    -ms-flex-order: 11;
+    order: 11;
+}
+
+.order-md-12 {
+    -ms-flex-order: 12;
+    order: 12;
+}
+
+.dark-mode .nav-tabs-block .nav-link.active,
+.dark-mode .nav-tabs-block .nav-item.show .nav-link {
+    background-color: #252732 !important;
+}
+
+.dark-mode .form-check-input {
+    border: 0 !important;
+    background-color: #24252c !important;
+}
+
+.dark-mode .form-check-input:checked {
+    background-color: #151e31 !important;
+}
+
+.nav-main-link-submenu {
+    cursor: pointer !important;
+}
+
+.modal-backdrop {
+    z-index: 0 !important;
+    background-color: #0000008a;
+    backdrop-filter: blur(2px);
+}
+
+.items .item {
+    display: inline-flex;
+    align-items: center;
+    justify-content: initial;
+    width: initial;
+    height: initial;
+    transition: initial;
+    background: #2c2e3b !important;
+    color: #c8ccd0 !important;
+    font-size: 0.875rem !important;
+}
+
+.ts-input {
+    color: #bec8d5 !important;
+    border-color: #252732 !important;
+    background-color: #252732 !important;
+    font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    display: block !important;
+    width: 100% !important;
+    padding: .375rem .75rem !important;
+    font-size: 1rem !important;
+    font-weight: 400 !important;
+    line-height: 1.5 !important;
+    background-clip: padding-box !important;
+
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    appearance: none !important;
+    border-radius: .25rem !important;
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out !important;
+}
+
+.ts-input.focus {
+    color: #c8ccd0 !important;
+    border-color: #22242e !important;
+    background-color: #22242e !important;
+    box-shadow: none !important;
+}
+
+.ts-control.plugin-remove_button .item .remove {
+    border-left: none !important;
+}
+
+.ts-dropdown, .ts-dropdown.form-control, .ts-dropdown.form-select {
+    background: #252732 !important;
+    color: #c8ccd0;
+}
+
+.ts-dropdown-content {
+    color: #c9ced6 !important;
+}
+
+.ts-dropdown .create:hover, .ts-dropdown .option:hover, .ts-dropdown .active {
+    background-color: #434556 !important;
+    color: #c8ccd0 !important;
+}
+
+.ts-input > input {
+    color: #c8ccd0 !important;
+}
+
+.ts-control.multi .ts-input > div {
+    padding-left: 6px !important;
+}
+
+/* used to override pale yellow color that chrome uses when user chooses an item from
+its autocomplete list */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s !important;
+}
+
+input:-webkit-autofill {
+    -webkit-text-fill-color: #fff !important;
+}
+
+input:-webkit-autofill:focus {
+    -webkit-text-fill-color: #fff !important;
+}

@@ -30,11 +30,11 @@
                         <x-jet-input id="recovery_code" type="text" name="recovery_code" x-ref="recovery_code"
                                      autocomplete="one-time-code"/>
                     </x-form-group>
-                    {{-- <x-form-group class="text-center">
+                     <x-form-group class="text-center">
                         <x-jet-button id="auth_btn" disabled>
                             <i class="fas fa-fw fa-key me-1"></i> Verify
                         </x-jet-button>
-                    </x-form-group> --}}
+                    </x-form-group>
                     <x-form-group class="text-center">
                         <button type="button" class="btn btn-alt-info btn-sm" x-show="! recovery" x-on:click="
                         recovery = true;

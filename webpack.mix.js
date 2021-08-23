@@ -12,15 +12,29 @@ const mix = require('laravel-mix');
  */
 
 mix
-    .js('resources/js/app.js', 'public/js/laravel.app.js')
-    .js('resources/js/oneui/app.js', 'public/js/oneui.app.js')
+    .js('resources/js/app.js', 'public/assets/js/laravel.app.js')
+    .js('resources/js/oneui/app.js', 'public/assets/js/teskjet.app.js')
+    .combine([
+        'resources/js/plugins/easymde.min.js',
+        'resources/js/plugins/highlight.min.js',
+        'resources/js/plugins/tom-select.complete.min.js'
+    ], 'public/assets/js/plugins.js')
+
+    .combine([
+        'resources/css/oneui.min.css',
+        'resources/css/amethyst.min.css',
+        'resources/css/ico.css',
+        'resources/css/bootstrap-side-modals.css',
+        'resources/css/plugins/sweetalert2.dark.min.css',
+        'resources/css/plugins/tom-select.bootstrap5.css',
+        'resources/css/plugins/atom-one-dark.min.css',
+        'resources/css/plugins/easymde.min.css',
+        'resources/css/custom.css'
+    ], 'public/assets/css/app.css')
 
     /* Tools */
     .browserSync('localhost:8000')
     .disableNotifications()
-    .postCss('resources/css/app.css', 'public/css', [
-        require('postcss-import')
-    ])
     .options({
         processCssUrls: false
     });

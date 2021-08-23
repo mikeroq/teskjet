@@ -24,21 +24,7 @@
     <meta name="theme-color" content="#000000">
     @yield('css_before')
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
-    <link rel="stylesheet" id="css-main" href="{{ asset('/assets/css/oneui.css') }}">
-    <link rel="stylesheet" id="css-theme" href="{{ asset('/assets/css/themes/amethyst.css') }}">
-    <link rel="stylesheet" id="css-theme" href="{{ asset('/assets/css/custom.css') }}">
-    <link rel="stylesheet" href="/assets/css/bootstrap-side-modals.css" />
-    <link rel="stylesheet" href="/assets/css/sweetalert2.dark.min.css">
-    <link rel="stylesheet" href="/assets/css/ico.css">
-    <link rel="stylesheet" href="/assets/css/tom-select.bootstrap5.css">
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/styles/atom-one-dark.min.css">
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/highlight.min.js"></script>
-    <link rel="stylesheet" href="https://unpkg.com/easymde/dist/easymde.min.css">
-    <script src="https://unpkg.com/easymde/dist/easymde.min.js"></script>
+    <link rel="stylesheet" id="css-main" href="{{ asset('/assets/css/app.css') }}">
     @yield('css_after')
     @livewireStyles
-    <script>
-        hljs.highlightAll();
-        window.Laravel = {!! json_encode(['csrfToken' => csrf_token()]) !!};
-    </script>
 </head>

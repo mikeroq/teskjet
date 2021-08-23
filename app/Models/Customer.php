@@ -124,17 +124,17 @@ class Customer extends Model
         return $this->belongsTo(CustomerContact::class, 'primary_contact');
     }
 
-    public function getDefaultAddress(): BelongsTo
+    public function getDefaultLocation(): BelongsTo
     {
         return $this->belongsTo(CustomerLocation::class, 'default_address');
     }
 
-    public function getShippingAddress(): BelongsTo
+    public function getShippingLocation(): BelongsTo
     {
         return $this->belongsTo(CustomerLocation::class, 'shipping_address');
     }
 
-    public function getBillingAddress(): BelongsTo
+    public function getBillingLocation(): BelongsTo
     {
         return $this->belongsTo(CustomerLocation::class, 'billing_address');
     }
@@ -149,7 +149,7 @@ class Customer extends Model
 
     public function getActivitylogOptions(): LogOptions
     {
-        return LogOptions::defaults()->logExcept([
+        return LogOptions::defaults()->logFillable()->logExcept([
             'primary_contact',
             'default_address',
             'shipping_address',

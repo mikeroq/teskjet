@@ -1,5 +1,6 @@
 {
-    "/js/laravel.app.js": "/js/laravel.app.js",
-    "/js/oneui.app.js": "/js/oneui.app.js",
-    "/css/app.css": "/css/app.css"
+    "/assets/js/laravel.app.js": "/assets/js/laravel.app.js",
+    "/assets/js/teskjet.app.js": "/assets/js/teskjet.app.js",
+    "/assets/js/plugins.js": "/assets/js/plugins.js",
+    "/assets/css/app.css": "/assets/css/app.css"
 }
