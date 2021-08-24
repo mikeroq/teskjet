@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Customer\Modals;
 
 use App\Models\CustomerLocation;
+use Illuminate\Contracts\View\View;
 use Livewire\Component;
 use LivewireUI\Modal\ModalComponent;
 
@@ -35,14 +36,15 @@ class EditLocationModal extends ModalComponent
     public function mount(int $locationId): void
     {
         $this->location = CustomerLocation::findOrFail($locationId);
-
-        $this->name = $this->location->name;
-        $this->address = $this->location->address;
-        $this->address_2 = $this->location->address_2;
-        $this->city = $this->location->city;
-        $this->state = $this->location->state;
-        $this->zip = $this->location->zip;
-        $this->phone = $this->location->phone;
+        $this->fill([
+            'name' => $this->location->name,
+            'address' => $this->location->address,
+            'address_2' => $this->location->address_2,
+            'city' => $this->location->city,
+            'state' => $this->location->state,
+            'zip' => $this->location->zip,
+            'phone' => $this->location->phone
+        ]);
     }
 
     public function update(): void
@@ -60,13 +62,7 @@ class EditLocationModal extends ModalComponent
             'phone.phone' => 'Must be a valid North American phone number.',
         ]);
 
-        $this->location->name = $this->name;
-        $this->location->address = $this->address;
-        $this->location->address_2 = $this->address_2;
-        $this->location->city = $this->city;
-        $this->location->state = $this->state;
-        $this->location->zip = $this->zip;
-        $this->location->phone = $this->phone;
+        $this->location->update($validated);
         $this->location->save();
 
         if ($this->location->wasChanged()) {
@@ -91,7 +87,7 @@ class EditLocationModal extends ModalComponent
         }
     }
 
-    public function render()
+    public function render(): View
     {
         return view('livewire.customer.modals.edit-location-modal');
     }

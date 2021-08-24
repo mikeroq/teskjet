@@ -463,3 +463,7 @@ input:-webkit-autofill {
 input:-webkit-autofill:focus {
     -webkit-text-fill-color: #fff !important;
 }
+
+[x-cloak] {
+    display: none !important;
+}

@@ -3,11 +3,12 @@
 namespace App\View\Components;
 
 use Illuminate\View\Component;
+use Illuminate\View\View;
 
 class TabButton extends Component
 {
-    public $name;
-    public $id;
+    public string $name;
+    public string $id;
     /**
      * Create a new component instance.
      *
@@ -22,9 +23,9 @@ class TabButton extends Component
     /**
      * Get the view / contents that represent the component.
      *
-     * @return \Illuminate\Contracts\View\View|\Closure|string
+     * @return View
      */
-    public function render()
+    public function render(): View
     {
         return view('components.tab-button');
     }

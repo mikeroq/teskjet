@@ -9,12 +9,21 @@ use LivewireUI\Modal\ModalComponent;
 
 class EditCustomerModal extends ModalComponent
 {
-    public string $name;
-    public string $phone;
-    public string $type;
-    public int $taxable;
-
     public Customer $customer;
+
+    protected array $rules = [
+        'name' => 'required',
+        'phone' => 'required|phone:AUTO,US',
+        'type' => 'required',
+        'taxable' => 'nullable'
+    ];
+
+    protected array $messages = [
+        'name.required' => 'The name cannot be empty.',
+        'phone.required' => 'The phone cannot be empty.',
+        'phone.phone' => 'Must be a valid North American phone number.',
+        'type.required' => 'Please choose a type.',
+    ];
 
     public static function bsModalTitle(): string
     {
@@ -25,33 +34,23 @@ class EditCustomerModal extends ModalComponent
     {
         $this->customer = Customer::findOrFail($customerId);
 
-        $this->name = $this->customer->name;
-        $this->phone = $this->customer->phone;
-        $this->type = $this->customer->getRawOriginal('type');
-        $this->taxable = $this->customer->taxable;
+        $this->fill([
+            'name' => $this->customer->name,
+            'phone' => $this->customer->phone,
+            'type' => $this->customer->getRawOriginal('type'),
+            'taxable' => $this->customer->taxable,
+        ]);
+
     }
 
     public function update(): void
     {
-        $this->validate([
-            'name' => 'required',
-            'phone' => 'required|phone:AUTO,US',
-            'type' => 'required',
-            'taxable' => 'nullable'
-        ],
-        [
-            'name.required' => 'The name cannot be empty.',
-            'phone.required' => 'The phone cannot be empty.',
-            'phone.phone' => 'Must be a valid North American phone number.',
-            'type.required' => 'Please choose a type.',
-        ]);
+        $validated = $this->validate();
+
         if ($this->taxable !== 1) {
-            $this->taxable = 0;
+            $validated['taxable'] = 0;
         }
-        $this->customer->name = $this->name;
-        $this->customer->phone = $this->phone;
-        $this->customer->type = $this->type;
-        $this->customer->taxable = $this->taxable;
+        $this->customer->update($validated);
         $this->customer->save();
 
         if ($this->customer->wasChanged()) {
@@ -69,7 +68,7 @@ class EditCustomerModal extends ModalComponent
         } else {
             self::alert('info', 'Notice', [
                 'position' =>  'top-end',
-                'text' => 'You did not modify any fields. Nothing was changed.',
+                'text' => 'You did not modify any fields. Customer was not modified.',
                 'toast' =>  true,
                 'timer' => '3000',
                 'showCancelButton' =>  false,

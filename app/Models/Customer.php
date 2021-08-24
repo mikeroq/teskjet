@@ -124,17 +124,17 @@ class Customer extends Model
         return $this->hasOne(CustomerContact::class)->where('id', $this->primary_contact);
     }
 
-    public function getDefaultLocation()
+    public function getDefaultLocation(): CustomerLocation|null
     {
         return CustomerLocation::find($this->default_address);
     }
 
-    public function getShippingLocation()
+    public function getShippingLocation(): CustomerLocation|null
     {
         return CustomerLocation::find($this->shipping_address);
     }
 
-    public function getBillingLocation()
+    public function getBillingLocation(): CustomerLocation|null
     {
         return CustomerLocation::find($this->billing_address);
     }

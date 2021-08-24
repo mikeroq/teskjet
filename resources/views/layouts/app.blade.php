@@ -84,9 +84,9 @@
         </footer>
             @livewire('livewire-ui-spotlight')
     </div>
-    <script src="{{ mix('js/oneui.app.js') }}"></script>
-    <script src="{{ mix('js/laravel.app.js') }}" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/tom-select@1.7.8/dist/js/tom-select.complete.min.js"></script>
+    <script src="{{ mix('assets/js/teskjet.app.js') }}"></script>
+    <script src="{{ mix('assets/js/laravel.app.js') }}" defer></script>
+    <script src="{{ mix('assets/js/plugins.js') }}"></script>
     @livewireScripts
     @stack('scripts')
     @stack('modals')
