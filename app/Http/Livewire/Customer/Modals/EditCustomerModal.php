@@ -51,4 +51,3 @@ class EditCustomerModal extends ModalComponent
         return view('livewire.customer.modals.edit-customer-modal');
     }
 }
-

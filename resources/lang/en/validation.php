@@ -138,6 +138,9 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
+        'customer.phone' => [
+            'phone' => 'Custom phone message here'
+        ]
     ],
 
     /*

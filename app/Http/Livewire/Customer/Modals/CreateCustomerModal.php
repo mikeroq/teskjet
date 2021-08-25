@@ -5,6 +5,8 @@ namespace App\Http\Livewire\Customer\Modals;
 use App\Models\Customer;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
+use libphonenumber\PhoneNumberUtil;
+use libphonenumber\ShortNumberInfo;
 use LivewireUI\Modal\ModalComponent;
 
 class CreateCustomerModal extends ModalComponent
@@ -13,6 +15,21 @@ class CreateCustomerModal extends ModalComponent
     public string $phone = '';
     public string $type = '';
     public int $taxable = 0;
+    public array $phone_array;
+
+    public function mount()
+    {
+        $shortNumberInfoInstance = ShortNumberInfo::getInstance();
+        $phoneNumberUtilInstance = PhoneNumberUtil::getInstance();
+
+        $this->phone_array = array_map(static function ($region) use ($phoneNumberUtilInstance) {
+            return [
+                'region' => $region,
+                'code' => $phoneNumberUtilInstance->getCountryCodeForRegion($region)
+            ];
+        }, $shortNumberInfoInstance->getSupportedRegions());
+
+    }
 
     public function create()
     {

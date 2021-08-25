@@ -19,6 +19,7 @@ window.SimpleBar    = SimpleBar;
 window.Swal         = Swal;
 window.$            = $;
 
+
 // Template
 export default class Template {
   /*

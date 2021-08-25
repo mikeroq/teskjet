@@ -2,9 +2,10 @@
 
 namespace App\View\Components\layout;
 
+use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class head extends Component
+class Head extends Component
 {
     public string $title;
     /**
@@ -20,9 +21,9 @@ class head extends Component
     /**
      * Get the view / contents that represent the component.
      *
-     * @return \Illuminate\Contracts\View\View|\Closure|string
+     * @return View
      */
-    public function render()
+    public function render(): View
     {
         return view('components.layout.head');
     }
