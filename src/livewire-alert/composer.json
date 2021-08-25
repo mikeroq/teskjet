@@ -1,0 +1,50 @@
+{
+    "name": "pwncraft/livewire-alert",
+    "description": "This package provides a simple alert utilities for your livewire components.",
+    "keywords": [
+        "jantinnerezo",
+        "livewire-alert"
+    ],
+    "homepage": "https://github.com/pwncraft/livewire-alert",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Jantinn Erezo",
+            "email": "erezojantinn@gmail.com",
+            "role": "Original Developer"
+        },
+        {
+            "name": "Mike Roquemore",
+            "email": "mikeroq@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.1|^7.2|^7.3|^7.4|^8.0",
+        "illuminate/support": "^5.5 || ^6.0 || ^7.0 || ^8.0",
+        "livewire/livewire": "^2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Pwncraft\\LivewireAlert\\": "src"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Pwncraft\\LivewireAlert\\LivewireAlertServiceProvider"
+            ],
+            "aliases": {
+                "LivewireAlert": "Pwncraft\\LivewireAlert\\LivewireAlertFacade"
+            }
+        }
+    }
+}

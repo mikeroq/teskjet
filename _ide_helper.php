@@ -17030,18 +17030,6 @@
      
 }
 
-    namespace Jantinnerezo\LivewireAlert { 
-            /**
-     * 
-     *
-     * @see \Jantinnerezo\LivewireAlert\Skeleton\SkeletonClass
-     */ 
-        class LivewireAlertFacade {
-         
-    }
-     
-}
-
     namespace Jenssegers\Agent\Facades { 
             /**
      * 
@@ -17997,7 +17985,7 @@
                     /**
          * 
          *
-         * @see \Jantinnerezo\LivewireAlert\LivewireAlertServiceProvider::registerAlertMacro()
+         * @see \Pwncraft\LivewireAlert\LivewireAlertServiceProvider::registerAlertMacro()
          * @param mixed $type
          * @param mixed $message
          * @param mixed $options
@@ -18010,7 +17998,21 @@
                     /**
          * 
          *
-         * @see \Jantinnerezo\LivewireAlert\LivewireAlertServiceProvider::registerFlashMacro()
+         * @see \Pwncraft\LivewireAlert\LivewireAlertServiceProvider::registerAlertPresetMacro()
+         * @param mixed $preset
+         * @param mixed $type
+         * @param mixed $message
+         * @param mixed $options
+         * @static 
+         */ 
+        public static function alertPreset($preset, $type = 'success', $message = '', $options = [])
+        {
+                        return \Livewire\Component::alertPreset($preset, $type, $message, $options);
+        }
+                    /**
+         * 
+         *
+         * @see \Pwncraft\LivewireAlert\LivewireAlertServiceProvider::registerFlashMacro()
          * @param mixed $type
          * @param mixed $message
          * @param mixed $options
@@ -18023,7 +18025,7 @@
                     /**
          * 
          *
-         * @see \Jantinnerezo\LivewireAlert\LivewireAlertServiceProvider::registerConfirmMacro()
+         * @see \Pwncraft\LivewireAlert\LivewireAlertServiceProvider::registerConfirmMacro()
          * @param mixed $title
          * @param mixed $options
          * @static 
@@ -18032,6 +18034,18 @@
         {
                         return \Livewire\Component::confirm($title, $options);
         }
+         
+    }
+     
+}
+
+    namespace Pwncraft\LivewireAlert { 
+            /**
+     * 
+     *
+     * @see \pwncraft\LivewireAlert\Skeleton\SkeletonClass
+     */ 
+        class LivewireAlertFacade {
          
     }
      
@@ -21630,10 +21644,10 @@ namespace  {
             class SentEmails extends \Dcblogdev\LaravelSentEmails\Facades\SentEmailsFacade {}
             class Flare extends \Facade\Ignition\Facades\Flare {}
             class Image extends \Intervention\Image\Facades\Image {}
-            class LivewireAlert extends \Jantinnerezo\LivewireAlert\LivewireAlertFacade {}
             class Agent extends \Jenssegers\Agent\Facades\Agent {}
             class Socialite extends \Laravel\Socialite\Facades\Socialite {}
             class Livewire extends \Livewire\Livewire {}
+            class LivewireAlert extends \Pwncraft\LivewireAlert\LivewireAlertFacade {}
             class Signal extends \Spatie\SignalAwareCommand\Facades\Signal {}
      
 }

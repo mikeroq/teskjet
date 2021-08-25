@@ -24,7 +24,7 @@ class EditCustomerModal extends ModalComponent
 
     public static function bsModalTitle(): string
     {
-        return 'Editing Customer';
+        return 'Update Customer';
     }
 
     public function mount(int $customerId): void
@@ -37,16 +37,12 @@ class EditCustomerModal extends ModalComponent
         $this->validate();
         $this->customer->save();
         if ($this->customer->wasChanged()) {
-            self::alert('success', 'Edit Successful');
+            self::alert('success', 'Customer updated!');
             $this->emit('customerShowRefresh');
             $this->dispatchBrowserEvent('update-title', ['title' => $this->customer->name . ' - Viewing Customer - ' . config('app.name')]);
             $this->forceClose()->closeModal();
         } else {
-            self::alert('info', 'Notice', [
-                'position' =>  'top-end',
-                'text' => 'You did not modify any fields. Customer was not modified.',
-                'toast' =>  true,
-            ]);
+            self::alertPreset('toast', 'info', 'You did not modify any fields!');
         }
     }
 
