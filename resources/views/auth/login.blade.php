@@ -21,18 +21,8 @@
                     <x-jet-validation-errors class="mb-4"/>
                     <form method="POST" id="login-form" action="{{ route('login') }}">
                         @csrf
-                        <div class="mb-4">
-                            <label for="email">Email Address</label>
-                            <input id="email" type="email"
-                                   class="form-control form-control-alt" name="email"
-                                   value="{{ old('email') }}" required autocomplete="email" autofocus>
-                        </div>
-                        <div class="mb-4">
-                            <label for="password">Password</label>
-                            <input id="password" type="password"
-                                   class="form-control form-control-alt" name="password"
-                                   required autocomplete="password">
-                        </div>
+                        <x-input label="Email Address" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus />
+                        <x-input label="Password" type="password" name="password" required autocomplete="password"/>
                         <div class="mb-4">
                             <div class="custom-control custom-checkbox custom-control-primary">
                                 <input type="checkbox" class="custom-control-input" name="remember"

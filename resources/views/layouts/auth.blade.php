@@ -10,7 +10,6 @@
             {{ config('app.name') }}
         @endif
     </title>
-    <meta name="author" content="pixelcave">
     <meta name="robots" content="noindex, nofollow">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicons/apple-touch-icon.png">
@@ -76,8 +75,8 @@
         </div>
     </main>
 </div>
-<script src="{{ mix('/assets/js/oneui.app.js') }}"></script>
-<script src="{{ mix('/assets/js/laravel.app.js') }}" defer></script>
+<script src="{{ mix('assets/js/teskjet.app.js') }}"></script>
+<script src="{{ mix('assets/js/laravel.app.js') }}" defer></script>
 @stack('scripts')
 @stack('modals')
 @stack('modal')
