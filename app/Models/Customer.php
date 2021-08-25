@@ -100,10 +100,10 @@ class Customer extends Model
         return $this->taxable ? "Taxable" : "Non Taxable";
     }
 
-    public function getTypeAttribute($attribute)
-    {
-        return collect(trans('types/customer.type'))->get($attribute);
-    }
+//    public function getTypeAttribute($attribute)
+//    {
+//        return collect(trans('types/customer.type'))->get($attribute);
+//    }
     public function devices(): HasMany
     {
         return $this->hasMany(Device::class);
