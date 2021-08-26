@@ -12,7 +12,7 @@
                 <div class="col-3">
                     <x-select label="State" id="location.state" required wire:model="location.state">
                         <option wire:key="">Select</option>
-                        @foreach($state_list as $value)
+                        @foreach(trans('locations.states') as $value)
                             <option value="{{ $value }}" wire:key="{{ $value }}">{{ $value }}</option>
                         @endforeach
                     </x-select>

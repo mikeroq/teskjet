@@ -15,7 +15,6 @@ use Laravelista\Comments\Commentable;
 use Propaganistas\LaravelPhone\PhoneNumber;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Propaganistas\LaravelPhone\Casts\E164PhoneNumberCast;
 use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Models\Activity;
 use Spatie\Activitylog\Traits\LogsActivity;
@@ -87,23 +86,27 @@ class Customer extends Model
     ];
 
     protected $casts = [
-        'taxable' => 'boolean',
-        'phone' => E164PhoneNumberCast::class.':US',
+        'taxable' => 'boolean'
     ];
 
     protected $appends = [
-        'displayable_taxable'
+        'displayable_taxable',
+        'displayable_phone'
     ];
+
+    public function getDisplayablePhoneAttribute($attribute): string
+    {
+        if ($attribute === null) {
+            return '';
+        }
+        return PhoneNumber::make($attribute, 'US')->formatNational();
+    }
 
     public function getDisplayableTaxableAttribute(): string
     {
         return $this->taxable ? "Taxable" : "Non Taxable";
     }
 
-//    public function getTypeAttribute($attribute)
-//    {
-//        return collect(trans('types/customer.type'))->get($attribute);
-//    }
     public function devices(): HasMany
     {
         return $this->hasMany(Device::class);
@@ -146,14 +149,6 @@ class Customer extends Model
             $this->getBillingLocation(),
             $this->getShippingLocation()
         ])->concat($this->locations)->whereNotNull()->unique();
-    }
-
-    public function getPhoneAttribute($attribute): string
-    {
-        if ($attribute === null) {
-            return '';
-        }
-        return PhoneNumber::make($attribute, 'US')->formatNational();
     }
 
     public function getActivitylogOptions(): LogOptions

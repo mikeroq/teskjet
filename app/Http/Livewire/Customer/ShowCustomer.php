@@ -12,18 +12,14 @@ class ShowCustomer extends Component
 
     public $listeners = [
         'customerShowRefresh' => '$refresh',
-        'confirmedDeleteLocation',
         'confirmedDelete',
         'cancelledDelete',
-        'cancelledLocationDelete'
     ];
 
     public function render(): View
     {
         return view('livewire.customer.show-customer');
     }
-
-
 
     public function triggerDelete(): void
     {
@@ -36,15 +32,12 @@ class ShowCustomer extends Component
     public function confirmedDelete(): void
     {
         $this->customer->delete();
-        self::alert(
-            'success',
-            'Location deleted!'
-        );
+        self::alert('success','Customer deleted!');
         $this->redirectRoute('customers.index');
     }
 
     public function cancelledDelete(): void
     {
-        self::alert('info', 'Customer was not deleted.');
+        self::alertPreset('toast', 'info', 'Customer was not deleted.');
     }
 }

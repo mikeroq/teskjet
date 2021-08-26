@@ -135,11 +135,18 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'location.phone' => [
+            'phone' => 'Must be a valid North American phone number.',
+        ],
+        'customer.name' => [
+            'required' => 'The name cannot be empty.',
         ],
         'customer.phone' => [
-            'phone' => 'Custom phone message here'
+            'required' => 'The phone cannot be empty.',
+            'phone' => 'Must be a valid North American phone number.',
+        ],
+        'customer.type' => [
+            'required' => 'Please choose a type.',
         ]
     ],
 

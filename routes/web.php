@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserAdminIndexController;
 use App\Http\Controllers\Customer\RedirectLocationController;
 use App\Http\Controllers\LandingRedirectController;
+use App\Http\Controllers\TestController;
 use App\Http\Livewire\User\Profile;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\BrandController;
@@ -37,6 +38,9 @@ Route::get('/', LandingRedirectController::class);
 Route::middleware(['auth:sanctum'])->group(function () {
     // Dashboard Route
     Route::view('/dashboard', 'dashboard')->name('dashboard');
+
+    Route::get('/test', [TestController::class, 'index']);
+    Route::post('/test', [TestController::class, 'create'])->name('test.create');
 
     Route::get('/user/security', [UserControlPanelController::class, 'showSecurity'])->middleware('password.confirm');
 

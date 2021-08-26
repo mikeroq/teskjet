@@ -29,7 +29,7 @@
                                         <i class="fas fa-star"></i>
                                     </button>
                                 @else
-                                    <button onclick="this.blur()" type="button" class="btn-block-option btn-block-faded" wire:click="setDefaultAddress({{ $location->id }})" title="Set as primary address">
+                                    <button onclick="this.blur()" type="button" class="btn-block-option btn-block-faded" wire:click="setDefault({{ $location->id }}, 'location', 'default_address')" title="Set as primary address">
                                         <i class="fas fa-star"></i>
                                     </button>
                                 @endif
@@ -38,7 +38,7 @@
                                         <i class="fas fa-dollar-sign"></i>
                                     </button>
                                 @else
-                                    <button onclick="this.blur()" type="button" class="btn-block-option btn-block-faded" wire:click="setBillingAddress({{ $location->id }})" title="Set as billing address">
+                                    <button onclick="this.blur()" type="button" class="btn-block-option btn-block-faded" wire:click="setDefault({{ $location->id }}, 'location', 'billing_address')" title="Set as billing address">
                                         <i class="fas fa-dollar-sign"></i>
                                     </button>
                                 @endif
@@ -47,7 +47,7 @@
                                         <i class="fas fa-truck"></i>
                                     </button>
                                 @else
-                                    <button onclick="this.blur()" type="button" class="btn-block-option btn-block-faded" wire:click="setShippingAddress({{ $location->id }})" title="Set as shipping address">
+                                    <button onclick="this.blur()" type="button" class="btn-block-option btn-block-faded" wire:click="setDefault({{ $location->id }}, 'location', 'shipping_address')" title="Set as shipping address">
                                         <i class="fas fa-truck"></i>
                                     </button>
                                 @endif
