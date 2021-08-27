@@ -25,11 +25,11 @@ class CreateLocationModal extends ModalComponent
     {
         $this->customer = Customer::findorFail($customerId);
         $this->location = new CustomerLocation;
-        $this->location->customer_id = $this->customer->id;
     }
 
     public function create(): Void
     {
+        $this->location->customer_id = $this->customer->id;
         $this->validate();
         $this->location->save();
         if (!$this->customer->default_address) {

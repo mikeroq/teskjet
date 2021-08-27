@@ -11,7 +11,7 @@ use Livewire\Component;
 class Locations extends Component
 {
     public Customer $customer;
-    public mixed $delete_location_id;
+    public $delete_location_id;
 
     public $listeners = [
         'customerShowRefresh' => '$refresh',

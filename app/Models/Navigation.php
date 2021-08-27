@@ -98,12 +98,12 @@ class Navigation extends Model implements Sortable
 
     public function children(): HasMany
     {
-        return $this->hasMany('\App\Models\NavigationChild');
+        return $this->hasMany(NavigationChild::class);
     }
 
     public function parent(): BelongsTo
     {
-        return $this->belongsTo('\App\Models\NavigationType');
+        return $this->belongsTo(NavigationType::class);
     }
 
     protected static function booted() :void

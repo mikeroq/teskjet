@@ -73,22 +73,22 @@ class CustomerLocation extends Model
         'phone'
     ];
 
-    protected $casts = [
-        'phone' => E164PhoneNumberCast::class.':US'
-    ];
+//    protected $casts = [
+//        'phone' => E164PhoneNumberCast::class.':US'
+//    ];
 
     public function customer(): BelongsTo
     {
         return $this->belongsTo(Customer::class);
     }
 
-    public function getPhoneAttribute($attribute): string
-    {
-        if ($attribute === null) {
-            return '';
-        }
-        return PhoneNumber::make($attribute, 'US')->formatNational();
-    }
+//    public function getPhoneAttribute($attribute): string
+//    {
+//        if ($attribute === null) {
+//            return '';
+//        }
+//        return PhoneNumber::make($attribute, 'US')->formatNational();
+//    }
 
     public function getActivitylogOptions(): LogOptions
     {

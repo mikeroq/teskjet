@@ -29,13 +29,10 @@ class CreateCustomerModal extends ModalComponent
     {
         $this->validate();
         $this->customer->save();
-
         self::flash('success', 'Successful', [
-            'text' =>  'Added ' . $this->customer->name . '. Redirecting...',
+            'text' =>  'Added ' . $this->customer->name . '!',
         ]);
-
         $this->forceClose()->closeModal();
-        $this->reset();
         return redirect()->to(route('customers.show', $this->customer->id));
     }
 

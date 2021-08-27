@@ -39,7 +39,7 @@ class DeviceType extends Model
 
     public function devices(): HasMany
     {
-        return $this->hasMany('App\Models\Device');
+        return $this->hasMany(Device::class);
     }
     protected $fillable = [
         'name'

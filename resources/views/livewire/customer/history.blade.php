@@ -5,7 +5,7 @@
             <thead>
             <th>Date</th>
             <th>Action</th>
-            <td>Changes</td>
+            <th>Changes</th>
             <th>User</th>
             </thead>
             <tbody>
@@ -16,7 +16,7 @@
                     <td>
                         @if($activity->description === "updated")
                             @foreach($activity->changes['attributes'] as  $key => $change)
-                                {{ Str::of($key)->replace('_', ' ')->title() }} from {{ $change }} to {{ $activity->changes['old'][$key] }}<br>
+                                {{ Str::of($key)->replace('_', ' ')->title() }} from {{ $activity->changes['old'][$key] }} to {{ $change }} <br>
                             @endforeach
                         @else
 

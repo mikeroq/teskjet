@@ -43,6 +43,6 @@ class NavigationType extends Model
 
     public function navigations(): HasMany
     {
-        return $this->hasMany('\App\Models\Navigation');
+        return $this->hasMany(Navigation::class);
     }
 }

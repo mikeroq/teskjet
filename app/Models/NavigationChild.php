@@ -67,7 +67,7 @@ class NavigationChild extends Model implements Sortable
 
     public function parent(): BelongsTo
     {
-        return $this->belongsTo('\App\Models\Navigation', 'navigation_id');
+        return $this->belongsTo(Navigation::class, 'navigation_id');
     }
 
     protected $fillable = [
