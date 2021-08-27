@@ -1,4 +1,6 @@
-<?php /** @noinspection CallableParameterUseCaseInTypeContextInspection */
+<?php
+
+/** @noinspection CallableParameterUseCaseInTypeContextInspection */
 
 namespace App\Http\Middleware;
 

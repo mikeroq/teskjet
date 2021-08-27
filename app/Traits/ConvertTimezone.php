@@ -4,11 +4,10 @@ namespace App\Traits;
 
 use Carbon\Carbon;
 use Carbon\CarbonTimeZone;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 
 trait ConvertTimezone
 {
-
     public function getTz()
     {
         return auth()->user()->timezone ?? 'UTC';

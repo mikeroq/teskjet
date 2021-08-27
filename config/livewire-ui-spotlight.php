@@ -34,7 +34,7 @@ return [
         \App\Spotlight\Route::class,
         \App\Spotlight\Navigate::class,
         \App\Spotlight\CreateCustomer::class,
-        \App\Spotlight\OpenModal::class
+        \App\Spotlight\OpenModal::class,
     ],
 
     /*
@@ -47,7 +47,6 @@ return [
     |
     */
     'include_css' => true,
-
 
     /*
     |--------------------------------------------------------------------------

@@ -16,7 +16,7 @@ class CreateCustomerModal extends ModalComponent
         'customer.name' => 'required',
         'customer.phone' => 'required|phone:US|unique:customers,phone',
         'customer.type' => 'required',
-        'customer.taxable' => 'boolean'
+        'customer.taxable' => 'boolean',
     ];
 
     public function mount(): Void
@@ -30,9 +30,10 @@ class CreateCustomerModal extends ModalComponent
         $this->validate();
         $this->customer->save();
         self::flash('success', 'Successful', [
-            'text' =>  'Added ' . $this->customer->name . '!',
+            'text' =>  'Added '.$this->customer->name.'!',
         ]);
         $this->forceClose()->closeModal();
+
         return redirect()->to(route('customers.show', $this->customer->id));
     }
 

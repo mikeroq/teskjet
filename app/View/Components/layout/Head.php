@@ -8,6 +8,7 @@ use Illuminate\View\Component;
 class Head extends Component
 {
     public string $title;
+
     /**
      * Create a new component instance.
      *

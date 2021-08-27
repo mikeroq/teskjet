@@ -38,7 +38,7 @@ class NavigationType extends Model
 
     protected $fillable = [
         'name',
-        'slug'
+        'slug',
     ];
 
     public function navigations(): HasMany

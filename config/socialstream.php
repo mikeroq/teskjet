@@ -33,7 +33,7 @@ return [
         Providers::github(),
         Providers::google(),
         Providers::facebook(),
-        Providers::linkedin()
+        Providers::linkedin(),
     ],
 
     /*

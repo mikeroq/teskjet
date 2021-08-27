@@ -14,7 +14,7 @@ class RoleTable extends DataTableComponent
     protected $listeners = [
         'refreshRoleTable' => '$refresh',
         'confirmedDelete',
-        'cancelledDelete'
+        'cancelledDelete',
     ];
 
     public function columns(): array
@@ -32,7 +32,7 @@ class RoleTable extends DataTableComponent
             Column::make('Created At')
                 ->sortable()
                 ->searchable(),
-            Column::make('Actions')->addClass('text-end')
+            Column::make('Actions')->addClass('text-end'),
         ];
     }
 
@@ -55,7 +55,7 @@ class RoleTable extends DataTableComponent
             'showConfirmButton' => true,
             'cancelButtonText' => 'Nope',
             'onConfirmed' => 'confirmedDelete',
-            'onCancelled' => 'cancelledDelete'
+            'onCancelled' => 'cancelledDelete',
         ]);
     }
 

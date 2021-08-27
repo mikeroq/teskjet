@@ -1,4 +1,6 @@
-<?php /** @noinspection NullPointerExceptionInspection */
+<?php
+
+/** @noinspection NullPointerExceptionInspection */
 
 namespace App\Http\Middleware;
 
@@ -12,6 +14,7 @@ class IsAdmin
         if (Auth::User()->isAdmin()) {
             return $next($request);
         }
+
         return redirect('/login');
     }
 }

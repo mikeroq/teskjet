@@ -17,5 +17,4 @@ class TicketController extends Controller
     {
         return view('tickets.index');
     }
-
 }

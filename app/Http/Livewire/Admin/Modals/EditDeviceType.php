@@ -16,13 +16,12 @@ class EditDeviceType extends ModalComponent
     {
         $this->deviceType = DeviceType::findOrFail($id);
         $this->name = $this->deviceType->name;
-
     }
 
     public function update(): void
     {
         $validated = $this->validate([
-            'name' => 'required'
+            'name' => 'required',
         ]);
 
         $this->deviceType->update($validated);
@@ -32,9 +31,8 @@ class EditDeviceType extends ModalComponent
 
         $this->emit('refreshDeviceTypeTable');
         self::alert('success', 'Updated', [
-            'timer' =>  '2000'
+            'timer' =>  '2000',
         ]);
-
     }
 
     public static function bsModalTitle(): string

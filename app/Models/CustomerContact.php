@@ -85,6 +85,7 @@ class CustomerContact extends Model
         if ($attribute === null) {
             return '';
         }
+
         return PhoneNumber::make($attribute, 'US')->formatNational();
     }
 
@@ -92,5 +93,4 @@ class CustomerContact extends Model
     {
         return LogOptions::defaults()->logFillable()->logOnlyDirty();
     }
-
 }

@@ -10,7 +10,6 @@ use Livewire\Component;
 
 class NavigationTable extends Component
 {
-
     public NavigationType $type;
     public string $delete_id_parent;
     public string $delete_id_child;
@@ -20,7 +19,7 @@ class NavigationTable extends Component
         'refreshNavigationTable' => '$refresh',
         'confirmedDeleteNavigation',
         'confirmedDeleteNavigationChild',
-        'cancelledDelete'
+        'cancelledDelete',
     ];
 
     public function mount() :void
@@ -32,18 +31,20 @@ class NavigationTable extends Component
     {
         $this->type = NavigationType::findOrFail($type);
     }
+
     public function render(): View
     {
         $type = $this->type;
         $parent_pages = Navigation::with('children')->where('navigation_type_id', $this->type->id)->orderBy('order_column')->get();
+
         return view('livewire.admin.navigation-table')->with(compact('type', 'parent_pages'));
     }
 
     public function orderParent(Navigation $navigation, $direction): void
     {
-        if ($direction === "up") {
+        if ($direction === 'up') {
             $navigation->moveOrderUp();
-        } else if ($direction === "down") {
+        } elseif ($direction === 'down') {
             $navigation->moveOrderDown();
         }
         $this->emit('refreshNavigationTable');
@@ -51,9 +52,9 @@ class NavigationTable extends Component
 
     public function orderChild(NavigationChild $navigationChild, $direction): void
     {
-        if ($direction === "up") {
+        if ($direction === 'up') {
             $navigationChild->moveOrderUp();
-        } else if ($direction === "down") {
+        } elseif ($direction === 'down') {
             $navigationChild->moveOrderDown();
         }
         $this->emit('refreshNavigationTable');
@@ -64,7 +65,7 @@ class NavigationTable extends Component
         $this->delete_id_parent = $delete_id;
         self::confirm('Are you sure you want to delete?', [
             'onConfirmed' => 'confirmedDeleteNavigation',
-            'onCancelled' => 'cancelledDelete'
+            'onCancelled' => 'cancelledDelete',
         ]);
     }
 
@@ -77,10 +78,9 @@ class NavigationTable extends Component
             'showConfirmButton' => true,
             'cancelButtonText' => 'Nope',
             'onConfirmed' => 'confirmedDeleteNavigationChild',
-            'onCancelled' => 'cancelledDelete'
+            'onCancelled' => 'cancelledDelete',
         ]);
     }
-
 
     public function confirmedDeleteNavigation(): void
     {

@@ -7,7 +7,6 @@ use Illuminate\View\Component;
 
 class Input extends Component
 {
-
     public string $id;
     public string $type;
     public string $error;

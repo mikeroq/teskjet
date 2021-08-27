@@ -17,6 +17,7 @@ class NavigationIndexController extends Controller
     public function __invoke(): View
     {
         $navigation_types = NavigationType::all();
+
         return view('admin.navigation', ['navigation_types' => $navigation_types]);
     }
 }

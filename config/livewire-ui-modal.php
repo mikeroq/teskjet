@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'framework' => \LivewireUI\Modal\Modal::BOOTSTRAP
+    'framework' => \LivewireUI\Modal\Modal::BOOTSTRAP,
 ];

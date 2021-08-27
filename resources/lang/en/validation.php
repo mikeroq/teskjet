@@ -147,7 +147,7 @@ return [
         ],
         'customer.type' => [
             'required' => 'Please choose a type.',
-        ]
+        ],
     ],
 
     /*

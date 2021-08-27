@@ -25,14 +25,14 @@ class ShowCustomer extends Component
     {
         self::confirm('Are you sure you want to delete?', [
             'onConfirmed' => 'confirmedDelete',
-            'onCancelled' => 'cancelledDelete'
+            'onCancelled' => 'cancelledDelete',
         ]);
     }
 
     public function confirmedDelete(): void
     {
         $this->customer->delete();
-        self::alert('success','Customer deleted!');
+        self::alert('success', 'Customer deleted!');
         $this->redirectRoute('customers.index');
     }
 

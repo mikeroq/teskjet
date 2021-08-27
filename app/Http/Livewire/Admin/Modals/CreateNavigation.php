@@ -1,4 +1,6 @@
-<?php /** @noinspection AdditionOperationOnArraysInspection */
+<?php
+
+/** @noinspection AdditionOperationOnArraysInspection */
 
 namespace App\Http\Livewire\Admin\Modals;
 
@@ -11,7 +13,6 @@ use LivewireUI\Modal\ModalComponent;
 
 class CreateNavigation extends ModalComponent
 {
-
     public string $title = '';
     public string $icon = '';
     public string $url = '';
@@ -32,7 +33,7 @@ class CreateNavigation extends ModalComponent
 
         if ($parent === '0') {
             $this->parent = $parent;
-        } else{
+        } else {
             $parent_model = Navigation::findOrFail($parent);
             $this->parent = $parent_model->id;
             $this->parent_title = $parent_model->title;
@@ -51,18 +52,18 @@ class CreateNavigation extends ModalComponent
             'icon' => 'nullable',
             'url' => 'required',
             'user_level' => 'required',
-            'is_hidden' => 'numeric|nullable'
+            'is_hidden' => 'numeric|nullable',
         ]);
 
         if ($this->parent === '0') {
             $array = [
-                'navigation_type_id' => $this->navigation_type_id
+                'navigation_type_id' => $this->navigation_type_id,
             ];
             $insert = $validated + $array;
             Navigation::create($insert);
         } else {
             $array = [
-                'navigation_id' => $this->parent
+                'navigation_id' => $this->parent,
             ];
             $insert = $validated + $array;
             NavigationChild::create($insert);
@@ -73,11 +74,11 @@ class CreateNavigation extends ModalComponent
             'icon',
             'url',
             'user_level',
-            'is_hidden'
+            'is_hidden',
         ]);
         $this->forceClose()->closeModalWithEvents(['refreshNavigationTable']);
         self::alert('success', 'Added Navigation', [
-            'timer' =>  '2000'
+            'timer' =>  '2000',
         ]);
     }
 

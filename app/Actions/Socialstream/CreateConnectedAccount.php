@@ -1,4 +1,6 @@
-<?php /** @noinspection PhpUndefinedMethodInspection */
+<?php
+
+/** @noinspection PhpUndefinedMethodInspection */
 
 /** @noinspection DuplicatedCode */
 

@@ -44,7 +44,7 @@ class ViewCustomer extends SpotlightCommand
     {
         return Customer::where('name', 'like', "%$query%")
             ->get()
-            ->map(fn(Customer $customer) => new SpotlightSearchResult(
+            ->map(fn (Customer $customer) => new SpotlightSearchResult(
                 $customer->id,
                 $customer->name,
                 sprintf('ID: %s', $customer->id)

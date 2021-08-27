@@ -16,7 +16,7 @@ class Locations extends Component
     public $listeners = [
         'customerShowRefresh' => '$refresh',
         'confirmedDeleteLocation',
-        'cancelledLocationDelete'
+        'cancelledLocationDelete',
     ];
 
     public function render(): View
@@ -30,7 +30,7 @@ class Locations extends Component
         self::confirm('Confirm Delete', [
             'text' => 'Are you sure you want to delete this location?',
             'onConfirmed' => 'confirmedDeleteLocation',
-            'onCancelled' => 'cancelledLocationDelete'
+            'onCancelled' => 'cancelledLocationDelete',
         ]);
     }
 
@@ -48,7 +48,7 @@ class Locations extends Component
         }
         $this->customer->save();
 //        $this->emit('customerShowRefresh');
-        self::alertPreset('success','Address deleted!');
+        self::alertPreset('success', 'Address deleted!');
     }
 
     public function cancelledLocationDelete(): void
@@ -62,8 +62,7 @@ class Locations extends Component
             'location' => CustomerLocation::findOrFail($id),
             'contact' => CustomerContact::findOrFail($id),
         };
-        switch($column)
-        {
+        switch ($column) {
             case 'default_address':
                 $this->customer->default_address = $model->id;
                 $message = 'Primary address updated!';

@@ -10,7 +10,6 @@ use LivewireUI\Spotlight\SpotlightSearchResult;
 
 class OpenModal extends SpotlightCommand
 {
-
     protected string $name = 'Open Modal';
     protected string $description = 'Open a modal';
 

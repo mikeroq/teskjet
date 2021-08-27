@@ -14,7 +14,7 @@ class PermissionTable extends DataTableComponent
     protected $listeners = [
         'refreshPermissionTable' => '$refresh',
         'confirmedDelete',
-        'cancelledDelete'
+        'cancelledDelete',
     ];
 
     public function columns(): array
@@ -32,7 +32,7 @@ class PermissionTable extends DataTableComponent
             Column::make('Created At')
                 ->sortable()
                 ->searchable(),
-            Column::make('Actions')->addClass('text-end')
+            Column::make('Actions')->addClass('text-end'),
         ];
     }
 
@@ -50,7 +50,7 @@ class PermissionTable extends DataTableComponent
             'showConfirmButton' => true,
             'cancelButtonText' => 'Nope',
             'onConfirmed' => 'confirmedDelete',
-            'onCancelled' => 'cancelledDelete'
+            'onCancelled' => 'cancelledDelete',
         ]);
     }
 

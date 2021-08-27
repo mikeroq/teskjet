@@ -2,20 +2,20 @@
 
 namespace App\Models;
 
+use App\Services\GenerateNavigationService;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\DatabaseNotification;
 use Illuminate\Notifications\DatabaseNotificationCollection;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Carbon;
 use Spatie\EloquentSortable\Sortable;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Notifications\Notifiable;
 use Spatie\EloquentSortable\SortableTrait;
-use App\Services\GenerateNavigationService;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
  * App\Navigation
@@ -80,18 +80,18 @@ class Navigation extends Model implements Sortable
         'url',
         'user_level',
         'is_hidden',
-        'order_column'
+        'order_column',
     ];
 
     protected $casts = [
-        'is_hidden' => 'boolean'
+        'is_hidden' => 'boolean',
     ];
 
     protected $appends = [
-        'displayable_hidden'
+        'displayable_hidden',
     ];
 
-    public function buildSortQuery(): Navigation|Builder
+    public function buildSortQuery(): self|Builder
     {
         return static::query()->where('navigation_type_id', $this->navigation_type_id);
     }
@@ -118,6 +118,6 @@ class Navigation extends Model implements Sortable
 
     public function getDisplayableHiddenAttribute(): string
     {
-        return $this->is_hidden ? "Yes":"No";
+        return $this->is_hidden ? 'Yes' : 'No';
     }
 }

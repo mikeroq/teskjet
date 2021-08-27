@@ -33,7 +33,7 @@ class EditPermission extends ModalComponent
 
         $this->emit('refreshPermissionTable');
         self::alert('success', 'Updated', [
-            'timer' =>  '2000'
+            'timer' =>  '2000',
         ]);
     }
 

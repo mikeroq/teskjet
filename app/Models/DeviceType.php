@@ -41,7 +41,8 @@ class DeviceType extends Model
     {
         return $this->hasMany(Device::class);
     }
+
     protected $fillable = [
-        'name'
+        'name',
     ];
 }

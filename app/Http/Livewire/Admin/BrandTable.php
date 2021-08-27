@@ -2,10 +2,10 @@
 
 namespace App\Http\Livewire\Admin;
 
+use App\Models\Brand;
 use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
-use App\Models\Brand;
 
 class BrandTable extends DataTableComponent
 {
@@ -14,7 +14,7 @@ class BrandTable extends DataTableComponent
     protected $listeners = [
         'refreshBrandTable' => '$refresh',
         'confirmedDelete',
-        'cancelledDelete'
+        'cancelledDelete',
     ];
 
     public function columns(): array
@@ -29,9 +29,8 @@ class BrandTable extends DataTableComponent
         Column::make('Support Number')
             ->sortable()
             ->searchable(),
-        Column::make('Actions')->addClass('text-end')
+        Column::make('Actions')->addClass('text-end'),
         ];
-
     }
 
     public function rowView(): string
@@ -53,7 +52,7 @@ class BrandTable extends DataTableComponent
             'showConfirmButton' => true,
             'cancelButtonText' => 'Nope',
             'onConfirmed' => 'confirmedDelete',
-            'onCancelled' => 'cancelledDelete'
+            'onCancelled' => 'cancelledDelete',
         ]);
     }
 

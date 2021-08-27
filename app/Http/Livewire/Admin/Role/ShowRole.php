@@ -15,6 +15,7 @@ class ShowRole extends Component
     public function render()
     {
         $this->permissions = Permission::all();
+
         return view('livewire.admin.roles.show-role');
     }
 }

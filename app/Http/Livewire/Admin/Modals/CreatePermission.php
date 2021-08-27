@@ -22,7 +22,7 @@ class CreatePermission extends ModalComponent
         $validated = $this->validate([
             'name' => 'required',
             'description' => 'nullable',
-            'guard_name' => 'required'
+            'guard_name' => 'required',
         ]);
 
         Permission::create($validated);
@@ -30,9 +30,10 @@ class CreatePermission extends ModalComponent
         $this->reset();
         $this->forceClose()->closeModalWithEvents(['refreshPermissionTable']);
         self::alert('success', 'Added Role ', [
-            'timer' =>  '2000'
+            'timer' =>  '2000',
         ]);
     }
+
     public function render()
     {
         return view('livewire.admin.modals.create-permission');

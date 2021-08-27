@@ -2,14 +2,13 @@
 
 namespace App\Http\Livewire\Customer;
 
+use App\Models\Customer;
 use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
-use App\Models\Customer;
 
 class ListCustomer extends DataTableComponent
 {
-
     public function columns(): array
     {
         return [

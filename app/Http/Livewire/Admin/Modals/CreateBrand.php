@@ -26,7 +26,7 @@ class CreateBrand extends ModalComponent
         $validated = $this->validate([
             'name' => 'required',
             'website' => 'nullable|url',
-            'support_number' => 'nullable|phone:AUTO,US|unique:brands,support_number'
+            'support_number' => 'nullable|phone:AUTO,US|unique:brands,support_number',
         ]);
 
         Brand::create($validated);
@@ -34,7 +34,7 @@ class CreateBrand extends ModalComponent
         $this->reset();
         $this->forceClose()->closeModalWithEvents(['refreshDeviceTypeTable']);
         self::alert('success', 'Added Device Type', [
-            'timer' =>  '2000'
+            'timer' =>  '2000',
         ]);
     }
 }

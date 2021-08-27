@@ -18,7 +18,7 @@ class CreateLocationModal extends ModalComponent
         'location.city' => 'required',
         'location.state' => 'required',
         'location.zip' => 'required',
-        'location.phone' => 'nullable|phone:AUTO,US'
+        'location.phone' => 'nullable|phone:AUTO,US',
     ];
 
     public function mount($customerId): Void
@@ -32,7 +32,7 @@ class CreateLocationModal extends ModalComponent
         $this->location->customer_id = $this->customer->id;
         $this->validate();
         $this->location->save();
-        if (!$this->customer->default_address) {
+        if (! $this->customer->default_address) {
             $this->customer->default_address = $this->location->id;
             $this->customer->save();
         }
@@ -40,7 +40,6 @@ class CreateLocationModal extends ModalComponent
         $this->emit('customerShowRefresh');
         $this->reset('location');
         $this->forceClose()->closeModal();
-
     }
 
     public function render(): View

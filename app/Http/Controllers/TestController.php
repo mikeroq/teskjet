@@ -14,10 +14,10 @@ class TestController extends Controller
     public function create(Request $request)
     {
         $request->validate([
-            'phone' => 'phone:US'
+            'phone' => 'phone:US',
         ],
         [
-            'phone.phone' => 'Must be a valid phone number'
+            'phone.phone' => 'Must be a valid phone number',
         ]);
 
         dd('passed');

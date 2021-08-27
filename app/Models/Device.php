@@ -45,10 +45,12 @@ class Device extends Model
     {
         return $this->belongsTo(Brand::class);
     }
+
     public function deviceType(): BelongsTo
     {
         return $this->belongsTo(DeviceType::class);
     }
+
     public function customer(): BelongsTo
     {
         return $this->belongsTo(Customer::class);

@@ -44,6 +44,6 @@ class Brand extends Model
     protected $fillable = [
         'name',
         'website',
-        'support_number'
+        'support_number',
     ];
 }

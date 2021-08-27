@@ -47,7 +47,6 @@ return [
      *         'model' => $book,
      *         'approved' => true
      *     ])
-     *
      */
     'approval_required' => false,
 
@@ -59,7 +58,7 @@ return [
      */
     'guest_commenting' => false,
 
-	/**
+    /**
      * Set this option to `true` to enable soft deleting of comments.
      *
      * Comments will be soft deleted using laravels "softDeletes" trait.

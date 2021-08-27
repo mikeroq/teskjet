@@ -7,7 +7,6 @@ use Illuminate\View\Component;
 
 class ActionDropdown extends Component
 {
-
     public string $id;
     public string $buttonName;
 

@@ -33,7 +33,7 @@ class EditRole extends ModalComponent
 
         $this->emit('refreshRoleTable');
         self::alert('success', 'Updated', [
-            'timer' =>  '2000'
+            'timer' =>  '2000',
         ]);
     }
 

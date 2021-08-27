@@ -46,7 +46,8 @@ class Route extends SpotlightCommand
         foreach ($routes as $route) {
             $collect->add($route->getName());
         }
-        return $collect->filter()->filter(fn($item) => false !== stripos($item, $query))->map(fn($route) => new SpotlightSearchResult(
+
+        return $collect->filter()->filter(fn ($item) => false !== stripos($item, $query))->map(fn ($route) => new SpotlightSearchResult(
             $route,
             $route,
             sprintf('Goto route %s', $route)

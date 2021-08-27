@@ -70,7 +70,7 @@ class CustomerLocation extends Model
         'city',
         'state',
         'zip',
-        'phone'
+        'phone',
     ];
 
 //    protected $casts = [

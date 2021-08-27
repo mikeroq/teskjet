@@ -1,4 +1,6 @@
-<?php /** @noinspection DuplicatedCode */
+<?php
+
+/** @noinspection DuplicatedCode */
 
 /** @noinspection ReturnTypeCanBeDeclaredInspection */
 
@@ -45,7 +47,7 @@ class CreateUserFromProvider implements CreatesUserFromProvider
      */
     public function create(string $provider, ProviderUser $providerUser)
     {
-        return DB::transaction(fn() => tap(User::create([
+        return DB::transaction(fn () => tap(User::create([
             'name' => $providerUser->getName() ?? $providerUser->getNickname(),
             'email' => $providerUser->getEmail(),
         ]), function (User $user) use ($provider, $providerUser) {

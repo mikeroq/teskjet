@@ -20,7 +20,6 @@ class EditBrand extends ModalComponent
         $this->name = $this->brand->name;
         $this->website = $this->brand->website;
         $this->support_number = $this->brand->support_number;
-
     }
 
     public function update(): void
@@ -28,7 +27,7 @@ class EditBrand extends ModalComponent
         $validated = $this->validate([
             'name' => 'required',
             'website' => 'nullable|url',
-            'support_number' => 'nullable|phone:AUTO,US|unique:brands,support_number'
+            'support_number' => 'nullable|phone:AUTO,US|unique:brands,support_number',
         ]);
 
         $this->brand->update($validated);
@@ -38,9 +37,8 @@ class EditBrand extends ModalComponent
 
         $this->emit('refreshBrandTable');
         self::alert('success', 'Updated', [
-            'timer' =>  '2000'
+            'timer' =>  '2000',
         ]);
-
     }
 
     public static function bsModalTitle(): string

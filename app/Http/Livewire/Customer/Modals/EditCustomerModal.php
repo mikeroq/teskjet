@@ -13,7 +13,7 @@ class EditCustomerModal extends ModalComponent
         'customer.name' => 'required',
         'customer.phone' => 'required|phone:AUTO,US',
         'customer.type' => 'required|numeric',
-        'customer.taxable' => 'nullable'
+        'customer.taxable' => 'nullable',
     ];
     protected array $messages = [
         'customer.name.required' => 'The name cannot be empty.',
@@ -39,7 +39,7 @@ class EditCustomerModal extends ModalComponent
         if ($this->customer->wasChanged()) {
             self::alert('success', 'Customer updated!');
             $this->emit('customerShowRefresh');
-            $this->dispatchBrowserEvent('update-title', ['title' => $this->customer->name . ' - Viewing Customer - ' . config('app.name')]);
+            $this->dispatchBrowserEvent('update-title', ['title' => $this->customer->name.' - Viewing Customer - '.config('app.name')]);
             $this->forceClose()->closeModal();
         } else {
             self::alertPreset('toast', 'info', 'You did not modify any fields!');

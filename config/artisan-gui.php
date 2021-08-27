@@ -13,7 +13,7 @@ return [
     */
     'middlewares' => [
         'web',
-        'auth:sanctum'
+        'auth:sanctum',
     ],
 
     /*
@@ -167,8 +167,8 @@ return [
         ],
         'view' => [
             'view:cache',
-            'view:clear'
-        ]
-    ]
+            'view:clear',
+        ],
+    ],
 
 ];

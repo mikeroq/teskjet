@@ -9,6 +9,7 @@ class TabButton extends Component
 {
     public string $name;
     public string $id;
+
     /**
      * Create a new component instance.
      *

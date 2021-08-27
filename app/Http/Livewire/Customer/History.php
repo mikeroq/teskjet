@@ -15,10 +15,10 @@ class History extends Component
 
     public function render(): View
     {
-        return view('livewire.customer.history',[
+        return view('livewire.customer.history', [
             'actions' => $this->customer->activities()
                 ->orderBy('created_at', 'desc')
-                ->paginate(10)
+                ->paginate(10),
         ]);
     }
 }

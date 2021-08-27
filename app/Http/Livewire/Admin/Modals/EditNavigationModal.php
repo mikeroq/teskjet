@@ -1,4 +1,6 @@
-<?php /** @noinspection PhpFieldAssignmentTypeMismatchInspection */
+<?php
+
+/** @noinspection PhpFieldAssignmentTypeMismatchInspection */
 
 namespace App\Http\Livewire\Admin\Modals;
 
@@ -20,7 +22,7 @@ class EditNavigationModal extends ModalComponent
 
     public function mount($type, $id): void
     {
-        if ($type === "parent") {
+        if ($type === 'parent') {
             $this->navigation = Navigation::findOrFail($id);
         } else {
             $this->navigation = NavigationChild::findOrFail($id);
@@ -31,7 +33,6 @@ class EditNavigationModal extends ModalComponent
         $this->url = $this->navigation->url;
         $this->user_level = $this->navigation->user_level;
         $this->is_hidden = $this->navigation->is_hidden;
-
     }
 
     public function update(): void
@@ -41,7 +42,7 @@ class EditNavigationModal extends ModalComponent
             'icon' => 'nullable',
             'url' => 'required',
             'is_hidden' => 'nullable|numeric',
-            'user_level' => 'required'
+            'user_level' => 'required',
         ]);
 
         $this->navigation->update($validated);
@@ -51,9 +52,8 @@ class EditNavigationModal extends ModalComponent
 
         $this->emit('refreshNavigationTable');
         self::alert('success', 'Edited Navigation', [
-            'timer' =>  '2000'
+            'timer' =>  '2000',
         ]);
-
     }
 
     public function render(): View

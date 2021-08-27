@@ -22,7 +22,7 @@ class CreateRole extends ModalComponent
         $validated = $this->validate([
             'name' => 'required',
             'description' => 'nullable',
-            'guard_name' => 'required'
+            'guard_name' => 'required',
         ]);
 
         Role::create($validated);
@@ -30,7 +30,7 @@ class CreateRole extends ModalComponent
         $this->reset();
         $this->forceClose()->closeModalWithEvents(['refreshRoleTable']);
         self::alert('success', 'Added Role ', [
-            'timer' =>  '2000'
+            'timer' =>  '2000',
         ]);
     }
 

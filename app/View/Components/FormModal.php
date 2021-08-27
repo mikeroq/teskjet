@@ -12,6 +12,7 @@ class FormModal extends Component
     public string $title;
     public string $icon;
     public string $btn;
+
     /**
      * Create a new component instance.
      *
@@ -26,13 +27,13 @@ class FormModal extends Component
         $this->btn = $btn;
 
         switch ($this->type) {
-            case "create":
-                $this->icon = "fas fa-plus";
-                $this->btn = "Add";
+            case 'create':
+                $this->icon = 'fas fa-plus';
+                $this->btn = 'Add';
             break;
-            case "edit":
-                $this->icon = "fas fa-pencil-alt";
-                $this->btn = "Update";
+            case 'edit':
+                $this->icon = 'fas fa-pencil-alt';
+                $this->btn = 'Update';
             break;
         }
     }

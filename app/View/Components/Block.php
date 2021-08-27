@@ -2,9 +2,9 @@
 
 namespace App\View\Components;
 
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Collection;
 use Illuminate\View\Component;
-use Illuminate\Contracts\View\View;
 
 class Block extends Component
 {
@@ -12,6 +12,7 @@ class Block extends Component
     public $options;
     public Collection $contentClass;
     public $footer;
+
     /**
      * Create a new component instance.
      *

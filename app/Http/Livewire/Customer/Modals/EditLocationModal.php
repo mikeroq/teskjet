@@ -16,7 +16,7 @@ class EditLocationModal extends ModalComponent
         'location.city' => 'required',
         'location.state' => 'required',
         'location.zip' => 'required',
-        'location.phone' => 'nullable|phone:AUTO,US'
+        'location.phone' => 'nullable|phone:AUTO,US',
     ];
 
     public static function bsModalTitle(): string
@@ -46,5 +46,4 @@ class EditLocationModal extends ModalComponent
     {
         return view('livewire.customer.modals.edit-location-modal');
     }
-
 }

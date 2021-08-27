@@ -20,7 +20,6 @@ class Logout extends SpotlightCommand
      */
     protected string $description = 'Logs you out of teskjet';
 
-
     /**
      * When all dependencies have been resolved the execute method is called.
      * You can type-hint all resolved dependency you defined earlier.
@@ -30,6 +29,7 @@ class Logout extends SpotlightCommand
         auth()->logout();
         $spotlight->redirect('/');
     }
+
     /**
      * You can provide any custom logic you want to determine whether the
      * command will be shown in the Spotlight component. If you don't have any

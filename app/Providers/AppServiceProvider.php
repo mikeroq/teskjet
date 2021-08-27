@@ -4,9 +4,9 @@ namespace App\Providers;
 
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Blade;
-use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -27,7 +27,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        View::composer(['components.navigation', 'components.admin-navigation', 'components.user-panel-navigation'], function($view) {
+        View::composer(['components.navigation', 'components.admin-navigation', 'components.user-panel-navigation'], function ($view) {
             if ($view->getName() !== 'layouts.maintenance') {
                 $navigation = collect(json_decode(Storage::disk('local')->get('navigation.json'),
                     false,

@@ -1,4 +1,5 @@
 <?php
+
 return [
     /*
     |--------------------------------------------------------------------------
@@ -6,10 +7,10 @@ return [
     |--------------------------------------------------------------------------
     */
     'type' => [
-        '1' => "Individual",
-        '2' => "Business",
-        '3' => "Non Profit Business",
-        '4' => "Government",
-        '5' => "Education",
-    ]
+        '1' => 'Individual',
+        '2' => 'Business',
+        '3' => 'Non Profit Business',
+        '4' => 'Government',
+        '5' => 'Education',
+    ],
 ];

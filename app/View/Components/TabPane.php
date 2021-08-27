@@ -8,6 +8,7 @@ use Illuminate\View\View;
 class TabPane extends Component
 {
     public string $id;
+
     /**
      * Create a new component instance.
      *

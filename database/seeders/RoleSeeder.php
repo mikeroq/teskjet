@@ -18,12 +18,12 @@ class RoleSeeder extends Seeder
         Role::create([
             'name' => 'Admin',
             'guard_name' => 'web',
-            'description' => 'Default role for admin users.'
+            'description' => 'Default role for admin users.',
         ]);
         Role::create([
             'name' => 'User',
             'guard_name' => 'web',
-            'description' => 'Default role for all users.'
+            'description' => 'Default role for all users.',
         ]);
     }
 }

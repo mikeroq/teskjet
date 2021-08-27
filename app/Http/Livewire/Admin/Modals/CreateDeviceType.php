@@ -23,7 +23,7 @@ class CreateDeviceType extends ModalComponent
     public function create(): void
     {
         $validated = $this->validate([
-            'name' => 'required|unique'
+            'name' => 'required|unique',
         ]);
 
         DeviceType::create($validated);
@@ -31,7 +31,7 @@ class CreateDeviceType extends ModalComponent
         $this->reset();
         $this->forceClose()->closeModalWithEvents(['refreshDeviceTypeTable']);
         self::alert('success', 'Added Device Type', [
-            'timer' =>  '2000'
+            'timer' =>  '2000',
         ]);
     }
 }

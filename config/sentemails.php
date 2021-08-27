@@ -13,5 +13,5 @@ return [
     // emails per page
     'perPage' => 10,
 
-    'noEmailsMessage' => 'No emails found.'
+    'noEmailsMessage' => 'No emails found.',
 ];

@@ -61,4 +61,3 @@ class CommentPolicy
         return $user->can('replyto comment');
     }
 }
-

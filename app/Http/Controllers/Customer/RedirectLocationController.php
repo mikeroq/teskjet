@@ -11,6 +11,6 @@ class RedirectLocationController extends
 {
     public function __invoke(CustomerLocation $customerLocation): RedirectResponse
     {
-        return redirect()->route('customers.show', $customerLocation->customer->id. '#addresses');
+        return redirect()->route('customers.show', $customerLocation->customer->id.'#addresses');
     }
 }

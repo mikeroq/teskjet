@@ -2,10 +2,10 @@
 
 namespace App\Http\Livewire\Admin;
 
+use App\Models\DeviceType;
 use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
-use App\Models\DeviceType;
 
 class DeviceTypeTable extends DataTableComponent
 {
@@ -14,7 +14,7 @@ class DeviceTypeTable extends DataTableComponent
     protected $listeners = [
         'refreshDeviceTypeTable' => '$refresh',
         'confirmedDelete',
-        'cancelledDelete'
+        'cancelledDelete',
     ];
 
     public function columns(): array
@@ -23,7 +23,7 @@ class DeviceTypeTable extends DataTableComponent
             Column::make('Name')
                 ->sortable()
                 ->searchable(),
-            Column::make('Actions')->addClass('text-end')
+            Column::make('Actions')->addClass('text-end'),
         ];
     }
 
@@ -46,10 +46,9 @@ class DeviceTypeTable extends DataTableComponent
             'showConfirmButton' => true,
             'cancelButtonText' => 'Nope',
             'onConfirmed' => 'confirmedDelete',
-            'onCancelled' => 'cancelledDelete'
+            'onCancelled' => 'cancelledDelete',
         ]);
     }
-
 
     public function confirmedDelete(): void
     {
