@@ -8,11 +8,6 @@ use Illuminate\View\View;
 
 class PermissionIndexController extends Controller
 {
-    /**
-     * Handle the incoming request.
-     *
-     * @return View
-     */
     public function __invoke(): View
     {
         return view('admin.permissions');

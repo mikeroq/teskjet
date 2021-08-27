@@ -20,31 +20,13 @@ use Laravel\Socialite\Contracts\User as ProviderUser;
 
 class CreateUserFromProvider implements CreatesUserFromProvider
 {
-    /**
-     * The creates connected accounts instance.
-     *
-     * @var CreatesConnectedAccounts
-     */
     public CreatesConnectedAccounts $createsConnectedAccounts;
 
-    /**
-     * Create a new action instance.
-     *
-     * @param  CreatesConnectedAccounts  $createsConnectedAccounts
-     */
     public function __construct(CreatesConnectedAccounts $createsConnectedAccounts)
     {
         $this->createsConnectedAccounts = $createsConnectedAccounts;
     }
 
-    /**
-     * Create a new user from a social provider user.
-     *
-     * @param  string  $provider
-     * @param  ProviderUser  $providerUser
-     * @return User
-     * @throws \Throwable
-     */
     public function create(string $provider, ProviderUser $providerUser)
     {
         return DB::transaction(fn () => tap(User::create([

@@ -13,11 +13,6 @@ class FormModal extends Component
     public string $icon;
     public string $btn;
 
-    /**
-     * Create a new component instance.
-     *
-     * @return void
-     */
     public function __construct($type, $slug, $title, $icon = '', $btn = '')
     {
         $this->title = $title;
@@ -38,11 +33,6 @@ class FormModal extends Component
         }
     }
 
-    /**
-     * Get the view / contents that represent the component.
-     *
-     * @return View
-     */
     public function render(): View
     {
         return view('components.form-modal');

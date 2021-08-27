@@ -13,22 +13,11 @@ use Illuminate\View\View;
 
 class CustomerController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return View
-     */
     public function index(): View
     {
         return view('customers.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param Customer $customer
-     * @return View
-     */
     public function show(Customer $customer): View
     {
         return view('customers.show', compact('customer'));

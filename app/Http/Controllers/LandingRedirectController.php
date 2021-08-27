@@ -7,11 +7,6 @@ use Illuminate\Support\Facades\Auth;
 
 class LandingRedirectController extends Controller
 {
-    /**
-     * Handle the incoming request.
-     *
-     * @return RedirectResponse
-     */
     public function __invoke(): RedirectResponse
     {
         if (Auth::check()) {

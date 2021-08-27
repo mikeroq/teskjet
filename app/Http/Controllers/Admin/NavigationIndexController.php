@@ -9,11 +9,6 @@ use Illuminate\View\View;
 
 class NavigationIndexController extends Controller
 {
-    /**
-     * Handle the incoming request.
-     *
-     * @return View
-     */
     public function __invoke(): View
     {
         $navigation_types = NavigationType::all();

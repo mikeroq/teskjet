@@ -13,11 +13,6 @@ class Input extends Component
     public string $label;
     public string $wrapper;
 
-    /**
-     * Create a new component instance.
-     *
-     * @return void
-     */
     public function __construct($type = 'text', $id = '', $label = '', $wrapper = 'true')
     {
         $this->type = $type;
@@ -27,11 +22,6 @@ class Input extends Component
         $this->wrapper = $wrapper;
     }
 
-    /**
-     * Get the view / contents that represent the component.
-     *
-     * @return View
-     */
     public function render(): View
     {
         return view('components.input');

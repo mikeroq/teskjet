@@ -6,18 +6,8 @@ use Illuminate\Console\GeneratorCommand;
 
 class ServiceMakeCommand extends GeneratorCommand
 {
-    /**
-     * The name and signature of the console command.
-     *
-     * @var string
-     */
     protected $name = 'make:service';
 
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
     protected $description = 'Create a new service class for business logic code.';
     protected $type = 'Service';
 

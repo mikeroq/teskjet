@@ -12,59 +12,26 @@ class ConnectedAccountPolicy
 {
     use HandlesAuthorization;
 
-    /**
-     * Determine whether the user can view any models.
-     *
-     * @param  User  $user
-     * @return mixed
-     */
     public function viewAny(User $user)
     {
         return true;
     }
 
-    /**
-     * Determine whether the user can view the model.
-     *
-     * @param  User  $user
-     * @param  ConnectedAccount  $connectedAccount
-     * @return bool
-     */
     public function view(User $user, ConnectedAccount $connectedAccount): bool
     {
         return $user->ownsConnectedAccount($connectedAccount);
     }
 
-    /**
-     * Determine whether the user can create models.
-     *
-     * @param  User  $user
-     * @return mixed
-     */
     public function create(User $user): mixed
     {
         return true;
     }
 
-    /**
-     * Determine whether the user can update the model.
-     *
-     * @param  User  $user
-     * @param  ConnectedAccount  $connectedAccount
-     * @return mixed
-     */
     public function update(User $user, ConnectedAccount $connectedAccount): mixed
     {
         return $user->ownsConnectedAccount($connectedAccount);
     }
 
-    /**
-     * Determine whether the user can delete the model.
-     *
-     * @param  User  $user
-     * @param  ConnectedAccount  $connectedAccount
-     * @return bool
-     */
     public function delete(User $user, ConnectedAccount $connectedAccount): bool
     {
         return $user->ownsConnectedAccount($connectedAccount);

@@ -9,13 +9,6 @@ use Laravel\Fortify\Rules\Password;
 
 class SetUserPassword implements SetsUserPasswords
 {
-    /**
-     * Validate and update the user's password.
-     *
-     * @param  mixed  $user
-     * @param  array  $input
-     * @return void
-     */
     public function set($user, array $input)
     {
         Validator::make($input, [

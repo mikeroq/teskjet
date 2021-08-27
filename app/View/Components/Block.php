@@ -13,11 +13,6 @@ class Block extends Component
     public Collection $contentClass;
     public $footer;
 
-    /**
-     * Create a new component instance.
-     *
-     * @return void
-     */
     public function __construct($title = '', $contentClass = '')
     {
         $this->title = $title;
@@ -26,11 +21,6 @@ class Block extends Component
         $this->contentClass->add($contentClass);
     }
 
-    /**
-     * Get the view / contents that represent the component.
-     *
-     * @return View
-     */
     public function render(): View
     {
         return view('components.block');

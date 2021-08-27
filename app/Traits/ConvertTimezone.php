@@ -13,19 +13,11 @@ trait ConvertTimezone
         return auth()->user()->timezone ?? 'UTC';
     }
 
-    /**
-     * @param $value
-     * @return Carbon
-     */
     public function getCreatedAtAttribute($value): Carbon
     {
         return (new Carbon($value))->setTimezone(new CarbonTimeZone($this->getTz()));
     }
 
-    /**
-     * @param $value
-     * @return Carbon
-     */
     public function getUpdatedAtAttribute($value): Carbon
     {
         return (new Carbon($value))->setTimezone(new CarbonTimeZone($this->getTz()));

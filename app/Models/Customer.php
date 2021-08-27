@@ -19,54 +19,6 @@ use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Models\Activity;
 use Spatie\Activitylog\Traits\LogsActivity;
 
-/**
- * App\Models\Customer
- *
- * @property int $id
- * @property Carbon|null $created_at
- * @property Carbon|null $updated_at
- * @property string $name
- * @property string $phone
- * @property int $type
- * @property bool $taxable
- * @property Carbon|null $deleted_at
- * @property int $default_address
- * @property int $shipping_address
- * @property int $billing_address
- * @property int $primary_contact
- * @property-read Collection|Activity[] $activities
- * @property-read int|null $activities_count
- * @property-read Collection|Comment[] $approvedComments
- * @property-read int|null $approved_comments_count
- * @property-read Collection|Comment[] $comments
- * @property-read int|null $comments_count
- * @property-read Collection|Device[] $devices
- * @property-read int|null $devices_count
- * @property-read string $displayable_taxable
- * @property-read Collection|CustomerLocation[] $locations
- * @property-read int|null $locations_count
- * @property-read Collection|Ticket[] $tickets
- * @property-read int|null $tickets_count
- * @method static Builder|Customer newModelQuery()
- * @method static Builder|Customer newQuery()
- * @method static Builder|Customer onlyTrashed()
- * @method static Builder|Customer query()
- * @method static Builder|Customer whereBillingAddress($value)
- * @method static Builder|Customer whereCreatedAt($value)
- * @method static Builder|Customer whereDefaultAddress($value)
- * @method static Builder|Customer whereDeletedAt($value)
- * @method static Builder|Customer whereId($value)
- * @method static Builder|Customer whereName($value)
- * @method static Builder|Customer wherePhone($value)
- * @method static Builder|Customer wherePrimaryContact($value)
- * @method static Builder|Customer whereShippingAddress($value)
- * @method static Builder|Customer whereTaxable($value)
- * @method static Builder|Customer whereType($value)
- * @method static Builder|Customer whereUpdatedAt($value)
- * @method static Builder|Customer withTrashed()
- * @method static Builder|Customer withoutTrashed()
- * @mixin Eloquent
- */
 class Customer extends Model
 {
     use HasFactory;
