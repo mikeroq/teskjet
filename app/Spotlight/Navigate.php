@@ -45,14 +45,11 @@ class Navigate extends SpotlightCommand
 
         return Navigation::with('children')->where('title', 'like', "%$query%")
             ->get()
-            ->map(function(Navigation $navigation) {
-                // You must map your search result into SpotlightSearchResult objects
-                return new SpotlightSearchResult(
-                    $navigation->id,
-                    $navigation->title,
-                    sprintf('Goto %s', $navigation->url)
-                );
-            });
+            ->map(fn(Navigation $navigation) => new SpotlightSearchResult(
+                $navigation->id,
+                $navigation->title,
+                sprintf('Goto %s', $navigation->url)
+            ));
     }
 
     /**

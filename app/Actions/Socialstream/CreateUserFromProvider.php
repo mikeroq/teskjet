@@ -45,21 +45,19 @@ class CreateUserFromProvider implements CreatesUserFromProvider
      */
     public function create(string $provider, ProviderUser $providerUser)
     {
-        return DB::transaction(function () use ($provider, $providerUser) {
-            return tap(User::create([
-                'name' => $providerUser->getName() ?? $providerUser->getNickname(),
-                'email' => $providerUser->getEmail(),
-            ]), function (User $user) use ($provider, $providerUser) {
-                $user->markEmailAsVerified();
+        return DB::transaction(fn() => tap(User::create([
+            'name' => $providerUser->getName() ?? $providerUser->getNickname(),
+            'email' => $providerUser->getEmail(),
+        ]), function (User $user) use ($provider, $providerUser) {
+            $user->markEmailAsVerified();
 
-                if (Socialstream::hasProviderAvatarsFeature() && Jetstream::managesProfilePhotos() && $providerUser->getAvatar()) {
-                    $user->setProfilePhotoFromUrl($providerUser->getAvatar());
-                }
+            if (Socialstream::hasProviderAvatarsFeature() && Jetstream::managesProfilePhotos() && $providerUser->getAvatar()) {
+                $user->setProfilePhotoFromUrl($providerUser->getAvatar());
+            }
 
-                $user->switchConnectedAccount(
-                    $this->createsConnectedAccounts->create($user, $provider, $providerUser)
-                );
-            });
-        });
+            $user->switchConnectedAccount(
+                $this->createsConnectedAccounts->create($user, $provider, $providerUser)
+            );
+        }));
     }
 }
