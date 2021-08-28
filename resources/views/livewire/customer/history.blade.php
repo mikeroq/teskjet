@@ -1,6 +1,5 @@
 <div>
     <x-block>
-        {{ $actions->fragment('history')->links() }}
         <table class="table table-striped table-hover">
             <thead>
             <th>Date</th>

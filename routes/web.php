@@ -18,6 +18,7 @@ use App\Http\Controllers\LandingRedirectController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\TicketController;
 use App\Http\Controllers\User\UserControlPanelController;
+use App\Http\Livewire\Customer\ShowCustomer;
 use App\Http\Livewire\User\Profile;
 use Illuminate\Support\Facades\Route;
 
@@ -38,14 +39,12 @@ Route::middleware(['auth:sanctum'])->group(function () {
     // Dashboard Route
     Route::view('/dashboard', 'dashboard')->name('dashboard');
 
-    Route::get('/test', [TestController::class, 'index']);
-    Route::post('/test', [TestController::class, 'create'])->name('test.create');
-
     Route::get('/user/security', [UserControlPanelController::class, 'showSecurity'])->middleware('password.confirm');
 
     // Resource Routes
-    Route::resource('customers', CustomerController::class);
-    Route::get('customer-location/{customerLocation}', RedirectLocationController::class)->name('customers.location');
+    Route::get('/customers', [CustomerController::class, 'index']);
+    Route::get('/customers/{customer}', ShowCustomer::class);
+    Route::get('/customer-location/{customerLocation}', RedirectLocationController::class)->name('customers.location');
     Route::resource('tickets', TicketController::class);
     Route::get('/users', UserAdminIndexController::class)->name('users.index');
     Route::get('/users/{user}', Profile::class)->name('users.profile');

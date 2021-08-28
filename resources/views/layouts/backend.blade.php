@@ -3,7 +3,7 @@
 <x-layout.head/>
 <body>
 <div id="page-container"
-     class="sidebar-o enable-page-overlay sidebar-dark side-scroll page-header-fixed page-header-dark dark-mode">
+     class="sidebar-o sidebar-dark side-scroll page-header-fixed page-header-dark dark-mode">
     <nav id="sidebar" aria-label="Main Navigation">
         <div class="content-header">
             <a class="fw-semibold text-dual" href="{{ route('dashboard') }}">

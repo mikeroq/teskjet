@@ -1,6 +1,5 @@
-@extends('layouts.backend')
+@extends('layouts.app')
 
 @section('title', $customer->name . ' - Viewing Customer')
-@section('content')
+
     <livewire:customer.show-customer :customer="$customer">
-@endsection

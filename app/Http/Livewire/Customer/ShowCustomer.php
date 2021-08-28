@@ -18,7 +18,8 @@ class ShowCustomer extends Component
 
     public function render(): View
     {
-        return view('livewire.customer.show-customer');
+        return view('livewire.customer.show-customer')
+            ->layoutData(['title' => $this->customer->name.' - Viewing Customer']);;
     }
 
     public function triggerDelete(): void
