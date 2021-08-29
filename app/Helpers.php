@@ -3,7 +3,7 @@
 use Illuminate\Support\Carbon;
 
 if (! function_exists('tz')) {
-    function tz(Carbon $carbon, Bool $skipDifference = false, String $format = 'M jS, Y g:i a'): String
+    function tz(Carbon|\Carbon\Carbon $carbon, Bool $skipDifference = false, String $format = 'M jS, Y g:i a'): String
     {
         if ($skipDifference) {
             return $carbon->tz(auth()->user()->timezone)->format($format);

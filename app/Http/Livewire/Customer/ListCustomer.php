@@ -15,13 +15,16 @@ class ListCustomer extends DataTableComponent
             Column::make('Name')
                 ->sortable()
                 ->searchable(),
-            Column::make('Phone')
+            Column::make('Phone', 'displayable_phone')
                 ->sortable()
                 ->searchable(),
-            Column::make('Type')
+            Column::make('Type', 'displayable_type')
                 ->sortable()
                 ->searchable(),
-            Column::make('Created At')
+            Column::make('Taxable', 'displayable_taxable')
+                ->sortable()
+                ->searchable(),
+            Column::make('Created At', 'displayable_created_at')
                 ->sortable()
                 ->searchable(),
         ];

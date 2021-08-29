@@ -43,21 +43,32 @@ class Customer extends Model
 
     protected $appends = [
         'displayable_taxable',
+        'displayable_type',
         'displayable_phone',
+        'displayable_created_at'
     ];
 
-    public function getDisplayablePhoneAttribute($attribute): string
+    public function getDisplayableCreatedAtAttribute(): string
     {
-        if ($attribute === null) {
+        return tz($this->created_at);
+    }
+
+    public function getDisplayablePhoneAttribute(): string
+    {
+        if ($this->phone === null) {
             return '';
         }
-
-        return PhoneNumber::make($attribute, 'US')->formatNational();
+        return PhoneNumber::make($this->phone, 'US')->formatNational();
     }
 
     public function getDisplayableTaxableAttribute(): string
     {
         return $this->taxable ? 'Taxable' : 'Non Taxable';
+    }
+
+    public function getDisplayableTypeAttribute()
+    {
+        return collect(trans('types/customer.type'))->get($this->type);
     }
 
     public function devices(): HasMany

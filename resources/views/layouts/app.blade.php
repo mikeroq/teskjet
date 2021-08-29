@@ -98,6 +98,7 @@
         window.addEventListener('update-title', event => {
             document.title = event.detail.title;
         });
+        hljs.highlightAll();
     </script>
 </body>
 </html>

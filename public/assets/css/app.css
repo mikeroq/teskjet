@@ -1140,17 +1140,22 @@ its autocomplete list */
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
-input:-webkit-autofill:active {
+input:-webkit-autofill:active,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus,
+select:-webkit-autofill:active{
     transition: background-color 5000s ease-in-out 0s !important;
-}
-
-input:-webkit-autofill {
     -webkit-text-fill-color: #fff !important;
 }
 
-input:-webkit-autofill:focus {
-    -webkit-text-fill-color: #fff !important;
-}
+/*input:-webkit-autofill {*/
+/*    -webkit-text-fill-color: #fff !important;*/
+/*}*/
+
+/*input:-webkit-autofill:focus {*/
+/*    -webkit-text-fill-color: #fff !important;*/
+/*}*/
 
 [x-cloak] {
     display: none !important;

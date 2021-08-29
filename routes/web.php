@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\PermissionIndexController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserAdminController;
 use App\Http\Controllers\Admin\UserAdminIndexController;
+use App\Http\Controllers\Customer\CustomerIndexController;
 use App\Http\Controllers\Customer\RedirectLocationController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\LandingController;
@@ -42,8 +43,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/user/security', [UserControlPanelController::class, 'showSecurity'])->middleware('password.confirm');
 
     // Resource Routes
-    Route::get('/customers', [CustomerController::class, 'index']);
-    Route::get('/customers/{customer}', ShowCustomer::class);
+    Route::get('/customers', CustomerIndexController::class);
+    Route::get('/customers/{customer}', ShowCustomer::class)->name('customers.show');
     Route::get('/customer-location/{customerLocation}', RedirectLocationController::class)->name('customers.location');
     Route::resource('tickets', TicketController::class);
     Route::get('/users', UserAdminIndexController::class)->name('users.index');
