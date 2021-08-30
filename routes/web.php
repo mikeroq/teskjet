@@ -1,22 +1,14 @@
 <?php
 
-use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\BrandIndexController;
-use App\Http\Controllers\Admin\DeviceTypeController;
 use App\Http\Controllers\Admin\DeviceTypeIndexController;
-use App\Http\Controllers\Admin\NavigationController;
 use App\Http\Controllers\Admin\NavigationIndexController;
-use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\PermissionIndexController;
 use App\Http\Controllers\Admin\RoleController;
-use App\Http\Controllers\Admin\UserAdminController;
 use App\Http\Controllers\Admin\UserAdminIndexController;
 use App\Http\Controllers\Customer\CustomerIndexController;
 use App\Http\Controllers\Customer\RedirectLocationController;
-use App\Http\Controllers\CustomerController;
-use App\Http\Controllers\LandingController;
 use App\Http\Controllers\LandingRedirectController;
-use App\Http\Controllers\TestController;
 use App\Http\Controllers\TicketController;
 use App\Http\Controllers\User\UserControlPanelController;
 use App\Http\Livewire\Customer\ShowCustomer;

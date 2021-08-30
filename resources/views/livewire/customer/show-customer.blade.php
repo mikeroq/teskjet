@@ -53,10 +53,6 @@
                             <td>Taxable</td>
                             <td class="text-end">{{ $customer->displayable_taxable }}</td>
                         </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                        </tr>
                     </table>
                 </div>
             </div>

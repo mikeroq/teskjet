@@ -2,25 +2,18 @@
 
 namespace App\Http\Livewire\Customer\Modals;
 
+use App\Http\Livewire\Traits\HasFormRequest;
+use App\Http\Requests\CustomerRequest;
 use App\Models\Customer;
 use Illuminate\Contracts\View\View;
 use LivewireUI\Modal\ModalComponent;
 
 class EditCustomerModal extends ModalComponent
 {
+    use HasFormRequest;
+
     public Customer $customer;
-    protected array $rules = [
-        'customer.name' => 'required',
-        'customer.phone' => 'required|phone:AUTO,US',
-        'customer.type' => 'required|numeric',
-        'customer.taxable' => 'nullable',
-    ];
-    protected array $messages = [
-        'customer.name.required' => 'The name cannot be empty.',
-        'customer.phone.required' => 'The phone cannot be empty.',
-        'customer.phone.phone' => 'Must be a valid North American phone number.',
-        'customer.type.required' => 'Please choose a type.',
-    ];
+    protected $formRequest = CustomerRequest::class;
 
     public static function bsModalTitle(): string
     {

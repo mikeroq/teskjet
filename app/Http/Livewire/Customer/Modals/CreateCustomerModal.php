@@ -2,22 +2,18 @@
 
 namespace App\Http\Livewire\Customer\Modals;
 
+use App\Http\Livewire\Traits\HasFormRequest;
+use App\Http\Requests\CustomerRequest;
 use App\Models\Customer;
 use Illuminate\Contracts\View\View;
-use Illuminate\Http\RedirectResponse;
-use libphonenumber\PhoneNumberUtil;
-use libphonenumber\ShortNumberInfo;
 use LivewireUI\Modal\ModalComponent;
 
 class CreateCustomerModal extends ModalComponent
 {
+    use HasFormRequest;
+
     public $customer;
-    protected array $rules = [
-        'customer.name' => 'required',
-        'customer.phone' => 'required|phone:US|unique:customers,phone',
-        'customer.type' => 'required',
-        'customer.taxable' => 'boolean',
-    ];
+    protected $formRequest = CustomerRequest::class;
 
     public function mount(): Void
     {
