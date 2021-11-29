@@ -8,7 +8,7 @@
     </x-slot>
 
     <x-slot name="content">
-        <h3 class="h5 font-weight-bold text-gray-light">
+        <h3 class="text-lg font-medium text-gray-900">
             @if ($this->enabled)
                 {{ __('You have enabled two factor authentication.') }}
             @else
@@ -16,75 +16,67 @@
             @endif
         </h3>
 
-        <p class="mt-3">
-            {{ __('When two factor authentication is enabled, you will be prompted for a secure, random token during authentication. You may retrieve this token from your phone\'s Google Authenticator application.') }}
-        </p>
-
-        @if ($showingRecoveryCodes)
-            <p class="mt-3">
-                {{ __('Store these recovery codes in a secure password manager. They can be used to recover access to your account if your two factor authentication device is lost.') }}
+        <div class="mt-3 max-w-xl text-sm text-gray-600">
+            <p>
+                {{ __('When two factor authentication is enabled, you will be prompted for a secure, random token during authentication. You may retrieve this token from your phone\'s Google Authenticator application.') }}
             </p>
-            <div class="bg-dark rounded p-3 mb-3">
+        </div>
 
-                    <code class="text-body-color-light font-size-sm font-monospace">
-                        @foreach (json_decode(decrypt($this->user->two_factor_recovery_codes), true) as $code)
-                        {{ $code }}<br>
-                        @endforeach
-                    </code>
+        @if ($this->enabled)
+            @if ($showingQrCode)
+                <div class="mt-4 max-w-xl text-sm text-gray-600">
+                    <p class="font-semibold">
+                        {{ __('Two factor authentication is now enabled. Scan the following QR code using your phone\'s authenticator application.') }}
+                    </p>
+                </div>
 
-            </div>
+                <div class="mt-4 dark:p-4 dark:w-56 dark:bg-white">
+                    {!! $this->user->twoFactorQrCodeSvg() !!}
+                </div>
+            @endif
+
+            @if ($showingRecoveryCodes)
+                <div class="mt-4 max-w-xl text-sm text-gray-600">
+                    <p class="font-semibold">
+                        {{ __('Store these recovery codes in a secure password manager. They can be used to recover access to your account if your two factor authentication device is lost.') }}
+                    </p>
+                </div>
+
+                <div class="grid gap-1 max-w-xl mt-4 px-4 py-4 font-mono text-sm bg-gray-100 rounded-lg">
+                    @foreach (json_decode(decrypt($this->user->two_factor_recovery_codes), true) as $code)
+                        <div>{{ $code }}</div>
+                    @endforeach
+                </div>
+            @endif
         @endif
 
-        @if ($this->setup || $showingQrCode)
-            <p class="mt-3">
-                {{ __('Two factor authentication is now enabled. Scan the following QR code using your phone\'s authenticator application.') }}
-            </p>
-            <div class="mt-3">
-                <div style="border: 3px #fff solid; width: 198px;">{!! $this->user->twoFactorQrCodeSvg() !!}</div>
-
-            </div>
-        @endif
-
-        @if ($this->setup)
-            <p class="mt-3">
-
-                    <x-jet-label for="confirmationCode" value="{{ __('After configuring the authenticator application, enter the code to validate the two-factor authentication.') }}" />
-                    <x-jet-input id="confirmationCode" type="text" class="mt-1 block w-full" wire:model.defer="confirmationCode" />
-                    <x-jet-input-error for="confirmationCode" class="mt-2" />
-
-            </p>
-        @endif
-
-        <div class="mt-3">
-            @if (! $this->setup && !$this->enabled)
-
-                <x-jet-button type="button" wire:loading.attr="disabled" wire:click="generateTwoFactorAuthenticationSecret">
-                    {{ __('Enable') }}
-                </x-jet-button>
-
+        <div class="mt-5">
+            @if (! $this->enabled)
+                <x-jet-confirms-password wire:then="enableTwoFactorAuthentication">
+                    <x-jet-button type="button" wire:loading.attr="disabled">
+                        {{ __('Enable') }}
+                    </x-jet-button>
+                </x-jet-confirms-password>
             @else
                 @if ($showingRecoveryCodes)
-
-                        <x-jet-secondary-button wire:click="regenerateRecoveryCodes">
+                    <x-jet-confirms-password wire:then="regenerateRecoveryCodes">
+                        <x-jet-secondary-button class="mr-3">
                             {{ __('Regenerate Recovery Codes') }}
                         </x-jet-secondary-button>
-
+                    </x-jet-confirms-password>
                 @else
-                        <x-jet-secondary-button wire:click="showRecoveryCodes">
+                    <x-jet-confirms-password wire:then="showRecoveryCodes">
+                        <x-jet-secondary-button class="mr-3">
                             {{ __('Show Recovery Codes') }}
                         </x-jet-secondary-button>
-
+                    </x-jet-confirms-password>
                 @endif
 
-                @if($this->enabled)
-                        <x-jet-danger-button  wire:loading.attr="disabled" wire:click="disableTwoFactorAuthentication">
-                            {{ __('Disable') }}
-                        </x-jet-danger-button>
-                @else
-                    <x-jet-button wire:click="confirmEnableTwoFactorAuthentication" wire:loading.attr="disabled">
-                        {{ __('Confirm') }}
-                    </x-jet-button>
-                @endif
+                <x-jet-confirms-password wire:then="disableTwoFactorAuthentication">
+                    <x-jet-danger-button wire:loading.attr="disabled">
+                        {{ __('Disable') }}
+                    </x-jet-danger-button>
+                </x-jet-confirms-password>
             @endif
         </div>
     </x-slot>
